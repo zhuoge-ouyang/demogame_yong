@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案一：方舟堡的遗志 — 玩家身份设计</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=MedievalSharp&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --gold: #d4af37;
+  --gold-light: #f5e6b8;
+  --gold-dark: #8b6914;
+  --bg-dark: #0d0d1a;
+  --bg-deep: #1a1a2e;
+  --bg-card: rgba(20,20,40,0.85);
+  --bg-card-hover: rgba(30,30,55,0.9);
+  --text-primary: #f5f0e8;
+  --text-secondary: #c8bfa8;
+  --text-muted: #8a7e6e;
+  --border: rgba(212,175,55,0.15);
+  --border-light: rgba(212,175,55,0.3);
+  --accent-green: #4a9e5c;
+  --accent-green-light: #6bc77a;
+  --accent-red: #c0392b;
+  --accent-red-light: #e74c3c;
+  --accent-blue: #3498db;
+  --accent-blue-light: #5dade2;
+  --purple-deep: #2d1b69;
+  --purple-accent: #6a4fc7;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Noto Serif SC', 'Georgia', serif;
+  line-height: 1.9;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1.5px 1.5px at 20% 30%, rgba(212,175,55,0.4) 50%, transparent 100%),
+              radial-gradient(1px 1px at 40% 70%, rgba(74,144,217,0.3) 50%, transparent 100%),
+              radial-gradient(1.2px 1.2px at 60% 20%, rgba(106,79,199,0.35) 50%, transparent 100%),
+              radial-gradient(1px 1px at 80% 60%, rgba(212,175,55,0.25) 50%, transparent 100%),
+              radial-gradient(1.5px 1.5px at 10% 80%, rgba(74,144,217,0.2) 50%, transparent 100%);
+  background-size: 300px 300px;
+  animation: starDrift 120s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes starDrift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-300px); }
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,13,26,0.4) 0%, rgba(26,26,46,0.3) 30%, rgba(45,27,105,0.08) 50%, rgba(26,26,46,0.3) 70%, rgba(13,13,26,0.5) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero Banner */
+.hero-banner {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #0f0f28 50%, var(--bg-deep) 100%);
+  z-index: 1;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(212,175,55,0.2) 0%, transparent 55%),
+              radial-gradient(ellipse at 20% 10%, rgba(74,144,217,0.08) 0%, transparent 35%),
+              linear-gradient(to bottom, rgba(13,13,26,0.2) 0%, rgba(13,13,26,0.9) 100%);
+  z-index: 1;
+}
+
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(106,79,199,0.05) 40%, transparent 65%);
+  border-radius: 50%;
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 24px;
+}
+
+.hero-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0.9;
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(212,175,55,0.4);
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 700;
+  color: var(--gold-light);
+  text-shadow: 0 0 80px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2), 0 2px 4px rgba(0,0,0,0.6);
+  margin-bottom: 12px;
+  letter-spacing: 8px;
+  animation: titleGlow 4s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 80px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2), 0 2px 4px rgba(0,0,0,0.6); }
+  50% { text-shadow: 0 0 100px rgba(212,175,55,0.6), 0 0 60px rgba(212,175,55,0.3), 0 2px 4px rgba(0,0,0,0.6); }
+}
+
+.hero-title-cn {
+  font-size: clamp(20px, 3vw, 32px);
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 40px;
+  letter-spacing: 8px;
+}
+
+.hero-tagline {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 2.4;
+  padding: 28px 0;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+
+.hero-tagline::before, .hero-tagline::after {
+  content: '';
+  display: block;
+  width: 200px;
+  height: 1px;
+  margin: 0 auto 24px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.hero-tagline::after {
+  margin: 24px auto 0;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 8px 24px;
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 20px;
+  margin-top: 8px;
+  background: rgba(212,175,55,0.05);
+}
+
+.sword-divider {
+  text-align: center;
+  margin: 0 auto;
+  padding: 8px 0;
+  opacity: 0.6;
+}
+
+.sword-divider svg {
+  width: 180px;
+  height: 20px;
+}
+
+/* TOC */
+.toc {
+  max-width: 960px;
+  margin: -50px auto 80px;
+  padding: 36px 48px;
+  background: linear-gradient(135deg, rgba(20,20,40,0.95) 0%, rgba(30,25,55,0.92) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  position: relative;
+  z-index: 3;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.1);
+}
+
+.toc h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toc h2::before {
+  content: '\1F4DC';
+  font-size: 16px;
+}
+
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 6px;
+  list-style: none;
+}
+
+.toc-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px 16px;
+  display: block;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.toc-list a:hover {
+  color: var(--gold-light);
+  background: rgba(212,175,55,0.08);
+  border-color: rgba(212,175,55,0.15);
+  transform: translateX(6px);
+}
+
+.toc-list a::before {
+  content: '\25C6 ';
+  color: var(--gold);
+  font-size: 8px;
+  vertical-align: middle;
+  opacity: 0.7;
+}
+
+/* Container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  margin-bottom: 90px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+
+.section-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(106,79,199,0.08) 100%);
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(212,175,55,0.08);
+  transition: all 0.4s ease;
+}
+
+.section:hover .section-icon {
+  box-shadow: 0 4px 24px rgba(212,175,55,0.15);
+  transform: scale(1.05);
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.section-title-cn {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+  text-shadow: 0 0 30px rgba(212,175,55,0.1);
+}
+
+/* Summary Box */
+.summary-box {
+  background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(106,79,199,0.04) 100%);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-left: 4px solid var(--gold);
+  padding: 32px 36px;
+  border-radius: 0 14px 14px 0;
+  margin-bottom: 40px;
+  font-size: 15.5px;
+  line-height: 2.2;
+  letter-spacing: 0.4px;
+  box-shadow: inset 0 0 40px rgba(212,175,55,0.03), 0 4px 20px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.summary-box::before {
+  content: '\275D';
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  font-size: 28px;
+  color: var(--gold);
+  opacity: 0.2;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.summary-box strong {
+  color: var(--gold-light);
+}
+
+/* Info Block */
+.info-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.info-block:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 8px 36px rgba(0,0,0,0.3);
+}
+
+.info-block h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+
+.info-block p, .info-block ul {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 2.2;
+  letter-spacing: 0.4px;
+}
+
+.info-block ul {
+  padding-left: 24px;
+}
+
+.info-block ul li {
+  margin-bottom: 10px;
+}
+
+.info-block ul li strong {
+  color: var(--gold-light);
+}
+
+/* Feature List */
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 2;
+}
+
+.feature-list li::before {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 16px;
+}
+
+.feature-list.pros li::before {
+  content: '✔';
+  color: var(--accent-green);
+}
+
+.feature-list.cons li::before {
+  content: '✖';
+  color: var(--accent-red);
+}
+
+.feature-list.impact li::before {
+  content: '▶';
+  color: var(--accent-blue);
+}
+
+/* Accent Cards */
+.accent-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.accent-card:hover {
+  box-shadow: 0 8px 36px rgba(0,0,0,0.3);
+}
+
+.accent-card.green {
+  border-left: 4px solid var(--accent-green);
+}
+
+.accent-card.green h4 {
+  color: var(--accent-green-light);
+}
+
+.accent-card.red {
+  border-left: 4px solid var(--accent-red);
+}
+
+.accent-card.red h4 {
+  color: var(--accent-red-light);
+}
+
+.accent-card.blue {
+  border-left: 4px solid var(--accent-blue);
+}
+
+.accent-card.blue h4 {
+  color: var(--accent-blue-light);
+}
+
+.accent-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+
+.accent-card p, .accent-card ul {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 2.2;
+  letter-spacing: 0.4px;
+}
+
+.accent-card ul {
+  padding-left: 24px;
+}
+
+.accent-card ul li {
+  margin-bottom: 10px;
+}
+
+/* Consistency Table */
+.consistency-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+.consistency-table th {
+  text-align: left;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.12) 0%, rgba(106,79,199,0.06) 100%);
+  border: 1px solid var(--border);
+  color: var(--gold-light);
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.consistency-table td {
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  line-height: 2;
+  vertical-align: top;
+}
+
+.consistency-table tr:nth-child(even) td {
+  background: rgba(20,20,40,0.4);
+}
+
+.consistency-table tr:hover td {
+  background: rgba(212,175,55,0.04);
+}
+
+.consistency-table td:first-child {
+  color: var(--gold-light);
+  font-weight: 600;
+  white-space: nowrap;
+  width: 140px;
+  background: rgba(212,175,55,0.04);
+}
+
+/* Rune Separator */
+.rune-separator {
+  position: relative;
+  text-align: center;
+  margin: 20px 0 40px;
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+.rune-separator .rune-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.rune-separator .rune-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.rune-separator .rune-symbol {
+  color: var(--gold);
+  font-size: 18px;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
+}
+
+/* Footer */
+.doc-footer {
+  text-align: center;
+  padding: 60px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(13,13,26,0.8) 0%, transparent 100%);
+}
+
+.doc-footer .footer-brand {
+  color: var(--gold);
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 16px;
+  text-shadow: 0 0 20px rgba(212,175,55,0.3);
+}
+
+/* Core Concept Highlight */
+.concept-highlight {
+  background: linear-gradient(135deg, rgba(45,27,105,0.25) 0%, rgba(20,20,40,0.6) 100%);
+  border: 1px solid rgba(106,79,199,0.25);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin: 32px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(106,79,199,0.1) 0%, transparent 70%);
+}
+
+.concept-highlight .concept-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--purple-accent);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.concept-highlight .concept-text {
+  font-size: 20px;
+  color: var(--gold-light);
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 30px rgba(212,175,55,0.15);
+}
+
+/* Print */
+@media print {
+  body::before, body::after { display: none; }
+  .hero-banner { min-height: 60vh; page-break-after: always; }
+  .toc { page-break-after: always; }
+  .section { page-break-inside: avoid; margin-bottom: 40px; }
+  .rune-separator { page-break-before: avoid; }
+  .accent-card, .info-block { page-break-inside: avoid; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toc {
+    margin: -30px 16px 60px;
+    padding: 24px 28px;
+  }
+  .toc-list {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding: 0 16px 80px;
+  }
+  .section {
+    margin-bottom: 60px;
+  }
+  .hero-banner {
+    min-height: 70vh;
+  }
+  .consistency-table {
+    font-size: 13px;
+  }
+  .consistency-table td:first-child {
+    white-space: normal;
+    width: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO BANNER ===== -->
+<header class="hero-banner">
+  <div class="hero-content">
+    <div class="hero-subtitle">Player Identity Proposal I</div>
+    <h1 class="hero-title">THE BASTION'S LEGACY</h1>
+    <div class="hero-title-cn">方舟堡的遗志 · 玩家身份方案一</div>
+    <div class="hero-tagline">
+      当城堡本身就是意志，指挥官便是它的灵魂
+    </div>
+    <div class="hero-badge">最弱身份 · 偏外部操控者</div>
+    <div class="sword-divider">
+      <svg viewBox="0 0 180 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="10" x2="70" y2="10" stroke="url(#gL)" stroke-width="1"/>
+        <polygon points="85,2 90,10 85,18 95,10" fill="#d4af37" opacity="0.6"/>
+        <line x1="110" y1="10" x2="180" y2="10" stroke="url(#gR)" stroke-width="1"/>
+        <defs>
+          <linearGradient id="gL" x1="0" y1="0" x2="70" y2="0"><stop offset="0%" stop-color="#d4af37" stop-opacity="0"/><stop offset="100%" stop-color="#d4af37" stop-opacity="0.6"/></linearGradient>
+          <linearGradient id="gR" x1="110" y1="0" x2="180" y2="0"><stop offset="0%" stop-color="#d4af37" stop-opacity="0.6"/><stop offset="100%" stop-color="#d4af37" stop-opacity="0"/></linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc fade-in">
+  <h2>目录 · Contents</h2>
+  <ul class="toc-list">
+    <li><a href="#ch1">第一章：方案核心概念</a></li>
+    <li><a href="#ch2">第二章：玩家身份定位</a></li>
+    <li><a href="#ch3">第三章：城堡转移机制</a></li>
+    <li><a href="#ch4">第四章：城堡攻击逻辑</a></li>
+    <li><a href="#ch5">第五章：玩家涉险原因</a></li>
+    <li><a href="#ch6">第六章：世界观一致性分析</a></li>
+    <li><a href="#ch7">第七章：优缺点与玩法影响</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+<!-- ===== 第一章：方案核心概念 ===== -->
+<section class="section fade-in" id="ch1">
+  <div class="section-header">
+    <div class="section-icon">⚔</div>
+    <div><div class="section-title">Core Concept</div><div class="section-title-cn">方案核心概念</div></div>
+  </div>
+
+  <div class="summary-box">
+    玩家<strong>没有游戏内的肉身或灵魂</strong>。玩家的"存在"体现为<strong>方舟堡本身的意志系统</strong>——城堡在圣心城陷落时被世界树残留的魂能激活，成为一座有自主判断能力的活体要塞。玩家就是这座要塞的"操作系统"，通过城堡的魂能网络遥控英雄、部署防御。
+  </div>
+
+  <div class="concept-highlight">
+    <div class="concept-label">核心理念</div>
+    <div class="concept-text">玩家 = 城堡的操控系统，无肉身存在</div>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 存在形态</h4>
+    <p>方舟堡并非一座普通的城堡，而是<strong>世界树树皮碎片在凡界凝聚而成的活体建筑</strong>。当第十魂令觉醒的瞬间，通天之柱残存的魂能脉动催生了这座堡垒——城墙表面隐约可见脉动的符文回路，塔楼顶端萌发着金色的枝条，基座深入地下与世界树的残根相连。</p>
+    <p style="margin-top:16px">玩家的意识与这座城堡的魂能网络深度融合。你看到的战场画面，是城堡感知系统传递的视觉信息；你发出的每一个指令，是城堡魂能网络中的脉冲信号。<strong>你不在城堡里——你就是城堡。</strong></p>
+  </div>
+
+  <div class="info-block">
+    <h4>⚡ 操控方式</h4>
+    <ul>
+      <li><strong>英雄遥控</strong>：通过城堡的魂能链路向英雄发送战术指令，英雄接收到的不是"某人的命令"，而是圣心城权限协议的激活信号。</li>
+      <li><strong>防御部署</strong>：直接在城堡的符文框架上部署防御塔，这些塔楼是城堡自身结构的延伸。</li>
+      <li><strong>资源调配</strong>：管理城堡核心的世界树根须所汲取的魂能，分配于修复、防御和传送。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ===== 第二章：玩家身份定位 ===== -->
+<section class="section fade-in" id="ch2">
+  <div class="section-header">
+    <div class="section-icon">🏛</div>
+    <div><div class="section-title">Identity</div><div class="section-title-cn">玩家身份定位</div></div>
+  </div>
+
+  <div class="info-block">
+    <h4>🛡 身份本质</h4>
+    <p>方舟堡的意志系统（AI操控者）。这不是"玩家获得了城堡的控制权"，而是<strong>城堡的魂能网络在觉醒时自动形成了一个有判断力的意识核心</strong>——这个核心就是玩家。玩家不是"驾驶"城堡，玩家"是"城堡的神经系统。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>⚖ 统领领主的资格</h4>
+    <p>不是玩家有资格，而是<strong>方舟堡有资格</strong>。方舟堡是圣心城（九大陆曾经的政治中心）最后的遗产，它内置了圣心城议会的权限协议——各大陆领主在危急时刻有义务响应圣心城的召集令。</p>
+    <p style="margin-top:16px">当方舟堡激活其权限核心时，九大陆领主收到的不是"某个陌生人的命令"，而是<strong>圣心城紧急动员协议</strong>的激活信号。这是写在凡界法统根基中的义务，无可违逆。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 权威来源</h4>
+    <p>圣心城的法统继承——玩家发出的不是个人命令，而是<strong>圣心城的紧急动员令</strong>。领主们服从的不是"某个人"，而是"凡界最后的合法秩序"。</p>
+    <p style="margin-top:16px">这创造了一个微妙的权力关系：领主们效忠的是圣心城的制度，而非玩家个人。这意味着：</p>
+    <ul>
+      <li>领主的服从是有条件的——他们服从"圣心城的召集"，而非"你的魅力"</li>
+      <li>玩家需要用实际行动证明圣心城的遗产值得被继承</li>
+      <li>背叛或放弃城堡，等同于放弃凡界最后的法统象征</li>
+    </ul>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--purple-accent)">
+    <h4>\1F441 不参战原因</h4>
+    <p>无肉身，纯系统层面的存在。方舟堡可以发射魂能脉冲、升起符文屏障、投射英雄幻影，但<strong>城堡本身不是一个"可以被杀死的人"</strong>。</p>
+    <p style="margin-top:16px">玩家无法"亲自冲锋"，因为没有一个"自己"可以冲锋。玩家的一切行动都必须通过城堡的中介——这使得"玩家在做什么"和"城堡在做什么"完全重合，叙事上高度统一。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ===== 第三章：城堡转移机制 ===== -->
+<section class="section fade-in" id="ch3">
+  <div class="section-header">
+    <div class="section-icon">🌀</div>
+    <div><div class="section-title">Transfer</div><div class="section-title-cn">城堡转移机制</div></div>
+  </div>
+
+  <div class="summary-box">
+    方舟堡底座嵌入了<strong>符文通道的根节点</strong>——圣心城原本就是九条符文通道的交汇点。城堡通过激活不同的符文通道锚点，将自身<strong>整体传送</strong>到不同大陆的符文通道终端。
+  </div>
+
+  <div class="info-block">
+    <h4>⚙ 传送原理</h4>
+    <ul>
+      <li><strong>符文通道根节点</strong>：方舟堡底座深处嵌入了圣心城符文通道枢纽的残存核心，这是九条通道的交汇原点。</li>
+      <li><strong>锚点激活</strong>：城堡通过向特定符文通道注入魂能，建立与该大陆终端的能量共振。</li>
+      <li><strong>整体传送</strong>：共振达到临界点时，城堡及其内部的一切（英雄、防御塔、资源）被整体"折叠"至目标位置。</li>
+    </ul>
+  </div>
+
+  <div class="info-block">
+    <h4>⚡ 传送代价与限制</h4>
+    <ul>
+      <li><strong>魂能消耗</strong>：每次传送消耗大量魂能，传送距离越远、城堡等级越高，消耗越大。</li>
+      <li><strong>接收端必需</strong>：需要目标大陆的领主在当地打开接收端——领主必须先在符文通道终端进行激活仪式，城堡才能锁定坐标。</li>
+      <li><strong>唯一性</strong>：城堡不能同时出现在多个地方。传送到新大陆意味着撤离旧大陆。</li>
+    </ul>
+  </div>
+
+  <div class="concept-highlight">
+    <div class="concept-label">叙事合理性</div>
+    <div class="concept-text">解释了为什么必须先与领主建立关系（开通道）才能前往新大陆，<br>也解释了城堡不能同时出现在多个地方。</div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ===== 第四章：城堡攻击逻辑 ===== -->
+<section class="section fade-in" id="ch4">
+  <div class="section-header">
+    <div class="section-icon">💀</div>
+    <div><div class="section-title">Threat</div><div class="section-title-cn">城堡攻击逻辑</div></div>
+  </div>
+
+  <div class="info-block">
+    <h4>🌲 世界树活体根须</h4>
+    <p>方舟堡核心是一段<strong>世界树活体根须</strong>——圣心城废墟下唯一存活的部分。它持续散发着微弱但纯净的魂能，是城堡一切功能的能量源泉。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>✨ 纯净魂能的副作用</h4>
+    <p>在元素紊乱的大陆上，这段纯净魂能就像<strong>黑暗中的灯塔</strong>。深渊造物被魂能吸引，失控的元素生物被稳定的魂能场刺激而暴走。</p>
+    <p style="margin-top:16px"><strong>城堡不是被"针对"，而是被动吸引了危险。</strong>这不是某个邪恶势力的阴谋，而是物理法则的结果——在混乱的元素环境中，一段稳定的纯净魂能必然成为所有不稳定力量的汇聚点。</p>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--accent-red)">
+    <h4>☠ 攻击来源</h4>
+    <ul>
+      <li><strong>深渊造物</strong>：被魂能吸引，本能地向光源汇聚。</li>
+      <li><strong>失控元素生物</strong>：纯净魂能场刺激其暴走，将它们从栖息地驱赶出来。</li>
+      <li><strong>混沌渗透体</strong>：封印裂隙中渗漏的混沌能量，会被纯净魂能"净化"的本能所牵引，产生排斥反应。</li>
+    </ul>
+  </div>
+
+  <div class="concept-highlight">
+    <div class="concept-label">核心逻辑</div>
+    <div class="concept-text">城堡的存在本身即为"诱因"<br>防御的不是"敌人"，而是"被吸引来的混乱"</div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ===== 第五章：玩家涉险原因 ===== -->
+<section class="section fade-in" id="ch5">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div><div class="section-title">Risk</div><div class="section-title-cn">玩家涉险原因</div></div>
+  </div>
+
+  <div class="info-block">
+    <h4>⚙ 亲临现场的必要性</h4>
+    <p>方舟堡必须亲临各大陆，因为<strong>远程修复不可能</strong>。封魂令的裂痕需要在物理层面接近才能通过城堡核心的世界树根须进行"魂能谐振"，暂时稳定局部元素紊乱。</p>
+    <p style="margin-top:16px">这就像一个精密的手术——<strong>医生必须站在手术台前</strong>，遥控无法完成需要触觉反馈和实时调整的修复工作。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>🏠 移动修复站</h4>
+    <p>城堡就是一台<strong>"移动修复站"</strong>。每到一处，核心的世界树根须就会与该地区的封魂令碎片产生共振：</p>
+    <ul>
+      <li>检测封魂令裂痕的位置和深度</li>
+      <li>释放调和魂能，暂时弥合裂痕</li>
+      <li>建立局部元素平衡，为永久修复争取时间</li>
+    </ul>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--gold)">
+    <h4>👤 操控系统的不可替代性</h4>
+    <p>玩家（操控系统）必须在现场实时调配资源和英雄来维持修复过程。修复不是自动进行的——它需要根据实时反馈调整魂能输出强度、分配英雄守护关键节点、决策何时暂停修复以应对突发袭击。</p>
+    <p style="margin-top:16px"><strong>没有玩家的实时判断，城堡只是一座会发光的废墟。</strong></p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ===== 第六章：世界观一致性分析 ===== -->
+<section class="section fade-in" id="ch6">
+  <div class="section-header">
+    <div class="section-icon">🌐</div>
+    <div><div class="section-title">Consistency</div><div class="section-title-cn">世界观一致性分析</div></div>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 与世界观核心元素的关联</h4>
+    <table class="consistency-table">
+      <thead>
+        <tr>
+          <th>世界观元素</th>
+          <th>一致性说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>魂域三界</td>
+          <td>方舟堡作为凡界最后的秩序象征，与三界分隔后的权力真空吻合。城堡的存在填补了这个真空。</td>
+        </tr>
+        <tr>
+          <td>世界树</td>
+          <td>城堡核心的活体根须直接关联世界树，是其在凡界的微小延伸。城堡的存续即世界树意志的延续。</td>
+        </tr>
+        <tr>
+          <td>九封魂令</td>
+          <td>城堡的传送依赖符文通道（封魂令体系的基础设施），修复封魂令是玩家行动的核心动机。</td>
+        </tr>
+        <tr>
+          <td>元素大陆</td>
+          <td>每到新大陆需要当地领主开启接收端，与元素大陆独立性一致——没有领主的配合，传送无法进行。</td>
+        </tr>
+        <tr>
+          <td>圣心城</td>
+          <td>方舟堡=圣心城的遗产，直接继承其政治法统。城堡的权限协议就是圣心城议会制度的最后残响。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--purple-accent)">
+    <h4>🎭 叙事一致性总结</h4>
+    <p>方舟堡方案的最大优势在于<strong>与世界观底层设定的深度绑定</strong>。玩家不是"从天而降的救世主"，而是世界树自身机制的一部分——圣心城毁灭后，世界树用最后的力量催生了一座能够继续执行修复使命的活体建筑。</p>
+    <p style="margin-top:16px">玩家与城堡的融合，本质上是一个<strong>"化身"叙事</strong>——玩家不是"扮演"某个角色，而是"成为"一个已经存在于世界观中的实体。这避免了"穿越者"设定常见的世界观割裂感。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ===== 第七章：优缺点与玩法影响 ===== -->
+<section class="section fade-in" id="ch7">
+  <div class="section-header">
+    <div class="section-icon">⚖</div>
+    <div><div class="section-title">Analysis</div><div class="section-title-cn">优缺点与玩法影响</div></div>
+  </div>
+
+  <div class="accent-card green">
+    <h4>✔ 优点</h4>
+    <ul class="feature-list pros">
+      <li>完全保持"玩家无肉身"设定，与纯外部操控者定位最兼容。</li>
+      <li>城堡=玩家化身，塔防核心玩法的叙事合理性最强——你 defending 的就是"你自己"。</li>
+      <li>不需要处理"玩家死亡"的叙事逻辑。Game Over = 城堡被摧毁，简单直接。</li>
+      <li>城堡传送机制直接解释了章节切换，无需额外的叙事包装。</li>
+      <li>玩家与世界观核心（世界树、圣心城）的关联天然且深刻。</li>
+    </ul>
+  </div>
+
+  <div class="accent-card red">
+    <h4>✖ 缺点</h4>
+    <ul class="feature-list cons">
+      <li>叙事情感偏弱，玩家缺少个人动机和成长弧线。城堡可以升级，但"你"是谁？</li>
+      <li>难以制造"玩家个人危机"的戏剧张力——没有肉身，就没有"被俘""受伤""抉择牺牲"等经典戏剧元素。</li>
+      <li>领主对"一座城堡"的忠诚感不如对"一个人"自然。情感连接的建立需要额外的叙事设计。</li>
+      <li>后期揭示空间有限——玩家的身份在游戏开始就已经明确，缺乏"你是谁"的悬念挖掘。</li>
+    </ul>
+  </div>
+
+  <div class="accent-card blue">
+    <h4>▶ 玩法影响</h4>
+    <ul class="feature-list impact">
+      <li>城堡升级=玩家成长，体验高度统一。不需要区分"角色成长"和"城堡成长"。</li>
+      <li>城堡被摧毁=Game Over，紧张感来源清晰。每一波敌人都在威胁"你的本体"。</li>
+      <li>符文通道传送机制可以设计为解锁条件——必须先完成某大陆的主线才能解锁下一大陆。</li>
+      <li>适合偏策略、轻叙事的玩家群体。玩法优先于剧情沉浸。</li>
+      <li>城堡外观随进度变化可以成为强反馈——从废墟到圣殿的视觉进化。</li>
+    </ul>
+  </div>
+
+  <div class="concept-highlight">
+    <div class="concept-label">方案定位</div>
+    <div class="concept-text">最弱身份，偏外部操控者<br>玩法叙事一致性最强，情感叙事深度最浅</div>
+  </div>
+</section>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="footer-brand">— THE BASTION'S LEGACY —</div>
+  <p>方舟堡的遗志 · 玩家身份方案一 · 世界观设计文档</p>
+  <p style="margin-top:4px;opacity:0.7;">YGGDRASIL Project · 2026.04</p>
+</footer>
+
+<script>
+(function(){
+  const obs = new IntersectionObserver(e => {
+    e.forEach(x => {
+      if (x.isIntersecting) x.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+})();
+</script>
+</body>
+</html>

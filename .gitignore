@@ -1,0 +1,69 @@
+# ============ Dependencies ============
+node_modules/
+
+# ============ Build Output ============
+dist/
+*.tsbuildinfo
+
+# ============ Logs ============
+*.log
+scripts/*.log
+scripts/*.tmp
+cookies.txt
+会议总结*.txt
+文字转写_*.txt
+
+# ============ Environment ============
+*.local
+.env
+.env.local
+.env.*.local
+
+# ============ Editor / OS ============
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ============ Test / Verification Screenshots ============
+_verify_*.png
+_verify_*.jpeg
+*_screenshot.png
+*_screenshot.jpeg
+dist_index_*.png
+final_verification_*.png
+iframe_content*.png
+preview_page_*.png
+00_*.jpeg
+00_*.png
+01_banner_*.jpeg
+02_navigation.jpeg
+03_world_*.jpeg
+04_celestial_*.jpeg
+05_continents_*.jpeg
+06_heroes_*.jpeg
+07_progress_*.jpeg
+
+# ============ Archives ============
+*.rar
+*.zip
+*.7z
+*.tar.gz
+
+# ============ One-off Maintenance Scripts ============
+fix_*.py
+write_*.py
+check_heroes.py
+clear_join_condition.py
+expand_backstories_ai.py
+print_stories.py
+test_api.ps1
+
+# ============ Misc ============
+.superpowers/
+snapshots/
+*.tmp
+*.bak

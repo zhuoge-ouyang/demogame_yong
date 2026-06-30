@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案三：世界树的回响者 — 玩家身份设计</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=MedievalSharp&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --gold: #d4af37;
+  --gold-light: #f5e6b8;
+  --gold-dark: #8b6914;
+  --bg-dark: #0d0d1a;
+  --bg-deep: #1a1a2e;
+  --bg-card: rgba(20,20,40,0.85);
+  --bg-card-hover: rgba(30,30,55,0.9);
+  --text-primary: #f5f0e8;
+  --text-secondary: #c8bfa8;
+  --text-muted: #8a7e6e;
+  --accent-tree: #4a9e5c;
+  --accent-tree-light: #6bc77a;
+  --accent-tree-glow: rgba(74,158,92,0.3);
+  --accent-pro: #4a9e5c;
+  --accent-con: #c0392b;
+  --accent-game: #2980b9;
+  --border: rgba(212,175,55,0.15);
+  --border-light: rgba(212,175,55,0.3);
+  --purple-deep: #2d1b69;
+  --purple-accent: #6a4fc7;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Noto Serif SC', 'Georgia', serif;
+  line-height: 1.9;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1.5px 1.5px at 20% 30%, rgba(74,158,92,0.35) 50%, transparent 100%),
+              radial-gradient(1px 1px at 40% 70%, rgba(212,175,55,0.25) 50%, transparent 100%),
+              radial-gradient(1.2px 1.2px at 60% 20%, rgba(74,158,92,0.3) 50%, transparent 100%),
+              radial-gradient(1px 1px at 80% 60%, rgba(212,175,55,0.2) 50%, transparent 100%),
+              radial-gradient(1.5px 1.5px at 10% 80%, rgba(74,158,92,0.15) 50%, transparent 100%);
+  background-size: 300px 300px;
+  animation: starDrift 120s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes starDrift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-300px); }
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,13,26,0.4) 0%, rgba(26,26,46,0.3) 30%, rgba(45,27,105,0.08) 50%, rgba(26,26,46,0.3) 70%, rgba(13,13,26,0.5) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero Banner */
+.hero-banner {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #0a1f14 50%, var(--bg-deep) 100%);
+  z-index: 1;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(74,158,92,0.18) 0%, transparent 55%),
+              radial-gradient(ellipse at 20% 10%, rgba(212,175,55,0.06) 0%, transparent 35%),
+              linear-gradient(to bottom, rgba(13,13,26,0.2) 0%, rgba(13,13,26,0.9) 100%);
+  z-index: 1;
+}
+
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(74,158,92,0.12) 0%, rgba(106,79,199,0.05) 40%, transparent 65%);
+  border-radius: 50%;
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 24px;
+}
+
+.hero-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  color: var(--accent-tree-light);
+  margin-bottom: 24px;
+  opacity: 0.9;
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(74,158,92,0.4);
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 700;
+  color: var(--gold-light);
+  text-shadow: 0 0 80px rgba(212,175,55,0.4), 0 0 40px rgba(74,158,92,0.2), 0 2px 4px rgba(0,0,0,0.6);
+  margin-bottom: 12px;
+  letter-spacing: 8px;
+  animation: titleGlow 4s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 80px rgba(212,175,55,0.4), 0 0 40px rgba(74,158,92,0.2), 0 2px 4px rgba(0,0,0,0.6); }
+  50% { text-shadow: 0 0 100px rgba(212,175,55,0.6), 0 0 60px rgba(74,158,92,0.3), 0 2px 4px rgba(0,0,0,0.6); }
+}
+
+.hero-title-cn {
+  font-size: clamp(18px, 3vw, 28px);
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 40px;
+  letter-spacing: 6px;
+}
+
+.hero-tagline {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 2.4;
+  padding: 28px 0;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+
+.hero-tagline::before, .hero-tagline::after {
+  content: '';
+  display: block;
+  width: 200px;
+  height: 1px;
+  margin: 0 auto 24px;
+  background: linear-gradient(to right, transparent, var(--accent-tree), transparent);
+}
+
+.hero-tagline::after {
+  margin: 24px auto 0;
+}
+
+.sword-divider {
+  text-align: center;
+  margin: 0 auto;
+  padding: 8px 0;
+  opacity: 0.6;
+}
+
+.sword-divider svg {
+  width: 180px;
+  height: 20px;
+}
+
+/* TOC */
+.toc {
+  max-width: 960px;
+  margin: -50px auto 80px;
+  padding: 36px 48px;
+  background: linear-gradient(135deg, rgba(20,20,40,0.95) 0%, rgba(25,35,30,0.92) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  position: relative;
+  z-index: 3;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(74,158,92,0.1);
+}
+
+.toc h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--accent-tree-light);
+  margin-bottom: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toc h2::before {
+  content: '🌳';
+  font-size: 16px;
+}
+
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 6px;
+  list-style: none;
+}
+
+.toc-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px 16px;
+  display: block;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.toc-list a:hover {
+  color: var(--gold-light);
+  background: rgba(74,158,92,0.08);
+  border-color: rgba(74,158,92,0.2);
+  transform: translateX(6px);
+}
+
+.toc-list a::before {
+  content: '◆ ';
+  color: var(--accent-tree);
+  font-size: 8px;
+  vertical-align: middle;
+  opacity: 0.7;
+}
+
+/* Container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  margin-bottom: 90px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-tree), transparent);
+}
+
+.section-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, rgba(74,158,92,0.15) 0%, rgba(212,175,55,0.08) 100%);
+  border: 1px solid rgba(74,158,92,0.25);
+  border-radius: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(74,158,92,0.08);
+  transition: all 0.4s ease;
+}
+
+.section:hover .section-icon {
+  box-shadow: 0 4px 24px rgba(74,158,92,0.15);
+  transform: scale(1.05);
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent-tree-light);
+  margin-bottom: 5px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.section-title-cn {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+  text-shadow: 0 0 30px rgba(74,158,92,0.1);
+}
+
+/* Summary Box */
+.summary-box {
+  background: linear-gradient(135deg, rgba(74,158,92,0.08) 0%, rgba(212,175,55,0.04) 100%);
+  border: 1px solid rgba(74,158,92,0.15);
+  border-left: 4px solid var(--accent-tree);
+  padding: 32px 36px;
+  border-radius: 0 14px 14px 0;
+  margin-bottom: 40px;
+  font-size: 15.5px;
+  line-height: 2.2;
+  letter-spacing: 0.4px;
+  box-shadow: inset 0 0 40px rgba(74,158,92,0.03), 0 4px 20px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.summary-box::before {
+  content: '❝';
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  font-size: 28px;
+  color: var(--accent-tree);
+  opacity: 0.2;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.summary-box strong {
+  color: var(--gold-light);
+}
+
+/* Info Block */
+.info-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.info-block:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 8px 36px rgba(0,0,0,0.3);
+}
+
+.info-block h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+
+.info-block p, .info-block ul {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 2.2;
+  letter-spacing: 0.4px;
+}
+
+.info-block ul {
+  padding-left: 24px;
+}
+
+.info-block ul li {
+  margin-bottom: 10px;
+}
+
+.info-block ul li strong {
+  color: var(--gold-light);
+}
+
+/* Concept Core Box */
+.concept-core {
+  background: linear-gradient(135deg, rgba(74,158,92,0.1) 0%, rgba(20,20,40,0.9) 100%);
+  border: 1px solid rgba(74,158,92,0.2);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin: 24px 0 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-core::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--accent-tree), transparent);
+}
+
+.concept-core .core-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--accent-tree-light);
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.concept-core .core-text {
+  font-size: 18px;
+  color: var(--text-primary);
+  line-height: 2.2;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.concept-core .core-text strong {
+  color: var(--accent-tree-light);
+}
+
+/* Identity Grid */
+.identity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.identity-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 28px;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.identity-card:hover {
+  border-color: rgba(74,158,92,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 20px rgba(74,158,92,0.05);
+}
+
+.identity-card .id-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-tree-light);
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.identity-card .id-value {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+}
+
+.identity-card .id-value strong {
+  color: var(--gold-light);
+}
+
+/* Timeline */
+.timeline-item {
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 32px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-tree);
+  background: var(--bg-dark);
+  box-shadow: 0 0 12px rgba(74,158,92,0.3);
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 30px;
+  width: 2px;
+  height: calc(100% + 4px);
+  background: linear-gradient(to bottom, rgba(74,158,92,0.25), rgba(74,158,92,0.05));
+}
+
+.timeline-item:last-child::after {
+  display: none;
+}
+
+.timeline-label {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--accent-tree-light);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(74,158,92,0.2);
+}
+
+.timeline-content {
+  font-size: 15px;
+  line-height: 2.2;
+  color: var(--text-secondary);
+  letter-spacing: 0.4px;
+}
+
+.timeline-content strong {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+/* Mechanism Flow */
+.mechanism-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.mechanism-step {
+  background: linear-gradient(135deg, rgba(74,158,92,0.1) 0%, rgba(20,20,40,0.9) 100%);
+  border: 1px solid rgba(74,158,92,0.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 160px;
+  flex: 1;
+}
+
+.mechanism-step strong {
+  color: var(--accent-tree-light);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.mechanism-arrow {
+  color: var(--accent-tree);
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+/* Table */
+.consistency-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 24px 0;
+  font-size: 14.5px;
+}
+
+.consistency-table th {
+  background: linear-gradient(135deg, rgba(74,158,92,0.15) 0%, rgba(212,175,55,0.08) 100%);
+  border: 1px solid rgba(74,158,92,0.2);
+  border-bottom: 2px solid var(--accent-tree);
+  padding: 14px 18px;
+  text-align: left;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-tree-light);
+  font-weight: 600;
+}
+
+.consistency-table th:first-child {
+  border-radius: 10px 0 0 0;
+  width: 28%;
+}
+
+.consistency-table th:last-child {
+  border-radius: 0 10px 0 0;
+}
+
+.consistency-table td {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  vertical-align: top;
+}
+
+.consistency-table td:first-child {
+  font-weight: 600;
+  color: var(--gold-light);
+  border-left: 3px solid var(--accent-tree);
+}
+
+.consistency-table tr:hover td {
+  background: var(--bg-card-hover);
+}
+
+/* Pros/Cons/Gameplay */
+.pro-con-section {
+  margin: 24px 0;
+}
+
+.pro-con-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+}
+
+.pro-con-header.pros { border-color: var(--accent-pro); }
+.pro-con-header.cons { border-color: var(--accent-con); }
+.pro-con-header.gameplay { border-color: var(--accent-game); }
+
+.pro-con-header .pc-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.pro-con-header.pros .pc-icon { background: rgba(74,158,92,0.15); }
+.pro-con-header.cons .pc-icon { background: rgba(192,57,43,0.15); }
+.pro-con-header.gameplay .pc-icon { background: rgba(41,128,185,0.15); }
+
+.pro-con-header .pc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.pro-con-header.pros .pc-title { color: var(--accent-pro); }
+.pro-con-header.cons .pc-title { color: var(--accent-con); }
+.pro-con-header.gameplay .pc-title { color: var(--accent-game); }
+
+.pro-con-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pro-con-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 2;
+}
+
+.pro-con-list li::before {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 16px;
+}
+
+.pro-con-list.pros li::before { content: '✓'; color: var(--accent-pro); }
+.pro-con-list.cons li::before { content: '✗'; color: var(--accent-con); }
+.pro-con-list.gameplay li::before { content: '▸'; color: var(--accent-game); }
+
+/* Rune Separator */
+.rune-separator {
+  position: relative;
+  text-align: center;
+  margin: 20px 0 40px;
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+.rune-separator .rune-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.rune-separator .rune-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-tree), transparent);
+}
+
+.rune-separator .rune-symbol {
+  color: var(--accent-tree);
+  font-size: 18px;
+  filter: drop-shadow(0 0 6px rgba(74,158,92,0.4));
+}
+
+/* Footer */
+.doc-footer {
+  text-align: center;
+  padding: 60px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(13,13,26,0.8) 0%, transparent 100%);
+}
+
+.doc-footer .footer-brand {
+  color: var(--accent-tree-light);
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 16px;
+  text-shadow: 0 0 20px rgba(74,158,92,0.3);
+}
+
+/* Ornament */
+.ornament {
+  text-align: center;
+  margin: 70px 0;
+  color: var(--accent-tree);
+  font-size: 14px;
+  letter-spacing: 14px;
+  opacity: 0.4;
+  position: relative;
+}
+
+.ornament::before, .ornament::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(74,158,92,0.3), transparent);
+}
+
+.ornament::before { right: calc(50% + 70px); }
+.ornament::after { left: calc(50% + 70px); }
+
+/* Print */
+@media print {
+  body { background: #fff; color: #000; }
+  body::before, body::after { display: none; }
+  .hero-banner { min-height: auto; padding: 40px 0; background: #fff; }
+  .hero-title { color: #333; text-shadow: none; }
+  .info-block, .identity-card, .concept-core { background: #f5f5f5; border-color: #ccc; box-shadow: none; }
+  .toc { box-shadow: none; border-color: #ccc; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toc { margin: -30px 16px 60px; padding: 24px 28px; }
+  .container { padding: 0 16px 80px; }
+  .section { margin-bottom: 60px; }
+  .hero-banner { min-height: 70vh; }
+  .identity-grid { grid-template-columns: 1fr; }
+  .mechanism-flow { flex-direction: column; }
+  .mechanism-arrow { transform: rotate(90deg); }
+  .consistency-table th, .consistency-table td { padding: 10px 12px; font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { letter-spacing: 4px; }
+  .hero-subtitle { letter-spacing: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO BANNER -->
+<header class="hero-banner">
+  <div class="hero-content">
+    <div class="hero-subtitle">Player Identity Proposal</div>
+    <h1 class="hero-title">ECHO OF YGGDRASIL</h1>
+    <div class="hero-title-cn">世界树的回响者 · 玩家身份方案三</div>
+    <div class="hero-tagline">
+      世界树临终前的最后一个念头，化为了你的意识
+    </div>
+    <div class="sword-divider">
+      <svg viewBox="0 0 180 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="10" x2="70" y2="10" stroke="url(#gL)" stroke-width="1"/>
+        <polygon points="85,2 90,10 85,18 95,10" fill="#4a9e5c" opacity="0.6"/>
+        <line x1="110" y1="10" x2="180" y2="10" stroke="url(#gR)" stroke-width="1"/>
+        <defs>
+          <linearGradient id="gL" x1="0" y1="0" x2="70" y2="0"><stop offset="0%" stop-color="#4a9e5c" stop-opacity="0"/><stop offset="100%" stop-color="#4a9e5c" stop-opacity="0.6"/></linearGradient>
+          <linearGradient id="gR" x1="110" y1="0" x2="180" y2="0"><stop offset="0%" stop-color="#4a9e5c" stop-opacity="0.6"/><stop offset="100%" stop-color="#4a9e5c" stop-opacity="0"/></linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- TOC -->
+<nav class="toc fade-in">
+  <h2>目录 · Contents</h2>
+  <ul class="toc-list">
+    <li><a href="#sec1">一、方案核心概念</a></li>
+    <li><a href="#sec2">二、玩家身份定位</a></li>
+    <li><a href="#sec3">三、城堡转移机制</a></li>
+    <li><a href="#sec4">四、城堡攻击逻辑</a></li>
+    <li><a href="#sec5">五、玩家涉险原因</a></li>
+    <li><a href="#sec6">六、世界观一致性分析</a></li>
+    <li><a href="#sec7">七、优缺点与玩法影响</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+<!-- 第一节：方案核心概念 -->
+<section class="section fade-in" id="sec1">
+  <div class="section-header">
+    <div class="section-icon">🌳</div>
+    <div><div class="section-title">Core Concept</div><div class="section-title-cn">方案核心概念</div></div>
+  </div>
+
+  <div class="summary-box">
+    玩家是<strong>世界树在凡界投射的最后一缕意识回响</strong>。世界树在圣心城崩溃时，将自身最后一丝清醒意识注入了方舟堡的核心根须中。玩家不是世界树本身，而是世界树"临终前的一个念头"——一个被赋予了使命但不知道自己来源的意识体。
+  </div>
+
+  <div class="concept-core">
+    <div class="core-label">核心定义</div>
+    <div class="core-text">
+      玩家 = 世界树的意识碎片<br>
+      <strong>知命运，而不知自己</strong>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 存在形态与能力</h4>
+    <p>玩家没有肉身，以<strong>光影/魂能投影</strong>的形式存在，不能战斗，但能<strong>感知各大陆的元素脉动</strong>——这使他成为唯一能判断哪里最危急、该如何分配资源的人。</p>
+    <p style="margin-top:12px">这种"全局感知"能力不是魔法，而是世界树意识的本能——就像一个人能感知自己身体各部位的温度与疼痛一样，玩家能感知凡界九大陆的元素平衡状态。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 叙事定位</h4>
+    <p>这一身份方案将玩家置于一个独特的叙事位置：</p>
+    <ul>
+      <li><strong>使命感与神秘感的平衡</strong>：玩家清楚地感受到"自己有必须完成的使命"，但不知道这使命从何而来。</li>
+      <li><strong>指挥官视角的天然解释</strong>：不能战斗、但能感知全局——这正是塔防游戏"指挥官"角色的最优雅世界观解释。</li>
+      <li><strong>身份揭示的叙事弧线</strong>：随着故事推进，玩家将逐步发现自己与世界树的联系，为后期的史诗剧情提供核心转折。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">🌳 ✦ 🌳</span><span class="rune-line"></span></div></div>
+
+<!-- 第二节：玩家身份定位 -->
+<section class="section fade-in" id="sec2">
+  <div class="section-header">
+    <div class="section-icon">🌍</div>
+    <div><div class="section-title">Identity</div><div class="section-title-cn">玩家身份定位</div></div>
+  </div>
+
+  <div class="identity-grid">
+    <div class="identity-card">
+      <div class="id-label">身份本质</div>
+      <div class="id-value"><strong>世界树最后一缕清醒意识的回响</strong>——不是世界树本身，而是一个被赋予使命的独立意识体。</div>
+    </div>
+    <div class="identity-card">
+      <div class="id-label">存在形式</div>
+      <div class="id-value"><strong>光影/魂能投影</strong>，没有肉身。以半透明的灵体形态出现在方舟堡中。</div>
+    </div>
+    <div class="identity-card">
+      <div class="id-label">统领资格</div>
+      <div class="id-value">身上携带着<strong>世界树的共鸣频率</strong>——领主们作为封魂令的守锚者，能本能地感受到这种频率。</div>
+    </div>
+    <div class="identity-card">
+      <div class="id-label">统领方式</div>
+      <div class="id-value">不是被命令服从，而是被<strong>共鸣所牵引</strong>。就像候鸟感知地磁场一样，领主们在玩家身边会感到"这是对的方向"。</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ "共鸣牵引"机制详解</h4>
+    <p>这是一种比"权力命令"更优雅、更具世界观深度的统领逻辑：</p>
+    <ul>
+      <li>领主们并非因为玩家的地位而服从，而是因为<strong>世界树共鸣频率带来的本能认同</strong>。</li>
+      <li>这种牵引力<strong>随着故事推进逐渐增强</strong>——世界树意识从模糊变清晰，领主们感受到的共鸣也从"隐约的方向感"变为"不可抗拒的召唤"。</li>
+      <li>每位领主对共鸣的感知方式不同：有的像听到远方的歌声，有的像感受到温暖的光芒，有的则像回忆起了某个遗忘已久的梦境。</li>
+      <li>这为后续剧情提供了丰富的情感素材——当领主们最终得知真相时，他们将理解自己为何从一开始就"选择了"追随玩家。</li>
+    </ul>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--accent-tree)">
+    <h4>✦ 为何不参战？</h4>
+    <p>玩家是意识投影，<strong>没有物理干预能力</strong>。能看到全局、感知危险、制定策略，但必须通过英雄的双手来执行——这是"指挥官视角"最自然的解释。</p>
+    <p style="margin-top:12px">玩家可以"触碰"魂能脉络来激活符文通道、可以"呼唤"世界树的残根来催生防御塔、可以"共鸣"封魂令来强化元素之力——但这些都不是"战斗"，而是<strong>世界树意识的本质能力在塔防玩法中的映射</strong>。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">🌳 ✦ 🌳</span><span class="rune-line"></span></div></div>
+
+<!-- 第三节：城堡转移机制 -->
+<section class="section fade-in" id="sec3">
+  <div class="section-header">
+    <div class="section-icon">🏰</div>
+    <div><div class="section-title">Castle Mechanism</div><div class="section-title-cn">城堡转移机制</div></div>
+  </div>
+
+  <div class="summary-box">
+    方舟堡是世界树根须的一部分——它本质上是一颗<strong>"种子"</strong>。可以沿着世界树在地下的根脉网络移动，在不同大陆的符文通道节点处"发芽生长"。
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 转移过程：生长与收缩</h4>
+    <div class="mechanism-flow">
+      <div class="mechanism-step"><strong>当前位置</strong>城堡扎根于大陆节点</div>
+      <span class="mechanism-arrow">→</span>
+      <div class="mechanism-step"><strong>收缩</strong>建筑解体为魂能，被根须吸收</div>
+      <span class="mechanism-arrow">→</span>
+      <div class="mechanism-step"><strong>根脉移动</strong>沿地下根脉网络传输</div>
+      <span class="mechanism-arrow">→</span>
+      <div class="mechanism-step"><strong>发芽</strong>在新节点重新生长出来</div>
+    </div>
+    <p>每次转移都是一次<strong>极具仪式感的视觉演出</strong>：城堡的城墙开始发出脉动的绿光，建筑结构如植物倒放生长般收缩进地面，地表留下一道发光的根脉痕迹。在新大陆，从地面升起的金色根须编织出城墙与塔楼的轮廓，如同时间加速播放的种子发芽过程。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ "根基保留"设计空间</h4>
+    <p>玩家在每个大陆建造的防御设施在撤离时会<strong>保留一部分"根基"</strong>——这些根基是嵌入世界树根脉的符文印记。</p>
+    <ul>
+      <li><strong>后续回访机制</strong>：当玩家未来重返某大陆时，根基会自动激活，提供初始的防御加成或资源产出。</li>
+      <li><strong>策略深度</strong>：玩家需要权衡"在当前大陆投入多少资源"与"为后续回访保留多少根基"——这种跨章节的策略规划增加了游戏的重玩价值。</li>
+      <li><strong>叙事呼应</strong>：根基是玩家（世界树意识）在各大陆留下的"记忆痕迹"，呼应了"世界树的回响"这一核心主题。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">🌳 ✦ 🌳</span><span class="rune-line"></span></div></div>
+
+<!-- 第四节：城堡攻击逻辑 -->
+<section class="section fade-in" id="sec4">
+  <div class="section-header">
+    <div class="section-icon">⚔</div>
+    <div><div class="section-title">Attack Logic</div><div class="section-title-cn">城堡攻击逻辑</div></div>
+  </div>
+
+  <div class="summary-box">
+    敌人的攻击动机随着章节递进从"被动吸引"升级为"主动猎杀"，这种递进让玩家逐渐意识到<strong>"自己不只是一个普通的指挥官"</strong>，为后续身份揭示铺垫。
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-label">第一章 · 木大陆</div>
+    <div class="timeline-content">
+      <strong>纯被动吸引</strong><br>
+      城堡的魂能灯塔效应引来枯脉兽和根腐巨兽。敌人并不知道城堡中有什么，只是被魂能波动吸引而来的野兽。此时的攻击逻辑与常规的塔防无异——<strong>玩家感受到的是"怪物攻城"，而非"被针对"</strong>。
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-label">第二章 · 冰大陆</div>
+    <div class="timeline-content">
+      <strong>被动 + 半主动</strong><br>
+      深渊察觉到<strong>"世界树的意识还活着"</strong>，开始有意识地寻找和攻击城堡。敌人的攻击不再仅仅是野兽的本能，而是带有某种"目的性"——但玩家此时还无法确定这目的究竟是什么。关卡设计中可以加入"追踪者"类型的敌人，它们不直接进攻，而是试图绕后侦察城堡核心。
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-label">第三章 · 火大陆</div>
+    <div class="timeline-content">
+      <strong>全面主动</strong><br>
+      <strong>混沌之神奈克瑟尔识别出玩家的真正身份</strong>，指挥深渊力量全力围攻。攻击不再是试探，而是猎杀。敌人会针对性地攻击城堡的根脉节点、使用干扰魂能共鸣的特殊能力、甚至在剧情关卡中尝试"切断"玩家与世界树的联系。这是整个游戏前半段的高潮——<strong>玩家终于意识到，自己才是敌人真正的目标</strong>。
+    </div>
+  </div>
+
+  <div class="info-block" style="margin-top:32px">
+    <h4>✦ 递进式攻击的叙事价值</h4>
+    <p>这种三层递进的设计不仅服务于玩法（难度曲线），更服务于叙事：</p>
+    <ul>
+      <li><strong>第一章</strong>：玩家以为自己在"拯救世界"，感受到的是英雄式的使命感。</li>
+      <li><strong>第二章</strong>：玩家开始怀疑"为什么敌人总是找到我"，产生隐约的不安。</li>
+      <li><strong>第三章</strong>：真相浮出水面——玩家意识到"我才是这场战争的核心"。</li>
+    </ul>
+    <p style="margin-top:12px">这种从"外部英雄"到"核心目标"的认知转变，是方案三最具冲击力的叙事设计之一。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">🌳 ✦ 🌳</span><span class="rune-line"></span></div></div>
+
+<!-- 第五节：玩家涉险原因 -->
+<section class="section fade-in" id="sec5">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div><div class="section-title">Why Risk It?</div><div class="section-title-cn">玩家涉险原因</div></div>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 必须亲临的理由：谐振</h4>
+    <p>玩家（世界树意识）必须亲临各大陆。只有在<strong>封魂令石碑附近</strong>，世界树的意识才能通过根脉与封魂令建立<strong>临时谐振</strong>。</p>
+    <ul>
+      <li>这不是修复——世界树已经太虚弱了——而是<strong>"续命"</strong>。</li>
+      <li>玩家的存在为各大陆争取时间，让领主们去寻找真正的解决方案。</li>
+      <li>如果玩家不去，封魂令将在<strong>数月内碎裂</strong>。</li>
+      <li>玩家在场，可以将这个时间<strong>延长到数年</strong>。</li>
+    </ul>
+  </div>
+
+  <div class="info-block">
+    <h4>✦ 不能同时拯救所有大陆</h4>
+    <p>玩家只有一个意识体，<strong>一次只能在一个地方谐振</strong>。这解释了为什么塔防游戏需要"逐一攻克大陆"的章节结构——不是游戏性的妥协，而是世界观逻辑的自然结果。</p>
+    <p style="margin-top:12px">这种"分身乏术"的设定也为后续的多线叙事提供了空间：当玩家在某个大陆奋战时，其他大陆的局势在背景中持续恶化——玩家会收到来自未救援大陆的求救信息、看到其他大陆在地图上逐渐变暗，这种<strong>持续的紧迫感</strong>是方案三独有的情感体验。</p>
+  </div>
+
+  <div class="concept-core" style="margin-top:24px">
+    <div class="core-label">核心悖论</div>
+    <div class="core-text">
+      世界树意识是拯救凡界的唯一希望<br>
+      但世界树意识本身也在逐渐消散<br>
+      <strong>这是一场与时间的赛跑——而时间不在我们这边</strong>
+    </div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">🌳 ✦ 🌳</span><span class="rune-line"></span></div></div>
+
+<!-- 第六节：世界观一致性分析 -->
+<section class="section fade-in" id="sec6">
+  <div class="section-header">
+    <div class="section-icon">📜</div>
+    <div><div class="section-title">Consistency</div><div class="section-title-cn">世界观一致性分析</div></div>
+  </div>
+
+  <div class="summary-box">
+    方案三与世界观现有设定的契合度极高。以下是与核心世界观元素的逐一对应分析：
+  </div>
+
+  <table class="consistency-table">
+    <thead>
+      <tr>
+        <th>世界观元素</th>
+        <th>一致性说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>魂域三界</td>
+        <td>世界树连通三界，其意识碎片天然具有跨界感知能力。玩家能感知各大陆状态，正是因为世界树的根系贯穿三界。</td>
+      </tr>
+      <tr>
+        <td>世界树</td>
+        <td>玩家 = 世界树意识，是整个世界观最核心存在的延伸。这一设定将玩家身份与世界观的根基深度绑定。</td>
+      </tr>
+      <tr>
+        <td>九封魂令</td>
+        <td>谐振机制直接解释了玩家与封魂令的互动方式——为什么玩家能强化封魂令？因为玩家本身就是世界树的一部分，与封魂令共享同源魂能。</td>
+      </tr>
+      <tr>
+        <td>元素大陆</td>
+        <td>感知元素脉动的能力解释了战略判断力的来源——玩家不是在"看地图"，而是在"感受世界树输送魂能的脉络"。</td>
+      </tr>
+      <tr>
+        <td>女神艾蕾尼娅</td>
+        <td>艾蕾尼娅是世界树的守护者，与世界树意识的联系天然合理。她引导玩家不是"选中了一个陌生人"，而是在回应世界树本身的呼唤。</td>
+      </tr>
+      <tr>
+        <td>深渊威胁</td>
+        <td>递进式围猎设计与奈克瑟尔的智慧反派形象吻合——他不会一开始就打出手牌，而是逐步揭露、逐步施压。</td>
+      </tr>
+      <tr>
+        <td>圣心城</td>
+        <td>世界树在圣心城崩溃时注入意识，时间线完全吻合。玩家在圣心城废墟中苏醒，正是世界树最后行动的现场。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-block" style="border-left:4px solid var(--accent-tree); margin-top:24px">
+    <h4>✦ 一致性评估总结</h4>
+    <p>方案三在所有七个核心世界观元素上都实现了<strong>零冲突、高契合</strong>的对接。这不是"强行解释"，而是"自然延伸"——玩家身份不是贴上去的标签，而是从世界树这一核心设定中自然生长出来的叙事分支。</p>
+    <p style="margin-top:12px">特别值得注意的是<strong>与艾蕾尼娅关系的重构</strong>：在方案一中，艾蕾尼娅是"选中了一个有潜力的陌生人"；在方案三中，艾蕾尼娅是"回应了世界树的呼唤"——后者的情感深度和宿命感远超前者。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">🌳 ✦ 🌳</span><span class="rune-line"></span></div></div>
+
+<!-- 第七节：优缺点与玩法影响 -->
+<section class="section fade-in" id="sec7">
+  <div class="section-header">
+    <div class="section-icon">⚖</div>
+    <div><div class="section-title">Evaluation</div><div class="section-title-cn">优缺点与玩法影响</div></div>
+  </div>
+
+  <div class="pro-con-section">
+    <div class="pro-con-header pros">
+      <div class="pc-icon">✓</div>
+      <div class="pc-title">优点 Strengths</div>
+    </div>
+    <ul class="pro-con-list pros">
+      <li>有深度的身份揭示弧线，<strong>神秘感最强</strong>——从"不知自己是谁"到"我就是世界树"，这是一段完整的英雄之旅。</li>
+      <li>与现有世界树设定<strong>高度契合</strong>，不是额外添加的概念，而是自然延伸。</li>
+      <li>"共鸣牵引"的统领方式<strong>优雅地避免了权力等级的尴尬</strong>——领主们追随玩家不是因为命令，而是因为本能的认同。</li>
+      <li>递进式攻击逻辑为每章提供<strong>不同的紧张感</strong>，避免玩法单调。</li>
+      <li>后期可以发展<strong>"世界树觉醒"的史诗级叙事</strong>——玩家从"一缕回响"成长为"完整意识的复苏"。</li>
+      <li>"续命"而非"修复"的定位增加了<strong>宿命感</strong>——玩家知道自己在做的是延缓而非根治，这种无力感反而增强了情感冲击力。</li>
+    </ul>
+  </div>
+
+  <div class="pro-con-section">
+    <div class="pro-con-header cons">
+      <div class="pc-icon">✗</div>
+      <div class="pc-title">缺点 Weaknesses</div>
+    </div>
+    <ul class="pro-con-list cons">
+      <li>与之前"纯外部操控者"决策有<strong>冲突，需要修订</strong>——如果项目已经基于方案一做了大量工作，切换成本较高。</li>
+      <li>"意识体"的叙事表达需要<strong>精心设计</strong>，否则容易变成"无实感的幽灵"。</li>
+      <li>身份揭示如果处理不当可能<strong>破坏沉浸感</strong>——玩家可能觉得"被欺骗了"。</li>
+      <li>玩家可能对<strong>"自己不是真正的人"感到疏离</strong>——部分玩家可能难以接受"我不是人类"的设定。</li>
+    </ul>
+  </div>
+
+  <div class="pro-con-section">
+    <div class="pro-con-header gameplay">
+      <div class="pc-icon">🎮</div>
+      <div class="pc-title">玩法影响 Gameplay Impact</div>
+    </div>
+    <ul class="pro-con-list gameplay">
+      <li><strong>"谐振"机制</strong>可以设计为独特的养成/升级系统——玩家通过在各大陆建立谐振来逐步恢复世界树意识，每提升一级解锁新的全局能力。</li>
+      <li>递进式攻击难度<strong>自然匹配玩家成长曲线</strong>——从野兽攻城到智慧敌人的针对性打击，难度提升有叙事支撑。</li>
+      <li><strong>"种子城堡"的生长/收缩</strong>可以做成极有仪式感的过渡动画，增强章节间的情感连接。</li>
+      <li><strong>后续回访机制（根基保留）</strong>增加策略深度，鼓励玩家进行跨章节规划。</li>
+      <li>适合<strong>偏叙事+沉浸感的玩家群体</strong>——如果目标用户重视剧情体验，方案三是最佳选择。</li>
+      <li>身份揭示可以设计为<strong>高潮剧情的核心转折</strong>——"原来我就是世界树"这一 revelation 的戏剧张力远超其他方案。</li>
+    </ul>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--gold); margin-top:32px">
+    <h4>✦ 综合评估</h4>
+    <p>方案三是三个玩家身份方案中<strong>世界观契合度最高、叙事深度最强、长期扩展空间最大</strong>的方案。它的缺点主要集中在<strong>执行成本</strong>和<strong>叙事技巧要求</strong>上——如果团队有能力处理好身份揭示的节奏和方式，方案三将为游戏带来独一无二的情感体验。</p>
+    <p style="margin-top:12px;text-align:center;font-size:16px;color:var(--gold-light);font-weight:600">
+      "你不是在扮演一个英雄——你是在成为世界树本身。"
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="footer-brand">— ECHO OF YGGDRASIL —</div>
+  <p>世界树的回响者 · 玩家身份方案三 · 世界观设计报告</p>
+  <p style="margin-top:4px;opacity:0.7;">尤克特拉希尔纪元 · 2026.04</p>
+</footer>
+
+<script>
+(function(){
+  const obs = new IntersectionObserver(e => {
+    e.forEach(x => {
+      if (x.isIntersecting) x.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+})();
+</script>
+</body>
+</html>

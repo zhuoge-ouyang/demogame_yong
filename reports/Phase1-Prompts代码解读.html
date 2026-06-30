@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>西幻世界观 · Phase1-Prompts 代码解读</title>
+<style>
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1a2234;
+    --bg-card-hover: #1f2a40;
+    --border: #2a3a5c;
+    --border-light: #334770;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #22d3ee;
+    --accent-amber: #f59e0b;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --accent-purple: #a855f7;
+    --accent-pink: #ec4899;
+    --accent-orange: #f97316;
+    --code-bg: #0d1117;
+    --code-keyword: #ff7b72;
+    --code-string: #a5d6ff;
+    --code-type: #79c0ff;
+    --code-comment: #8b949e;
+    --code-func: #d2a8ff;
+    --code-number: #79c0ff;
+    --code-punct: #c9d1d9;
+    --code-var: #ffa657;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ===== Header ===== */
+  .doc-header {
+    text-align: center;
+    padding: 60px 24px 48px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(168,85,247,0.06) 0%, transparent 50%);
+    animation: headerGlow 15s ease-in-out infinite alternate;
+  }
+  @keyframes headerGlow {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(2%,-2%); }
+  }
+  .doc-header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  .doc-header .subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    position: relative;
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 36px 0;
+  }
+  .toc h2 {
+    font-size: 1.15rem;
+    color: var(--accent-cyan);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    padding-left: 0;
+  }
+  .toc ol li {
+    counter-increment: toc;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(42,58,92,0.4);
+  }
+  .toc ol li:last-child { border-bottom: none; }
+  .toc ol li::before {
+    content: counter(toc) ".";
+    color: var(--accent-blue);
+    font-weight: 700;
+    margin-right: 10px;
+    min-width: 24px;
+    display: inline-block;
+  }
+  .toc a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .toc a:hover { color: var(--accent-cyan); }
+
+  /* ===== Section ===== */
+  .section {
+    margin: 48px 0;
+  }
+  .section-title {
+    font-size: 1.5rem;
+    color: var(--accent-blue);
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    background: var(--accent-blue);
+    color: #fff;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-desc {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 20px 0;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: var(--border-light); }
+  .card-label {
+    font-size: 0.82rem;
+    color: var(--accent-amber);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  /* ===== Metaphor box ===== */
+  .metaphor {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.06));
+    border: 1px solid rgba(59,130,246,0.25);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 20px 0;
+    position: relative;
+  }
+  .metaphor::before {
+    content: '💡';
+    position: absolute;
+    top: -14px; left: 20px;
+    font-size: 1.3rem;
+    background: var(--bg-primary);
+    padding: 0 8px;
+  }
+  .metaphor-title {
+    color: var(--accent-cyan);
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+  }
+  .metaphor p {
+    color: var(--text-primary);
+    line-height: 1.9;
+  }
+
+  /* ===== Table ===== */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  thead th {
+    background: rgba(59,130,246,0.12);
+    color: var(--accent-cyan);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--border);
+  }
+  tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(42,58,92,0.4);
+    vertical-align: top;
+  }
+  tbody tr:hover { background: rgba(59,130,246,0.04); }
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* ===== Code ===== */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin: 16px 0;
+  }
+  .code-block .line { display: block; }
+  .kw { color: var(--code-keyword); }    /* keyword */
+  .tp { color: var(--code-type); }       /* type */
+  .st { color: var(--code-string); }     /* string */
+  .cm { color: var(--code-comment); font-style: italic; } /* comment */
+  .fn { color: var(--code-func); }       /* function */
+  .vr { color: var(--code-var); }        /* variable */
+  .pn { color: var(--code-punct); }      /* punctuation */
+  .nb { color: var(--code-number); }     /* number */
+
+  /* ===== Tags ===== */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag-deprecated { background: rgba(239,68,68,0.15); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.3); }
+  .tag-active { background: rgba(16,185,129,0.15); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.3); }
+  .tag-ref { background: rgba(168,85,247,0.15); color: var(--accent-purple); border: 1px solid rgba(168,85,247,0.3); }
+  .tag-dep { background: rgba(59,130,246,0.15); color: var(--accent-blue); border: 1px solid rgba(59,130,246,0.3); }
+
+  /* ===== Dependency Graph ===== */
+  .dep-graph {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+  }
+  .dep-chain {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .dep-node {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .dep-node.root { background: rgba(16,185,129,0.15); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.4); }
+  .dep-node.mid { background: rgba(59,130,246,0.15); color: var(--accent-blue); border: 1px solid rgba(59,130,246,0.4); }
+  .dep-node.leaf { background: rgba(168,85,247,0.15); color: var(--accent-purple); border: 1px solid rgba(168,85,247,0.4); }
+  .dep-node.old { background: rgba(239,68,68,0.1); color: var(--accent-red); border: 1px dashed rgba(239,68,68,0.4); text-decoration: line-through; }
+  .dep-arrow {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin: 0 4px;
+  }
+
+  /* ===== Flow Chart ===== */
+  .flow-chart {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 20px 0;
+  }
+  .flow-step {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 14px 24px;
+    text-align: center;
+    min-width: 280px;
+    max-width: 500px;
+    width: 100%;
+    font-size: 0.92rem;
+    position: relative;
+  }
+  .flow-step .step-num {
+    position: absolute;
+    top: -10px; left: 16px;
+    background: var(--accent-blue);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 0.72rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  .flow-step .step-title {
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 4px;
+  }
+  .flow-step .step-desc {
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+  }
+  .flow-arrow {
+    width: 2px;
+    height: 20px;
+    background: var(--border-light);
+    position: relative;
+  }
+  .flow-arrow::after {
+    content: '▼';
+    position: absolute;
+    bottom: -8px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--border-light);
+    font-size: 0.6rem;
+  }
+  .flow-group {
+    border: 1px dashed var(--accent-amber);
+    border-radius: 10px;
+    padding: 12px 16px;
+    width: 100%;
+    max-width: 520px;
+    margin: 0;
+  }
+  .flow-group-title {
+    color: var(--accent-amber);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .flow-group .flow-step { margin: 8px 0; }
+
+  /* ===== Module Detail ===== */
+  .module-detail {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  .module-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .module-header .module-id {
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 1.1rem;
+    color: var(--accent-cyan);
+    font-weight: 700;
+  }
+  .module-header .module-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .module-body { padding: 24px 28px; }
+  .module-body h4 {
+    color: var(--accent-amber);
+    font-size: 0.95rem;
+    margin: 18px 0 8px;
+  }
+  .module-body h4:first-child { margin-top: 0; }
+  .module-body p, .module-body li {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.85;
+  }
+  .module-body ul { padding-left: 20px; }
+  .module-body ul li { margin: 4px 0; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+  .mark-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    background: rgba(59,130,246,0.1);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59,130,246,0.25);
+  }
+  .summary-box {
+    background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(34,211,238,0.06));
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .summary-box .summary-label {
+    color: var(--accent-green);
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+  }
+  .summary-box p { color: var(--text-primary); font-size: 0.92rem; }
+
+  /* ===== Inline code ===== */
+  code {
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    background: rgba(59,130,246,0.1);
+    color: var(--accent-cyan);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .container { padding: 20px 12px 60px; }
+    .doc-header { padding: 40px 16px 32px; }
+    .card, .metaphor, .module-body, .module-header { padding: 16px; }
+    .dep-chain { font-size: 0.82rem; }
+    .dep-node { padding: 6px 10px; font-size: 0.78rem; }
+    table { font-size: 0.82rem; }
+    thead th, tbody td { padding: 8px 10px; }
+  }
+
+  /* ===== Highlight animation ===== */
+  :target {
+    animation: highlightPulse 1.5s ease-out;
+  }
+  @keyframes highlightPulse {
+    0% { box-shadow: 0 0 0 3px rgba(59,130,246,0.5); }
+    100% { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<div class="doc-header">
+  <h1>西幻世界观 · Phase1-Prompts 代码解读</h1>
+  <p class="subtitle">让非技术人员也能看懂 AI 指令库的秘密</p>
+</div>
+
+<div class="container">
+
+<!-- ===== TOC ===== -->
+<div class="toc">
+  <h2>📑 目录</h2>
+  <ol>
+    <li><a href="#sec1">文件总览 —— 这个文件是干什么的？</a></li>
+    <li><a href="#sec2">代码语法逐行解读 —— 前10行拆解</a></li>
+    <li><a href="#sec3">PromptTemplate 数据结构 —— 每道题长什么样</a></li>
+    <li><a href="#sec4">全部10个模块一览表</a></li>
+    <li><a href="#sec5">模块依赖关系图 —— 谁先做谁后做</a></li>
+    <li><a href="#sec6">每个模块的详细解读</a></li>
+    <li><a href="#sec7">系统调用流程 —— 从点击到出结果</a></li>
+  </ol>
+</div>
+
+<!-- ============================== -->
+<!-- Section 1: 文件总览             -->
+<!-- ============================== -->
+<div class="section" id="sec1">
+  <h2 class="section-title"><span class="num">1</span> 文件总览 —— 这个文件是干什么的？</h2>
+  <p class="section-desc">在深入了解代码之前，先用大白话搞清楚这个文件的角色。</p>
+
+  <div class="card">
+    <div class="card-label">📄 文件身份</div>
+    <p><code>phase1-prompts.ts</code> 是<strong>第一阶段所有 AI 生成任务的"指令库"</strong>，也可以叫它"出题册"。</p>
+    <p style="margin-top:8px;">它决定了<strong>"问 AI 什么问题"</strong>以及<strong>"要求 AI 怎么回答"</strong>。系统里所有第一阶段的世界观设定，都是由这份文件中的指令驱动 AI 来生成的。</p>
+  </div>
+
+  <div class="metaphor">
+    <div class="metaphor-title">🍳 生活化比喻：一套「菜谱目录」</div>
+    <p>想象一家西餐厅的后厨：</p>
+    <p>• <strong>phase1-prompts.ts</strong> 就是贴在墙上的<strong>菜谱目录</strong>——上面列出了10道菜的做法卡片</p>
+    <p>• 每张卡片（模块）上写着：<strong>菜名</strong>（moduleLabel）、<strong>做菜步骤</strong>（userPromptTemplate）、<strong>装盘要求</strong>（outputFormatInstructions）、<strong>先备好的食材</strong>（contextDependencies）</p>
+    <p>• 有的卡片还附带<strong>参考食谱</strong>（referenceDocuments），相当于大厨之前写过的草稿</p>
+    <p>• AI 就是那个<strong>按菜谱做菜的厨师</strong>——你给它什么菜谱，它就做什么菜</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">🔗 在系统中的角色</div>
+    <p>这个文件是整个 AI 辅助创作系统的<strong>起点</strong>。当用户在前端界面点击"AI生成"时：</p>
+    <p style="margin-top:8px;">1. 系统根据当前模块找到对应的<strong>菜谱卡片</strong></p>
+    <p>2. 把卡片上的所有信息组装成一条完整的<strong>指令</strong>（Prompt）</p>
+    <p>3. 发给 AI，AI 按指令输出结果</p>
+    <p>4. 结果填回编辑界面，供人审阅修改</p>
+    <p style="margin-top:12px;color:var(--text-muted);font-size:0.88rem;">简而言之：没有这份文件，AI 就不知道要写什么、怎么写。</p>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- Section 2: 代码语法逐行解读     -->
+<!-- ============================== -->
+<div class="section" id="sec2">
+  <h2 class="section-title"><span class="num">2</span> 代码语法逐行解读 —— 前10行拆解</h2>
+  <p class="section-desc">把前10行代码的每一个词都拆开，告诉你它是什么、为什么这么写。</p>
+
+  <div class="code-block">
+<span class="line"><span class="kw">import</span> <span class="kw">type</span> { <span class="tp">PromptTemplate</span> } <span class="kw">from</span> <span class="st">'@/types/ai'</span></span>
+<span class="line"><span class="kw">import</span> { <span class="vr">UPPER_REALM_REFERENCES</span> } <span class="kw">from</span> <span class="st">'./references/upper-realm-refs'</span></span>
+<span class="line"></span>
+<span class="line"><span class="kw">export</span> <span class="kw">const</span> <span class="vr">phase1Prompts</span><span class="pn">:</span> <span class="tp">Record</span><span class="pn">&lt;</span><span class="tp">string</span><span class="pn">,</span> <span class="tp">PromptTemplate</span><span class="pn">&gt;</span> <span class="pn">=</span> <span class="pn">{</span></span>
+<span class="line">  <span class="cm">/** @deprecated 已拆分为 realm-overview/realm-upper/realm-mortal/realm-abyss 四个子模块，保留用于兼容已有数据 */</span></span>
+<span class="line">  <span class="st">'realm-structure'</span><span class="pn">:</span> <span class="pn">{</span></span>
+<span class="line">    <span class="vr">templateId</span><span class="pn">:</span> <span class="st">'realm-structure'</span><span class="pn">,</span></span>
+<span class="line">    <span class="vr">moduleLabel</span><span class="pn">:</span> <span class="st">'三界结构优化'</span><span class="pn">,</span></span>
+<span class="line">    <span class="vr">contextDependencies</span><span class="pn">:</span> <span class="pn">[],</span></span>
+<span class="line">    <span class="vr">userPromptTemplate</span><span class="pn">:</span> <span class="st">`请为这款西幻塔防游戏设计三界……`</span></span>
+  </div>
+
+  <p style="margin:20px 0 12px;color:var(--text-secondary);">下面逐词拆解每一行：</p>
+
+  <!-- Line 1 -->
+  <h4 style="color:var(--accent-cyan);margin:24px 0 8px;">第1行：import type { PromptTemplate } from '@/types/ai'</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>原文</th><th>类型</th><th>中文含义</th><th>白话翻译</th></tr></thead>
+      <tbody>
+        <tr><td><code>import</code></td><td>JS 关键字</td><td>导入</td><td>"从别的地方拿来用"</td></tr>
+        <tr><td><code>type</code></td><td>TS 关键字</td><td>仅导入类型</td><td>"我只要它的定义，不需要真正的代码"</td></tr>
+        <tr><td><code>PromptTemplate</code></td><td>自定义类型名</td><td>提示词模板</td><td>"菜谱卡片的格式规范"</td></tr>
+        <tr><td><code>from</code></td><td>JS 关键字</td><td>从……</td><td>"从哪里拿来"</td></tr>
+        <tr><td><code>'@/types/ai'</code></td><td>文件路径</td><td>项目内类型文件</td><td>"从项目的类型定义文件里拿"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--text-muted);font-size:0.88rem;">💡 整行翻译：<strong>从项目的类型文件中，拿来"菜谱卡片"的格式规范</strong>。只拿规范不拿代码，所以用 <code>type</code>。</p>
+
+  <!-- Line 2 -->
+  <h4 style="color:var(--accent-cyan);margin:24px 0 8px;">第2行：import { UPPER_REALM_REFERENCES } from './references/upper-realm-refs'</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>原文</th><th>类型</th><th>中文含义</th><th>白话翻译</th></tr></thead>
+      <tbody>
+        <tr><td><code>import</code></td><td>JS 关键字</td><td>导入</td><td>"从别的地方拿来用"</td></tr>
+        <tr><td><code>UPPER_REALM_REFERENCES</code></td><td>自定义变量名</td><td>上界参考文档</td><td>"上界菜谱的参考素材库"</td></tr>
+        <tr><td><code>from</code></td><td>JS 关键字</td><td>从……</td><td>"从哪里拿来"</td></tr>
+        <tr><td><code>'./references/upper-realm-refs'</code></td><td>文件路径</td><td>同目录下的参考文件</td><td>"从隔壁的参考素材文件里拿"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--text-muted);font-size:0.88rem;">💡 整行翻译：<strong>拿来上界·神殿的参考素材</strong>。注意这里没有 <code>type</code>，因为拿的是真材实料（数据），不仅仅是格式。</p>
+
+  <!-- Line 3 -->
+  <h4 style="color:var(--accent-cyan);margin:24px 0 8px;">第3行：（空行）</h4>
+  <p style="color:var(--text-muted);font-size:0.88rem;">空行，纯粹为了代码可读性——把"导入"和"正文"隔开，像文章分段一样。</p>
+
+  <!-- Line 4 -->
+  <h4 style="color:var(--accent-cyan);margin:24px 0 8px;">第4行：export const phase1Prompts: Record&lt;string, PromptTemplate&gt; = {</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>原文</th><th>类型</th><th>中文含义</th><th>白话翻译</th></tr></thead>
+      <tbody>
+        <tr><td><code>export</code></td><td>JS 关键字</td><td>导出</td><td>"做好了这个东西，别人可以用"</td></tr>
+        <tr><td><code>const</code></td><td>JS 关键字</td><td>常量声明</td><td>"定义一个不会变的变量"</td></tr>
+        <tr><td><code>phase1Prompts</code></td><td>自定义变量名</td><td>第一阶段提示词集合</td><td>"第一阶段的菜谱目录"</td></tr>
+        <tr><td><code>:</code></td><td>语法符号</td><td>类型注解</td><td>"它的类型是……"</td></tr>
+        <tr><td><code>Record&lt;string, PromptTemplate&gt;</code></td><td>TS 内置类型</td><td>键为字符串、值为模板的字典</td><td>"一本字典：左边是菜名编号，右边是菜谱卡片"</td></tr>
+        <tr><td><code>=</code></td><td>语法符号</td><td>赋值</td><td>"等于以下内容"</td></tr>
+        <tr><td><code>{</code></td><td>语法符号</td><td>对象开始</td><td>"菜谱目录的内容从这开始"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--text-muted);font-size:0.88rem;">💡 整行翻译：<strong>对外发布一本"第一阶段菜谱目录"，里面的每一页用编号查找，每页都是一张格式统一的菜谱卡片</strong>。</p>
+
+  <!-- Line 5 -->
+  <h4 style="color:var(--accent-cyan);margin:24px 0 8px;">第5行：/** @deprecated 已拆分为…… */</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>原文</th><th>类型</th><th>中文含义</th><th>白话翻译</th></tr></thead>
+      <tbody>
+        <tr><td><code>/** ... */</code></td><td>JS 注释语法</td><td>文档注释</td><td>"写在代码里的备注说明"</td></tr>
+        <tr><td><code>@deprecated</code></td><td>JS 注解标签</td><td>已废弃</td><td>"⚠️ 这道菜已下架，但老菜单还留着"</td></tr>
+        <tr><td>其余文字</td><td>说明文字</td><td>拆分原因</td><td>"原来一道大菜拆成了四道小菜，保留是为了兼容老客人的点单记录"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Line 6-9 -->
+  <h4 style="color:var(--accent-cyan);margin:24px 0 8px;">第6-9行：'realm-structure': { templateId, moduleLabel, contextDependencies, ... }</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>原文</th><th>类型</th><th>中文含义</th><th>白话翻译</th></tr></thead>
+      <tbody>
+        <tr><td><code>'realm-structure'</code></td><td>字符串键</td><td>模块编号</td><td>"这道菜的编号：三界结构"</td></tr>
+        <tr><td><code>templateId</code></td><td>属性名</td><td>模板ID</td><td>"题目编号"</td></tr>
+        <tr><td><code>moduleLabel</code></td><td>属性名</td><td>模块中文名</td><td>"题目标题（给人看的）"</td></tr>
+        <tr><td><code>contextDependencies</code></td><td>属性名</td><td>上下文依赖</td><td>"做这题前要先看哪些题的答案"</td></tr>
+        <tr><td><code>[]</code></td><td>空数组</td><td>无依赖</td><td>"这题不需要先做别的题"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Line 10 -->
+  <h4 style="color:var(--accent-cyan);margin:24px 0 8px;">第10行：userPromptTemplate: `请为这款西幻塔防游戏设计三界……`</h4>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>原文</th><th>类型</th><th>中文含义</th><th>白话翻译</th></tr></thead>
+      <tbody>
+        <tr><td><code>userPromptTemplate</code></td><td>属性名</td><td>用户提示词模板</td><td>"发给 AI 的题目正文"</td></tr>
+        <tr><td><code>`...`</code></td><td>模板字符串</td><td>多行文本</td><td>"用反引号包起来的长文本，可以换行写"</td></tr>
+        <tr><td>正文内容</td><td>中文字符串</td><td>给AI的指令</td><td>"请帮我设计三界的世界观……"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="metaphor" style="margin-top:28px;">
+    <div class="metaphor-title">📖 前10行一句话总结</div>
+    <p>先搬来<strong>格式规范</strong>和<strong>参考素材</strong>，然后创建一本<strong>菜谱目录</strong>，第一页是已废弃的"三界结构"大菜——虽然拆成了四道小菜，但为了兼容旧的点单记录，还是保留在菜单上。</p>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- Section 3: PromptTemplate 结构  -->
+<!-- ============================== -->
+<div class="section" id="sec3">
+  <h2 class="section-title"><span class="num">3</span> PromptTemplate 数据结构 —— 每道题长什么样</h2>
+  <p class="section-desc">每个模块都遵循统一的"菜谱卡片"格式，下面逐个字段解释。</p>
+
+  <div class="code-block">
+<span class="kw">export interface</span> <span class="tp">PromptTemplate</span> {
+  <span class="vr">templateId</span><span class="pn">:</span> <span class="tp">string</span>
+  <span class="vr">moduleLabel</span><span class="pn">:</span> <span class="tp">string</span>
+  <span class="vr">contextDependencies</span><span class="pn">:</span> <span class="tp">string</span>[]
+  <span class="vr">userPromptTemplate</span><span class="pn">:</span> <span class="tp">string</span>
+  <span class="vr">outputFormatInstructions</span><span class="pn">:</span> <span class="tp">string</span>
+  <span class="vr">referenceDocuments</span><span class="pn">?:</span> { <span class="vr">label</span><span class="pn">:</span> <span class="tp">string</span>; <span class="vr">content</span><span class="pn">:</span> <span class="tp">string</span> }[]
+}
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>字段名</th><th>类型</th><th>比喻</th><th>含义</th><th>白话说明</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>templateId</code></td>
+          <td>string</td>
+          <td>题目编号</td>
+          <td>模块唯一标识</td>
+          <td>每道菜的唯一编号，比如"R-01"。系统通过这个编号找到对应的菜谱</td>
+        </tr>
+        <tr>
+          <td><code>moduleLabel</code></td>
+          <td>string</td>
+          <td>题目标题</td>
+          <td>中文显示名</td>
+          <td>人看的菜名，比如"三界概述"，显示在界面上的标题</td>
+        </tr>
+        <tr>
+          <td><code>contextDependencies</code></td>
+          <td>string[]</td>
+          <td>前置题目</td>
+          <td>依赖的前置模块列表</td>
+          <td>"做这题之前，先把这几题的答案准备好"。比如凡界设计依赖三界概述的答案</td>
+        </tr>
+        <tr>
+          <td><code>userPromptTemplate</code></td>
+          <td>string</td>
+          <td>题目正文</td>
+          <td>发给 AI 的指令内容</td>
+          <td>完整的设计要求——告诉AI"你要设计什么、注意什么、包含哪些要素"</td>
+        </tr>
+        <tr>
+          <td><code>outputFormatInstructions</code></td>
+          <td>string</td>
+          <td>答题模板</td>
+          <td>要求 AI 的回答格式</td>
+          <td>告诉AI"请用【标记】开头分段回答"——相当于答题卡上的填空格式</td>
+        </tr>
+        <tr>
+          <td><code>referenceDocuments</code></td>
+          <td>可选数组</td>
+          <td>开卷参考资料</td>
+          <td>附带的参考素材</td>
+          <td>有的模块附带了之前写过的草稿或素材，相当于"开卷考试，你可以参考这些资料"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="metaphor">
+    <div class="metaphor-title">📝 考试比喻</div>
+    <p>把每个 PromptTemplate 想象成一张<strong>考试卷</strong>：</p>
+    <p>• <code>templateId</code> = 准考证号（系统识别用）</p>
+    <p>• <code>moduleLabel</code> = 科目名称（语文、数学……）</p>
+    <p>• <code>contextDependencies</code> = "先修科目"（考高数前得先学过线代）</p>
+    <p>• <code>userPromptTemplate</code> = 大题的题目描述</p>
+    <p>• <code>outputFormatInstructions</code> = 答题格式要求（"请用总分总结构回答"）</p>
+    <p>• <code>referenceDocuments</code> = 允许带进考场的参考资料</p>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- Section 4: 全部10个模块一览表    -->
+<!-- ============================== -->
+<div class="section" id="sec4">
+  <h2 class="section-title"><span class="num">4</span> 全部10个模块一览表</h2>
+  <p class="section-desc">一页看完所有10个"考题"的基本信息。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>模块ID</th>
+          <th>中文名</th>
+          <th>依赖</th>
+          <th>参考文档</th>
+          <th>状态</th>
+          <th>简要说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><code>realm-structure</code></td>
+          <td>三界结构优化</td>
+          <td>无</td>
+          <td>无</td>
+          <td><span class="tag tag-deprecated">已废弃</span></td>
+          <td>旧版合并题，已拆分为4个子模块</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><code>realm-overview</code></td>
+          <td>三界概述</td>
+          <td>无</td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>三界整体格局、封魂令、魂能的基础设定</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><code>realm-upper</code></td>
+          <td>上界·神殿</td>
+          <td><span class="tag tag-dep">realm-overview</span></td>
+          <td><span class="tag tag-ref">3份</span></td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>上界神殿的派系、神祗、过去/现状/未来</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><code>realm-mortal</code></td>
+          <td>凡界</td>
+          <td><span class="tag tag-dep">overview + upper</span></td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>九大元素大陆、圣心城、符文通道设计</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><code>realm-abyss</code></td>
+          <td>深渊</td>
+          <td><span class="tag tag-dep">overview + upper + mortal</span></td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>深渊本质、生态文明、与三界的关系</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><code>main-storyline</code></td>
+          <td>凡界主线剧情</td>
+          <td><span class="tag tag-dep">realm-structure</span></td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>凡界三章节主线剧情设计</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><code>player-identity</code></td>
+          <td>玩家身份定义</td>
+          <td><span class="tag tag-dep">realm-structure + main-storyline</span></td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>玩家作为"世界树节点"的身份与觉醒弧线</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><code>hero-system</code></td>
+          <td>英雄系统定位</td>
+          <td><span class="tag tag-dep">realm-structure + player-identity</span></td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>9位元素英雄的定位、性格、背景和加入方式</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><code>castle-goddess</code></td>
+          <td>城堡与女神设定</td>
+          <td><span class="tag tag-dep">realm-structure + player-identity + hero-system</span></td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>城堡的来源与意义、引导女神的可信度策略</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><code>world-tree-system</code></td>
+          <td>世界树系统</td>
+          <td><span class="tag tag-dep">realm-structure + player-identity</span></td>
+          <td>无</td>
+          <td><span class="tag tag-active">活跃</span></td>
+          <td>世界树成长机制、资源贡献、符文关联</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- Section 5: 依赖关系图           -->
+<!-- ============================== -->
+<div class="section" id="sec5">
+  <h2 class="section-title"><span class="num">5</span> 模块依赖关系图 —— 谁先做谁后做</h2>
+  <p class="section-desc">依赖关系决定了模块的执行顺序：被依赖的模块必须先完成，才能做依赖它的模块。</p>
+
+  <div class="card">
+    <div class="card-label">🗺️ 依赖链路一：三界系列（从总到分）</div>
+    <div class="dep-graph">
+      <div class="dep-chain">
+        <div class="dep-node root">realm-overview<br><small>三界概述</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node mid">realm-upper<br><small>上界·神殿</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node mid">realm-mortal<br><small>凡界</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node leaf">realm-abyss<br><small>深渊</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">🗺️ 依赖链路二：叙事系列（从世界观到细节）</div>
+    <div class="dep-graph">
+      <div class="dep-chain">
+        <div class="dep-node old">realm-structure<br><small>三界结构(旧)</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node mid">main-storyline<br><small>凡界主线剧情</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node mid">player-identity<br><small>玩家身份定义</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node leaf">hero-system<br><small>英雄系统定位</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node leaf">castle-goddess<br><small>城堡与女神设定</small></div>
+      </div>
+      <div class="dep-chain" style="margin-top:8px;padding-left:180px;">
+        <div class="dep-node mid" style="margin-left: -10px;">player-identity<br><small>玩家身份定义</small></div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node leaf">world-tree-system<br><small>世界树系统</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="metaphor">
+    <div class="metaphor-title">🧱 比喻：盖楼</div>
+    <p>依赖关系就像<strong>盖楼的施工顺序</strong>：</p>
+    <p>• <strong>三界概述</strong>是<strong>地基</strong>——没有它，上界/凡界/深渊都无从谈起</p>
+    <p>• <strong>上界</strong>是<strong>一楼</strong>——建在地基上</p>
+    <p>• <strong>凡界</strong>是<strong>二楼</strong>——地基+一楼都有了，才能建二楼</p>
+    <p>• <strong>深渊</strong>是<strong>三楼</strong>——前两层都好了才盖</p>
+    <p>• <strong>玩家身份→英雄系统→城堡女神</strong>是<strong>室内装修链</strong>——先定谁是业主（玩家），再设计家具（英雄），最后布置装饰（城堡女神）</p>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div class="card-label">⚠️ 关于 realm-structure 的特殊情况</div>
+    <p><code>realm-structure</code> 虽然标记为 <code>@deprecated</code>（已废弃），但仍然是 <code>main-storyline</code>、<code>player-identity</code>、<code>hero-system</code>、<code>castle-goddess</code>、<code>world-tree-system</code> 五个模块的依赖源。</p>
+    <p style="margin-top:6px;color:var(--text-muted);">这是因为这些模块是在拆分之前创建的，它们依赖的是旧版大题的答案数据。拆分后 <code>realm-structure</code> 仍然保留在系统中，用于兼容已有数据——就像老菜单虽然不再推荐，但后厨仍然能照着做。</p>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- Section 6: 每个模块详细解读      -->
+<!-- ============================== -->
+<div class="section" id="sec6">
+  <h2 class="section-title"><span class="num">6</span> 每个模块的详细解读</h2>
+  <p class="section-desc">逐一拆解10个模块：做什么、依赖谁、参考什么、输出什么。</p>
+
+  <!-- Module 1: realm-structure -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">realm-structure</span>
+      <span class="module-label">三界结构优化</span>
+      <span class="tag tag-deprecated">已废弃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>这是最初版本的"超级大题"，一次性设计上界、凡界、深渊三界的完整世界观。后来发现题目太大，AI 难以一次性高质量完成，所以拆分成了4个子模块（overview/upper/mortal/abyss）。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p>无依赖 <code>[]</code> —— 这是"地基题"，不需要先做任何其他题。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li>设计三界（上界/凡界/深渊）的过去、现状、未来</li>
+        <li>上界必须有多派系分化（至少三个派系，核心要求）</li>
+        <li>凡界九大元素大陆呈圆环布局，圣心城在中心</li>
+        <li>深渊不是纯邪恶，而是世界树根系</li>
+        <li>解释封魂令松动的原因</li>
+        <li>三界由第一次大战形成</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【三界概述】</span>
+        <span class="mark-tag">【玩家与英雄的身份】</span>
+        <span class="mark-tag">【上界-过去】</span>
+        <span class="mark-tag">【上界-现状】</span>
+        <span class="mark-tag">【上界-未来】</span>
+        <span class="mark-tag">【凡界-过去】</span>
+        <span class="mark-tag">【凡界-现状】</span>
+        <span class="mark-tag">【凡界-未来】</span>
+        <span class="mark-tag">【深渊-过去】</span>
+        <span class="mark-tag">【深渊-现状】</span>
+        <span class="mark-tag">【深渊-未来】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 一次性设计三界的完整世界观——从"怎么形成的"到"现在什么样"到"将来会怎样"。因为题目太大，后来拆成了4道小题。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 2: realm-overview -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">realm-overview</span>
+      <span class="module-label">三界概述</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>设计三界的<strong>整体格局概述</strong>——只写宏观框架，不深入每一界的细节。是从旧版 realm-structure 拆出来的"总论"部分。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p>无依赖 <code>[]</code> —— 拆分后仍然是最基础的"地基模块"，不依赖任何其他模块。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li>魂域如何分成三界（第一次大战的结果）</li>
+        <li>9枚封魂令的来源、作用、为何松动</li>
+        <li>魂能的解释及其在三界中的作用</li>
+        <li>世界树尤克特拉希尔在三界中的不同表现</li>
+        <li>三界之间的关联与对立关系</li>
+        <li>玩家与英雄的身份概述</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【三界概述】</span>
+        <span class="mark-tag">【玩家与英雄的身份】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 写一篇"三界世界观的概述导言"——宏观地介绍世界是怎么来的、封魂令是什么、魂能是什么、三界什么关系，以及玩家和英雄大概是什么角色。相当于一本书的"引言"章节。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 3: realm-upper -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">realm-upper</span>
+      <span class="module-label">上界·神殿</span>
+      <span class="tag tag-active">活跃</span>
+      <span class="tag tag-ref">含参考文档</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>在上界概述的基础上，深入设计<strong>上界/神殿的详细世界观</strong>——派系、神祗、过去/现状/未来。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-overview']</code> —— 必须先完成三界概述，才能设计上界细节。因为上界是三界之一，必须和总论保持一致。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>本模块是<strong>唯一附带了参考文档</strong>的模块，包含3份素材：</p>
+      <ul>
+        <li><strong>上界·神殿——过去（参考稿）</strong>：魂域大战前的众神、大战中的众神、三界裂变后的上界</li>
+        <li><strong>上界·神殿——现状（参考稿）</strong>：世界树在上界的表现、神殿四大派系（秩序圣庭/深渊执剑团/源流议会/星幕隐庭）的详细设定</li>
+        <li><strong>上界·神殿——未来（参考稿）</strong>：上界的命运分岔——最优/次优/灾难三种路径</li>
+      </ul>
+      <p style="color:var(--text-muted);font-size:0.88rem;">💡 相当于"开卷考试"——AI 可以参考之前写好的上界素材来优化输出。</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li>神界派系分化（至少3个派系，核心要求）</li>
+        <li>重要神祗的个人情感、力量定位、经历</li>
+        <li>封魂令松动与上界格局变化的关系</li>
+        <li>参考已提供的素材进行优化和完善</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【上界-过去】</span>
+        <span class="mark-tag">【上界-现状】</span>
+        <span class="mark-tag">【上界-未来】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 基于三界概述，深入设计上界神殿的世界观——有哪些派系、各派系怎么斗、关键神是谁，并参考之前写好的草稿来优化。重点要求：神殿必须有派系博弈，不是一团和气。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 4: realm-mortal -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">realm-mortal</span>
+      <span class="module-label">凡界</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>在三界概述和上界设定的基础上，设计<strong>凡界的详细世界观</strong>——这是玩家冒险的核心舞台。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-overview', 'realm-upper']</code> —— 需要三界概述的宏观框架，也需要上界设定（因为上界的封魂令松动直接影响凡界）。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li>九大元素大陆：金、木、冰、火、土、风、雷、光、暗</li>
+        <li>圣心城：九大陆环心的核心枢纽城市</li>
+        <li>符文通道：连接各大陆的古老传送网络</li>
+        <li>每个大陆有9个区域</li>
+        <li>封魂令松动与凡界格局变化的关系</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【凡界-过去】</span>
+        <span class="mark-tag">【凡界-现状】</span>
+        <span class="mark-tag">【凡界-未来】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 设计玩家冒险的主舞台——凡界。重点是九大陆的布局和特色、圣心城的中枢地位、封魂令松动引发的危机。需要和上界设定保持一致。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 5: realm-abyss -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">realm-abyss</span>
+      <span class="module-label">深渊</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>在三界概述、上界和凡界设定的基础上，设计<strong>深渊的详细世界观</strong>——三界链的最后一环。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-overview', 'realm-upper', 'realm-mortal']</code> —— 深渊是依赖最多的模块，需要三界概述的框架、上界的封魂令背景、凡界的现状，才能设计与之呼应的深渊。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li>深渊的本质：不是纯邪恶，而是世界树的根系网络</li>
+        <li>原始魔法的源泉，代表循环与平衡</li>
+        <li>深渊有自己的生态和文明</li>
+        <li>封魂令松动与深渊格局变化的关系</li>
+        <li>与上界、凡界形成三界互为关联的完整体系</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【深渊-过去】</span>
+        <span class="mark-tag">【深渊-现状】</span>
+        <span class="mark-tag">【深渊-未来】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 设计三界中最神秘的深渊——它不是反派大本营，而是世界树的根系，有自己的文明。设计时必须确保深渊和上界、凡界形成闭环，不能割裂。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 6: main-storyline -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">main-storyline</span>
+      <span class="module-label">凡界主线剧情</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>基于三界世界观，设计凡界范围内的<strong>主线剧情三章节</strong>（过去/现状/未来），每章包含核心事件、关键角色、玩家参与方式。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-structure']</code> —— 剧情必须基于世界观来写，而此模块创建时用的还是旧版 realm-structure（尚未迁移到拆分后的子模块）。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li><strong>三章节结构</strong>：过去（繁荣但暗流）→现状（封印松动）→未来（危机爆发与抉择）</li>
+        <li>必须融入六大核心要素：封魂令、九大陆、英雄团、城堡防御、圣心城、符文通道</li>
+        <li>剧情围绕五大核心玩法展开：守城、探索、灾厄、英雄与城堡、世界树</li>
+        <li><strong>分布式叙事</strong>：剧情通过探索/灾厄/守城三个载体植入，不是简单的过场动画</li>
+        <li>英雄逐步加入，每位有独立的招募剧情和角色弧线</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【整体概述】</span>
+        <span class="mark-tag">【第一章节·名称】</span>
+        <span class="mark-tag">【第一章节·时代背景】</span>
+        <span class="mark-tag">【第一章节·核心事件】</span>
+        <span class="mark-tag">【第一章节·关键角色】</span>
+        <span class="mark-tag">【第一章节·玩家参与】</span>
+        <span class="mark-tag">【第一章节·结局】</span>
+        <span class="mark-tag">【第二章节·名称】</span>
+        <span class="mark-tag">【第二章节·时代背景】</span>
+        <span class="mark-tag">【第二章节·核心事件】</span>
+        <span class="mark-tag">【第二章节·关键角色】</span>
+        <span class="mark-tag">【第二章节·玩家参与】</span>
+        <span class="mark-tag">【第二章节·现状结局】</span>
+        <span class="mark-tag">【第三章节·名称】</span>
+        <span class="mark-tag">【第三章节·时代背景】</span>
+        <span class="mark-tag">【第三章节·核心事件】</span>
+        <span class="mark-tag">【第三章节·关键角色】</span>
+        <span class="mark-tag">【第三章节·玩家参与】</span>
+        <span class="mark-tag">【第三章节·结局】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 写凡界的三幕大戏——第一幕铺世界观，第二幕制造危机，第三幕推向高潮。每幕都要和游戏玩法（守城/探索/灾厄）挂钩，不能写成纯小说。这是所有模块中输出标记最多的（19个），也是最复杂的"大题"。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 7: player-identity -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">player-identity</span>
+      <span class="module-label">玩家身份定义</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>设计玩家的<strong>身份系统</strong>——玩家是"世界树尤克特拉希尔的一个节点"，但这个身份需要层层揭示，不能一开始就剧透。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-structure', 'main-storyline']</code> —— 需要三界世界观作为基础，也需要主线剧情来确定身份揭示的叙事时机。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li>玩家作为世界树"节点"的含义与觉醒方式</li>
+        <li>初始认知：玩家以为自己是普通守城者</li>
+        <li><strong>身份叙事让步</strong>：第十魂令是暗线伏笔，不是前期显性线索</li>
+        <li><strong>揭示弧线</strong>：前期（偶尔感知回响）→中期（怀疑身份特殊）→后期（完全觉醒）</li>
+        <li>所有玩家都是节点——为跨服社交和PVP留空间</li>
+        <li>第四域的伏笔——节点们未来可能形成"第四势力"</li>
+        <li><strong>惊喜感是核心</strong>：身份揭示必须是游戏叙事中最精彩的部分</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【起源概念】</span>
+        <span class="mark-tag">【初始认知】</span>
+        <span class="mark-tag">【揭示弧线】</span>
+        <span class="mark-tag">【玩法整合】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 设计"玩家到底是谁"这个问题——表面是守城者，实际是世界树的节点。关键是<strong>不能一开始就剧透</strong>，要设计一个层层揭开身份的惊喜过程，就像电影里的反转。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 8: hero-system -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">hero-system</span>
+      <span class="module-label">英雄系统定位</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>为9大元素大陆各设计一位英雄角色的<strong>基础定位</strong>——名字、性格、背景、加入方式。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-structure', 'player-identity']</code> —— 英雄的世界观归属依赖三界设定，英雄与玩家的关系依赖玩家身份定义。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li>9位英雄对应9大陆：金、木、冰、火、土、风、雷、光、暗</li>
+        <li>组成"英雄团"，被世界树和封魂令牵引汇聚</li>
+        <li><strong>MVP优先级</strong>：金、冰、火三位是首发角色，需要更突出的人设</li>
+        <li>每位英雄需要：名字、视觉风格、性格、背景故事、故事角色、加入阶段、加入条件</li>
+        <li>玩家直接使用英雄战斗，英雄是玩家的战斗化身</li>
+        <li>英雄之间有性格和立场差异，制造张力</li>
+        <li>逐步加入，不能一次性全部出现</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【金元素英雄】</span>
+        <span class="mark-tag">【木元素英雄】</span>
+        <span class="mark-tag">【冰元素英雄】</span>
+        <span class="mark-tag">【火元素英雄】</span>
+        <span class="mark-tag">【土元素英雄】</span>
+        <span class="mark-tag">【风元素英雄】</span>
+        <span class="mark-tag">【雷元素英雄】</span>
+        <span class="mark-tag">【光元素英雄】</span>
+        <span class="mark-tag">【暗元素英雄】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 给九大元素大陆各设计一位英雄——像给一部电影选角一样，每个角色要有独特的名字、性格、背景故事和加入团队的时机。金、冰、火三位是主角，要更用心设计。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 9: castle-goddess -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">castle-goddess</span>
+      <span class="module-label">城堡与女神设定</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>设计两个核心设定：<strong>城堡</strong>（玩家的防御核心）和<strong>女神</strong>（贯穿始终的引导NPC）。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-structure', 'player-identity', 'hero-system']</code> —— 依赖最多之一：需要世界观基础、玩家身份（城堡与世界树的关系）、英雄系统（女神引导的受众）。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li><strong>城堡</strong>：来源、外观、与世界树的关联、城防机制、叙事意义</li>
+        <li><strong>女神</strong>：名字、外观、表面与深层性格、真实身份、引导方式、对话主题</li>
+        <li><strong>女神真假策略（核心设计）</strong>：
+          <ul>
+            <li>前期：女神告诉玩家的信息有多少是真的？</li>
+            <li>中期：玩家开始发现女神说法与事实不符</li>
+            <li>后期：女神真实意图的深层原因</li>
+            <li>每次"揭穿"一个谎言，都打开一个新的谜团</li>
+          </ul>
+        </li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【城堡描述】</span>
+        <span class="mark-tag">【城堡作用】</span>
+        <span class="mark-tag">【城堡意义】</span>
+        <span class="mark-tag">【女神名字】</span>
+        <span class="mark-tag">【女神外观】</span>
+        <span class="mark-tag">【女神性格】</span>
+        <span class="mark-tag">【女神身份】</span>
+        <span class="mark-tag">【女神引导】</span>
+        <span class="mark-tag">【女神话题】</span>
+        <span class="mark-tag">【女神可信度】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 设计两个关键角色：玩家的"家"（城堡）和玩家的"导师"（女神）。女神是整个游戏中最有戏剧张力的角色——她不完全是好人也不完全是坏人，每次你觉得自己了解她了，她就会给你一个新谜团。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module 10: world-tree-system -->
+  <div class="module-detail">
+    <div class="module-header">
+      <span class="module-id">world-tree-system</span>
+      <span class="module-label">世界树系统</span>
+      <span class="tag tag-active">活跃</span>
+    </div>
+    <div class="module-body">
+      <h4>📌 模块作用</h4>
+      <p>设计世界树"尤克特拉希尔"的<strong>完整系统</strong>——从受损状态逐步恢复的成长机制、资源贡献、功能解锁、符文关联。</p>
+      <h4>🔗 依赖（contextDependencies）</h4>
+      <p><code>['realm-structure', 'player-identity']</code> —— 世界树是三界的核心支柱（依赖世界观），也是玩家力量的源头（依赖玩家身份）。</p>
+      <h4>📎 参考文档（referenceDocuments）</h4>
+      <p>无</p>
+      <h4>📋 题目核心要点</h4>
+      <ul>
+        <li><strong>成长机制</strong>：枯萎期→萌芽期→生长期→繁茂期→超越期，每阶段有视觉和能力变化</li>
+        <li><strong>资源贡献</strong>：战斗收获、探索发现、灾厄战利品如何贡献给世界树</li>
+        <li><strong>功能解锁</strong>：每个成长阶段解锁的新玩法/新区域</li>
+        <li><strong>第四势力</strong>：世界树如何形成独立于三界的"第四势力"</li>
+        <li><strong>符文关联</strong>：九种元素符文与九大陆的对应、符文通道与世界树脉络的关系</li>
+      </ul>
+      <h4>🏷️ 输出标记列表</h4>
+      <div class="tag-list">
+        <span class="mark-tag">【成长机制】</span>
+        <span class="mark-tag">【资源贡献】</span>
+        <span class="mark-tag">【解锁功能】</span>
+        <span class="mark-tag">【第四势力】</span>
+        <span class="mark-tag">【符文关联】</span>
+      </div>
+      <div class="summary-box">
+        <div class="summary-label">🗣️ 白话总结</div>
+        <p>让 AI 设计世界树这个"游戏核心引擎"——它怎么从快死的状态慢慢复活、玩家怎么帮它恢复、恢复后能解锁什么新功能。还涉及符文体系（战斗/升级/传送的底层逻辑）和"第四势力"的长线伏笔。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- Section 7: 系统调用流程          -->
+<!-- ============================== -->
+<div class="section" id="sec7">
+  <h2 class="section-title"><span class="num">7</span> 系统调用流程 —— 从点击到出结果</h2>
+  <p class="section-desc">当用户在前端点击"AI生成"按钮后，系统内部发生了什么？下面用流程图展示完整链路。</p>
+
+  <div class="flow-chart">
+    <div class="flow-step">
+      <span class="step-num">1</span>
+      <div class="step-title">用户点击"AI生成"</div>
+      <div class="step-desc">AIPanel 组件接收到当前模块的 moduleId（如 <code>realm-upper</code>）</div>
+    </div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">
+      <span class="step-num">2</span>
+      <div class="step-title">查找模板</div>
+      <div class="step-desc">调用 <code>getPromptTemplate(moduleId)</code>，从 phase1Prompts 字典中找到对应的"菜谱卡片"</div>
+    </div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">
+      <span class="step-num">3</span>
+      <div class="step-title">组装完整指令（buildFullPrompt）</div>
+      <div class="step-desc">这是最关键的一步——把菜谱卡片上的所有信息拼成一条完整的指令</div>
+    </div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-group">
+      <div class="flow-group-title">📦 组装过程（4个子步骤）</div>
+      <div class="flow-step">
+        <span class="step-num">3a</span>
+        <div class="step-title">提取前置内容</div>
+        <div class="step-desc">遍历 <code>contextDependencies</code>，从全局状态（stores）中提取已定稿模块的内容，拼成"上下文"</div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step">
+        <span class="step-num">3b</span>
+        <div class="step-title">注入参考素材</div>
+        <div class="step-desc">如果有 <code>referenceDocuments</code>，将参考文档内容附加到指令中（如上界的过去/现状/未来参考稿）</div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step">
+        <span class="step-num">3c</span>
+        <div class="step-title">拼接题目正文</div>
+        <div class="step-desc">将 <code>userPromptTemplate</code>（设计要求）与上下文和参考素材组合为完整的用户提示词</div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step">
+        <span class="step-num">3d</span>
+        <div class="step-title">附加答题格式</div>
+        <div class="step-desc">在用户提示词末尾追加 <code>outputFormatInstructions</code>（【标记】格式要求），确保AI结构化输出</div>
+      </div>
+    </div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">
+      <span class="step-num">4</span>
+      <div class="step-title">发送给 AI</div>
+      <div class="step-desc">调用 <code>generateWithAI()</code>，将组装好的 system + user 指令发送给 AI 服务商</div>
+    </div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">
+      <span class="step-num">5</span>
+      <div class="step-title">解析结果</div>
+      <div class="step-desc">AI 返回文本后，<code>parseSections()</code> 按【标记】切分为各个字段</div>
+    </div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">
+      <span class="step-num">6</span>
+      <div class="step-title">填入编辑框</div>
+      <div class="step-desc">解析后的内容自动填入对应模块的编辑区域，用户可以审阅、修改、定稿</div>
+    </div>
+  </div>
+
+  <div class="metaphor">
+    <div class="metaphor-title">🍳 完整比喻：点菜到上菜</div>
+    <p>1️⃣ 客人（用户）说："我要点菜，编号 R-03"</p>
+    <p>2️⃣ 服务员（AIPanel）去菜谱目录查找 R-03 对应的菜谱卡片</p>
+    <p>3️⃣ 后厨（buildFullPrompt）开始备菜：</p>
+    <p>&nbsp;&nbsp;&nbsp;• 3a. 检查"先做好的配料"（contextDependencies → 已定稿内容）</p>
+    <p>&nbsp;&nbsp;&nbsp;• 3b. 加上"特别食材"（referenceDocuments → 参考素材）</p>
+    <p>&nbsp;&nbsp;&nbsp;• 3c. 按菜谱步骤做菜（userPromptTemplate → 设计要求）</p>
+    <p>&nbsp;&nbsp;&nbsp;• 3d. 按装盘要求摆盘（outputFormatInstructions → 格式要求）</p>
+    <p>4️⃣ 厨师（AI）按完整指令做菜</p>
+    <p>5️⃣ 菜做好后，按"标记"分盘（parseSections → 解析【标记】）</p>
+    <p>6️⃣ 端上桌，客人品鉴修改（填入编辑框 → 审阅定稿）</p>
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <div class="card-label">📐 关键代码对应</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>流程步骤</th><th>对应代码</th><th>所在文件</th></tr></thead>
+        <tbody>
+          <tr><td>查找模板</td><td><code>getPromptTemplate(moduleId)</code></td><td>prompts/index.ts</td></tr>
+          <tr><td>组装指令</td><td><code>buildFullPrompt(moduleId, options)</code></td><td>prompts/index.ts</td></tr>
+          <tr><td>提取前置内容</td><td>遍历 <code>contextDependencies</code></td><td>prompts/index.ts 内部</td></tr>
+          <tr><td>发送AI</td><td><code>generateWithAI()</code></td><td>services/ai-client.ts</td></tr>
+          <tr><td>解析结果</td><td><code>parseSections()</code></td><td>services/ai-content-parser.ts</td></tr>
+          <tr><td>显示结果</td><td>AIPanel 组件</td><td>components/shared/AIPanel.vue</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<div style="text-align:center;padding:40px 0 20px;border-top:1px solid var(--border);margin-top:48px;">
+  <p style="color:var(--text-muted);font-size:0.85rem;">西幻世界观 · Phase1-Prompts 代码解读 | 生成于 2026年4月</p>
+  <p style="color:var(--text-muted);font-size:0.78rem;margin-top:4px;">本文档由源代码自动分析生成，面向非技术人员阅读</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案二：圣心城最后的执政官 — 尤克特拉希尔纪元</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=MedievalSharp&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --gold: #d4af37;
+  --gold-light: #f5e6b8;
+  --gold-dark: #8b6914;
+  --bg-dark: #0d0d1a;
+  --bg-deep: #1a1a2e;
+  --bg-card: rgba(20,20,40,0.85);
+  --bg-card-hover: rgba(30,30,55,0.9);
+  --text-primary: #f5f0e8;
+  --text-secondary: #c8bfa8;
+  --text-muted: #8a7e6e;
+  --border: rgba(212,175,55,0.15);
+  --border-light: rgba(212,175,55,0.3);
+  --accent-green: #4a9e5c;
+  --accent-red: #c0392b;
+  --accent-blue: #4a90d9;
+  --purple-deep: #2d1b69;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Noto Serif SC', 'Georgia', serif;
+  line-height: 1.9;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1.5px 1.5px at 20% 30%, rgba(212,175,55,0.4) 50%, transparent 100%),
+              radial-gradient(1px 1px at 40% 70%, rgba(74,144,217,0.3) 50%, transparent 100%),
+              radial-gradient(1.2px 1.2px at 60% 20%, rgba(106,79,199,0.35) 50%, transparent 100%),
+              radial-gradient(1px 1px at 80% 60%, rgba(212,175,55,0.25) 50%, transparent 100%),
+              radial-gradient(1.5px 1.5px at 10% 80%, rgba(74,144,217,0.2) 50%, transparent 100%);
+  background-size: 300px 300px;
+  animation: starDrift 120s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,13,26,0.4) 0%, rgba(26,26,46,0.3) 30%, rgba(45,27,105,0.08) 50%, rgba(26,26,46,0.3) 70%, rgba(13,13,26,0.5) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes starDrift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-300px); }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero Banner */
+.hero-banner {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #0f0f28 50%, var(--bg-deep) 100%);
+  z-index: 1;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(212,175,55,0.2) 0%, transparent 55%),
+              radial-gradient(ellipse at 20% 10%, rgba(74,144,217,0.08) 0%, transparent 35%),
+              linear-gradient(to bottom, rgba(13,13,26,0.2) 0%, rgba(13,13,26,0.9) 100%);
+  z-index: 1;
+}
+
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(106,79,199,0.05) 40%, transparent 65%);
+  border-radius: 50%;
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 24px;
+}
+
+.hero-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0.9;
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(212,175,55,0.4);
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 700;
+  color: var(--gold-light);
+  text-shadow: 0 0 80px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2), 0 2px 4px rgba(0,0,0,0.6);
+  margin-bottom: 12px;
+  letter-spacing: 10px;
+  animation: titleGlow 4s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 80px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2), 0 2px 4px rgba(0,0,0,0.6); }
+  50% { text-shadow: 0 0 100px rgba(212,175,55,0.6), 0 0 60px rgba(212,175,55,0.3), 0 2px 4px rgba(0,0,0,0.6); }
+}
+
+.hero-title-cn {
+  font-size: clamp(20px, 3vw, 32px);
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 40px;
+  letter-spacing: 8px;
+}
+
+.hero-tagline {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 2.4;
+  padding: 28px 0;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+
+.hero-tagline::before, .hero-tagline::after {
+  content: '';
+  display: block;
+  width: 200px;
+  height: 1px;
+  margin: 0 auto 24px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.hero-tagline::after {
+  margin: 24px auto 0;
+}
+
+/* TOC */
+.toc {
+  max-width: 900px;
+  margin: -50px auto 80px;
+  padding: 36px 48px;
+  background: linear-gradient(135deg, rgba(20,20,40,0.95) 0%, rgba(30,25,55,0.92) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  position: relative;
+  z-index: 3;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.1);
+}
+
+.toc h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.toc-chapter {
+  background: rgba(13,13,26,0.4);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  transition: all 0.3s ease;
+}
+
+.toc-chapter:hover {
+  background: rgba(212,175,55,0.05);
+  border-color: var(--border-light);
+}
+
+.toc-chapter-num {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+
+.toc-chapter-title {
+  font-size: 15px;
+  color: var(--text-primary);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.toc-chapter-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.toc-chapter-title a:hover {
+  color: var(--gold-light);
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  margin-bottom: 90px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+
+.section-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(106,79,199,0.08) 100%);
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(212,175,55,0.08);
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.section-title-cn {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+  text-shadow: 0 0 30px rgba(212,175,55,0.1);
+}
+
+/* Summary Box */
+.summary-box {
+  background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(106,79,199,0.04) 100%);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-left: 4px solid var(--gold);
+  padding: 32px 36px;
+  border-radius: 0 14px 14px 0;
+  margin-bottom: 36px;
+  font-size: 15.5px;
+  line-height: 2.2;
+  letter-spacing: 0.4px;
+  box-shadow: inset 0 0 40px rgba(212,175,55,0.03), 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.summary-box strong {
+  color: var(--gold-light);
+}
+
+/* Info Block */
+.info-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.info-block:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 8px 36px rgba(0,0,0,0.3);
+}
+
+.info-block h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+
+.info-block p, .info-block ul {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 2.2;
+  letter-spacing: 0.4px;
+}
+
+.info-block ul {
+  padding-left: 24px;
+}
+
+.info-block ul li {
+  margin-bottom: 10px;
+}
+
+.info-block ul li strong {
+  color: var(--gold-light);
+}
+
+/* Comparison Table */
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 20px 0;
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.comparison-table th {
+  background: rgba(212,175,55,0.1);
+  color: var(--gold-light);
+  font-weight: 600;
+  padding: 14px 18px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(212,175,55,0.06);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:hover td {
+  background: var(--bg-card-hover);
+}
+
+/* Accent blocks */
+.accent-green { border-left: 4px solid var(--accent-green); }
+.accent-red { border-left: 4px solid var(--accent-red); }
+.accent-blue { border-left: 4px solid var(--accent-blue); }
+
+.accent-green h4 { color: #7ecf8e; }
+.accent-red h4 { color: #e74c3c; }
+.accent-blue h4 { color: #6bb3f0; }
+
+/* Pros/Cons/Impact cards */
+.pros-cons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.impact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  transition: all 0.4s ease;
+}
+
+.impact-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.impact-card h4 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+
+.impact-card ul {
+  padding-left: 22px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 2.1;
+}
+
+.impact-card ul li {
+  margin-bottom: 8px;
+}
+
+/* Rune Separator */
+.rune-separator {
+  position: relative;
+  text-align: center;
+  margin: 20px 0 40px;
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+.rune-separator .rune-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.rune-separator .rune-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.rune-separator .rune-symbol {
+  color: var(--gold);
+  font-size: 18px;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
+}
+
+/* Ornament */
+.ornament {
+  text-align: center;
+  margin: 70px 0;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 14px;
+  opacity: 0.4;
+  position: relative;
+}
+
+.ornament::before, .ornament::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212,175,55,0.3), transparent);
+}
+
+.ornament::before { right: calc(50% + 70px); }
+.ornament::after { left: calc(50% + 70px); }
+
+/* Quote block */
+.quote-block {
+  background: rgba(13,13,26,0.5);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 2;
+}
+
+.quote-block cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* Footer */
+.doc-footer {
+  text-align: center;
+  padding: 60px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(13,13,26,0.8) 0%, transparent 100%);
+}
+
+.doc-footer .footer-brand {
+  color: var(--gold);
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 16px;
+  text-shadow: 0 0 20px rgba(212,175,55,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toc-grid { grid-template-columns: 1fr; }
+  .toc { margin: -30px 16px 60px; padding: 24px 28px; }
+  .container { padding: 0 16px 80px; }
+  .section { margin-bottom: 60px; }
+  .hero-banner { min-height: 70vh; }
+  .comparison-table { font-size: 13px; }
+  .comparison-table th, .comparison-table td { padding: 10px 12px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { letter-spacing: 4px; }
+  .hero-subtitle { letter-spacing: 6px; }
+}
+
+/* Print */
+@media print {
+  body::before, body::after { display: none; }
+  .hero-banner { min-height: 50vh; background: #0d0d1a; }
+  .toc { margin: 20px auto; box-shadow: none; }
+  .info-block { break-inside: avoid; page-break-inside: avoid; }
+  .section { break-inside: avoid; page-break-inside: avoid; margin-bottom: 40px; }
+  .comparison-table { break-inside: avoid; page-break-inside: avoid; }
+  .rune-separator { display: none; }
+  .fade-in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO BANNER -->
+<header class="hero-banner">
+  <div class="hero-content">
+    <div class="hero-subtitle">Player Identity · Proposal II</div>
+    <h1 class="hero-title">THE LAST CONSUL</h1>
+    <div class="hero-title-cn">圣心城最后的执政官 · 玩家身份方案二</div>
+    <div class="hero-tagline">
+      没有神力的凡人，却手持凡界最后的合法秩序
+    </div>
+  </div>
+</header>
+
+<!-- TOC -->
+<nav class="toc fade-in">
+  <h2>📜 章节目录 · Chapter Index</h2>
+  <div class="toc-grid">
+    <div class="toc-chapter">
+      <div class="toc-chapter-num">Chapter I</div>
+      <div class="toc-chapter-title"><a href="#chapter1">方案核心概念</a></div>
+    </div>
+    <div class="toc-chapter">
+      <div class="toc-chapter-num">Chapter II</div>
+      <div class="toc-chapter-title"><a href="#chapter2">玩家身份定位</a></div>
+    </div>
+    <div class="toc-chapter">
+      <div class="toc-chapter-num">Chapter III</div>
+      <div class="toc-chapter-title"><a href="#chapter3">城堡转移机制</a></div>
+    </div>
+    <div class="toc-chapter">
+      <div class="toc-chapter-num">Chapter IV</div>
+      <div class="toc-chapter-title"><a href="#chapter4">城堡攻击逻辑</a></div>
+    </div>
+    <div class="toc-chapter">
+      <div class="toc-chapter-num">Chapter V</div>
+      <div class="toc-chapter-title"><a href="#chapter5">玩家涉险原因</a></div>
+    </div>
+    <div class="toc-chapter">
+      <div class="toc-chapter-num">Chapter VI</div>
+      <div class="toc-chapter-title"><a href="#chapter6">世界观一致性分析</a></div>
+    </div>
+    <div class="toc-chapter">
+      <div class="toc-chapter-num">Chapter VII</div>
+      <div class="toc-chapter-title"><a href="#chapter7">优缺点与玩法影响</a></div>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+<!-- Chapter 1 -->
+<section class="section fade-in" id="chapter1">
+  <div class="section-header">
+    <div class="section-icon">💡</div>
+    <div>
+      <div class="section-title">Chapter I</div>
+      <div class="section-title-cn">方案核心概念</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    玩家是<strong>圣心城陷落时唯一幸存的执政官候选人</strong>——一个被城堡中的世界树根须以魂能"冬眠"了数十年的凡人。他在城堡被激活时苏醒，没有记忆，没有战斗力，但身上佩戴着<strong>圣心城的执政印信</strong>——九大陆领主都承认的最高协调权威。
+  </div>
+
+  <div class="info-block">
+    <h4>🏛️ 核心设定</h4>
+    <p>当圣心城在世界树的魂能脉冲中陷落时，并非所有人都死了。城中的执政官议会——凡界最高政治机构的全体成员——都在灾难中罹难，除了一位<strong>最年轻的执政官候选人</strong>。他在灾难发生的瞬间，被世界树地下根须中泄露的魂能包裹，进入了类似"冬眠"的停滞状态。</p>
+    <p style="margin-top:12px">数十年后，当世界树感知到封印松动的危机时，它以最后的力量激活了这位冬眠者所在的区域。一座古老的城堡从圣心城废墟中升起，而其中的凡人缓缓苏醒——</p>
+    <ul>
+      <li><strong>没有记忆</strong>：漫长的冬眠抹去了他的个人记忆，但身体还记得如何行走和说话</li>
+      <li><strong>没有战斗力</strong>：他只是一个文职官员，从未接受过战斗训练</li>
+      <li><strong>拥有执政印信</strong>：那枚挂在胸前的徽章，是九大陆领主在圣心城鼎盛时期共同承认的最高权威象征</li>
+    </ul>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--gold)">
+    <h4>✨ 核心理念</h4>
+    <p style="text-align:center;font-size:17px;color:var(--gold-light);letter-spacing:1px;padding:8px 0">
+      <strong>玩家 = 凡人 + 最高政治权威，不参战但统揽全局</strong>
+    </p>
+    <p style="margin-top:12px">这个方案的核心叙事张力在于：<strong>一个没有力量的凡人，如何凭借一枚印信和一腔信念，让九位拥有神力的元素领主听命于他？</strong>这不是通过命令，而是通过召集、协调、和外交——让领主们认识到，分裂的凡界只有在他这位"最后的执政官"的旗帜下，才有可能抵御深渊的侵蚀。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- Chapter 2 -->
+<section class="section fade-in" id="chapter2">
+  <div class="section-header">
+    <div class="section-icon">👤</div>
+    <div>
+      <div class="section-title">Chapter II</div>
+      <div class="section-title-cn">玩家身份定位</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    身份本质：<strong>圣心城执政官</strong>——凡界的"联合国秘书长"。没有直接统治各大陆的权力，但拥有在危机时刻<strong>协调各大陆联合行动</strong>的合法授权。
+  </div>
+
+  <div class="info-block">
+    <h4>📜 执政官制度的历史</h4>
+    <p>在圣心城的全盛时期，执政官并非某一大陆的统治者，而是<strong>九大陆共同推举的协调者</strong>。他的职责包括：</p>
+    <ul>
+      <li>仲裁大陆之间的领土与贸易争端</li>
+      <li>在跨界危机时召集"九域议会"，协调联合行动</li>
+      <li>保管和管理跨大陆的公共资源（如符文通道维护基金）</li>
+      <li>作为圣心城——世界树通天之柱所在地——的世俗管理者</li>
+    </ul>
+    <p style="margin-top:12px">执政官没有权力直接命令任何一位领主，但他的<strong>召集权</strong>和<strong>仲裁权</strong>在和平时期被视为最高政治礼仪。在危机时期，九域议会的一致决议具有约束力——而执政官是唯一能发起九域议会召集程序的人。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>🏷️ 执政印信 · The Consul's Sigil</h4>
+    <p>执政印信是<strong>九封魂令锻造时同步制作的第十件信物</strong>——它不是封魂令本身，不具备任何神力或封印功能，但它与封魂令体系同源：</p>
+    <ul>
+      <li><strong>材质</strong>：与封魂令相同的魂能凝练金属，但经过特殊处理去除了封印属性</li>
+      <li><strong>象征</strong>：凡界政治秩序的最高象征，九大陆领主家族都承认其合法性</li>
+      <li><strong>设计</strong>：中央是世界树的简化浮雕，周围环绕九颗代表九种元素的微缩宝石</li>
+    </ul>
+    <p style="margin-top:12px">印信本身没有魔力，但它是一个<strong>协议触发器</strong>——当它与各大陆的封魂令石碑物理接触时，可以激活沃坦德当年预设的"联合防御协议"。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>⚔️ 为什么不参战？</h4>
+    <p>这是本方案最关键的叙事设计：<strong>执政官是文职，从来就不是战士。</strong></p>
+    <ul>
+      <li>圣心城的执政官候选人来自学者、外交官、符文师等文职体系</li>
+      <li>他的价值在于<strong>战略决策和外交协调</strong>，不在于个人武力</li>
+      <li>如果执政官亲自上阵杀敌，反而说明凡界已经到了山穷水尽的地步——这会削弱"秩序重建"的叙事</li>
+    </ul>
+    <p style="margin-top:12px">领主们不是被"命令"，而是被<strong>"召集"</strong>。执政官的存在是一个象征——象征着凡界尚未彻底分裂，仍有统一的政治法统。领主们响应他的召集，不是因为怕他的力量，而是因为<strong>承认这个法统的合法性</strong>，以及因为<strong>他们也需要一个协调者</strong>。</p>
+  </div>
+
+  <div class="quote-block">
+    "我不是你们的王。我只是那个还记得——我们曾是一个世界的人。"
+    <cite>——执政官对第一位响应召集的领主说</cite>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- Chapter 3 -->
+<section class="section fade-in" id="chapter3">
+  <div class="section-header">
+    <div class="section-icon">🏰</div>
+    <div>
+      <div class="section-title">Chapter III</div>
+      <div class="section-title-cn">城堡转移机制</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <strong>方舟堡（The Bastion）</strong>是圣心城核心区的一块碎片。世界树的魂能将城堡核心区包裹保存，形成一座可以沿符文通道移动的"飞地"。城堡不是传送，而是<strong>沿世界树的地下根脉网络滑行</strong>，像一艘在地下河流中航行的船。
+  </div>
+
+  <div class="info-block">
+    <h4>🌳 方舟堡的本质</h4>
+    <p>方舟堡不是一座普通的城堡，而是<strong>圣心城核心区的一块碎片</strong>——执政官议会厅所在的区域。在世界树魂能脉冲摧毁圣心城时，这块区域被世界树的根须意外包裹，形成了一个保护性的魂能茧。</p>
+    <p style="margin-top:12px">当执政官苏醒时，这座城堡已经与世界树的地下根脉网络建立了连接。城堡的核心——执政官议会厅的地下——有一截<strong>活着的世界树根须</strong>。这截根须不是世界树的主根，而是断裂后仍然保持着微弱活性的次生根系。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>🚢 沿根脉滑行：移动的"飞地"</h4>
+    <p>城堡的移动机制遵循以下规则：</p>
+    <ul>
+      <li><strong>不是传送</strong>：城堡不会瞬间消失再出现，而是物理地沿着世界树的地下根脉网络滑行</li>
+      <li><strong>根脉即航道</strong>：世界树的地下根系构成了一个巨大的网络，魂能在这个网络中像地下河流一样流动。城堡沿着这些"魂能河道"前进</li>
+      <li><strong>升起与沉入</strong>：每到新大陆，城堡从地底升起，扎根于当地符文通道的终端节点；离开时再次沉入地下</li>
+      <li><strong>物理存在</strong>：城堡每次到达新大陆都是物理移动过来的——地面上会留下一条短暂的"根脉痕迹"，数日后消散</li>
+    </ul>
+    <p style="margin-top:12px">这种移动方式解释了为什么城堡可以从一个大陆"跳跃"到另一个大陆：<strong>世界树的根脉网络是三界基础设施</strong>，虽然地上部分已经断裂，但地下部分仍然互联。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>⚡ 移动的动力来源</h4>
+    <p>城堡的移动不需要执政官操控——它是由世界树根须的<strong>魂能脉动</strong>驱动的：</p>
+    <ul>
+      <li>当执政官在某一大陆完成"印信确认"后，世界树感知到该节点的激活</li>
+      <li>根须网络自动将城堡向下一未激活节点"推送"</li>
+      <li>这个过程类似于植物的<strong>向光性</strong>——城堡被"吸引"向下一枚封魂令的方向</li>
+    </ul>
+    <p style="margin-top:12px">执政官无法控制移动的时机和目的地——这是世界树的本能，不是任何人的意志。这种设计增加了叙事的<strong>宿命感</strong>：执政官不是在选择下一站，而是在<strong>被命运推向下一站</strong>。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- Chapter 4 -->
+<section class="section fade-in" id="chapter4">
+  <div class="section-header">
+    <div class="section-icon">⚔️</div>
+    <div>
+      <div class="section-title">Chapter IV</div>
+      <div class="section-title-cn">城堡攻击逻辑</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    城堡遭受攻击有<strong>双重原因</strong>：被动吸引与主动打击。这构成了塔防玩法的完整叙事基础——敌人不是无缘无故来攻打你的城堡。
+  </div>
+
+  <div class="info-block">
+    <h4>🌀 原因一：被动吸引</h4>
+    <p>城堡核心的世界树根须持续散发出微弱的<strong>魂能辐射</strong>。这种辐射对深渊造物和失控的元素生物具有不可抗拒的吸引力：</p>
+    <ul>
+      <li><strong>深渊造物</strong>：世界树的魂能是它们的本能"食物源"。根须散发的魂能就像黑暗中的明灯，吸引深渊根须生物从裂隙中涌出</li>
+      <li><strong>失控元素生物</strong>：封印松动导致元素能量失衡，一些元素生物被扭曲成了只知道追逐魂能的野兽。它们感应到城堡中的世界树根须，本能地向其聚集</li>
+    </ul>
+    <p style="margin-top:12px">这种攻击是<strong>无组织的</strong>、<strong>本能的</strong>——深渊根须生物不是在执行某个指挥官的命令，而是像飞蛾扑火一样被魂能吸引。这解释了为什么早期关卡的敌人看起来"没有脑子"。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>🎯 原因二：主动打击</h4>
+    <p>随着剧情推进，敌人攻击的性质会发生变化——从"本能的扑火"变成<strong>"有组织的军事行动"</strong>。</p>
+    <ul>
+      <li>玩家作为执政官，恢复圣心城的权威意味着<strong>凡界秩序的重建</strong></li>
+      <li>这直接威胁到<strong>深渊破壁军团</strong>的战略目标——他们需要凡界混乱才能扩大裂隙</li>
+      <li><strong>格拉姆萨斯（深渊破壁军团的指挥官）</strong>会派遣有组织的攻击力量，专门针对城堡和执政官本人</li>
+    </ul>
+    <p style="margin-top:12px">后期的攻击具有明确的<strong>战术目标</strong>：摧毁城堡、杀死执政官、瓦解凡界重新统一的可能性。敌人的种类也从无脑根须生物升级为<strong>有指挥的深渊军团</strong>。</p>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--gold)">
+    <h4>📊 攻击强度的递进逻辑</h4>
+    <table class="comparison-table">
+      <tr><th>阶段</th><th>攻击性质</th><th>敌人特征</th><th>叙事意义</th></tr>
+      <tr><td><strong>早期</strong></td><td>被动吸引</td><td>无脑根须生物、失控元素兽</td><td>城堡的存在本身就是吸引源</td></tr>
+      <tr><td><strong>中期</td><td>混合</td><td>开始有小型指挥官出现</td><td>深渊注意到城堡的特殊性</td></tr>
+      <tr><td><strong>后期</strong></td><td>主动打击</td><td>有组织的深渊军团、精英单位</td><td>执政官已成为深渊的战略威胁</td></tr>
+    </table>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- Chapter 5 -->
+<section class="section fade-in" id="chapter5">
+  <div class="section-header">
+    <div class="section-icon">🛡️</div>
+    <div>
+      <div class="section-title">Chapter V</div>
+      <div class="section-title-cn">玩家涉险原因</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    既然执政官没有战斗力，为什么还要<strong>亲自涉险</strong>？因为执政印信需要物理接触各大陆的封魂令石碑才能激活"联合协议"——这是沃坦德设计的安全机制，防止远程篡权。
+  </div>
+
+  <div class="info-block">
+    <h4>🔐 印信确认机制</h4>
+    <p>沃坦德在锻造九封魂令时，为执政印信设计了一个<strong>强制性的物理确认机制</strong>：</p>
+    <ul>
+      <li>执政印信必须与各大陆的封魂令石碑<strong>物理接触</strong>，才能激活该大陆的"联合防御协议"</li>
+      <li>这是为了防止执政官被胁迫或远程操控——如果印信可以在远处激活，那么任何拥有印信的人都可以远程调动所有大陆的力量</li>
+      <li>确认过程本身是一个<strong>仪式</strong>：执政官将印信按在石碑上，石碑会读取印信中的魂能签名，验证其真伪</li>
+    </ul>
+    <p style="margin-top:12px">这意味着：每到新大陆，玩家<strong>必须</strong>前往封魂令石碑完成一次"印信确认"，之后才能调动当地资源和领主。这也解释了为什么塔防战斗通常发生在封魂令石碑附近——执政官正在那里进行确认仪式，而敌人试图阻止。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>🌟 执政官的象征意义</h4>
+    <p>执政官的存在本身就是一个<strong>政治符号</strong>：</p>
+    <ul>
+      <li>如果执政官阵亡，各大陆将彻底失去协调中心，陷入各自为战的绝境</li>
+      <li>"保护执政官"有超越纯防御的叙事意义——它是在<strong>保护凡界重新统一的最后希望</strong></li>
+      <li>领主们派遣英雄保护城堡，不仅是因为契约或命令，更是因为他们<strong>需要执政官活着</strong>来维系这个协调体系</li>
+    </ul>
+    <p style="margin-top:12px">这与传统塔防游戏中"保护基地"的动机不同。在方案二中，"保护城堡"不是保护一栋建筑，而是<strong>保护一个政治象征</strong>——而这个政治象征的存亡，直接关系到整个凡界的命运。</p>
+  </div>
+
+  <div class="info-block">
+    <h4>⚡ 为什么领主会听命？</h4>
+    <p>这是本方案最常被质疑的点。答案不是单一的，而是多层次的：</p>
+    <ul>
+      <li><strong>法理层面</strong>：执政印信是九大陆共同承认的合法权威，领主们无法公开否认其合法性</li>
+      <li><strong>利益层面</strong>：各大陆都面临深渊威胁，需要一个协调者来组织联合防御</li>
+      <li><strong>情感层面</strong>：圣心城的毁灭是所有领主心中的痛，执政官是圣心城最后的遗产</li>
+      <li><strong>现实层面</strong>：领主们并非完全服从，他们会试探、质疑、甚至短暂对抗——这正是丰富的剧情空间</li>
+    </ul>
+  </div>
+
+  <div class="quote-block">
+    "你说你是执政官？圣心城已经死了三十年，而你——你不过是个从废墟里爬出来的幽灵。"
+    <br><br>
+    "是的，我是幽灵。但我是唯一还记得我们如何活着的幽灵。"
+    <cite>——执政官与霜寒领主的首次对话</cite>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- Chapter 6 -->
+<section class="section fade-in" id="chapter6">
+  <div class="section-header">
+    <div class="section-icon">🌐</div>
+    <div>
+      <div class="section-title">Chapter VI</div>
+      <div class="section-title-cn">世界观一致性分析</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    方案二的核心优势之一是<strong>与世界观现有元素的高度一致性</strong>。执政官不是一个突兀插入的角色，而是凡界政治体系的自然延伸。
+  </div>
+
+  <div class="info-block">
+    <h4>📋 与现有世界观元素的关联</h4>
+    <table class="comparison-table">
+      <tr><th>世界观元素</th><th>一致性说明</th></tr>
+      <tr>
+        <td><strong>魂域三界</strong></td>
+        <td>执政官是凡界内部的政治角色，不涉及上界/深渊的超自然力量。他的存在不破坏三界的力量平衡。</td>
+      </tr>
+      <tr>
+        <td><strong>世界树</strong></td>
+        <td>城堡沿根脉移动，依赖世界树基础设施但不直接掌控其力量。世界树只是"提供道路"，不是赋予执政官神力。</td>
+      </tr>
+      <tr>
+        <td><strong>九封魂令</strong></td>
+        <td>执政印信是封魂令锻造时的衍生物，与封魂令体系同源。印信确认机制完美解释了为什么必须逐一亲临各大陆。</td>
+      </tr>
+      <tr>
+        <td><strong>元素大陆</strong></td>
+        <td>九大陆各自为政的现状是圣心城毁灭的直接后果。执政官的使命就是重建九大陆的协调体系。</td>
+      </tr>
+      <tr>
+        <td><strong>圣心城</strong></td>
+        <td>执政官直接继承圣心城的政治法统，是其最后的代言人。圣心城的历史悲剧为执政官的使命感提供了情感基础。</td>
+      </tr>
+      <tr>
+        <td><strong>深渊威胁</strong></td>
+        <td>凡界秩序重建直接威胁深渊扩张战略，构成主动攻击动机。深渊破壁军团有充分的理由要消灭执政官。</td>
+      </tr>
+      <tr>
+        <td><strong>女神艾蕾尼娅</strong></td>
+        <td>艾蕾尼娅不是执政官的创造者，而是<strong>观察者</strong>。她看到了世界树选择了这个凡人，于是暗中协助。两者的关系是"引导者与被引导者"而非"造物主与造物"。</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="info-block">
+    <h4>🔗 叙事闭环的完整性</h4>
+    <p>方案二形成了一个完整的叙事闭环：</p>
+    <ul>
+      <li><strong>起点</strong>：圣心城毁灭 → 执政官体系崩溃 → 凡界分裂</li>
+      <li><strong>转折</strong>：最后一位执政官意外存活，成为世界树根脉网络中的"流浪者"</li>
+      <li><strong>目标</strong>：重建凡界协调体系，重新激活九封魂令的联合防御协议</li>
+      <li><strong>阻碍</strong>：深渊不希望凡界统一，上界对凡界事务态度暧昧</li>
+      <li><strong>终点</strong>：凡界在执政官的协调下重新团结，为三界和解奠定基础</li>
+    </ul>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- Chapter 7 -->
+<section class="section fade-in" id="chapter7">
+  <div class="section-header">
+    <div class="section-icon">⚖️</div>
+    <div>
+      <div class="section-title">Chapter VII</div>
+      <div class="section-title-cn">优缺点与玩法影响</div>
+    </div>
+  </div>
+
+  <div class="impact-card accent-green">
+    <h4>✅ 优点</h4>
+    <ul>
+      <li><strong>玩家有清晰的身份和动机</strong>，但不需要超自然力量。"凡人拯救世界"比"神之子拯救世界"更能引起普通玩家的情感共鸣。</li>
+      <li><strong>"不参战的指挥官"逻辑自洽</strong>。文职非武职的设定完美解释了为什么玩家不亲自上战场。</li>
+      <li><strong>执政印信机制为每个大陆的解锁提供叙事驱动</strong>。玩家有明确的、逐步推进的目标——逐一确认九大陆的印信。</li>
+      <li><strong>"保护执政官"给塔防玩法增加了政治层面的紧迫感</strong>。敌人的目标不是"摧毁一座城堡"，而是"杀死凡界统一的象征"。</li>
+      <li><strong>可以发展丰富的外交互动系统</strong>。与九位性格各异的领主交涉、建立信任、化解矛盾，提供了大量支线叙事空间。</li>
+    </ul>
+  </div>
+
+  <div class="impact-card accent-red">
+    <h4>❌ 缺点</h4>
+    <ul>
+      <li><strong>相比"世界树化身"缺少神秘感和后期揭示的惊喜</strong>。执政官的身份是"凡人"，这意味着没有那种"原来我是……"的叙事反转。</li>
+      <li><strong>"一个凡人凭什么？"的质疑需要反复通过剧情化解</strong>。每次面对新领主，都需要重新证明自己的合法性，这可能导致叙事重复。</li>
+      <li><strong>执政官身份在后期可能缺乏叙事升级空间</strong>。当一个凡人完成了所有使命后，他的身份还是"执政官"——没有从"凡人"到"超凡"的蜕变弧线。</li>
+      <li><strong>与女神艾蕾尼娅的特殊联系需要额外解释</strong>。为什么上界女神会特别关注一个凡人？方案二需要设计合理的动机。</li>
+    </ul>
+  </div>
+
+  <div class="impact-card accent-blue">
+    <h4>🎮 玩法影响</h4>
+    <ul>
+      <li><strong>每个大陆的"印信确认"可以设计为特殊关卡</strong>。这不是普通的防御战，而是在仪式进行过程中抵御敌人干扰的"仪式保卫战"。</li>
+      <li><strong>执政官+领主的关系可以发展为声望/外交系统</strong>。领主对执政官的信任度会影响他们派遣的英雄强度和援军数量。</li>
+      <li><strong>城堡沿根脉移动的过程可以做成过渡动画</strong>。从地底滑行、穿过大地的根系网络、最终在新大陆破土而出——这是一个极具视觉冲击力的场景。</li>
+      <li><strong>适合偏策略+叙事的玩家群体</strong>。喜欢"运筹帷幄、决胜千里"感觉的玩家会更喜欢这个方案。</li>
+    </ul>
+  </div>
+
+  <div class="info-block" style="border-left:4px solid var(--gold); margin-top:32px">
+    <h4>🎯 总结</h4>
+    <p>方案二是一个<strong>中等身份、有头衔无神力</strong>的设计。它的核心叙事魅力在于：<strong>一个凡人如何凭借信念和法统，在神魔林立的世界中重建秩序</strong>。这是一个关于"人"的方案——不是关于神之子，不是关于世界树化身，而是关于一个普通的、失去记忆的、甚至没有战斗力的凡人，如何成为拯救世界的关键。</p>
+    <p style="margin-top:12px;text-align:center;font-size:16px;color:var(--gold-light);letter-spacing:1px">
+      <strong>"我不是神选之人。我只是最后一个还记得规则的人。"</strong>
+    </p>
+  </div>
+</section>
+
+<div class="ornament">✦ ✦ ✦</div>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="footer-brand">YGGDRASIL · 尤克特拉希尔纪元</div>
+  <p>方案二：圣心城最后的执政官 · 玩家身份提案</p>
+  <p style="margin-top:8px;color:var(--text-muted);font-size:12px">中等身份 · 有头衔无神力 · 凡界政治秩序的最后继承人</p>
+  <p style="color:var(--gold);margin-top:16px;letter-spacing:4px;font-family:'Cinzel',serif">2026</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+});
+</script>
+
+</body>
+</html>

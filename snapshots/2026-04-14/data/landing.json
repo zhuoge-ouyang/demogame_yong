@@ -1,0 +1,239 @@
+{
+  "jin": {
+    "entryPrompt": {
+      "narrative": "",
+      "npcDialogue": "",
+      "atmosphere": ""
+    },
+    "completionFeedback": {
+      "narrative": "",
+      "rewardStory": "",
+      "transitionText": ""
+    },
+    "bosses": [
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "openingScene": "",
+        "storyConnection": ""
+      }
+    ],
+    "levelNodes": [
+      {
+        "name": "区域1",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域2",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域3",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域4",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域5",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域6",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域7",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域8",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域9",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      }
+    ],
+    "_meta": {}
+  },
+  "bing": {
+    "entryPrompt": {
+      "narrative": "",
+      "npcDialogue": "",
+      "atmosphere": ""
+    },
+    "completionFeedback": {
+      "narrative": "",
+      "rewardStory": "",
+      "transitionText": ""
+    },
+    "bosses": [
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "openingScene": "",
+        "storyConnection": ""
+      }
+    ],
+    "levelNodes": [
+      {
+        "name": "区域1",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域2",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域3",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域4",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域5",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域6",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域7",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域8",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域9",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      }
+    ],
+    "_meta": {}
+  },
+  "huo": {
+    "entryPrompt": {
+      "narrative": "",
+      "npcDialogue": "",
+      "atmosphere": ""
+    },
+    "completionFeedback": {
+      "narrative": "",
+      "rewardStory": "",
+      "transitionText": ""
+    },
+    "bosses": [
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "openingScene": "",
+        "storyConnection": ""
+      }
+    ],
+    "levelNodes": [
+      {
+        "name": "区域1",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域2",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域3",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域4",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域5",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域6",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域7",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域8",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      },
+      {
+        "name": "区域9",
+        "storyBeat": "",
+        "keyEncounter": "",
+        "narrativeReward": ""
+      }
+    ],
+    "_meta": {}
+  }
+}

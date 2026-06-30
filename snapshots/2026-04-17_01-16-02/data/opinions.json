@@ -1,0 +1,17 @@
+{
+  "settings": {
+    "content": "test123",
+    "updatedAt": "2026-04-15T18:27:34.492Z",
+    "updatedBy": "ouyang"
+  },
+  "plot": {
+    "content": "",
+    "updatedAt": null,
+    "updatedBy": ""
+  },
+  "finalized": {
+    "content": "",
+    "updatedAt": null,
+    "updatedBy": ""
+  }
+}

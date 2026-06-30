@@ -1,0 +1,114 @@
+import type { WorldState, WorldTreeSystemData } from '@/types/world'
+import type { ContinentsState, ContinentAspects } from '@/types/continent'
+import type { LandingsState, LandingContinent } from '@/types/landing'
+import type { AIConfig } from '@/types/ai'
+import { CONTINENTS } from './continents'
+
+function emptyAspects(): ContinentAspects {
+  return {
+    mainPlot: '',
+    coreConflict: '',
+    playerGoal: '',
+    experiencePositioning: '',
+    inGameExpression: '',
+    themeExpression: '',
+    playerProgressionChanges: ''
+  }
+}
+
+function emptyLanding(): LandingContinent {
+  return {
+    entryPrompt: { narrative: '', npcDialogue: '', atmosphere: '' },
+    completionFeedback: { narrative: '', rewardStory: '', transitionText: '' },
+    bosses: [{ name: '', identity: '', motivation: '', signatureLine: '', openingScene: '', storyConnection: '' }],
+    levelNodes: Array.from({ length: 9 }, (_, i) => ({
+      name: `区域${i + 1}`,
+      storyBeat: '',
+      keyEncounter: '',
+      narrativeReward: ''
+    })),
+    _meta: {}
+  }
+}
+
+export function defaultWorldState(): WorldState {
+  return {
+    realmStructure: {
+      upper: { past: '', present: '', future: '' },
+      mortal: { past: '', present: '', future: '' },
+      abyss: { past: '', present: '', future: '' },
+      summary: ''
+    },
+    mainStoryline: {
+      stages: [
+        { name: '第一阶段：凡界', goal: '', events: '', resolution: '' },
+        { name: '第二阶段：神殿', goal: '', events: '', resolution: '' },
+        { name: '第三阶段：深渊', goal: '', events: '', resolution: '' }
+      ],
+      overview: ''
+    },
+    playerIdentity: {
+      origin: '',
+      initialPerception: '',
+      revelationArc: '',
+      gameplayIntegration: ''
+    },
+    heroSystem: CONTINENTS.map(c => ({
+      id: c.id,
+      name: '',
+      element: c.element,
+      continent: c.name,
+      visual: '',
+      backstory: '',
+      personality: '',
+      role: '',
+      joinCondition: '',
+      joinStage: '',
+      storyRole: ''
+    })),
+    castleGoddess: {
+      castle: { description: '', role: '', significance: '' },
+      goddess: { name: '', appearance: '', personality: '', trueNature: '', guidanceStyle: '', dialogueThemes: '', truthMatrix: '' }
+    },
+    worldTreeSystem: {
+      growthMechanism: '',
+      resourceContribution: '',
+      unlockedFeatures: '',
+      fourthForce: '',
+      runeConnection: ''
+    },
+    _meta: {
+      realmStructure: {},
+      mainStoryline: {},
+      playerIdentity: {},
+      heroSystem: {},
+      castleGoddess: {},
+      worldTreeSystem: {}
+    }
+  }
+}
+
+export function defaultContinentsState(): ContinentsState {
+  return Object.fromEntries(
+    CONTINENTS.map(c => [c.id, { id: c.id, name: c.name, element: c.element, aspects: emptyAspects(), _meta: {} }])
+  ) as ContinentsState
+}
+
+export function defaultLandingsState(): LandingsState {
+  return {
+    jin: emptyLanding(),
+    bing: emptyLanding(),
+    huo: emptyLanding()
+  }
+}
+
+export function defaultAIConfig(): AIConfig {
+  return {
+    provider: 'openai',
+    apiKey: '',
+    model: 'gpt-4o',
+    baseUrl: 'https://api.openai.com/v1',
+    temperature: 0.8,
+    maxTokens: 16384
+  }
+}

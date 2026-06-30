@@ -1,0 +1,176 @@
+:root {
+  /* 主背景色 —— 黑曜铁底，配少量古金、铜绿、血红，不再像普通棕色后台 */
+  --color-bg: #090a0b;
+  --color-bg-primary: #090a0b;
+  --color-bg-secondary: #101112;
+  --color-bg-card: #15120f;
+  --color-bg-hover: rgba(212, 168, 83, 0.09);
+  --color-bg-active: rgba(212, 168, 83, 0.16);
+
+  /* 强调色 */
+  --color-primary: #d4a853;
+  --color-primary-light: rgba(212, 168, 83, 0.15);
+  --color-accent-gold: #d4a853;
+  --color-accent-gold-light: #e8c87a;
+  --color-accent-gold-dark: #b08a3e;
+  --color-accent-blue: #4f7894;
+  --color-accent-purple: #8a4f5f;
+
+  /* 文本色 */
+  --color-text: #f0e6d0;
+  --color-text-primary: #f0e6d0;
+  --color-text-secondary: #c4b998;
+  --color-text-tertiary: #8a7e6a;
+  --color-text-accent: #e8c070;
+
+  /* 边框和分隔 —— 暗石灰，营造中性轮廓，避免滥用金色 */
+  --color-border: #2e2822;
+  --color-border-light: #3d342a;
+  --color-divider: #2a2420;
+
+  /* 光晕效果——收敛，仅用于 focus/active 点睛 */
+  --color-glow-gold: rgba(212, 168, 83, 0.22);
+  --color-glow-blue: rgba(212, 168, 83, 0.12);
+
+  /* 元素色（对应九大陆） */
+  --color-element-jin: #d4a853;
+  --color-element-mu: #4a9e5c;
+  --color-element-bing: #5ba8c8;
+  --color-element-huo: #d45a3a;
+  --color-element-tu: #a0784a;
+  --color-element-feng: #7ac5a8;
+  --color-element-lei: #9a6fd4;
+  --color-element-guang: #e8d06a;
+  --color-element-an: #5a4a6a;
+
+  /* 功能色 */
+  --color-success: #7ab04a;
+  --color-warning: #d4a853;
+  --color-error: #d45a3a;
+  --color-info: #c99454;
+  --color-danger: #d45a3a;
+
+  /* 布局 */
+  --sidebar-width: 244px;
+  --header-height: 64px;
+  --tab-height: 54px;
+
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 15px var(--color-glow-gold);
+
+  /* 字体：西方魔幻标题 + 更有书卷感的正文，不再使用默认后台字体 */
+  --font-sans: 'Alegreya Sans', 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  --font-display: 'Cinzel', 'Trajan Pro', serif;
+
+  /* 字体大小 */
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-xs: 13px;
+  --font-size-lg: 18px;
+  --font-size-h1: 28px;
+  --font-size-h2: 22px;
+  --font-size-h3: 18px;
+
+  /* 行高 */
+  --line-height-base: 1.8;
+
+  /* =========================================
+     史诗油画装饰系统 (Epic Oil-Painting System) v2 —— 提亮 & 厚重化
+     ========================================= */
+
+  /* 史诗扩展色 —— 加入羊皮黄、古铜红、圣光白 */
+  --epic-parchment: #d8c49a;          /* 羊皮纸 */
+  --epic-parchment-warm: #e8d9b0;     /* 暖羊皮高光 */
+  --epic-parchment-dark: #8a7450;
+  --epic-bronze: #a06a30;             /* 提亮青铜 */
+  --epic-bronze-light: #c99454;
+  --epic-bronze-dark: #5a3818;
+  --epic-rust: #c65c30;               /* 锐铁红 */
+  --epic-blood: #8a2520;              /* 朱砂血 */
+  --epic-blood-deep: #4a1210;
+  --epic-verdigris: #5a8472;          /* 铜绿 */
+  --epic-candle: #f8cf7a;             /* 烛火黄 */
+  --epic-candle-glow: rgba(248, 207, 122, 0.65);
+  --epic-halo: #fff1c8;               /* 圣光白 */
+  --epic-moonlight: #c4d4e8;          /* 冷月光 */
+  --epic-royal-blue: #2a4a78;         /* 深皇蓝 */
+  --epic-night-blue: #1a2438;
+
+  /* 史诗用渐变 —— 戏剧性中央聚光（舞台灯光 + 四周幕布暗） */
+  --epic-gradient-sky:
+    radial-gradient(ellipse 90% 65% at 50% 35%, rgba(248, 207, 122, 0.18) 0%, rgba(212, 168, 83, 0.08) 30%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 15% 15%, rgba(74, 110, 170, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 90%, rgba(138, 37, 32, 0.15), transparent 60%),
+    radial-gradient(ellipse 100% 72% at 50% 18%, rgba(248, 207, 122, 0.12) 0%, transparent 48%),
+    radial-gradient(ellipse 70% 48% at 12% 15%, rgba(79, 120, 148, 0.18), transparent 58%),
+    radial-gradient(ellipse 70% 50% at 88% 92%, rgba(138, 37, 32, 0.18), transparent 58%),
+    linear-gradient(160deg, #090a0b 0%, #111315 36%, #111019 66%, #080807 100%);
+
+  --epic-gradient-slate:
+    linear-gradient(180deg, rgba(42, 54, 84, 0.7) 0%, rgba(18, 22, 40, 0.9) 100%);
+
+  --epic-gradient-frame:
+    linear-gradient(135deg, #fff1c8 0%, #f0cd7a 20%, #d4a853 45%, #8a5a2a 65%, #d4a853 85%, #fff1c8 100%);
+
+  --epic-gradient-bronze:
+    linear-gradient(135deg, #e8c87a 0%, #b08a3e 35%, #8a5a2a 70%, #5a3818 100%);
+
+  /* 羊皮纸背景（卡片使用） */
+  --epic-gradient-parchment:
+    radial-gradient(ellipse at 30% 20%, rgba(248, 223, 170, 0.08) 0%, transparent 60%),
+    linear-gradient(155deg, rgba(40, 32, 22, 0.92) 0%, rgba(26, 22, 18, 0.95) 100%);
+
+  /* 暗角 / vignette —— 加强戏剧性 */
+  --epic-vignette:
+    radial-gradient(ellipse at center,
+      transparent 0%,
+      transparent 35%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0.65) 100%);
+
+  /* 画布噪点纹理（data-uri 内联 SVG 可复用） */
+  --epic-canvas-noise:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch' seed='5'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.78  0 0 0 0 0.55  0 0 0 0.28 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+
+  --epic-canvas-weave:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 0h3v3H0zM3 3h3v3H3z' fill='rgba(255,240,200,0.02)'/></svg>");
+
+  /* 金属浮雕层 */
+  --epic-emboss-gold:
+    inset 0 1px 0 rgba(255, 240, 200, 0.5),
+    inset 0 -1px 0 rgba(90, 56, 24, 0.75);
+
+  --epic-shadow-frame:
+    0 1px 0 rgba(255, 240, 200, 0.3) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.65) inset,
+    0 14px 36px -10px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(212, 168, 83, 0.45),
+    0 0 40px -8px rgba(212, 168, 83, 0.4);
+
+  --epic-shadow-deep:
+    0 28px 60px -20px rgba(0, 0, 0, 0.9),
+    0 0 80px -24px rgba(212, 168, 83, 0.35),
+    inset 0 0 0 1px rgba(212, 168, 83, 0.28);
+
+  --epic-shadow-candle:
+    0 0 14px rgba(248, 207, 122, 0.65),
+    0 0 40px rgba(248, 207, 122, 0.3);
+
+  /* 字体扩展 —— 纯西方魔幻，不含中式字体 */
+  --font-display-epic: 'Cinzel', 'Trajan Pro', 'Cormorant Garamond', 'EB Garamond', serif;
+  --font-serif-classic: 'EB Garamond', 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+  --font-blackletter: 'UnifrakturMaguntia', 'Cinzel', serif;
+
+  /* 史诗层级 z-index */
+  --z-epic-decor: 1;
+  --z-epic-content: 2;
+  --z-epic-overlay: 5;
+}

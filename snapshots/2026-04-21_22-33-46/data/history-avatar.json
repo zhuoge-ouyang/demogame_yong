@@ -1,0 +1,584 @@
+[
+  {
+    "id": "1776056261312-gs49a",
+    "title": "2026-04-13 12:57 · 导入前自动备份",
+    "timestamp": 1776056261312,
+    "data": {
+      "world": {
+        "realmStructure": {
+          "upper": {
+            "past": "",
+            "present": "",
+            "future": ""
+          },
+          "mortal": {
+            "past": "",
+            "present": "",
+            "future": ""
+          },
+          "abyss": {
+            "past": "",
+            "present": "",
+            "future": ""
+          },
+          "summary": ""
+        },
+        "mainStoryline": {
+          "stages": [
+            {
+              "name": "第一阶段：凡界",
+              "goal": "",
+              "events": "",
+              "resolution": ""
+            },
+            {
+              "name": "第二阶段：神殿",
+              "goal": "",
+              "events": "",
+              "resolution": ""
+            },
+            {
+              "name": "第三阶段：深渊",
+              "goal": "",
+              "events": "",
+              "resolution": ""
+            }
+          ],
+          "overview": ""
+        },
+        "playerIdentity": {
+          "origin": "",
+          "initialPerception": "",
+          "revelationArc": "",
+          "gameplayIntegration": ""
+        },
+        "heroSystem": [
+          {
+            "id": "jin",
+            "name": "",
+            "element": "金",
+            "continent": "金耀大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "mu",
+            "name": "",
+            "element": "木",
+            "continent": "翠森大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "bing",
+            "name": "",
+            "element": "冰",
+            "continent": "霜寒大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "huo",
+            "name": "",
+            "element": "火",
+            "continent": "炎狱大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "tu",
+            "name": "",
+            "element": "土",
+            "continent": "磐岩大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "feng",
+            "name": "",
+            "element": "风",
+            "continent": "风语大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "lei",
+            "name": "",
+            "element": "雷",
+            "continent": "雷霆大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "guang",
+            "name": "",
+            "element": "光",
+            "continent": "圣光大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          },
+          {
+            "id": "an",
+            "name": "",
+            "element": "暗",
+            "continent": "暗影大陆",
+            "visual": "",
+            "backstory": "",
+            "personality": "",
+            "role": "",
+            "joinCondition": "",
+            "joinStage": "",
+            "storyRole": ""
+          }
+        ],
+        "castleGoddess": {
+          "castle": {
+            "description": "",
+            "role": "",
+            "significance": ""
+          },
+          "goddess": {
+            "name": "",
+            "appearance": "",
+            "personality": "",
+            "trueNature": "",
+            "guidanceStyle": "",
+            "dialogueThemes": "",
+            "truthMatrix": ""
+          }
+        },
+        "worldTreeSystem": {
+          "growthMechanism": "",
+          "resourceContribution": "",
+          "unlockedFeatures": "",
+          "fourthForce": "",
+          "runeConnection": ""
+        },
+        "_meta": {
+          "realmStructure": {},
+          "mainStoryline": {},
+          "playerIdentity": {},
+          "heroSystem": {},
+          "castleGoddess": {},
+          "worldTreeSystem": {}
+        }
+      },
+      "continents": {
+        "jin": {
+          "id": "jin",
+          "name": "金耀大陆",
+          "element": "金",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "mu": {
+          "id": "mu",
+          "name": "翠森大陆",
+          "element": "木",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "bing": {
+          "id": "bing",
+          "name": "霜寒大陆",
+          "element": "冰",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "huo": {
+          "id": "huo",
+          "name": "炎狱大陆",
+          "element": "火",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "tu": {
+          "id": "tu",
+          "name": "磐岩大陆",
+          "element": "土",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "feng": {
+          "id": "feng",
+          "name": "风语大陆",
+          "element": "风",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "lei": {
+          "id": "lei",
+          "name": "雷霆大陆",
+          "element": "雷",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "guang": {
+          "id": "guang",
+          "name": "圣光大陆",
+          "element": "光",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        },
+        "an": {
+          "id": "an",
+          "name": "暗影大陆",
+          "element": "暗",
+          "aspects": {
+            "mainPlot": "",
+            "coreConflict": "",
+            "playerGoal": "",
+            "experiencePositioning": "",
+            "inGameExpression": "",
+            "themeExpression": "",
+            "playerProgressionChanges": ""
+          },
+          "_meta": {}
+        }
+      },
+      "landing": {
+        "jin": {
+          "entryPrompt": {
+            "narrative": "",
+            "npcDialogue": "",
+            "atmosphere": ""
+          },
+          "completionFeedback": {
+            "narrative": "",
+            "rewardStory": "",
+            "transitionText": ""
+          },
+          "bosses": [
+            {
+              "name": "",
+              "identity": "",
+              "motivation": "",
+              "signatureLine": "",
+              "openingScene": "",
+              "storyConnection": ""
+            }
+          ],
+          "levelNodes": [
+            {
+              "name": "区域1",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域2",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域3",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域4",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域5",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域6",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域7",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域8",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域9",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            }
+          ],
+          "_meta": {}
+        },
+        "bing": {
+          "entryPrompt": {
+            "narrative": "",
+            "npcDialogue": "",
+            "atmosphere": ""
+          },
+          "completionFeedback": {
+            "narrative": "",
+            "rewardStory": "",
+            "transitionText": ""
+          },
+          "bosses": [
+            {
+              "name": "",
+              "identity": "",
+              "motivation": "",
+              "signatureLine": "",
+              "openingScene": "",
+              "storyConnection": ""
+            }
+          ],
+          "levelNodes": [
+            {
+              "name": "区域1",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域2",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域3",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域4",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域5",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域6",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域7",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域8",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域9",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            }
+          ],
+          "_meta": {}
+        },
+        "huo": {
+          "entryPrompt": {
+            "narrative": "",
+            "npcDialogue": "",
+            "atmosphere": ""
+          },
+          "completionFeedback": {
+            "narrative": "",
+            "rewardStory": "",
+            "transitionText": ""
+          },
+          "bosses": [
+            {
+              "name": "",
+              "identity": "",
+              "motivation": "",
+              "signatureLine": "",
+              "openingScene": "",
+              "storyConnection": ""
+            }
+          ],
+          "levelNodes": [
+            {
+              "name": "区域1",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域2",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域3",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域4",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域5",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域6",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域7",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域8",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            },
+            {
+              "name": "区域9",
+              "storyBeat": "",
+              "keyEncounter": "",
+              "narrativeReward": ""
+            }
+          ],
+          "_meta": {}
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尤克特拉希尔 — 西方魔幻世界观报告（魂令化身版）</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=MedievalSharp&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+:root{--gold:#d4af37;--gold-light:#f5e6b8;--gold-dark:#8b6914;--bg-dark:#0d0d1a;--bg-deep:#1a1a2e;--bg-card:rgba(20,20,40,0.85);--bg-card-hover:rgba(30,30,55,0.9);--text-primary:#f5f0e8;--text-secondary:#c8bfa8;--text-muted:#8a7e6e;--accent-upper:#f0d264;--accent-mortal:#4a9e5c;--accent-abyss:#9b3d3d;--accent-ice:#6bb8d4;--accent-fire:#d45b3e;--accent-wind:#7ec8a0;--accent-thunder:#9b6bdb;--accent-light:#f0d264;--accent-dark:#5c4b8a;--accent-earth:#a67c52;--accent-wood:#4a9e5c;--border:rgba(212,175,55,0.15);--border-light:rgba(212,175,55,0.3);--purple-deep:#2d1b69;--purple-accent:#6a4fc7;--blue-magic:#4a90d9;--copper:#b87333;--fire-orange:#e67e22}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg-dark);color:var(--text-primary);font-family:'Noto Serif SC','Georgia',serif;line-height:1.9;min-height:100vh;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(1.5px 1.5px at 20% 30%,rgba(212,175,55,0.4) 50%,transparent 100%),radial-gradient(1px 1px at 40% 70%,rgba(74,144,217,0.3) 50%,transparent 100%),radial-gradient(1.2px 1.2px at 60% 20%,rgba(106,79,199,0.35) 50%,transparent 100%),radial-gradient(1px 1px at 80% 60%,rgba(212,175,55,0.25) 50%,transparent 100%),radial-gradient(1.5px 1.5px at 10% 80%,rgba(74,144,217,0.2) 50%,transparent 100%),radial-gradient(1px 1px at 90% 10%,rgba(184,115,51,0.3) 50%,transparent 100%),radial-gradient(1.2px 1.2px at 50% 50%,rgba(212,175,55,0.15) 50%,transparent 100%),radial-gradient(1px 1px at 30% 90%,rgba(106,79,199,0.2) 50%,transparent 100%),radial-gradient(1.5px 1.5px at 70% 40%,rgba(74,144,217,0.15) 50%,transparent 100%),radial-gradient(1px 1px at 15% 55%,rgba(212,175,55,0.2) 50%,transparent 100%),radial-gradient(1.2px 1.2px at 85% 85%,rgba(106,79,199,0.25) 50%,transparent 100%),radial-gradient(1px 1px at 45% 15%,rgba(184,115,51,0.2) 50%,transparent 100%);background-size:300px 300px;animation:starDrift 120s linear infinite;z-index:0;pointer-events:none}
+@keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(-300px)}}
+body::after{content:'';position:fixed;inset:0;background:linear-gradient(180deg,rgba(13,13,26,0.4) 0%,rgba(26,26,46,0.3) 30%,rgba(45,27,105,0.08) 50%,rgba(26,26,46,0.3) 70%,rgba(13,13,26,0.5) 100%);z-index:0;pointer-events:none}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}.fade-in.visible{opacity:1;transform:translateY(0)}
+.hero-banner{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(135deg,var(--bg-dark) 0%,#0f0f28 50%,var(--bg-deep) 100%);z-index:1}
+.hero-banner .banner-bg{position:absolute;inset:0;background:url('public/images/banner_worldtree.png') center/cover no-repeat;opacity:0.3;filter:saturate(0.8) contrast(1.1);animation:bannerBreath 12s ease-in-out infinite}
+@keyframes bannerBreath{0%,100%{opacity:0.25;transform:scale(1)}50%{opacity:0.35;transform:scale(1.03)}}
+.hero-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(212,175,55,0.2) 0%,transparent 55%),radial-gradient(ellipse at 20% 10%,rgba(74,144,217,0.08) 0%,transparent 35%),radial-gradient(ellipse at 80% 10%,rgba(155,61,61,0.06) 0%,transparent 35%),linear-gradient(to bottom,rgba(13,13,26,0.2) 0%,rgba(13,13,26,0.9) 100%);z-index:1}
+.hero-banner::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(212,175,55,0.12) 0%,rgba(106,79,199,0.05) 40%,transparent 65%);border-radius:50%;animation:pulse 8s ease-in-out infinite;z-index:1}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5}50%{transform:translate(-50%,-50%) scale(1.3);opacity:1}}
+.hero-content{position:relative;z-index:2;padding:80px 24px}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:13px;letter-spacing:12px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0.9;font-weight:600;text-shadow:0 0 20px rgba(212,175,55,0.4)}
+.hero-title{font-family:'Cinzel Decorative','Cinzel',serif;font-size:clamp(46px,8vw,84px);font-weight:700;color:var(--gold-light);text-shadow:0 0 80px rgba(212,175,55,0.4),0 0 40px rgba(212,175,55,0.2),0 2px 4px rgba(0,0,0,0.6);margin-bottom:12px;letter-spacing:10px;animation:titleGlow 4s ease-in-out infinite}
+@keyframes titleGlow{0%,100%{text-shadow:0 0 80px rgba(212,175,55,0.4),0 0 40px rgba(212,175,55,0.2),0 2px 4px rgba(0,0,0,0.6)}50%{text-shadow:0 0 100px rgba(212,175,55,0.6),0 0 60px rgba(212,175,55,0.3),0 2px 4px rgba(0,0,0,0.6)}}
+.hero-title-cn{font-size:clamp(20px,3vw,32px);color:var(--text-secondary);font-weight:500;margin-bottom:40px;letter-spacing:8px}
+.hero-tagline{max-width:720px;margin:0 auto;font-size:17px;color:var(--text-secondary);line-height:2.4;padding:28px 0;letter-spacing:1.5px;position:relative}
+.hero-tagline::before,.hero-tagline::after{content:'';display:block;width:200px;height:1px;margin:0 auto 24px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.hero-tagline::after{margin:24px auto 0}
+.sword-divider{text-align:center;margin:0 auto;padding:8px 0;opacity:0.6}.sword-divider svg{width:180px;height:20px}
+.toc{max-width:960px;margin:-50px auto 80px;padding:36px 48px;background:linear-gradient(135deg,rgba(20,20,40,0.95) 0%,rgba(30,25,55,0.92) 100%);border:1px solid var(--border-light);border-radius:16px;position:relative;z-index:3;backdrop-filter:blur(24px);box-shadow:0 20px 60px rgba(0,0,0,0.5),inset 0 1px 0 rgba(212,175,55,0.1)}
+.toc h2{font-family:'Cinzel',serif;font-size:13px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:600;display:flex;align-items:center;gap:12px}.toc h2::before{content:'📜';font-size:16px}
+.toc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:6px;list-style:none}
+.toc-list a{color:var(--text-secondary);text-decoration:none;font-size:15px;padding:10px 16px;display:block;border-radius:8px;transition:all 0.3s ease;letter-spacing:0.5px;border:1px solid transparent}
+.toc-list a:hover{color:var(--gold-light);background:rgba(212,175,55,0.08);border-color:rgba(212,175,55,0.15);transform:translateX(6px)}
+.toc-list a::before{content:'◆ ';color:var(--gold);font-size:8px;vertical-align:middle;opacity:0.7}
+.container{max-width:960px;margin:0 auto;padding:0 24px 120px;position:relative;z-index:1}
+.section{margin-bottom:90px}
+.section-header{display:flex;align-items:center;gap:20px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--border);position:relative}
+.section-header::after{content:'';position:absolute;bottom:-1px;left:0;width:120px;height:2px;background:linear-gradient(to right,var(--gold),transparent)}
+.section-icon{width:58px;height:58px;display:flex;align-items:center;justify-content:center;font-size:28px;background:linear-gradient(135deg,rgba(212,175,55,0.15) 0%,rgba(106,79,199,0.08) 100%);border:1px solid rgba(212,175,55,0.25);border-radius:14px;flex-shrink:0;box-shadow:0 4px 16px rgba(212,175,55,0.08);transition:all 0.4s ease}
+.section:hover .section-icon{box-shadow:0 4px 24px rgba(212,175,55,0.15);transform:scale(1.05)}
+.section-title{font-family:'Cinzel',serif;font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:600;opacity:0.85}
+.section-title-cn{font-size:26px;font-weight:700;color:var(--text-primary);letter-spacing:3px;text-shadow:0 0 30px rgba(212,175,55,0.1)}
+.summary-box{background:linear-gradient(135deg,rgba(212,175,55,0.08) 0%,rgba(106,79,199,0.04) 100%);border:1px solid rgba(212,175,55,0.15);border-left:4px solid var(--gold);padding:32px 36px;border-radius:0 14px 14px 0;margin-bottom:40px;font-size:15.5px;line-height:2.2;letter-spacing:0.4px;box-shadow:inset 0 0 40px rgba(212,175,55,0.03),0 4px 20px rgba(0,0,0,0.2);position:relative}
+.summary-box::before{content:'❝';position:absolute;top:12px;left:16px;font-size:28px;color:var(--gold);opacity:0.2;font-family:'Cinzel Decorative',serif}
+.summary-box strong{color:var(--gold-light)}
+.realm-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;margin-bottom:32px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);transition:all 0.4s ease;backdrop-filter:blur(10px)}
+.realm-card:hover{box-shadow:0 12px 48px rgba(0,0,0,0.4),0 0 30px rgba(212,175,55,0.05);border-color:var(--border-light)}
+.realm-card-header{padding:20px 30px;display:flex;align-items:center;gap:14px;font-size:19px;font-weight:600;border-bottom:1px solid var(--border);letter-spacing:1px;background:linear-gradient(135deg,rgba(255,255,255,0.02) 0%,transparent 100%)}
+.realm-card-header .badge{font-size:12px;padding:4px 14px;border-radius:12px;font-weight:400;letter-spacing:0.5px}
+.realm-card[data-realm="upper"] .realm-card-header{border-left:4px solid var(--accent-upper)}.realm-card[data-realm="upper"] .badge{background:rgba(240,210,100,0.15);color:var(--accent-upper)}
+.realm-card[data-realm="mortal"] .realm-card-header{border-left:4px solid var(--accent-mortal)}.realm-card[data-realm="mortal"] .badge{background:rgba(74,158,92,0.15);color:var(--accent-mortal)}
+.realm-card[data-realm="abyss"] .realm-card-header{border-left:4px solid var(--accent-abyss)}.realm-card[data-realm="abyss"] .badge{background:rgba(155,61,61,0.15);color:var(--accent-abyss)}
+.realm-card-body{padding:32px 36px}
+.timeline-item{position:relative;padding-left:36px;margin-bottom:32px}.timeline-item:last-child{margin-bottom:0}
+.timeline-item::before{content:'';position:absolute;left:0;top:14px;width:14px;height:14px;border-radius:50%;border:2px solid var(--gold);background:var(--bg-dark);box-shadow:0 0 12px rgba(212,175,55,0.3)}
+.timeline-item::after{content:'';position:absolute;left:6px;top:30px;width:2px;height:calc(100% + 4px);background:linear-gradient(to bottom,rgba(212,175,55,0.25),rgba(212,175,55,0.05))}.timeline-item:last-child::after{display:none}
+.timeline-label{font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:3px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;text-shadow:0 0 15px rgba(212,175,55,0.2)}
+.timeline-content{font-size:15px;line-height:2.2;color:var(--text-secondary);letter-spacing:0.4px}.timeline-content strong{color:var(--gold-light);font-weight:600}
+.timeline-content h5{font-size:16px;color:var(--gold-light);margin:16px 0 8px;font-weight:600;letter-spacing:1px}
+.timeline-content ul{padding-left:20px;margin:8px 0}.timeline-content ul li{margin-bottom:6px}
+.continent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.continent-chip{padding:22px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;text-align:center;transition:all 0.4s ease;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.continent-chip:hover{background:var(--bg-card-hover);border-color:var(--border-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.3)}
+.continent-chip .icon{font-size:32px;margin-bottom:10px}.continent-chip .name{font-size:15px;font-weight:600;color:var(--text-primary);letter-spacing:1.5px}
+.continent-chip .element{font-size:12px;color:var(--text-muted);margin-top:4px;letter-spacing:1.5px;font-family:'Cinzel',serif;text-transform:uppercase}
+.stage-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:20px;display:flex;gap:28px;align-items:flex-start;transition:all 0.4s ease;box-shadow:0 4px 20px rgba(0,0,0,0.2);backdrop-filter:blur(10px)}
+.stage-card:hover{border-color:var(--border-light);box-shadow:0 8px 36px rgba(0,0,0,0.3);transform:translateX(4px)}
+.stage-number{width:60px;height:60px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(212,175,55,0.18) 0%,rgba(106,79,199,0.08) 100%);border:1px solid rgba(212,175,55,0.3);border-radius:50%;font-family:'Cinzel Decorative','Cinzel',serif;font-size:24px;font-weight:700;color:var(--gold);flex-shrink:0;text-shadow:0 0 16px rgba(212,175,55,0.4)}
+.stage-content h4{font-size:18px;font-weight:600;margin-bottom:12px;letter-spacing:1px;color:var(--text-primary)}
+.stage-content p{font-size:15px;color:var(--text-secondary);line-height:2.2;letter-spacing:0.4px}.stage-content p strong{color:var(--gold-light)}
+.info-block{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px 36px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:all 0.4s ease;backdrop-filter:blur(10px)}
+.info-block:hover{border-color:var(--border-light);box-shadow:0 8px 36px rgba(0,0,0,0.3)}
+.info-block h4{font-size:18px;font-weight:600;color:var(--gold-light);margin-bottom:16px;display:flex;align-items:center;gap:10px;letter-spacing:1px}
+.info-block p,.info-block ul{font-size:15px;color:var(--text-secondary);line-height:2.2;letter-spacing:0.4px}
+.info-block ul{padding-left:24px}.info-block ul li{margin-bottom:10px}.info-block ul li strong{color:var(--gold-light)}
+.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hero-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.4s ease;box-shadow:0 4px 16px rgba(0,0,0,0.15);backdrop-filter:blur(10px)}
+.hero-card:hover{border-color:var(--border-light);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.hero-card-top{padding:16px 20px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);letter-spacing:0.5px}
+.hero-card-body{padding:16px 20px;font-size:13px;color:var(--text-muted);line-height:1.9}
+.hero-card-img{position:relative;overflow:hidden}
+.hero-card-img img{width:100%;height:200px;object-fit:cover;display:block;filter:brightness(0.7) contrast(1.05) saturate(0.9);transition:all 0.5s ease}
+.hero-card-img:hover img{filter:brightness(0.8) contrast(1.1) saturate(1);transform:scale(1.08)}
+.hero-card-img .hero-card-overlay{position:absolute;bottom:0;left:0;right:0;padding:18px 20px;background:linear-gradient(to top,rgba(13,13,26,0.95) 0%,rgba(13,13,26,0.5) 70%,transparent 100%)}
+.hero-card-img .hero-card-overlay .hero-card-top{border:none;padding:0;color:var(--text-primary);font-size:15px}
+.hero-card-img .hero-card-overlay .hero-card-body{padding:4px 0 0;font-size:12px}
+.mvp-tag{font-family:'Cinzel',serif;font-size:9px;padding:2px 10px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);color:var(--bg-dark);border-radius:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.illust-banner{width:100%;margin:16px 0 44px;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 12px 48px rgba(0,0,0,0.4);border:1px solid var(--border)}
+.illust-banner img{width:100%;height:280px;object-fit:cover;display:block;filter:brightness(0.7) contrast(1.05) saturate(0.9);transition:all 0.5s ease}
+.illust-banner:hover img{filter:brightness(0.8) contrast(1.1) saturate(1);transform:scale(1.02)}
+.illust-banner .illust-caption{position:absolute;bottom:0;left:0;right:0;padding:24px 28px 18px;background:linear-gradient(to top,rgba(13,13,26,0.9) 0%,transparent 100%);font-size:12px;color:var(--text-muted);letter-spacing:3px;font-family:'Cinzel',serif;text-transform:uppercase}
+.ornament{text-align:center;margin:70px 0;color:var(--gold);font-size:14px;letter-spacing:14px;opacity:0.4;position:relative}
+.ornament::before,.ornament::after{content:'';position:absolute;top:50%;width:100px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,0.3),transparent)}
+.ornament::before{right:calc(50% + 70px)}.ornament::after{left:calc(50% + 70px)}
+.rune-separator{position:relative;text-align:center;margin:20px 0 40px;padding:30px 0;overflow:hidden}
+.rune-separator::before{content:'';position:absolute;inset:0;background:url('public/images/rune_texture.png') center/cover no-repeat;opacity:0.06;pointer-events:none}
+.rune-separator .rune-inner{display:flex;align-items:center;justify-content:center;gap:20px;position:relative;z-index:1}
+.rune-separator .rune-line{flex:1;max-width:120px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.rune-separator .rune-symbol{color:var(--gold);font-size:18px;filter:drop-shadow(0 0 6px rgba(212,175,55,0.4))}
+.placeholder{color:var(--text-muted);font-style:italic;text-align:center;padding:20px;border:1px dashed rgba(212,175,55,0.15);border-radius:12px;background:rgba(20,20,40,0.5);letter-spacing:2px;font-size:14px}
+.progress-panel{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}
+.progress-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;backdrop-filter:blur(10px)}
+.progress-item .prog-label{font-size:14px;color:var(--text-secondary);margin-bottom:10px;letter-spacing:0.5px;display:flex;justify-content:space-between;align-items:center}
+.progress-item .prog-pct{color:var(--gold);font-weight:600;font-family:'Cinzel',serif}
+.progress-bar{height:8px;background:rgba(212,175,55,0.1);border-radius:4px;overflow:hidden}
+.progress-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold-dark),var(--gold));transition:width 1s ease}
+.landing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.landing-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;transition:all 0.4s ease}
+.landing-card:hover{border-color:var(--border-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.3)}
+.landing-card h4{font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:12px;letter-spacing:1px}
+.landing-card .landing-meta{font-size:13px;color:var(--text-muted);line-height:1.8}
+.seal-table{width:100%;border-collapse:separate;border-spacing:0;margin:20px 0;font-size:14px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.seal-table th{background:rgba(212,175,55,0.12);color:var(--gold-light);font-weight:600;padding:14px 16px;text-align:left;letter-spacing:0.5px;font-size:13px;border-bottom:1px solid var(--border)}
+.seal-table td{padding:12px 16px;border-bottom:1px solid rgba(212,175,55,0.06);color:var(--text-secondary);background:var(--bg-card)}
+.seal-table tr:last-child td{border-bottom:none}
+.seal-table tr:hover td{background:var(--bg-card-hover)}
+.faction-block{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin-bottom:16px;transition:all 0.4s ease}
+.faction-block:hover{border-color:var(--border-light);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.faction-block h5{font-size:17px;color:var(--gold-light);margin-bottom:12px;font-weight:600;letter-spacing:1px}
+.faction-block p,.faction-block ul{font-size:14.5px;color:var(--text-secondary);line-height:2.1}
+.faction-block ul{padding-left:20px;margin-top:8px}.faction-block ul li{margin-bottom:6px}
+.doc-footer{text-align:center;padding:60px 24px;border-top:1px solid var(--border);color:var(--text-muted);font-size:13px;letter-spacing:0.5px;line-height:2;position:relative;z-index:1;background:linear-gradient(to top,rgba(13,13,26,0.8) 0%,transparent 100%)}
+.doc-footer .footer-brand{color:var(--gold);letter-spacing:8px;margin-bottom:12px;font-family:'Cinzel Decorative','Cinzel',serif;font-size:16px;text-shadow:0 0 20px rgba(212,175,55,0.3)}
+.faction-detail{margin-top:12px;padding:16px 20px;background:rgba(13,13,26,0.4);border-radius:10px;border:1px solid rgba(212,175,55,0.08)}
+.faction-detail h6{font-size:15px;color:var(--gold-light);margin-bottom:8px;font-weight:600}
+.faction-detail p{font-size:14px;color:var(--text-secondary);line-height:2;margin-bottom:8px}
+.faction-detail ul{padding-left:20px;font-size:14px;color:var(--text-secondary);line-height:2}
+.faction-detail ul li{margin-bottom:4px}
+@media(max-width:768px){.continent-grid,.hero-grid,.progress-panel,.landing-grid{grid-template-columns:repeat(2,1fr)}.stage-card{flex-direction:column}.toc-list{grid-template-columns:1fr}.toc{margin:-30px 16px 60px;padding:24px 28px}.container{padding:0 16px 80px}.section{margin-bottom:60px}.hero-banner{min-height:70vh}}
+@media(max-width:480px){.continent-grid,.hero-grid,.progress-panel,.landing-grid{grid-template-columns:1fr}.hero-title{letter-spacing:4px}.hero-subtitle{letter-spacing:6px}}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO BANNER ═══ -->
+<header class="hero-banner">
+  <div class="banner-bg"></div>
+  <div class="hero-content">
+    <div class="hero-subtitle">World Lore Report</div>
+    <h1 class="hero-title">YGGDRASIL</h1>
+    <div class="hero-title-cn">尤克特拉希尔纪元 · 世界观报告</div>
+    <div style="display:inline-block;padding:6px 20px;background:linear-gradient(135deg,rgba(155,61,61,0.6) 0%,rgba(106,79,199,0.5) 100%);border:1px solid rgba(212,175,55,0.4);border-radius:20px;font-size:13px;letter-spacing:4px;color:var(--gold-light);margin-top:12px;font-family:'Cinzel',serif;text-transform:uppercase">⚡ 魂令化身版 · Avatar Edition</div>
+    <div class="hero-tagline">
+      太初之时，唯有魂域——世界树尤克特拉希尔是魂域的心脏与脊柱。<br>
+      众神、凡族、原初种族共存于同一片天地，直到虚无之潮的入侵撕裂了一切。<br>
+      九封魂令封印域外之敌，三界因此而生，魂能循环因此而断。
+    </div>
+    <div class="sword-divider">
+      <svg viewBox="0 0 180 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="10" x2="70" y2="10" stroke="url(#gL)" stroke-width="1"/>
+        <polygon points="85,2 90,10 85,18 95,10" fill="#d4af37" opacity="0.6"/>
+        <line x1="110" y1="10" x2="180" y2="10" stroke="url(#gR)" stroke-width="1"/>
+        <defs>
+          <linearGradient id="gL" x1="0" y1="0" x2="70" y2="0"><stop offset="0%" stop-color="#d4af37" stop-opacity="0"/><stop offset="100%" stop-color="#d4af37" stop-opacity="0.6"/></linearGradient>
+          <linearGradient id="gR" x1="110" y1="0" x2="180" y2="0"><stop offset="0%" stop-color="#d4af37" stop-opacity="0.6"/><stop offset="100%" stop-color="#d4af37" stop-opacity="0"/></linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ TOC ═══ -->
+<nav class="toc fade-in">
+  <h2>目录 · Contents</h2>
+  <ul class="toc-list">
+    <li><a href="#overview">世界总览</a></li>
+    <li><a href="#upper">上界 · 神殿</a></li>
+    <li><a href="#mortal">凡界 · 中域</a></li>
+    <li><a href="#abyss">深渊 · 根域</a></li>
+    <li><a href="#continents">九大元素大陆</a></li>
+    <li><a href="#heroes">英雄阵容</a></li>
+    <li><a href="#storyline">主线三阶段</a></li>
+    <li><a href="#player">玩家身份</a></li>
+    <li><a href="#castle">城堡与女神</a></li>
+    <li><a href="#worldtree">世界树系统</a></li>
+    <li><a href="#landing">登陆关卡概览</a></li>
+    <li><a href="#progress">数据填充进度</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+<!-- ═══ 1. OVERVIEW ═══ -->
+<section class="section fade-in" id="overview">
+  <div class="section-header">
+    <div class="section-icon">🌳</div>
+    <div><div class="section-title">World Overview</div><div class="section-title-cn">世界总览</div></div>
+  </div>
+  <div class="summary-box">
+    在时间尚无名字的纪元之初，存在一个完整的世界——<strong>魂域（Animara）</strong>。魂域是一片由<strong>魂能（Anima）</strong>编织而成的浩瀚存在。魂能是万物之源，它不是简单的魔力或生命力，而是驱动一切存在运转的根本法则。<br><br>
+    <strong>世界树尤克特拉希尔（Yggdrasil）</strong>是魂域的心脏与脊柱，它的树冠覆盖天穹，树干贯穿大地，根系深入最幽暗的地底深处。太初的魂域并无三界之分——<strong>众神、凡族、原初种族</strong>共存于同一片天地。
+  </div>
+  <div class="illust-banner">
+    <img src="public/images/世界观01.png" alt="世界总览">
+    <div class="illust-caption">The World of Yggdrasil · Overview</div>
+  </div>
+
+  <!-- 域外入侵与魂域大战 -->
+  <div class="info-block">
+    <h4>⚔ 魂域大战 · The First Anima War</h4>
+    <p>和平在<strong>第一纪元末年</strong>被撕裂。一股来自魂域之外的力量——<strong>"虚无之潮（The Null Tide）"</strong>——开始侵蚀魂域的边界。虚无之潮并非某种生物或军队，而是一种<strong>反魂能的存在</strong>：它所到之处，魂能被抽空，物质化为虚无，生命连同记忆一起消散。引领虚无之潮的是<strong>"寂灭使徒（Heralds of Entropy）"</strong>。</p>
+    <p style="margin-top:12px">面对灭世之灾，三大族群史无前例地联合：<strong>众神</strong>以世界树高枝为堡垒编织魂能屏障；<strong>凡族战士</strong>以血肉之躯守卫世界树树干；<strong>原初种族</strong>在根系网络中抵挡最致命的渗透。</p>
+    <p style="margin-top:12px">锻造之神<strong>沃坦德（Vortandel）</strong>提出方案：将世界树的一部分魂能凝炼为<strong>九枚封印核心</strong>，以九种元素之力为锚点，在魂域边界编织永恒封印。代价是抽取世界树近三分之一的魂能，导致魂域不可逆地收缩与分裂。<strong>九枚封印核心——即"九封魂令（The Nine Soul Edicts）"的前身。</strong></p>
+  </div>
+
+  <!-- 三界裂变 -->
+  <div class="info-block">
+    <h4>🌐 三界的裂变</h4>
+    <p>封印激活的瞬间，世界树剧烈震荡，魂域沿世界树的三段自然结构断裂为三层：</p>
+    <ul>
+      <li><strong>上界（The Empyrean / 神殿）</strong>：世界树的树冠与高枝。魂能最为纯净稀薄，演化为众神的居所。</li>
+      <li><strong>凡界（The Mortal Sphere / 中域）</strong>：世界树的树干与枝桠所支撑的大地。<strong>九大元素大陆完全分布于凡界</strong>，由九封魂令作为各大陆的元素锚点，塑造出截然不同的元素环境。</li>
+      <li><strong>深渊（The Abyss / 根域）</strong>：世界树的根系网络。战后最令人心痛的部分——原初种族被永远封锁其中。</li>
+    </ul>
+  </div>
+
+  <!-- 深渊真相 -->
+  <div class="info-block" style="border-left:4px solid var(--accent-abyss)">
+    <h4>🕳️ 深渊的真相：放逐与背叛</h4>
+    <p>战争的胜利并不干净。众神中的强硬派以"原初种族可能被虚无之潮污染"为借口，联合部分凡族势力，<strong>对原初种族发起了清洗</strong>。原初种族被驱赶进世界树的根系网络深处。</p>
+    <p style="margin-top:12px"><strong>众神趁势将九封魂令的封锁范围"向内扩展"</strong>——原本用于隔绝域外虚无之潮的封印，被重新调整为同时封锁深渊与域外的双重枷锁。</p>
+    <p style="margin-top:12px;color:var(--gold-light);font-weight:600;font-size:16px;text-align:center;padding:12px 0">深渊不是恶魔的巢穴，而是英雄的囚笼。</p>
+  </div>
+
+  <!-- 九封魂令 -->
+  <div class="info-block">
+    <h4>🔮 九封魂令 · The Nine Soul Edicts</h4>
+    <p>九封魂令是九枚以世界树魂能为核心、九种元素之力为锚点的封印核心。三重功能：</p>
+    <ul>
+      <li><strong>域外封印</strong>：维系魂域边界的屏障，阻止虚无之潮再次入侵——最初的、最重要的功能。</li>
+      <li><strong>深渊封锁</strong>：战后被众神追加的功能，将根系网络与凡界、上界隔绝。</li>
+      <li><strong>元素锚定</strong>：分布在凡界九大元素大陆的核心位置，维持各大陆的元素平衡。</li>
+    </ul>
+   <p style="margin-top:12px">物理形态为嵌入各大陆核心圣所的符文石碑，每枚石碑上刻有对应元素的原初符文。</p>
+  </div>
+
+  <!-- 第十魂令 -->
+  <div class="info-block" style="border-left:4px solid var(--purple-accent)">
+    <h4>🔑 第十魂令 · The Tenth Soul Edict —— 调和之钥</h4>
+    <p>锻造之神<strong>沃坦德</strong>在锻造九封魂令时，秘密留下了第十枚——不是封印，而是<strong>"钥匙"</strong>。它被设计为在封印体系出现危机时，能重新调整封印结构、恢复魂能循环的终极工具。</p>
+    <p style="margin-top:12px">与前九枚魂令不同，第十魂令不固定于某个位置，而是一个<strong>移动的节点</strong>，拥有重新调整其他九枚魂令封印结构的能力。沃坦德为保守这个秘密付出了生命——他在为原初种族挺身而出之前，将自身最后的神力注入世界树的树干核心，创造了这枚未完成的封印种子。</p>
+    <p style="margin-top:12px;color:var(--gold-light);font-weight:600;font-size:16px;text-align:center;padding:12px 0">当世界树枯萎到临界点时，它以最后的力量唤醒了第十魂令的灵魂——即玩家。</p>
+  </div>
+
+  <!-- 魂能 -->
+  <div class="info-block">
+    <h4>✦ 魂能 · Anima — 万物之源</h4>
+    <ul>
+      <li><strong>循环性</strong>：魂能不会消亡，只会转化。生命死亡后魂能回归世界树，再流出滋养新生——魂域最根本的自然法则。</li>
+      <li><strong>元素分化</strong>：魂能从世界树流入凡界时，受环境影响分化为九种元素魂能（金、木、冰、火、土、风、雷、光、暗）。</li>
+      <li><strong>可塑性</strong>：众神塑造为神力，凡族魔法师塑造为奥术，原初种族以本能方式共鸣。塔防中建造防御塔、激活符文本质上都是对魂能的运用。</li>
+      <li><strong>稀缺性（当前）</strong>：三界裂变后魂能循环被打断（死亡后的魂能无法回归被封锁的根系），魂域总体魂能存量持续衰减——这是三界所有问题的深层根源。</li>
+    </ul>
+  </div>
+
+  <!-- 封印松动 -->
+  <div class="info-block" style="border-left:4px solid var(--accent-fire)">
+    <h4>⚠ 封印松动 · 死亡螺旋</h4>
+    <p>九封魂令的松动是一个持续了数个纪元的缓慢过程，根源在于<strong>魂能循环的断裂</strong>。</p>
+    <p style="margin-top:12px">正常情况下魂能应沿"树冠→树干→根系→树冠"路径循环。但深渊封锁打断了循环——<strong>魂能只出不回</strong>。世界树得不到根系回流，整棵树在缓慢枯萎。封印越弱→深渊魂能渗漏越多→世界树越枯萎→封印更弱。</p>
+    <p style="margin-top:12px"><strong>三界的命运走到了十字路口。</strong></p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 2. UPPER REALM ═══ -->
+<section class="section fade-in" id="upper">
+  <div class="section-header">
+    <div class="section-icon">✨</div>
+    <div><div class="section-title">The Celestial Realm</div><div class="section-title-cn">上界 · 神殿</div></div>
+  </div>
+  <div class="realm-card" data-realm="upper">
+    <div class="realm-card-header">✨ 上界 / 神殿 <span class="badge">众神居所，星环议会</span></div>
+    <div class="realm-card-body">
+      <div class="timeline-item">
+        <div class="timeline-label">过去 · Past</div>
+        <div class="timeline-content">
+          <h5>魂域大战前的众神</h5>
+          <p>在魂域尚未分裂的太初时代，<strong>众神并非统治者，而是世界树尤克特拉希尔的"管理者"</strong>。他们诞生于世界树树冠散发的高纯度魂能之中。太初时代的众神有数十位，各自代表魂能的某一面——秩序、混沌、创造、毁灭、知识、战争、艺术、死亡等等。他们的"工作"是<strong>维护魂能循环的顺畅运转</strong>。</p>
+          <p style="margin-top:12px">众神以<strong>"星环议会（The Astral Conclave）"</strong>的形式进行集体决策，没有单一的最高神，以议会表决为最高权威。</p>
+          <h5>魂域大战中的众神</h5>
+          <p>虚无之潮的入侵让众神第一次面对"存在被抹去"的恐惧。众神承担两项核心任务：编织魂能屏障、锻造九封魂令。<strong>超过三分之一的众神在战争中陨落</strong>。</p>
+          <h5>三界裂变后的上界</h5>
+          <p>裂变后树冠区域成为独立的上界。<strong>无实体物质，一切由凝固的魂能构成</strong>。山川河流是魂能的流淌，宫殿庙宇是众神意志的凝聚。幸存众神建立了<strong>"神殿（The Pantheon）"</strong>——实际上是一个远比过去封闭和等级分明的权力体系。</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">现在 · Present</div>
+        <div class="timeline-content">
+          <h5>世界树在上界的表现</h5>
+          <p>世界树的树冠曾是无尽的金色光海，但现在<strong>树冠正在肉眼可见地枯萎</strong>。金色枝叶变得暗淡，部分区域发黑脱落。上界边缘区域开始"蒸发"，面积在缓慢收缩。</p>
+          <p style="margin-top:12px;color:var(--gold-light);font-weight:600;text-align:center">这是上界所有政治斗争的底层原因：蛋糕在缩小，每一位神灵都在为自己的存续而战。</p>
+          <h5>神殿五大派系</h5>
+          <p>封印松动引发的危机将众神彻底撕裂为五个主要派系（详见下方展开）。此外，一位不隶属任何派系的远古存在——混沌之神，在幕后暗中操纵着局势。</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">未来 · Future</div>
+        <div class="timeline-content">
+          <h5>短期（第一章~第三章）</h5>
+          <p><strong>维序派</strong>通过光之大陆领主试图间接控制玩家（第十魂令的化身），索拉里翡认为第十魂令应该被用来强化现有封印；<strong>征伐派</strong>在深渊入侵加剧时向凡界派出"神殿使节"试图利用玩家；<strong>革新派</strong>通过艾蕾尼娅暗中引导；<strong>超脱派</strong>暂不介入，但奥菲丽亚可能在玩家梦境中出现；<strong>世树之裔</strong>通过自然之神塞尔维恩穿梭三界暗中观察玩家动向。<strong>混沌之神奈克瑟尔</strong>在此阶段完全隐于幕后，暗中加速封印崩溃。</p>
+          <h5>中期（第四章~第六章）</h5>
+          <p>神殿内部冲突公开化。<strong>各派系围绕第十魂令的争夺公开化。</strong><strong>泰拉蒙可能不顾议会决议，私自率军降临凡界</strong>——这将成为一场重要的boss战。<strong>索拉里翡将面临抉择</strong>：维持联盟还是重新审视信念。</p>
+          <h5>长期（第七章~终章）</h5>
+          <p>世界树树冠枯萎达临界点，上界面临崩塌。<strong>混沌之神奈克瑟尔</strong>的真面目终于浮出水面。<strong>世树之裔</strong>全力配合玩家修复世界树根脉。<strong>玩家的终极选择将决定三界命运</strong>：强化封印（维序派路线）、恢复循环（革新派路线）、或超越封印体系（自由路线）？</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 五大派系 -->
+  <div class="faction-block" style="border-left:4px solid #f0d264">
+    <h5>一、秩序圣庭（The Order of Astra）—— "维序派"</h5>
+    <p><strong>核心主张：</strong>修复九封魂令，维持三界现有格局，加强对凡界和深渊的控制。</p>
+    <div class="faction-detail">
+      <h6>领袖：索拉里翁（Solarion），光辉之神</h6>
+      <p><strong>神职：</strong>秩序、法则、光明。上界现存最强大的神灵之一，能编织不可违逆的神律。</p>
+      <p><strong>性格与动机：</strong>一位<strong>真诚地相信秩序即正义</strong>的神灵。亲眼见证混乱带来的毁灭，对"失序"有着病态的恐惧。他是当年主导"清洗原初种族"的核心人物之一——并非出于恶意，在他的逻辑中那是维护稳定的必要之举。</p>
+      <p><strong>情感：</strong>与陨落的锻造之神沃坦德曾是最亲密的战友。沃坦德为保护原初种族而死，是索拉里翁永远不愿提起的伤疤。</p>
+      <p><strong>对当前危机的态度：</strong>必须不惜一切代价修复九封魂令。如果凡界的领主们做不到，神殿应该直接介入——哪怕意味着以神律取代凡界的自治。</p>
+    </div>
+    <p style="margin-top:12px"><strong>核心成员：</strong>阿斯特蕾亚（Astraea）誓言女神，掌管契约与誓言；数位战争时期的老神。</p>
+    <p><strong>与其他派系的冲突：</strong>与革新派水火不容——认为重开深渊等于自杀；与超脱派互相蔑视；与征伐派存在合作空间但在"是否控制凡界"上分歧。</p>
+  </div>
+
+  <div class="faction-block" style="border-left:4px solid #d45b3e">
+    <h5>二、深渊执剑团（The Abyssal Vanguard）—— "征伐派"</h5>
+    <p><strong>核心主张：</strong>不仅要修复封印，还要主动进攻深渊，彻底消灭一切势力，永绝后患。同时将凡界收归神殿直辖。</p>
+    <div class="faction-detail">
+      <h6>领袖：泰拉蒙·战神（Thelamon, the Warbringer）</h6>
+      <p><strong>神职：</strong>战争、征服、力量。纯粹的毁灭性力量，战斗中越激烈越强大。</p>
+      <p><strong>性格与动机：</strong>一位<strong>渴望战争的神灵</strong>——不是因为邪恶，而是战争是他存在的本质。和平时期力量衰退，封印松动对他不是危机，而是<strong>机遇</strong>。</p>
+      <p><strong>情感：</strong>瞧不起索拉里翁的"坐而论道"，但承认其防御价值。暗中对艾蕾尼娅有粗粝的敬意——因为她是唯一敢当面指出他"嗜战成瘾"的神灵。</p>
+    </div>
+    <p style="margin-top:12px"><strong>核心成员：</strong>瓦尔基娅（Valkyria）裁决女武神，比泰拉蒙更冷静更危险——真正在意的是通过战争建立神殿对凡界的绝对霸权；一批感受到力量流失的年轻神灵。</p>
+  </div>
+
+  <div class="faction-block" style="border-left:4px solid #4a9e5c">
+    <h5>三、源流议会（The Conclave of Roots）—— "革新派/和解派"</h5>
+    <p><strong>核心主张：</strong>修复魂能循环才是根本方法，必须打开深渊封锁，与原初种族后裔达成和解，恢复世界树根系的功能。</p>
+    <div class="faction-detail">
+      <h6>领袖：艾蕾尼娅（Elennia），生命与命运女神 —— 引导玩家的"女神"</h6>
+      <p><strong>神职：</strong>生命、命运、轮回。非战斗型神灵，能感知魂能流向，感知命运之线的交织与分歧。</p>
+      <p><strong>性格与动机：</strong><strong>上界中最具悲怯心的神灵，同时也是最痛苦的。</strong>命运之力让她清晰感知到——如果维持现状，世界树将在数百年内彻底枯死，三界全部崩溃。唯一能避免的路径，要求神殿正视当年对原初种族的背叛。</p>
+      <p><strong>经历：</strong>少数对原初种族被清洗明确反对的神灵。一直暗中研究魂能循环断裂的问题，逐渐得出了"必须解封深渊"的结论。她也是<strong>唯一知晓沃坦德的第十魂令秘密的在世神灵</strong>——沃坦德临死前将这个秘密托付给了她。</p>
+      <p><strong>为什么下界引导玩家：</strong>当世界树唤醒第十魂令的灵魂时，她通过命运之力感知到了这一刻。<strong>第十魂令是唯一能重新调整封印结构的存在，可以在不彻底拆除封印的前提下恢复魂能循环。</strong>但她在神殿中的处境极为危险——维序派视她为异端，征伐派视她为叛徒。她无法公开行动，只能以投射意识到凡界的方式暗中引导玩家。</p>
+      <p><strong>她真正代表的是世界树本身的意志</strong>——修复循环，恢复平衡，不偏不倉。她选择引导玩家，某种意义上也是在完成沃坦德未竟的遗愿。</p>
+    </div>
+    <p style="margin-top:12px"><strong>核心成员：</strong>菲洛缪斯（Philomeus）知识之神，研究证实了魂能循环断裂的致命后果；厄克罗娅（Echroia）死亡与安息女神，最直接感受到循环断裂影响——凡界亡者灵魂无法回归世界树，大量滞留化为不安的亡灵。</p>
+  </div>
+
+  <div class="faction-block" style="border-left:4px solid #9b6bdb">
+    <h5>四、星幕隐庭（The Veil Beyond）—— "超脱派"</h5>
+    <p><strong>核心主张：</strong>三界兴亡是魂能的自然演变，众神不应过度干预。应为自身寻找新的存续之道，而非执着于挽救一棵将死的树。</p>
+    <div class="faction-detail">
+      <h6>领袖：奥菲丽亚（Ophiria），梦境与深渊之间的女神</h6>
+      <p><strong>神职：</strong>梦境、幻象、边界。存在于所有二元对立的交界处，力量在于<strong>模糊、穿透和超越一切界限</strong>。</p>
+      <p><strong>性格与动机：</strong><strong>众神中最古老的存在之一，也是最不像"神"的神。</strong>对权力、秩序、战争、和解统统不感兴趣。她的冷漠下藏着一个秘密——<strong>她在梦境中能触及虚无之潮的边缘，是唯一知道虚无之潮真正本质的神灵</strong>。</p>
+      <p><strong>经历：</strong>魂域大战中唯一尝试与寂灭使徒沟通的神灵。战后自我放逐到上界边缘。</p>
+      <p><strong>隐藏角色：</strong>故事后期可能成为关键第三方——当玩家需要面对虚无之潮终极威胁时，她掌握的知识将不可或缺。</p>
+    </div>
+    <p style="margin-top:12px"><strong>核心成员：</strong>战争创伤中对神殿政治失望的古老神灵，及少数对"虚无"研究感兴趣的学者型神灵。</p>
+  </div>
+
+  <div class="faction-block" style="border-left:4px solid #1abc9c">
+    <h5>五、世树之裔（The Sylvan Covenant）—— "根脉派"</h5>
+    <p><strong>核心主张：</strong>世界树的存续高于一切。守护魂能循环、监视三界平衡、修复世界树根脉。不依附任何派系，可与任何一方合作或对抗，唯一准则是世界树的意志。</p>
+    <div class="faction-detail">
+      <h6>领袖：塞尔维恩（Sylvain），自然之神——世界树意志最完整的化身</h6>
+      <p><strong>神职：</strong>自然、生长、三界通行。世界树为应对三界危机而分化出的最强意识投影，是世界树意志在神灵层面的直接代言者。</p>
+      <p><strong>性格与动机：</strong><strong>沉默寡言，行事如古木般缓慢而不可逆转。</strong>他能自由穿梭三界——因为他本身就是世界树脉络的一部分。但受限于世界树的法则，<strong>不能直接揭示世界的完整历史，也不能直接干预魂域事件的走向</strong>，只能以隐晦的方式引导和观察。</p>
+      <p><strong>经历：</strong>在三界裂变后长期游走于三界之间，默默记录魂能衰竭的进程。当封印开始松动时，世界树的痛苦让他感同身受——他开始更积极地行动，暗中联络各界中有可能修复循环的力量。</p>
+      <p><strong>与艾蕾尼娅的关系：</strong>两人理念高度一致——艾蕾尼娅代表的是"神灵中的觉醒者"，塞尔维恩代表的是"世界树的直接意志"。她是世树之裔最重要的盟友，但并非派系成员。</p>
+    </div>
+    <p style="margin-top:12px"><strong>核心成员：</strong>世界树在漫长岁月中分化出的数位意识碎片，他们以不同形态散布三界——有的化为凡界古林中的守望者，有的以幽魂形态潜行于深渊根脉之中。他们神力远不如四大派系的主神，但<strong>拥有穿梭三界壁障的独特能力</strong>，是唯一能在三界间自由传递信息的存在。</p>
+    <p><strong>与其他派系的关系：</strong>维序派视其为不稳定因素（穿梭三界的能力可能破坏封印秩序）；革新派视其为天然盟友；征伐派对其不屑一顾（认为其力量过于弱小）；超脱派对其保持好奇与尊重。</p>
+  </div>
+
+  <div class="faction-block" style="border-left:4px solid #2c3e50; background:linear-gradient(135deg,rgba(20,20,40,0.95) 0%,rgba(44,30,30,0.85) 100%)">
+    <h5>⚫ 混沌之神 · 奈克瑟尔（Nexaroth）—— 隐藏终极Boss</h5>
+    <p style="color:#e74c3c;font-weight:600">不隶属任何派系。魂域最强大的隐藏神灵——第九位神。</p>
+    <div class="faction-detail">
+      <h6>奈克瑟尔（Nexaroth），湮灭与混沌之神</h6>
+      <p><strong>神职：</strong>混沌、湮灭、欺诈。掌控魂能最原始、最狂暴的形态——在魂能被秩序规训之前的混沌状态。</p>
+      <p><strong>真实身份：</strong>太初时代最古老的神灵之一，甚至比大多数现存神灵都更早诞生。<strong>他诞生于世界树第一次吸收域外能量时产生的"排异反应"</strong>——是魂能与反魂能碰撞后的畸变产物。严格来说，他既非纯粹的魂域之神，亦非域外存在，而是二者之间的"裂缝"。</p>
+      <p><strong>动机：</strong>奈克瑟尔渴望<strong>让世界树彻底枯死，吞噬其释放的全部魂能</strong>，将魂域重塑为没有秩序、没有三界之分的原始混沌——在那个状态下，他将成为唯一的、绝对的存在。他不认为这是毁灭，而是"解放"——让魂能回归最自由的本源形态。</p>
+      <p><strong>手段：</strong>从不亲自出手。他在第一次大战中故意假死，让所有人以为他已陨落。此后数个纪元，他以极其隐秘的方式：暗中加速魂能循环的衰竭、挑拨各派系的矛盾、在深渊中播下反叛的种子、甚至对虚无之潮的残余施加影响。<strong>封印松动的三重原因中，至少有两重与他的暗中推动有关。</strong></p>
+      <p><strong>与各派系的暗中关系：</strong>征伐派的好战倾向被他暗中推波助澜；维序派对封印的执着正中他的下怀（修补封印只会延缓而非解决问题）；他最忌惮的是革新派和世树之裔——因为修复魂能循环是唯一能阻止他计划的方案。</p>
+    </div>
+    <p style="margin-top:12px"><strong>叙事定位：</strong>故事前期完全不出场，仅以各种"巧合"和"意外"暗示其存在。中期通过线索逐步揭露幕后有人操纵。后期正式现身，成为玩家必须面对的终极挑战——<strong>一个比虚无之潮更危险的、来自魂域内部的威胁。</strong></p>
+  </div>
+
+  <!-- 神殿权力格局 -->
+  <div class="info-block" style="border-left:4px solid var(--gold)">
+    <h4>⚖ 神殿权力格局现状</h4>
+    <ul>
+      <li><strong>表面上：</strong>维序派和征伐派组成不稳固联盟，掌控多数决策权。在"维持封印"上一致，但在"是否入侵深渊"和"如何对待凡界"上暗中博弈。</li>
+      <li><strong>暗流中：</strong>革新派势力最弱但信息最多——艾蕾尼娅的命运感知能力和对第十魂令的掌握是她最大的底牌。超脱派是所有派系都想争取的"关键少数"。</li>
+      <li><strong>第五势力：</strong>世树之裔游离于神殿权力体系之外，不参与议会表决，但其穿梭三界的能力使其掌握着各方都不知道的情报。塞尔维恩的沉默让所有派系都无法判断他的立场——这既是他的保护，也是他的孤立。</li>
+      <li><strong>幕后黑手：</strong>混沌之神奈克瑟尔潜伏于所有博弈之外，暗中加剧各派系的对立与封印的衰退。没有任何派系意识到他的存在——这正是他最大的优势。</li>
+      <li><strong>核心矛盾：</strong>所有派系都知道世界树在枯萎，但对原因和解决方案有根本性分歧。维序派错误归因于深渊侵蚀，征伐派只想打仗，革新派知道真相但说不出口，超脱派认为一切无所谓，世树之裔默默守望却无力独自扭转局面。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 3. MORTAL REALM ═══ -->
+<section class="section fade-in" id="mortal">
+  <div class="section-header">
+    <div class="section-icon">🌍</div>
+    <div><div class="section-title">The Mortal Realm</div><div class="section-title-cn">凡界 · 中域</div></div>
+  </div>
+  <div class="illust-banner">
+    <img src="public/images/世界观02.png" alt="世界树与三界全景">
+    <div class="illust-caption">The World Tree · Three Realms Panorama</div>
+  </div>
+  <div class="realm-card" data-realm="mortal">
+    <div class="realm-card-header">🌍 凡界 / 中域 <span class="badge">九大元素大陆，生灵繁衍之地</span></div>
+    <div class="realm-card-body">
+      <div class="timeline-item">
+        <div class="timeline-label">过去 · Past</div>
+        <div class="timeline-content">
+          <h5>魂域大战中的凡族</h5>
+          <p>凡族是<strong>牺牲最大的一方</strong>。没有不朽之躯，没有与魂能的天生共鸣，但他们有<strong>数量、意志和适应力</strong>。百万大军用生命在世界树树干周围筑起防线。</p>
+          <p style="margin-top:12px">战争中涌现的九位最伟大的凡族战士，自愿成为九封魂令的激活媒介——以凡人之躯承载神灵才能承受的力量。<strong>他们中的大多数在封印激活的瞬间燃尽了生命</strong>，但魂能永远留在封魂令之中。他们的血脉延续为后世九大陆领主家族的始祖。</p>
+          <h5>三界裂变后的凡界形成</h5>
+          <p>九封魂令释放的元素能量以<strong>圣心城（Corhaven）</strong>为中心向外辐射，将大地塑造为九块元素大陆。圣心城位于核心枢纽，世界树树干在凡界显化为<strong>"通天之柱（The Axis Pillar）"</strong>。<strong>符文通道（Rune Conduits）</strong>连接圣心城与九大陆——世界树脉络的自然延伸。</p>
+          <h5>繁荣时代</h5>
+          <p>在封印稳固、魂能充足的时代，凡界经历漫长繁荣。圣心城设有<strong>"九令议事厅"</strong>；各大陆发展出与自身元素高度适配的文明形态；<strong>奥术学院体系</strong>遍布凡界；<strong>符文工程学</strong>成为最受尊崇的学科——也是塔防中建造防御塔的理论基础。</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">现在 · Present</div>
+        <div class="timeline-content">
+          <h5>封印因何松动</h5>
+          <p>九封魂令的松动是<strong>三重因素叠加</strong>的结果：</p>
+          <ul>
+            <li><strong>第一重——魂能循环衰竭（根本原因）</strong>：深渊被封锁导致魂能只出不回，世界树持续枯萎。</li>
+            <li><strong>第二重——过度开采（加速因素）</strong>：凡族数千年对魂能的过度消耗加速了世界树衰弱。</li>
+            <li><strong>第三重——深渊内部蓄意推动（触发因素）</strong>：深渊中的力量找到了"深渊封锁"部分的薄弱点持续施压。</li>
+          </ul>
+          <p style="margin-top:12px">最先出现裂痕的是<strong>冰之大陆尼弗海姆的封魂令</strong>（距离深渊裂隙最近），随后像多米诺骨牌一样扩散。</p>
+          <h5>圣心城的陷落</h5>
+          <p><strong>圣心城已经不复存在。</strong>一次大规模魂能脉冲从通天之柱中爆发——世界树痛苦中的"呕吟"——摧毁了圣心城大部分建筑和符文通道枋纽。九大陆被迫各自为战。<strong>玩家在圣心城废墓中苏醒——世界树选择在自己的"心脏"处唤醒第十魂令。</strong></p>
+          <p style="margin-top:12px"><strong>方舟堡（Ark Bastion）</strong>——玩家的城堡——建于圣心城废墓之中，是第十魂令现世的容器。城堡的核心是世界树的树皮碎片在凡界凝聚而成的活体建筑，城墙表面隐约可见脉动的符文回路，基座深入地下与世界树的残根相连。玩家越强大，城堡越宏伟——城堡等级即魂令觉醒程度。</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">未来 · Future</div>
+        <div class="timeline-content">
+          <p>玩家的城堡将成为凡界的希望。随着剧情推进：逐一收复九大陆区域，招募剩余的六位英雄领主，修复或重建符文通道，在圣心城建立最终防线。</p>
+          <p style="margin-top:12px">凡界命运取决于玩家选择：成为上界傀儡用秩序压制自由？与深渊和解拥抱混沌？还是找到第三条路让九种元素真正和谐？<strong>九封魂令的分布与九大陆对应</strong>，每枚魂令松动都会引发特定事件——有些是灾难，有些是机遇。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 4. ABYSS ═══ -->
+<section class="section fade-in" id="abyss">
+  <div class="section-header">
+    <div class="section-icon">🕳️</div>
+    <div><div class="section-title">The Abyss</div><div class="section-title-cn">深渊 · 根域</div></div>
+  </div>
+  <div class="realm-card" data-realm="abyss">
+    <div class="realm-card-header">🕳️ 深渊 <span class="badge">被封印的根系领域</span></div>
+    <div class="realm-card-body">
+      <div class="timeline-item">
+        <div class="timeline-label">过去 · Past</div>
+        <div class="timeline-content"><div class="placeholder">⟡ 待探索 ⟡</div></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">现在 · Present</div>
+        <div class="timeline-content"><div class="placeholder">⟡ 待探索 ⟡</div></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">未来 · Future</div>
+        <div class="timeline-content"><div class="placeholder">⟡ 待探索 ⟡</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="illust-banner">
+    <img src="public/images/世界观03.png" alt="深渊根系之底">
+    <div class="illust-caption">The Abyss · Realm of Deep Roots</div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 5. NINE CONTINENTS ═══ -->
+<section class="section fade-in" id="continents">
+  <div class="section-header">
+    <div class="section-icon">🗺️</div>
+    <div><div class="section-title">The Nine Elemental Continents</div><div class="section-title-cn">九大元素大陆</div></div>
+  </div>
+  <p style="color:var(--text-secondary);margin-bottom:10px;font-size:15px;line-height:2.2;letter-spacing:0.4px;">凡界由九大元素大陆构成，呈环形分布在圣心城周围，每个大陆以一枚封魂令为核心，形成独特的元素环境。</p>
+  <div class="continent-grid">
+    <div class="continent-chip" style="border-top:3px solid #C8A951"><div class="icon">⚔️</div><div class="name">金耀大陆</div><div class="element">Gold · 金</div></div>
+    <div class="continent-chip" style="border-top:3px solid #4A9E5C"><div class="icon">🌿</div><div class="name">翠森大陆</div><div class="element">Wood · 木</div></div>
+    <div class="continent-chip" style="border-top:3px solid #6BB8D4"><div class="icon">❄️</div><div class="name">霜寒大陆</div><div class="element">Ice · 冰</div></div>
+    <div class="continent-chip" style="border-top:3px solid #D45B3E"><div class="icon">🔥</div><div class="name">炎狱大陆</div><div class="element">Fire · 火</div></div>
+    <div class="continent-chip" style="border-top:3px solid #A67C52"><div class="icon">🏔️</div><div class="name">磐岩大陆</div><div class="element">Earth · 土</div></div>
+    <div class="continent-chip" style="border-top:3px solid #7EC8A0"><div class="icon">🌪️</div><div class="name">风语大陆</div><div class="element">Wind · 风</div></div>
+    <div class="continent-chip" style="border-top:3px solid #9B6BDB"><div class="icon">⚡</div><div class="name">雷霆大陆</div><div class="element">Thunder · 雷</div></div>
+    <div class="continent-chip" style="border-top:3px solid #F0D264"><div class="icon">✨</div><div class="name">圣光大陆</div><div class="element">Light · 光</div></div>
+    <div class="continent-chip" style="border-top:3px solid #5C4B8A"><div class="icon">🌑</div><div class="name">暗影大陆</div><div class="element">Dark · 暗</div></div>
+  </div>
+  <div class="illust-banner" style="margin-top:32px">
+    <img src="public/images/世界观04.png" alt="大陆概念插图">
+    <div class="illust-caption">The Nine Elemental Continents · Concept</div>
+  </div>
+  <div class="placeholder" style="margin-top:24px">⟡ 各大陆详细剧情、核心冲突、体验定位等内容待探索 ⟡</div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 6. HEROES ═══ -->
+<section class="section fade-in" id="heroes">
+  <div class="section-header">
+    <div class="section-icon">⚔️</div>
+    <div><div class="section-title">The Nine Heroes</div><div class="section-title-cn">英雄阵容</div></div>
+  </div>
+  <div class="summary-box">九位英雄分别来自九大元素大陆，他们是各大陆抵抗势力的核心领袖。每位英雄包含姓名、外貌、背景故事、性格、战斗角色、加入条件与剧情定位等维度设计。</div>
+  <div class="hero-grid">
+    <div class="hero-card hero-card-img" style="border-top:3px solid #C8A951">
+      <img src="public/images/金英雄.png" alt="金元素英雄">
+      <div class="hero-card-overlay">
+        <div class="hero-card-top">⚔️ 金元素英雄</div>
+        <div class="hero-card-body">金耀大陆 · 金<br><span style="font-style:italic">⟡ 待探索 ⟡</span></div>
+      </div>
+    </div>
+    <div class="hero-card" style="border-top:3px solid #4A9E5C">
+      <div class="hero-card-top">🌿 木元素英雄</div>
+      <div class="hero-card-body">翠森大陆 · 木<br><span style="color:var(--text-muted);font-style:italic">⟡ 待探索 ⟡</span></div>
+    </div>
+    <div class="hero-card hero-card-img" style="border-top:3px solid #6BB8D4">
+      <img src="public/images/冰英雄.png" alt="冰元素英雄">
+      <div class="hero-card-overlay">
+        <div class="hero-card-top">❄️ 冰元素英雄</div>
+        <div class="hero-card-body">霜寒大陆 · 冰<br><span style="font-style:italic">⟡ 待探索 ⟡</span></div>
+      </div>
+    </div>
+    <div class="hero-card" style="border-top:3px solid #D45B3E">
+      <div class="hero-card-top">🔥 火元素英雄</div>
+      <div class="hero-card-body">炎狱大陆 · 火<br><span style="color:var(--text-muted);font-style:italic">⟡ 待探索 ⟡</span></div>
+    </div>
+    <div class="hero-card" style="border-top:3px solid #A67C52">
+      <div class="hero-card-top">🏔️ 土元素英雄</div>
+      <div class="hero-card-body">磐岩大陆 · 土<br><span style="color:var(--text-muted);font-style:italic">⟡ 待探索 ⟡</span></div>
+    </div>
+    <div class="hero-card" style="border-top:3px solid #7EC8A0">
+      <div class="hero-card-top">🌪️ 风元素英雄</div>
+      <div class="hero-card-body">风语大陆 · 风<br><span style="color:var(--text-muted);font-style:italic">⟡ 待探索 ⟡</span></div>
+    </div>
+    <div class="hero-card" style="border-top:3px solid #9B6BDB">
+      <div class="hero-card-top">⚡ 雷元素英雄</div>
+      <div class="hero-card-body">雷霆大陆 · 雷<br><span style="color:var(--text-muted);font-style:italic">⟡ 待探索 ⟡</span></div>
+    </div>
+    <div class="hero-card" style="border-top:3px solid #F0D264">
+      <div class="hero-card-top">✨ 光元素英雄</div>
+      <div class="hero-card-body">圣光大陆 · 光<br><span style="color:var(--text-muted);font-style:italic">⟡ 待探索 ⟡</span></div>
+    </div>
+    <div class="hero-card" style="border-top:3px solid #5C4B8A">
+      <div class="hero-card-top">🌑 暗元素英雄</div>
+      <div class="hero-card-body">暗影大陆 · 暗<br><span style="color:var(--text-muted);font-style:italic">⟡ 待探索 ⟡</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 7. MAIN STORYLINE ═══ -->
+<section class="section fade-in" id="storyline">
+  <div class="section-header">
+    <div class="section-icon">📜</div>
+    <div><div class="section-title">Main Storyline</div><div class="section-title-cn">主线三阶段</div></div>
+  </div>
+  <div class="stage-card">
+    <div class="stage-number">I</div>
+    <div class="stage-content">
+      <h4>第一阶段：凡界</h4>
+      <p class="placeholder">⟡ 目标、事件、决议内容待探索 ⟡</p>
+    </div>
+  </div>
+  <div class="stage-card">
+    <div class="stage-number">II</div>
+    <div class="stage-content">
+      <h4>第二阶段：神殿</h4>
+      <p class="placeholder">⟡ 目标、事件、决议内容待探索 ⟡</p>
+    </div>
+  </div>
+  <div class="stage-card">
+    <div class="stage-number">III</div>
+    <div class="stage-content">
+      <h4>第三阶段：深渊</h4>
+      <p class="placeholder">⟡ 目标、事件、决议内容待探索 ⟡</p>
+    </div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 8. PLAYER IDENTITY ═══ -->
+<section class="section fade-in" id="player">
+  <div class="section-header">
+    <div class="section-icon">👤</div>
+    <div><div class="section-title">Player Identity</div><div class="section-title-cn">玩家定位</div></div>
+  </div>
+  <div class="summary-box">
+    <strong>核心设定：玩家是第十魂令的化身。</strong>锻造之神沃坦德在制作九封魂令时秘密锻造了第十枚——不是封印，而是"调和之钥"。当世界树感知到封印体系濒临崩溃时，它用最后的力量在圣心城废墓中唤醒了第十魂令的灵魂——<strong>即玩家。</strong>
+  </div>
+  
+  <div class="info-block" style="border-left:4px solid var(--purple-accent)">
+    <h4>🌀 起源（Origin）—— 第十魂令的化身</h4>
+    <p>玩家是第十魂令的化身——世界树尤克特拉希尔在感知到自身根系腐朽后，激活了锻造之神沃坦德临死前暗中留下的秘密遗产。</p>
+    <p style="margin-top:12px">沃坦德在为原初种族挺身而出之前，将自身最后的神力注入世界树的树干核心，创造了一枚未完成的第十枚封印核心。与前九枚魂令不同，第十魂令不是"锚点"而是"钥匙"——它不固定于某个位置，而是一个移动的节点，拥有重新调整其他九枚魂令封印结构的能力。</p>
+    <p style="margin-top:12px">当世界树枯萎到临界点时，它以最后的力量激活了这枚种子，将其投射为凡界的一个新生灵魂——这就是玩家。</p>
+  </div>
+  
+  <div class="info-block">
+    <h4>👁 初始认知（Initial Perception）—— 失忆的苏醒</h4>
+    <p>玩家在圣心城废墓中苏醒，失去所有记忆。最初只知道自己身处一个崩坏的世界，由一位自称"艾蕾尼娅"的女神的幻影引导。</p>
+    <p style="margin-top:12px">艾蕾尼娅以温和的声音告诉玩家：「你是世界树选中的守护者，你的使命是保卫方舟堡，抵御深渊的侵蚀。」<strong>玩家以为自己只是一个普通的幸存者。</strong></p>
+    <p style="margin-top:12px">这个说法半真半假——玩家确实被世界树唤醒，也确实需要守护城堡。但艾蕾尼娅隐瞒了最关键的部分：玩家不是普通的"被选中者"，而是第十魂令本身的人格化存在。</p>
+  </div>
+  
+  <div class="info-block" style="border-left:4px solid var(--gold)">
+    <h4>💡 揭示弧线（Revelation Arc）—— 三阶段递进</h4>
+    <ul>
+      <li><strong>第一阶段·凡界冒险：</strong>玩家以为自己是普通人，逐步发现自己与封魂令有特殊共鸣。每次触碰封魂令碎片时手心会灼热发光，其他NPC会低声议论：「这个人…与封魂令的反应不正常。」梦境中出现世界树的幻象——柯萎的枝干、流泪的根系、一个模糊的锻造之神的背影。</li>
+      <li><strong>第二阶段·神殿博弈：</strong>维序派试图控制玩家利用其力量强化封印；真相开始浮现。当收集到多枚封魂令时，它们开始在玩家体内产生共鸣——不是外部的反应，而是内在的和弦。英雄们发现玩家的特殊性：凯莉丝说「你的魂能波动…像极了封魂令本身」；沃卡努斯说「沃坦德的锻造痕迹…在你的灵魂上」。艾蕾尼娅的解释开始出现自相矛盾的地方。</li>
+      <li><strong>第三阶段·终极抉择：</strong>玩家得知自己是第十魂令化身的全部真相，面临终极选择：<strong>强化封印</strong>（维序派路线）、<strong>打开深渊恢复循环</strong>（革新派路线）、还是<strong>超越封印体系</strong>（自由路线）。在深渊中，当玩家同时接触到世界树的根系和九封魂令的共鸣场时，第十魂令完全觉醒。玩家理解了自己的本质——不是凡人，不是神灵，而是世界树意志的人格化碎片，是沃坦德最后的杰作，是连接三界的钥匙。</li>
+    </ul>
+  </div>
+  
+  <div class="info-block">
+    <h4>🎮 玩法整合（Gameplay Integration）—— 魂令觉醒与塔防融合</h4>
+    <p>玩家的魂令力量随游戏推进逐步觉醒——解锁新的建造蓝图、增强英雄能力、与封魂令产生共鸣开启隐藏区域。</p>
+    <ul>
+      <li><strong>城堡 = 节点投影：</strong>方舟堡是第十魂令在凡界的物质投影。玩家越强大，城堡越宏伟——这不是隐喻，是字面意义上的联动。城堡等级 = 魂令觉醒程度。</li>
+      <li><strong>塔防 = 节点防御：</strong>每一次城防战斗，都是第十魂令在抵御对世界树的侵蚀。防御塔就是玩家意志的具象化。</li>
+      <li><strong>资源循环：</strong>战斗获取的魂能→贡献给世界树→世界树成长→解锁新能力。这是魂能循环在游戏层面的微观体现。</li>
+      <li><strong>多节点体系：</strong>所有玩家都是世界树的节点——这为跨服社交、公会系统、大型PVP提供了叙事基础。节点之间既是合作者（共同修复世界树），也是竞争者（争夺有限的魂能资源）。当足够多的节点集结时，可能在三界之外形成全新领域——"第四域·节点之庭"。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 9. CASTLE & GODDESS ═══ -->
+<section class="section fade-in" id="castle">
+  <div class="section-header">
+    <div class="section-icon">🏰</div>
+    <div><div class="section-title">Castle &amp; Goddess</div><div class="section-title-cn">城堡与女神</div></div>
+  </div>
+  <div class="info-block">
+    <h4>🏰 城堡设定</h4>
+    <div class="placeholder">⟡ 描述、角色定位、重要性内容待探索 ⟡</div>
+  </div>
+  <div class="info-block" style="border-left:4px solid var(--gold)">
+    <h4>🌟 引导女神</h4>
+    <div class="placeholder">⟡ 姓名、外貌、性格、真实身份、引导风格、对话主题、真相矩阵内容待探索 ⟡</div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 10. WORLD TREE SYSTEM ═══ -->
+<section class="section fade-in" id="worldtree">
+  <div class="section-header">
+    <div class="section-icon">🌳</div>
+    <div><div class="section-title">World Tree System</div><div class="section-title-cn">世界树系统</div></div>
+  </div>
+  <div class="info-block">
+    <h4>🌱 成长机制（Growth Mechanism）</h4>
+    <div class="placeholder">⟡ 待探索 ⟡</div>
+  </div>
+  <div class="info-block">
+    <h4>💎 资源贡献（Resource Contribution）</h4>
+    <div class="placeholder">⟡ 待探索 ⟡</div>
+  </div>
+  <div class="info-block">
+    <h4>🔓 解锁功能（Unlocked Features）</h4>
+    <div class="placeholder">⟡ 待探索 ⟡</div>
+  </div>
+  <div class="info-block">
+    <h4>⚡ 第四势力（Fourth Force）</h4>
+    <div class="placeholder">⟡ 待探索 ⟡</div>
+  </div>
+  <div class="info-block">
+    <h4>✦ 符文连接（Rune Connection）</h4>
+    <div class="placeholder">⟡ 待探索 ⟡</div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 11. LANDING ═══ -->
+<section class="section fade-in" id="landing">
+  <div class="section-header">
+    <div class="section-icon">🗡️</div>
+    <div><div class="section-title">Landing Stages</div><div class="section-title-cn">登陆关卡概览</div></div>
+  </div>
+  <p style="color:var(--text-secondary);margin-bottom:20px;font-size:15px;line-height:2.2">三大先行大陆的登陆关卡结构，每个大陆包含入场叙事、BOSS战、9个区域节点及通关反馈。</p>
+  <div class="landing-grid">
+    <div class="landing-card" style="border-top:3px solid #C8A951">
+      <h4>⚔️ 金耀大陆</h4>
+      <div class="landing-meta">BOSS × 1 · 区域节点 × 9</div>
+      <div class="placeholder" style="margin-top:12px;padding:12px;font-size:12px">⟡ 关卡内容待探索 ⟡</div>
+    </div>
+    <div class="landing-card" style="border-top:3px solid #6BB8D4">
+      <h4>❄️ 霜寒大陆</h4>
+      <div class="landing-meta">BOSS × 1 · 区域节点 × 9</div>
+      <div class="placeholder" style="margin-top:12px;padding:12px;font-size:12px">⟡ 关卡内容待探索 ⟡</div>
+    </div>
+    <div class="landing-card" style="border-top:3px solid #D45B3E">
+      <h4>🔥 炎狱大陆</h4>
+      <div class="landing-meta">BOSS × 1 · 区域节点 × 9</div>
+      <div class="placeholder" style="margin-top:12px;padding:12px;font-size:12px">⟡ 关卡内容待探索 ⟡</div>
+    </div>
+  </div>
+  <div class="illust-banner" style="margin-top:32px">
+    <img src="public/images/探索界面.png" alt="探索界面">
+    <div class="illust-caption">Exploration · Landing Stage Interface</div>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ 12. DATA PROGRESS ═══ -->
+<section class="section fade-in" id="progress">
+  <div class="section-header">
+    <div class="section-icon">📊</div>
+    <div><div class="section-title">Data Completeness</div><div class="section-title-cn">数据填充进度</div></div>
+  </div>
+  <div class="summary-box">以下面板展示各世界观模块的数据填充完成度。<strong>三界设定</strong>中上界（过去/现在/未来）与凡界（过去/现在/未来）已完成核心叙事（含五大派系详细设定、混沌之神、神殿权力格局等），世界起源总览已完成。深渊及其余模块待后续迭代。</div>
+  <div class="progress-panel">
+    <div class="progress-item"><div class="prog-label">三界设定（realmStructure）<span class="prog-pct">75%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:75%"></div></div></div>
+    <div class="progress-item"><div class="prog-label">主线剧情（mainStoryline）<span class="prog-pct">0%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+    <div class="progress-item"><div class="prog-label">玩家身份（playerIdentity）<span class="prog-pct">0%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+    <div class="progress-item"><div class="prog-label">英雄系统（heroSystem）<span class="prog-pct">0%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+    <div class="progress-item"><div class="prog-label">城堡与女神（castleGoddess）<span class="prog-pct">0%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+    <div class="progress-item"><div class="prog-label">世界树系统（worldTreeSystem）<span class="prog-pct">0%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+    <div class="progress-item"><div class="prog-label">九大陆详情（continents）<span class="prog-pct">0%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+    <div class="progress-item"><div class="prog-label">登陆关卡（landing）<span class="prog-pct">0%</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="footer-brand">— YGGDRASIL —</div>
+  <p>尤克特拉希尔纪元 · 西方魔幻世界观报告 · 数据版本 2026-04-09</p>
+  <p style="margin-top:4px;opacity:0.7;">Generated from 世界观数据_2026-4-9-05.json · 2026.04.09</p>
+</footer>
+
+<script>
+(function(){
+  const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>世界观创作工具</title>
+  </head>
+  <body>
+    <!-- 一次性清除旧缓存，确保从服务器加载最新数据 -->
+    <script>
+      if (!sessionStorage.getItem('_world_cache_cleared_v2')) {
+        localStorage.removeItem('sjg_world_v1');
+        localStorage.removeItem('sjg_world_avatar_v1');
+        sessionStorage.setItem('_world_cache_cleared_v2', '1');
+      }
+    </script>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

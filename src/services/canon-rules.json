@@ -1,0 +1,60 @@
+{
+  "rules": [
+    {
+      "id": "no-tenth-edict",
+      "term": "第十魂令",
+      "severity": "error",
+      "replacement": "世界树种魂 / 根系共鸣 / 玩家种魂力量",
+      "message": "凡界阶段禁止使用旧版“第十魂令”身份线，避免压过九大陆叙事。"
+    },
+    {
+      "id": "no-edict-incarnation",
+      "term": "魂令化身",
+      "severity": "error",
+      "replacement": "世界树种魂承载者",
+      "message": "主角当前身份应落在世界树种魂体系，不再写成魂令化身。"
+    },
+    {
+      "id": "no-old-bastion-location",
+      "term": "圣心城废墟",
+      "severity": "error",
+      "replacement": "方舟堡根核节点 / 世界树根节点",
+      "message": "方舟堡初始位置应绑定世界树根节点，不再落在旧版圣心城废墟。"
+    },
+    {
+      "id": "no-old-prayer-tower",
+      "term": "祈光塔",
+      "severity": "error",
+      "replacement": "方舟堡 / 世界树根节点",
+      "message": "旧版祈光塔据点体系已替换为方舟堡与世界树根节点体系。"
+    },
+    {
+      "id": "hero-jin-current-name",
+      "term": "奥雷利乌斯",
+      "severity": "error",
+      "replacement": "奥里克·铸金",
+      "message": "金元素英雄当前 canon 名称为奥里克·铸金。"
+    },
+    {
+      "id": "hero-bing-current-name",
+      "term": "凯莉丝",
+      "severity": "error",
+      "replacement": "塞琳娜·霜誓",
+      "message": "冰元素英雄当前 canon 名称为塞琳娜·霜誓。"
+    },
+    {
+      "id": "hero-huo-current-name",
+      "term": "沃卡努斯",
+      "severity": "error",
+      "replacement": "伊格纳修斯·焚誓",
+      "message": "火元素英雄当前 canon 名称为伊格纳修斯·焚誓。"
+    },
+    {
+      "id": "no-corrupt-output-marker",
+      "term": "��",
+      "severity": "error",
+      "replacement": "【",
+      "message": "Prompt 输出标记存在乱码，会导致结构化解析失败。"
+    }
+  ]
+}

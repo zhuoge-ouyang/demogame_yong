@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三英雄详解 — 尤克特拉希尔纪元</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --gold:#d4af37;
+  --gold-light:#f5e6b8;
+  --gold-dark:#8b6914;
+  --bg-dark:#0d0d1a;
+  --bg-deep:#1a1a2e;
+  --bg-card:rgba(20,20,40,0.85);
+  --bg-card-hover:rgba(30,30,55,0.9);
+  --text-primary:#f5f0e8;
+  --text-secondary:#c8bfa8;
+  --text-muted:#8a7e6e;
+  --accent-jin:#C8A951;
+  --accent-bing:#6BB8D4;
+  --accent-huo:#D45B3E;
+  --border:rgba(212,175,55,0.15);
+  --border-light:rgba(212,175,55,0.3);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:var(--bg-dark);
+  color:var(--text-primary);
+  font-family:'Noto Serif SC','Georgia',serif;
+  line-height:1.9;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:radial-gradient(1.5px 1.5px at 20% 30%,rgba(212,175,55,0.4) 50%,transparent 100%),
+             radial-gradient(1px 1px at 40% 70%,rgba(107,184,212,0.3) 50%,transparent 100%),
+             radial-gradient(1.2px 1.2px at 60% 20%,rgba(212,91,62,0.35) 50%,transparent 100%),
+             radial-gradient(1px 1px at 80% 60%,rgba(212,175,55,0.25) 50%,transparent 100%),
+             radial-gradient(1.5px 1.5px at 10% 80%,rgba(107,184,212,0.2) 50%,transparent 100%),
+             radial-gradient(1px 1px at 90% 10%,rgba(212,91,62,0.3) 50%,transparent 100%);
+  background-size:300px 300px;
+  animation:starDrift 120s linear infinite;
+  z-index:0;
+  pointer-events:none;
+}
+
+@keyframes starDrift{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-300px)}
+}
+
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,rgba(13,13,26,0.4) 0%,rgba(26,26,46,0.3) 30%,rgba(45,27,105,0.08) 50%,rgba(26,26,46,0.3) 70%,rgba(13,13,26,0.5) 100%);
+  z-index:0;
+  pointer-events:none;
+}
+
+.fade-in{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s ease,transform 0.8s ease;
+}
+.fade-in.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Hero Banner */
+.hero-banner{
+  position:relative;
+  min-height:85vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--bg-dark) 0%,#0f0f28 50%,var(--bg-deep) 100%);
+  z-index:1;
+}
+
+.hero-banner::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 60%,rgba(212,175,55,0.2) 0%,transparent 55%),
+             radial-gradient(ellipse at 20% 10%,rgba(107,184,212,0.08) 0%,transparent 35%),
+             radial-gradient(ellipse at 80% 10%,rgba(212,91,62,0.06) 0%,transparent 35%),
+             linear-gradient(to bottom,rgba(13,13,26,0.2) 0%,rgba(13,13,26,0.9) 100%);
+  z-index:1;
+}
+
+.hero-banner::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,rgba(212,175,55,0.12) 0%,rgba(106,79,199,0.05) 40%,transparent 65%);
+  border-radius:50%;
+  animation:pulse 8s ease-in-out infinite;
+  z-index:1;
+}
+
+@keyframes pulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5}
+  50%{transform:translate(-50%,-50%) scale(1.3);opacity:1}
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:80px 24px;
+}
+
+.hero-subtitle{
+  font-family:'Cinzel',serif;
+  font-size:13px;
+  letter-spacing:12px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:24px;
+  opacity:0.9;
+  font-weight:600;
+  text-shadow:0 0 20px rgba(212,175,55,0.4);
+}
+
+.hero-title{
+  font-family:'Cinzel Decorative','Cinzel',serif;
+  font-size:clamp(42px,7vw,72px);
+  font-weight:700;
+  color:var(--gold-light);
+  text-shadow:0 0 80px rgba(212,175,55,0.4),0 0 40px rgba(212,175,55,0.2),0 2px 4px rgba(0,0,0,0.6);
+  margin-bottom:12px;
+  letter-spacing:8px;
+  animation:titleGlow 4s ease-in-out infinite;
+}
+
+@keyframes titleGlow{
+  0%,100%{text-shadow:0 0 80px rgba(212,175,55,0.4),0 0 40px rgba(212,175,55,0.2),0 2px 4px rgba(0,0,0,0.6)}
+  50%{text-shadow:0 0 100px rgba(212,175,55,0.6),0 0 60px rgba(212,175,55,0.3),0 2px 4px rgba(0,0,0,0.6)}
+}
+
+.hero-title-cn{
+  font-size:clamp(18px,3vw,28px);
+  color:var(--text-secondary);
+  font-weight:500;
+  margin-bottom:40px;
+  letter-spacing:6px;
+}
+
+.hero-tagline{
+  max-width:720px;
+  margin:0 auto;
+  font-size:16px;
+  color:var(--text-secondary);
+  line-height:2.4;
+  padding:28px 0;
+  letter-spacing:1.5px;
+  position:relative;
+}
+
+.hero-tagline::before,.hero-tagline::after{
+  content:'';
+  display:block;
+  width:200px;
+  height:1px;
+  margin:0 auto 24px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+}
+
+.hero-tagline::after{
+  margin:24px auto 0;
+}
+
+/* Container */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 24px 120px;
+  position:relative;
+  z-index:1;
+}
+
+/* Section */
+.section{
+  margin-bottom:100px;
+}
+
+.section-header{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  margin-bottom:40px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+
+.section-header::after{
+  content:'';
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:120px;
+  height:2px;
+  background:linear-gradient(to right,var(--gold),transparent);
+}
+
+.section-icon{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  background:linear-gradient(135deg,rgba(212,175,55,0.15) 0%,rgba(106,79,199,0.08) 100%);
+  border:1px solid rgba(212,175,55,0.25);
+  border-radius:14px;
+  flex-shrink:0;
+  box-shadow:0 4px 16px rgba(212,175,55,0.08);
+  transition:all 0.4s ease;
+}
+
+.section:hover .section-icon{
+  box-shadow:0 4px 24px rgba(212,175,55,0.15);
+  transform:scale(1.05);
+}
+
+.section-title{
+  font-family:'Cinzel',serif;
+  font-size:12px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:5px;
+  font-weight:600;
+  opacity:0.85;
+}
+
+.section-title-cn{
+  font-size:26px;
+  font-weight:700;
+  color:var(--text-primary);
+  letter-spacing:3px;
+  text-shadow:0 0 30px rgba(212,175,55,0.1);
+}
+
+/* Prologue Box */
+.prologue-box{
+  background:linear-gradient(135deg,rgba(212,175,55,0.08) 0%,rgba(106,79,199,0.04) 100%);
+  border:1px solid rgba(212,175,55,0.15);
+  border-left:4px solid var(--gold);
+  padding:40px 44px;
+  border-radius:0 16px 16px 0;
+  margin-bottom:50px;
+  font-size:15.5px;
+  line-height:2.4;
+  letter-spacing:0.4px;
+  box-shadow:inset 0 0 40px rgba(212,175,55,0.03),0 4px 20px rgba(0,0,0,0.2);
+  position:relative;
+}
+
+.prologue-box::before{
+  content:'❝';
+  position:absolute;
+  top:16px;
+  left:20px;
+  font-size:32px;
+  color:var(--gold);
+  opacity:0.2;
+  font-family:'Cinzel Decorative',serif;
+}
+
+.prologue-box strong{
+  color:var(--gold-light);
+}
+
+/* Hero Card Layout */
+.hero-profile{
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:40px;
+  margin-bottom:50px;
+}
+
+.hero-visual{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 12px 48px rgba(0,0,0,0.4);
+}
+
+.hero-visual img{
+  width:100%;
+  height:560px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  filter:brightness(0.85) contrast(1.05);
+  transition:all 0.5s ease;
+}
+
+.hero-visual:hover img{
+  filter:brightness(0.95) contrast(1.1);
+  transform:scale(1.03);
+}
+
+.hero-visual::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(13,13,26,0.9) 0%,transparent 50%);
+  pointer-events:none;
+}
+
+.hero-visual-badge{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  z-index:2;
+}
+
+.hero-visual-badge .hero-name{
+  font-family:'Cinzel',serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--text-primary);
+  letter-spacing:2px;
+  margin-bottom:4px;
+}
+
+.hero-visual-badge .hero-title{
+  font-size:13px;
+  color:var(--text-secondary);
+  letter-spacing:1px;
+}
+
+.hero-info{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.info-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px 28px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.2);
+  transition:all 0.4s ease;
+  backdrop-filter:blur(10px);
+}
+
+.info-card:hover{
+  border-color:var(--border-light);
+  box-shadow:0 8px 36px rgba(0,0,0,0.3);
+}
+
+.info-card h4{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  letter-spacing:1px;
+}
+
+.info-card p,.info-card ul{
+  font-size:14.5px;
+  color:var(--text-secondary);
+  line-height:2.1;
+}
+
+.info-card ul{
+  padding-left:20px;
+}
+
+.info-card ul li{
+  margin-bottom:8px;
+}
+
+/* Element Colors */
+.element-jin .info-card h4{color:var(--accent-jin);}
+.element-jin .hero-visual{border:2px solid rgba(200,169,81,0.3);}
+.element-jin .section-header::after{background:linear-gradient(to right,var(--accent-jin),transparent);}
+
+.element-bing .info-card h4{color:var(--accent-bing);}
+.element-bing .hero-visual{border:2px solid rgba(107,184,212,0.3);}
+.element-bing .section-header::after{background:linear-gradient(to right,var(--accent-bing),transparent);}
+
+.element-huo .info-card h4{color:var(--accent-huo);}
+.element-huo .hero-visual{border:2px solid rgba(212,91,62,0.3);}
+.element-huo .section-header::after{background:linear-gradient(to right,var(--accent-huo),transparent);}
+
+/* Story Block */
+.story-block{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:32px 36px;
+  margin-bottom:24px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.2);
+  backdrop-filter:blur(10px);
+}
+
+.story-block h4{
+  font-size:17px;
+  font-weight:600;
+  color:var(--gold-light);
+  margin-bottom:16px;
+  letter-spacing:1px;
+}
+
+.story-block p{
+  font-size:15px;
+  color:var(--text-secondary);
+  line-height:2.2;
+  margin-bottom:16px;
+}
+
+.story-block p:last-child{
+  margin-bottom:0;
+}
+
+/* Scene Banner */
+.scene-banner{
+  width:100%;
+  margin:24px 0 40px;
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 12px 48px rgba(0,0,0,0.4);
+  border:1px solid var(--border);
+}
+
+.scene-banner img{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  filter:brightness(0.7) contrast(1.05) saturate(0.9);
+  transition:all 0.5s ease;
+}
+
+.scene-banner:hover img{
+  filter:brightness(0.8) contrast(1.1) saturate(1);
+  transform:scale(1.02);
+}
+
+.scene-banner .scene-caption{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:24px 28px 18px;
+  background:linear-gradient(to top,rgba(13,13,26,0.9) 0%,transparent 100%);
+  font-size:12px;
+  color:var(--text-muted);
+  letter-spacing:3px;
+  font-family:'Cinzel',serif;
+  text-transform:uppercase;
+}
+
+/* Group Image */
+.group-image{
+  width:100%;
+  margin:40px 0;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 16px 60px rgba(0,0,0,0.5);
+  border:1px solid var(--border);
+}
+
+.group-image img{
+  width:100%;
+  height:480px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  filter:brightness(0.75) contrast(1.05);
+  transition:all 0.5s ease;
+}
+
+.group-image:hover img{
+  filter:brightness(0.85) contrast(1.1);
+  transform:scale(1.02);
+}
+
+/* Relationship Grid */
+.relation-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:32px;
+}
+
+.relation-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px;
+  text-align:center;
+  transition:all 0.4s ease;
+  backdrop-filter:blur(10px);
+}
+
+.relation-card:hover{
+  border-color:var(--border-light);
+  transform:translateY(-4px);
+  box-shadow:0 12px 36px rgba(0,0,0,0.3);
+}
+
+.relation-card .pair{
+  font-family:'Cinzel',serif;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:12px;
+  letter-spacing:1px;
+}
+
+.relation-card .pair-jin-bing{color:linear-gradient(90deg,var(--accent-jin),var(--accent-bing));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background:linear-gradient(90deg,var(--accent-jin),var(--accent-bing));background-clip:text;}
+.relation-card .pair-bing-huo{color:linear-gradient(90deg,var(--accent-bing),var(--accent-huo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background:linear-gradient(90deg,var(--accent-bing),var(--accent-huo));background-clip:text;}
+.relation-card .pair-jin-huo{color:linear-gradient(90deg,var(--accent-jin),var(--accent-huo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background:linear-gradient(90deg,var(--accent-jin),var(--accent-huo));background-clip:text;}
+
+.relation-card .desc{
+  font-size:13px;
+  color:var(--text-muted);
+  line-height:1.8;
+}
+
+/* Rune Separator */
+.rune-separator{
+  position:relative;
+  text-align:center;
+  margin:60px 0;
+  padding:30px 0;
+  overflow:hidden;
+}
+
+.rune-separator .rune-inner{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  position:relative;
+  z-index:1;
+}
+
+.rune-separator .rune-line{
+  flex:1;
+  max-width:120px;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+}
+
+.rune-separator .rune-symbol{
+  color:var(--gold);
+  font-size:18px;
+  filter:drop-shadow(0 0 6px rgba(212,175,55,0.4));
+}
+
+/* Ornament */
+.ornament{
+  text-align:center;
+  margin:60px 0;
+  color:var(--gold);
+  font-size:14px;
+  letter-spacing:14px;
+  opacity:0.4;
+  position:relative;
+}
+
+.ornament::before,.ornament::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  width:100px;
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(212,175,55,0.3),transparent);
+}
+
+.ornament::before{right:calc(50% + 70px);}
+.ornament::after{left:calc(50% + 70px);}
+
+/* Footer */
+.doc-footer{
+  text-align:center;
+  padding:60px 24px;
+  border-top:1px solid var(--border);
+  color:var(--text-muted);
+  font-size:13px;
+  letter-spacing:0.5px;
+  line-height:2;
+  position:relative;
+  z-index:1;
+  background:linear-gradient(to top,rgba(13,13,26,0.8) 0%,transparent 100%);
+}
+
+.doc-footer .footer-brand{
+  color:var(--gold);
+  letter-spacing:8px;
+  margin-bottom:12px;
+  font-family:'Cinzel Decorative','Cinzel',serif;
+  font-size:16px;
+  text-shadow:0 0 20px rgba(212,175,55,0.3);
+}
+
+/* Responsive */
+@media(max-width:968px){
+  .hero-profile{
+    grid-template-columns:1fr;
+  }
+  .hero-visual img{
+    height:420px;
+  }
+  .group-image img{
+    height:360px;
+  }
+  .relation-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:768px){
+  .container{padding:0 16px 80px;}
+  .section{margin-bottom:60px;}
+  .prologue-box{padding:28px 24px;}
+  .story-block{padding:24px 20px;}
+  .hero-banner{min-height:70vh;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO BANNER ═══ -->
+<header class="hero-banner">
+  <div class="hero-content">
+    <div class="hero-subtitle">Hero Chronicles</div>
+    <h1 class="hero-title">三英雄详解</h1>
+    <div class="hero-title-cn">金耀 · 霜寒 · 炎狱</div>
+    <div class="hero-tagline">
+      九封魂令，九位英雄，三界命运交织。<br>
+      在封印松动的至暗时刻，三位英雄率先响应世界树的召唤。<br>
+      他们来自不同的大陆，怀揣不同的信念，却肩负着相同的使命。
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- ═══ PROLOGUE ═══ -->
+<section class="section fade-in" id="prologue">
+  <div class="section-header">
+    <div class="section-icon">📜</div>
+    <div><div class="section-title">Prologue</div><div class="section-title-cn">序章：九位英雄与三界命运</div></div>
+  </div>
+  
+  <div class="prologue-box">
+    在魂域大战的至暗时刻，九位最伟大的凡族战士自愿献出自身魂能作为激活媒介，与九封魂令融为一体。<strong>他们中的大多数在封印激活的瞬间燃尽了生命</strong>，但他们的魂能永远留在了封魂令之中，成为封印最坚固的内核。
+    <br><br>
+    数千年后，封印松动，世界树尤克特拉希尔在感知到自身根系腐朽后，激活了第十魂令。而在凡界，九位英雄的后裔——那些继承了先祖魂能血脉的领主们——开始感受到世界树的召唤。
+    <br><br>
+    <strong>为什么是这三位英雄首先加入主角阵营？</strong><br>
+    金耀大陆的奥雷利乌斯，代表着<strong>秩序与荣耀</strong>的坚守；霜寒大陆的凯莉丝，守护着<strong>冰封的真相</strong>；炎狱大陆的沃卡努斯，燃烧着<strong>反抗的火焰</strong>。他们所在的大陆是封印松动最先波及的地区，他们的命运与封魂令的碎片紧密相连。更重要的是，他们各自掌握着关于深渊、神殿和世界树真相的关键碎片——只有当他们汇聚在一起，完整的图景才会浮现。
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ CHAPTER 1: JIN ═══ -->
+<section class="section fade-in element-jin" id="jin">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(200,169,81,0.2) 0%,rgba(200,169,81,0.05) 100%);border-color:rgba(200,169,81,0.3);">⚔️</div>
+    <div><div class="section-title">Chapter One</div><div class="section-title-cn">第一章：金耀大陆英雄</div></div>
+  </div>
+
+  <div class="scene-banner">
+    <img src="images/hero_jin.png" alt="金耀大陆场景">
+    <div class="scene-caption">Golden Plains of Aurum · 金耀大陆</div>
+  </div>
+
+  <div class="hero-profile">
+    <div class="hero-visual">
+      <img src="images/hero_jin.png" alt="奥雷利乌斯·铁心">
+      <div class="hero-visual-badge">
+        <div class="hero-name">奥雷利乌斯·铁心</div>
+        <div class="hero-title">黄金骑士团末代指挥官</div>
+      </div>
+    </div>
+    <div class="hero-info">
+      <div class="info-card">
+        <h4>📋 英雄档案</h4>
+        <ul>
+          <li><strong>姓名：</strong>奥雷利乌斯·铁心（Aurelius Ironheart）</li>
+          <li><strong>称号：</strong>黄金骑士团末代指挥官</li>
+          <li><strong>元素：</strong>金 · Gold</li>
+          <li><strong>大陆：</strong>金耀大陆（奥瑞姆）</li>
+          <li><strong>外貌：</strong>金色全板甲，狮冠头盔，布满战痕的坚毅面庞</li>
+          <li><strong>角色定位：</strong>先锋 · 团队的精神支柱</li>
+        </ul>
+      </div>
+      
+      <div class="info-card">
+        <h4>🎭 性格特征</h4>
+        <p><strong>刚正不阿，荣誉至上，沉默寡言但言出必行。</strong>奥雷利乌斯是一位典型的骑士，他将骑士道精神视为生命的准则。在深渊侵蚀战友、骑士团分裂的至暗时刻，他选择了坚守而非同流合污。他的沉默不是冷漠，而是历经沧桑后的内敛——每一个字都经过深思熟虑，每一个承诺都重如千钧。</p>
+      </div>
+      
+      <div class="info-card">
+        <h4>⚔️ 能力设定</h4>
+        <ul>
+          <li><strong>战斗风格：</strong>重甲防御型战士，以巨剑和塔盾为主要武器</li>
+          <li><strong>核心技能：</strong>「黄金壁垒」——以魂能构筑不可逾越的防御屏障；「狮心冲锋」——带领盟友发起无畏的冲锋</li>
+          <li><strong>力量来源：</strong>金之封魂令的共鸣，以及黄金骑士团代代相传的魂能修炼法门</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-block">
+    <h4>📖 背景故事</h4>
+    <p><strong>【第一幕：黄金誓约】</strong></p>
+    <p>金耀大陆的天空永远悬挂着一轮炽白的太阳，阳光洒在奥瑞姆王都的尖塔上，折射出如同液态黄金般的光芒。这里是九封魂令中"金之令"的守护地，也是魂能最为坚硬的所在。</p>
+    <p>奥雷利乌斯·铁心站在骑士殿的最高露台上，金色的全板甲在阳光下熠熠生辉，狮冠头盔下的双眼凝视着远方贯穿天地的世界树树干——通天之柱。作为黄金骑士团的末代指挥官，他深知肩上的重量。魂能的流动近年来愈发滞涩，世界树尤克特拉希尔的枯萎迹象已在金耀大陆显现，金属矿脉失去光泽，骑士们的武器时常无故断裂。</p>
+    <p>"指挥官，圣心城的援兵不会再来了。"副官瓦莱里乌斯的声音在身后响起，带着压抑的愤怒，"众神躲在树冠的上界，早已遗忘了凡界的苦难。"</p>
+    <p>奥雷利乌斯转过身，面甲下的表情冷峻如铁。"封魂令松动，湮灭魔族的低语已渗入地底。我去圣心城，不是为了乞求神的怜悯，而是为了确认九封魂令的现状。"他握住腰间的巨剑，剑柄上的纹路与世界树的根系共鸣，"若神弃我们，黄金骑士团便是最后的屏障。"</p>
+    
+    <p><strong>【第二幕：堕落之影】</strong></p>
+    <p>当奥雷利乌斯返回金耀大陆时，空气中弥漫着硫磺与腐铁的味道。曾经辉煌的骑士团要塞如今死寂无声。他推开骑士殿厚重的大门，眼前的景象让这位身经百战的指挥官感到心脏骤停。</p>
+    <p>大厅中央，数十名黄金骑士围成一圈，他们的盔甲不再闪耀金光，而是覆盖着紫黑色的粘稠物质——那是湮灭魔族侵蚀后的痕迹。深渊能量扭曲了他们的灵魂，将守护者的魂能转化为吞噬的欲望。</p>
+    <p>"欢迎回家，指挥官。"瓦莱里乌斯从阴影中走出。他的半边脸已被深渊侵蚀，左眼燃烧着诡异的紫色火焰，"众神没有回应你，就像他们没有回应我们。湮灭使徒承诺了力量，真正的、触手可及的力量。"</p>
+    <p>"那是谎言。"奥雷利乌斯的声音低沉，却如钢铁撞击般清晰，"魂能是生命之源，不是掠夺的工具。"</p>
+    <p>那场战斗没有欢呼，只有金属撕裂血肉的声音。奥雷利乌斯不得不亲手斩断昔日战友的咽喉。当瓦莱里乌斯倒在他脚下时，深渊的能量试图涌入奥雷利乌斯的盔甲，却被他意志中纯粹的"金"之元素硬生生排斥。他站在堆积如山的尸体中央，心中却比任何时候都要冰冷。他明白了，旧的秩序已无法修补，等待众神的救赎无异于慢性自杀。</p>
+    
+    <p><strong>【第三幕：新枝萌芽】</strong></p>
+    <p>奥瑞姆王都的解放战持续了三天三夜。当最后一波深渊生物被清除后，奥雷利乌斯独自坐在骑士殿前的台阶上，擦拭着巨剑上的污血。此时，世界树的使者——玩家，走了过来。</p>
+    <p>使者身上流淌着不同于凡界的力量，那是直接源自世界树本源的魂能，纯净而充满生机。手中的节点碎片散发着柔和的光芒，与奥雷利乌斯盔甲上的金之令产生了共鸣。</p>
+    <p>"湮灭魔族不会停止，"使者告诉他，"唯有唤醒沉睡的世界树，重建三界的连接，才能从根本上封印深渊。"</p>
+    <p>奥雷利乌斯站起身，金色的盔甲在节点光芒的照耀下重新焕发出神圣的光泽。他意识到，自己坚守一生的荣誉，不应是固守腐朽的旧誓，而是守护新的希望。众神已逝，凡界需自强，而使者是那个能带领他们走出黑暗的人。</p>
+    <p>他缓缓走到使者面前，卸下了头盔，露出布满伤疤却坚毅无比的面庞。他单膝跪地，将巨剑竖立在身前，右手抚胸，行了一个古老的骑士礼。</p>
+    <p>"黄金骑士团已死，但奥雷利乌斯·铁心仍在。"他的声音沉稳而有力，如同金耀大陆永不崩塌的山脉，"既然您能唤醒世界树，那么我的剑与魂能，皆归于您麾下。以金之令的名义，我誓将成为您最坚固的盾，直至魂域重归完整。"</p>
+  </div>
+
+  <div class="info-card" style="border-left:4px solid var(--accent-jin);">
+    <h4>🔗 与世界观关联</h4>
+    <p>奥雷利乌斯代表着<strong>凡界对秩序与荣耀的坚守</strong>。他的故事揭示了深渊侵蚀的残酷性——即使是最崇高的骑士团也无法免疫。他手中的金之封魂令碎片是修复封印的关键，而他与堕落副官瓦莱里乌斯的对决，象征着旧秩序在新时代的撕裂与重生。</p>
+    <p style="margin-top:12px"><strong>加入条件：</strong>解放奥瑞姆王都后，在骑士殿前向玩家单膝跪地，以骑士誓言效忠。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">❄ ✦ ❄</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ CHAPTER 2: BING ═══ -->
+<section class="section fade-in element-bing" id="bing">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(107,184,212,0.2) 0%,rgba(107,184,212,0.05) 100%);border-color:rgba(107,184,212,0.3);">❄️</div>
+    <div><div class="section-title">Chapter Two</div><div class="section-title-cn">第二章：霜寒大陆英雄</div></div>
+  </div>
+
+  <div class="scene-banner">
+    <img src="images/scene_bing.png" alt="霜寒大陆场景">
+    <div class="scene-caption">Frozen Realm of Niflheim · 霜寒大陆</div>
+  </div>
+
+  <div class="hero-profile">
+    <div class="hero-visual">
+      <img src="images/hero_bing.png" alt="凯莉丝·霜生">
+      <div class="hero-visual-badge">
+        <div class="hero-name">凯莉丝·霜生</div>
+        <div class="hero-title">尼弗海姆冰晶王座流亡公主</div>
+      </div>
+    </div>
+    <div class="hero-info">
+      <div class="info-card">
+        <h4>📋 英雄档案</h4>
+        <ul>
+          <li><strong>姓名：</strong>凯莉丝·霜生（Kaelith Frostborn）</li>
+          <li><strong>称号：</strong>尼弗海姆冰晶王座流亡公主</li>
+          <li><strong>元素：</strong>冰 · Ice</li>
+          <li><strong>大陆：</strong>霜寒大陆（尼弗海姆）</li>
+          <li><strong>外貌：</strong>水晶冰甲折射着幽蓝光芒，银白长发，瞳孔如冻湖</li>
+          <li><strong>角色定位：</strong>叛逆者 · 隐藏着最多秘密的英雄</li>
+        </ul>
+      </div>
+      
+      <div class="info-card">
+        <h4>🎭 性格特征</h4>
+        <p><strong>外表冷若冰霜，内心燃烧着复仇与保护的烈火。</strong>凯莉丝的冷漠是一种自我保护——她知道的太多，而能够倾诉的太少。她的沉默不是无话可说，而是必须将真相冰封在心底。在冰甲之下，是一颗渴望正义、渴望救赎的心。她对兄长的背叛感到痛苦，但更多的是对自己无力阻止的自责。</p>
+      </div>
+      
+      <div class="info-card">
+        <h4>❄️ 能力设定</h4>
+        <ul>
+          <li><strong>战斗风格：</strong>冰霜魔法与剑术双修，以速度和精准见长</li>
+          <li><strong>核心技能：</strong>「霜冻领域」——减缓敌人行动并造成持续冰冻伤害；「冰晶穿刺」——召唤冰锥从地下突袭敌人</li>
+          <li><strong>力量来源：</strong>冰之封魂令的共鸣，以及尼弗海姆王室代代相传的冰霜魂能血脉</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-block">
+    <h4>📖 背景故事</h4>
+    <p><strong>【第一幕：冰晶王座的寒霜】</strong></p>
+    <p>霜寒大陆极北之地，尼弗海姆的寒风从未停歇。这里是世界树尤克特拉希尔根系最浅的触须所触及之处，魂能在此凝结为永恒的冰晶。凯莉丝·霜生出生于冰晶王座之上，她的银白长发并非染色，而是出生时便汲取了过溢的纯净魂能，化作霜雪之色。</p>
+    <p>作为公主，凯莉丝自幼便被教导：冰不仅是寒冷，它是秩序的凝固。她的父亲，老国王，常指着王座下深邃的冰层告诫她："看透了冰，才能看透魂域的真相。"然而，凯莉丝透过的冰层看到的并非真相，而是深渊。</p>
+    <p>在她成年礼的前夜，她站在王座厅的露台上，瞳孔如冻湖般映照着极光。兄长瓦勒里斯走到她身后，披风上绣着霜狼的纹章。"妹妹，"瓦勒里斯的声音温柔却带着一丝不易察觉的颤抖，"众神在上界沉睡，凡族在中域挣扎，你觉得我们守着的这冰层之下，真的只有岩石吗？"</p>
+    <p>凯莉丝转身，冰甲发出清脆的碰撞声。"那是祖先的封印，兄长。不要凝视深渊，除非你想被它吞噬。"</p>
+    <p>瓦勒里斯笑了，那笑容里没有了往日的温度："可深渊也在凝视我们。它许诺了力量，足以让尼弗海姆不再需要乞求世界树残羹的力量。"那一刻，凯莉丝在他眼中看到了不属于凡族的幽暗——那是湮灭魔族腐蚀的痕迹。她明白了，王座之下的冰层并非基石，而是牢笼。而她的兄长，正试图打开牢笼的门。</p>
+    
+    <p><strong>【第二幕：深渊的低语与流亡】</strong></p>
+    <p>政变发生在冬至之夜，魂能流动最为滞涩的时刻。瓦勒里斯启动了隐藏在王座地底的古老法阵，冰层发出痛苦的呻吟，裂缝中透出深渊的紫黑色雾气。湮灭魔族的低语如同无数虫豸在脑海中啃噬，那是关于毁灭与重生的虚假福音。</p>
+    <p>凯莉丝拔剑相向，冰霜魔力在她剑刃上凝聚。"你疯了，瓦勒里斯！一旦封印破碎，虚无之潮会吞没霜寒大陆！"</p>
+    <p>"那就让它吞没！"瓦勒里斯狂笑着，手中握着一枚散发着诡异红光的碎片——那是九封魂令中属于冰元素的核心碎片，被历代国王秘密守护，如今却成了毁灭的钥匙，"旧秩序已死，唯有拥抱深渊，我们才能成为新世界的主宰！"</p>
+    <p>战斗激烈而短暂。凯莉丝并非不敌，但她无法在攻击兄长的同时修补即将崩溃的冰层封印。她感受到脚下大地的震动，深渊裂隙正在扩大，一旦完全开启，整个霜寒大陆将沦为湮灭魔族的牧场。</p>
+    <p>在一个瞬间的抉择中，凯莉丝做出了痛苦的决断。她挥剑击碎了王座厅的支柱，引发雪崩将自己与瓦勒里斯隔绝开来。"我会回来，"她对着崩塌的冰隙低语，声音冷冽如刀，"但不是作为妹妹，而是作为行刑者。"</p>
+    <p>她选择了流亡。并非因为恐惧，而是因为她知道一个更可怕的秘密：王座之下隐藏着通往深渊的最大裂隙。若她此时揭穿瓦勒里斯，恐慌会导致魂能紊乱，加速封印破裂。她必须沉默，必须隐忍，直到找到能真正修复封印的力量。</p>
+    
+    <p><strong>【第三幕：封魂令与使者的盟约】</strong></p>
+    <p>命运的转折始于世界树节点的使者——玩家，出现在她的流亡之路。使者并未像其他势力那样索取力量，而是展示了修复魂能循环的技艺。在他们的联手下，尼弗海姆的冰雪军团终于攻破了被腐化的王座大厅。</p>
+    <p>瓦勒里斯已彻底沦为湮灭使徒的傀儡，当他倒下时，手中的封魂令碎片失去了光泽。凯莉丝站在破碎的王座前，银发随风飞舞，她并未看向兄长的尸体，而是注视着使者。</p>
+    <p>"你知道我为什么沉默这么久吗？"凯莉丝问道，手中的冰剑缓缓入鞘，发出清脆的鸣响。</p>
+    <p>"因为有些秘密，只有在拥有足够的力量守护时，才能成为真相。"使者回答。</p>
+    <p>凯莉丝眼中闪过一丝动容，那是冰封已久的湖面裂开了一道缝隙。她弯腰从瓦勒里斯遗落的盔甲中拾起那枚冰元素封魂令碎片。碎片在她手中嗡鸣，与远处世界树的脉搏产生共鸣。</p>
+    <p>"这枚碎片是封印深渊裂隙的关键，"凯莉丝将碎片递向使者，动作庄重如同交付权杖，"单靠尼弗海姆的力量，只能延缓毁灭。但你是世界树的使者，你能引导魂能真正修复那道裂隙。"</p>
+    <p>她抬起头，瞳孔中的冻湖似乎融化了些许，露出了底下坚定的火焰。"我曾以为复仇是我的全部，但现在我明白，魂域的命运比王座更重要。湮灭魔族并未退去，他们只是在等待下一次裂隙的开启。"</p>
+    <p>凯莉丝向使者单膝跪地，水晶冰甲折射出幽蓝的光芒，如同黎明前的星光。"我，凯莉丝·霜生，愿将我的冰霜与秘密交予你。不是为了复兴尼弗海姆的荣耀，而是为了守护世界树尤克特拉希尔的根系不再被腐蚀。带我走吧，使者。让我们去终结这场跨越纪元的战争。"</p>
+  </div>
+
+  <div class="info-card" style="border-left:4px solid var(--accent-bing);">
+    <h4>🔗 与世界观关联</h4>
+    <p>凯莉丝是<strong>揭示深渊真相的关键人物</strong>。她知道冰层之下通往深渊的最大裂隙，也知道原初种族被清洗的历史片段。她的故事揭示了封印松动的三重原因之一——深渊内部的蓄意推动。她手中的冰之封魂令碎片是距离深渊最近的封印节点，也是最容易被侵蚀的节点。</p>
+    <p style="margin-top:12px"><strong>加入条件：</strong>玩家帮助她夺回冰晶王座后，她交出被兄长隐藏的封魂令碎片。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">🔥 ✦ 🔥</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ CHAPTER 3: HUO ═══ -->
+<section class="section fade-in element-huo" id="huo">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(212,91,62,0.2) 0%,rgba(212,91,62,0.05) 100%);border-color:rgba(212,91,62,0.3);">🔥</div>
+    <div><div class="section-title">Chapter Three</div><div class="section-title-cn">第三章：炎狱大陆英雄</div></div>
+  </div>
+
+  <div class="scene-banner">
+    <img src="images/hero_huo.png" alt="炎狱大陆场景">
+    <div class="scene-caption">Volcanic Forge of Ignis · 炎狱大陆</div>
+  </div>
+
+  <div class="hero-profile">
+    <div class="hero-visual">
+      <img src="images/hero_huo.png" alt="沃卡努斯·灰印">
+      <div class="hero-visual-badge">
+        <div class="hero-name">沃卡努斯·灰印</div>
+        <div class="hero-title">伊格尼斯熔炉坑反叛军领袖</div>
+      </div>
+    </div>
+    <div class="hero-info">
+      <div class="info-card">
+        <h4>📋 英雄档案</h4>
+        <ul>
+          <li><strong>姓名：</strong>沃卡努斯·灰印（Vulcanus Ashbrand）</li>
+          <li><strong>称号：</strong>伊格尼斯熔炉坑反叛军领袖</li>
+          <li><strong>元素：</strong>火 · Fire</li>
+          <li><strong>大陆：</strong>炎狱大陆（伊格尼斯）</li>
+          <li><strong>外貌：</strong>黑曜石铠甲上流动着熔岩纹路，焰红发，双臂遍布锻造印记</li>
+          <li><strong>角色定位：</strong>革命者 · 团队中最不安分的火种</li>
+        </ul>
+      </div>
+      
+      <div class="info-card">
+        <h4>🎭 性格特征</h4>
+        <p><strong>暴烈而热忱，嫉恶如仇，对压迫者有本能的反抗欲。</strong>沃卡努斯是火焰的化身——他的愤怒如同熔岩，看似狂暴却蕴含着改变世界的力量。他对不公的容忍度为零，对权威的质疑是本能。但他并非盲目的破坏者，他的革命是为了重建，他的火焰是为了净化而非毁灭。</p>
+      </div>
+      
+      <div class="info-card">
+        <h4>🔥 能力设定</h4>
+        <ul>
+          <li><strong>战斗风格：</strong>狂暴近战型战士，以巨锤和火焰魂能为武器</li>
+          <li><strong>核心技能：</strong>「熔岩爆发」——释放毁灭性的火焰冲击波；「锻造之怒」——强化武器并附加火焰伤害</li>
+          <li><strong>力量来源：</strong>火之封魂令的共鸣，以及锻造之神沃坦德遗留的锻造技艺</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-block">
+    <h4>📖 背景故事</h4>
+    <p><strong>【第一幕：熔炉中的余烬】</strong></p>
+    <p>炎狱大陆的地底深处，伊格尼斯熔炉坑的空气永远弥漫着硫磺与灼烧皮肉的气息。对于沃卡努斯·灰印而言，这不是地狱，而是家园。他赤裸的上半身布满了暗红色的锻造印记，那是魂能高温烙刻下的勋章，每一次锤击落下，黑曜石铠甲上的熔岩纹路便随之亮起，如同世界树根系中奔涌的血液。</p>
+    <p>"加快速度，奴隶们！湮灭的阴影正在逼近，领主需要更多的武器！"监工的鞭哨声在岩洞中回荡。</p>
+    <p>沃卡努斯停下手中的巨锤，火星溅落在他的焰红发丝间，瞬间熄灭。他转过身，目光如熔铁般灼热，盯着那个手持深渊能量鞭子的监工。"这里的火来自世界树的根须，是神圣的魂能，不是用来制造杀戮工具的燃料。"</p>
+    <p>监工冷笑一声："锻造领主马拉科大人说了，为了对抗深渊裂隙，我们需要不惜一切代价。哪怕是抽取地底残留的浊气。"</p>
+    <p>"浊气？"沃卡努斯冷哼，手臂上的肌肉紧绷，灰印随之颤动，"那是被污染的魂能，是湮灭魔族留下的毒瘤。马拉科在撒谎。"</p>
+    <p>他曾是炎狱大陆最杰出的锻造大师，直到他发现领主所谓的"防御武器"实际上正在抽取大地本身的魂能储备。在这个三界隔绝、九封魂令松动的时代，凡界的每一丝魂能都至关重要。沃卡努斯扔下铁锤，巨大的撞击声震落了岩顶的碎石。他知道自己不能再沉默，他是这熔炉中的余烬，一旦风起，必将复燃。</p>
+    
+    <p><strong>【第二幕：深渊的窃火者】</strong></p>
+    <p>反抗始于一个暴雨般的岩浆之夜。沃卡努斯率领着矿工和学徒们潜入了熔炉坑的最底层，那里是马拉科的禁地。当他们推开厚重的黑铁大门，眼前的景象让所有人心寒——一座巨大的锻造炉正吞噬着紫色的雾气，那是来自深渊的湮灭能量。</p>
+    <p>马拉科站在高台上，手中握着一柄散发着不祥气息的长剑："沃卡努斯，你太天真了。九封魂令正在失效，湮灭使徒已经渗透进凡界。唯有利用他们的力量，才能对抗他们。"</p>
+    <p>"你这是在饮鸩止渴！"沃卡努斯怒吼，手中的巨锤燃起纯粹的火焰魂能，"世界树之所以分裂三界，就是为了隔绝这种污染。你是在亲手撕开封印！"</p>
+    <p>"那又如何？力量才是真理。"马拉科挥剑，紫色的能量波横扫而来。</p>
+    <p>战斗在狭窄的通道中爆发。沃卡努斯的战士们用采矿镐和简陋的盾牌抵挡着领主的精英卫队。岩浆通道成了游击战的迷宫，沃卡努斯凭借对地形的熟悉，一次次将敌人引入高温区。但他看到了代价——几名年轻的学徒为了保护他，被深渊能量侵蚀，身体化为灰烬，连魂能都无法回归循环。</p>
+    <p>"我们不是为了送死而战，"沃卡努斯在喘息间隙对幸存者们喊道，他的声音沙哑却坚定，"我们是为了让火回归纯净。如果这熔炉继续燃烧深渊之力，整个炎狱大陆都会成为湮灭魔族的温床。"</p>
+    <p>他意识到，仅仅推翻马拉科是不够的。深渊的泄露是结构性的危机，九封魂令的松动意味着整个魂域都在面临威胁。局部的胜利无法阻止整体的崩塌，他需要更强的力量，需要能修复世界树节点的人。</p>
+    
+    <p><strong>【第三幕：誓约与新星】</strong></p>
+    <p>当世界树节点的使者——玩家，踏入熔炉坑时，沃卡努斯正在最后的核心区与马拉科对峙。使者的到来带来了金色的魂能光辉，那是上界神殿才有的纯净力量，瞬间压制了紫色雾气的蔓延。</p>
+    <p>"摧毁它，"沃卡努斯对使者喊道，巨锤砸向锻造炉的基座，"我们一起摧毁这个污染源！"</p>
+    <p>他们联手发动了攻击。沃卡努斯将所有的火焰魂能注入锤击，而使者引导世界树节点的力量切断了熔炉与深渊裂隙的连接。随着一声巨响，禁忌锻造炉崩塌，紫色的能量消散在空气中，取而代之的是大地深处传来的平稳脉动。</p>
+    <p>马拉科倒在废墟中，难以置信地看着恢复纯净的火焰。"这不可能……没有深渊之力，我们如何抵挡……"</p>
+    <p>"我们不需要那种力量，"沃卡努斯走到使者面前，摘下满是烟尘的手套，露出布满灰印的双臂，"我们有彼此，还有世界树的意志。"</p>
+    <p>他转身看向那些幸存的矿工，他们眼中重新燃起了希望。但沃卡努斯知道，这里的战斗结束了，更大的战争却在别处等待。封印的松动不是炎狱大陆独有的问题，湮灭魔族正在所有界域寻找突破口。</p>
+    <p>"我不能再留在这里了，"沃卡努斯从废墟中拾起一块尚未冷却的陨铁，迅速将其锻造成一把精致的战锤，递给使者，"这把锤子融合了纯净的魂能，它能回应你的召唤。我听说世界树的节点需要守护者，需要有人去修补那些裂痕。"</p>
+    <p>他眼中的暴烈并未消退，但多了几分坚毅的使命感。"我是个铁匠，也是个战士。既然深渊的火种已经点燃，那我就做那个最先扑上去的人。带我走吧，使者。让我们去把那些试图吞噬魂域的杂碎，重新锻打成灰。"</p>
+  </div>
+
+  <div class="info-card" style="border-left:4px solid var(--accent-huo);">
+    <h4>🔗 与世界观关联</h4>
+    <p>沃卡努斯与<strong>锻造之神沃坦德</strong>有着深层的联系。沃坦德是九封魂令的锻造者，也是第十魂令的创造者。沃卡努斯在沃坦德的遗迹中发现了关于第十魂令的线索，他的锻造技艺传承自沃坦德一脉。他的故事揭示了封印松动的第二重原因——凡界对魂能的过度开采。</p>
+    <p style="margin-top:12px"><strong>加入条件：</strong>玩家协助起义军摧毁禁忌锻造炉后，他以一柄亲手锻造的武器为信物加入。</p>
+  </div>
+</section>
+
+<div class="rune-separator"><div class="rune-inner"><span class="rune-line"></span><span class="rune-symbol">⚔ ✦ ⚔</span><span class="rune-line"></span></div></div>
+
+<!-- ═══ EPILOGUE ═══ -->
+<section class="section fade-in" id="epilogue">
+  <div class="section-header">
+    <div class="section-icon">🌟</div>
+    <div><div class="section-title">Epilogue</div><div class="section-title-cn">终章：英雄之间的羁绊与冲突</div></div>
+  </div>
+
+  <div class="group-image">
+    <img src="images/heroes_group.png" alt="三英雄并肩">
+  </div>
+
+  <div class="story-block">
+    <h4>🤝 三位英雄的互动关系</h4>
+    <p><strong>奥雷利乌斯与凯莉丝：秩序与秘密的张力</strong></p>
+    <p>奥雷利乌斯代表着骑士的荣誉与透明的正义，而凯莉丝则习惯于将真相冰封在心底。他们的初次相遇充满了不信任——奥雷利乌斯质疑凯莉丝为何隐瞒深渊裂隙的秘密，而凯莉丝则嘲讽奥雷利乌斯的"天真"荣誉观。但随着并肩作战的次数增加，他们开始理解彼此：奥雷利乌斯学会了"有些真相需要在合适的时机揭示"，而凯莉丝则明白了"信任是守护秘密的前提"。</p>
+    
+    <p style="margin-top:20px"><strong>凯莉丝与沃卡努斯：冰与火的共鸣</strong></p>
+    <p>表面上，冰与火是永恒的对手。但在更深的层次上，他们都是被背叛的复仇者——凯莉丝被兄长背叛，沃卡努斯被领主背叛。他们在深夜的营火旁分享各自的故事，发现彼此的愤怒源自同一种痛苦：对信任的渴望与对背叛的恐惧。沃卡努斯的热情融化了凯莉丝的部分冰冷，而凯莉丝的冷静则让沃卡努斯学会了在愤怒中保持理智。</p>
+    
+    <p style="margin-top:20px"><strong>沃卡努斯与奥雷利乌斯：革命与秩序的碰撞</strong></p>
+    <p>这是最激烈的一对组合。沃卡努斯本能地厌恶一切权威，包括奥雷利乌斯所代表的骑士阶层；而奥雷利乌斯则认为沃卡努斯的"革命"过于激进，可能带来更大的混乱。他们的冲突在第一次战略会议上就爆发了——沃卡努斯主张直接进攻神殿，揭露众神的谎言；奥雷利乌斯则认为应该先稳固凡界的防线。最终，是玩家的调解让他们达成了妥协："我们既需要打破旧秩序的勇气，也需要建立新秩序的耐心。"</p>
+  </div>
+
+  <div class="story-block">
+    <h4>🎯 共同目标与潜在分歧</h4>
+    <p><strong>共同目标：</strong>三位英雄都认同一个核心目标——修复世界树，阻止深渊侵蚀，拯救魂域。这是他们结盟的基础。</p>
+    <p style="margin-top:12px"><strong>潜在分歧：</strong></p>
+    <ul style="margin-top:8px;padding-left:20px;">
+      <li><strong>对神殿的态度：</strong>奥雷利乌斯倾向于与维序派谈判，凯莉丝主张保持中立，沃卡努斯则要求公开对抗</li>
+      <li><strong>对深渊的处理：</strong>奥雷利乌斯主张封印加固，凯莉丝倾向于探索真相，沃卡努斯则认为应该彻底摧毁深渊裂隙</li>
+      <li><strong>对牺牲的看法：</strong>奥雷利乌斯愿意为荣誉牺牲，凯莉丝愿意为真相牺牲，沃卡努斯则质疑"牺牲"本身的意义</li>
+    </ul>
+  </div>
+
+  <div class="story-block">
+    <h4>🌳 在主线三阶段中的角色演变</h4>
+    <p><strong>第一阶段·凡界（萌芽期）：</strong></p>
+    <p>三位英雄刚刚加入，彼此还在磨合。他们分别代表各自大陆的利益，对"大局"的理解有限。玩家需要在他们之间斡旋，协调不同的战略观点。这一阶段，他们是<strong>独立的战士</strong>，各自为战。</p>
+    
+    <p style="margin-top:16px"><strong>第二阶段·神殿（生长期）：</strong></p>
+    <p>随着上界势力的介入，三位英雄被迫更加紧密地合作。他们开始意识到，个人的力量无法对抗神殿的派系斗争，只有团结才能生存。奥雷利乌斯学会了质疑权威，凯莉丝学会了信任同伴，沃卡努斯学会了为了更大的目标而妥协。这一阶段，他们是<strong>真正的团队</strong>，开始产生化学反应。</p>
+    
+    <p style="margin-top:16px"><strong>第三阶段·深渊（繁茂期）：</strong></p>
+    <p>当真相完全揭示，三位英雄面临最终的抉择。他们的个人故事线在此交汇：奥雷利乌斯必须面对骑士团历史上对原初种族的背叛，凯莉丝必须决定是否揭露那个可能毁灭一切的秘密，沃卡努斯则必须选择是追随沃坦德的遗志还是走自己的路。这一阶段，他们是<strong>命运的共同体</strong>，他们的选择将决定三界的未来。</p>
+  </div>
+
+  <div class="relation-grid">
+    <div class="relation-card">
+      <div class="pair" style="color:var(--accent-jin);">奥雷利乌斯 ↔ 凯莉丝</div>
+      <div class="desc">秩序与秘密的张力<br>从互不信任到相互理解<br>「有些真相需要在合适的时机揭示」</div>
+    </div>
+    <div class="relation-card">
+      <div class="pair" style="color:var(--accent-bing);">凯莉丝 ↔ 沃卡努斯</div>
+      <div class="desc">冰与火的共鸣<br>被背叛者的相互治愈<br>「信任是守护秘密的前提」</div>
+    </div>
+    <div class="relation-card">
+      <div class="pair" style="color:var(--accent-huo);">沃卡努斯 ↔ 奥雷利乌斯</div>
+      <div class="desc">革命与秩序的碰撞<br>打破旧秩序与建立新秩序<br>「勇气与耐心同样重要」</div>
+    </div>
+  </div>
+
+  <div class="prologue-box" style="margin-top:50px;">
+    <strong>「当金、冰、火三种元素在第十魂令的引导下共鸣，世界树将听到凡界的呼唤。」</strong>
+    <br><br>
+    三位英雄的故事，是尤克特拉希尔纪元中最动人的篇章之一。他们来自不同的大陆，怀揣不同的信念，背负着不同的伤痛，却在世界树的召唤下汇聚在一起。他们的羁绊将在漫长的旅途中不断加深，他们的冲突将在真相的揭示中不断激化，而最终，他们的选择将决定魂域的命运——是重回旧秩序的枷锁，还是开辟新纪元的曙光？
+    <br><br>
+    这是英雄的故事，也是每一个凡人的故事。在湮灭的阴影下，在众神的博弈中，在深渊的呼唤里，<strong>选择成为英雄，本身就是一种英雄主义。</strong>
+  </div>
+</section>
+
+<div class="ornament">❖ ❖ ❖</div>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="footer-brand">— YGGDRASIL —</div>
+  <p>尤克特拉希尔纪元 · 三英雄详解报告</p>
+  <p style="margin-top:4px;opacity:0.7;">金耀·奥雷利乌斯 | 霜寒·凯莉丝 | 炎狱·沃卡努斯</p>
+  <p style="margin-top:4px;opacity:0.7;">Generated from world.json & continents.json · 2026.04.14</p>
+</footer>
+
+<script>
+(function(){
+  const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+})();
+</script>
+
+</body>
+</html>

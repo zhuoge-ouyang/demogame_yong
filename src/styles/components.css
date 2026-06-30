@@ -1,0 +1,662 @@
+.content-section {
+  padding: clamp(22px, 3vw, 38px);
+  width: 100%;
+  max-width: 1480px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(180deg, rgba(15, 16, 16, 0.9) 0%, rgba(9, 9, 8, 0.96) 100%),
+    radial-gradient(circle at 12% 0%, rgba(79, 120, 148, 0.08), transparent 34%),
+    radial-gradient(circle at 86% 12%, rgba(138, 37, 32, 0.08), transparent 38%);
+  border: 1px solid rgba(236, 204, 142, 0.13);
+  border-radius: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 200, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 24px 62px -42px rgba(0, 0, 0, 0.9);
+  margin: 16px auto 28px;
+  position: relative;
+}
+.content-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(248, 207, 122, 0.78), rgba(90, 132, 114, 0.55), rgba(138, 37, 32, 0.45));
+  box-shadow: 0 0 18px rgba(248, 207, 122, 0.28);
+}
+.content-section > * { position: relative; z-index: 1; }
+
+.content-section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--color-accent-gold);
+  font-family: var(--font-display);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
+}
+
+.content-section .section-desc {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin-bottom: 28px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  max-width: 760px;
+}
+
+.field-group {
+  margin-bottom: 24px;
+}
+
+.field-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(236, 224, 198, 0.86);
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.card-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.ai-section {
+  margin-top: 26px;
+  padding: 0;
+  background:
+    linear-gradient(180deg, rgba(18, 18, 17, 0.94) 0%, rgba(8, 8, 7, 0.98) 100%),
+    radial-gradient(circle at 0% 0%, rgba(248, 207, 122, 0.1), transparent 34%);
+  border-radius: 0;
+  border: 1px solid rgba(236, 204, 142, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 200, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 18px 50px -34px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.ai-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 0;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(236, 204, 142, 0.12);
+  background:
+    linear-gradient(90deg, rgba(248, 207, 122, 0.1), transparent),
+    rgba(255, 240, 200, 0.025);
+}
+
+.ai-section-header h4 {
+  font-family: var(--font-display-epic);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--epic-halo);
+  text-transform: uppercase;
+}
+
+.generation-mode-section,
+.ai-section .n-collapse,
+.token-warning-bar,
+.context-tags {
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.prompt-preview {
+  background: linear-gradient(180deg, rgba(12, 9, 6, 0.92), rgba(8, 6, 4, 0.96));
+  border: 1px solid rgba(255, 240, 200, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+
+.ai-result {
+  margin: 14px 18px 18px;
+  background:
+    linear-gradient(180deg, rgba(9, 11, 12, 0.96), rgba(6, 6, 6, 0.98)),
+    radial-gradient(circle at 20% 0%, rgba(79, 120, 148, 0.12), transparent 38%);
+  border: 1px solid rgba(248, 207, 122, 0.24);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  color: var(--color-text);
+  box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.55);
+}
+
+.token-usage-info {
+  margin: 8px 18px 18px;
+  padding: 6px 10px;
+  background: rgba(212, 168, 83, 0.08);
+  border: 1px solid rgba(212, 168, 83, 0.28);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--color-accent-gold-light);
+}
+
+.auto-fill-notice {
+  margin: 0 18px 8px;
+  padding: 6px 10px;
+  background: rgba(122, 176, 74, 0.1);
+  border: 1px solid rgba(122, 176, 74, 0.3);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: #a8c878;
+}
+
+.context-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.context-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 13px;
+  background: var(--color-primary-light);
+  color: var(--color-accent-gold);
+  border-radius: 2px;
+  border: 1px solid rgba(212, 168, 83, 0.2);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--color-text-tertiary);
+}
+
+.empty-state p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* === 卡片通用样式 === */
+.card,
+.n-card {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 12px var(--color-glow-gold);
+  border-color: var(--color-accent-gold-dark);
+}
+
+/* === 按钮动效 === */
+button:active,
+.n-button:active {
+  transform: scale(0.98);
+}
+
+.n-button {
+  font-family: var(--font-sans) !important;
+}
+
+.n-button:not(.n-button--quaternary-type) {
+  border-radius: 2px !important;
+}
+
+.n-input,
+.n-input .n-input-wrapper,
+.n-input .n-input__textarea {
+  border-radius: 2px !important;
+}
+
+.n-input {
+  box-shadow: inset 0 1px 0 rgba(255, 240, 200, 0.04);
+}
+
+/* === 协作编辑标识 === */
+.edited-by-client .n-input__textarea-el,
+.edited-by-client .n-input__input-el,
+.edited-by-client textarea {
+  color: #e8943a !important;
+}
+.edited-by-client {
+  border-left: 3px solid #e8943a;
+  padding-left: 4px;
+}
+
+.finalized-tag {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.finalized-tag.client {
+  background: rgba(232, 148, 58, 0.15);
+  color: #e8943a;
+  border: 1px solid rgba(232, 148, 58, 0.3);
+}
+.finalized-tag.admin {
+  background: rgba(212, 168, 83, 0.15);
+  color: #d4a853;
+  border: 1px solid rgba(212, 168, 83, 0.3);
+}
+
+/* === Diff 高亮标识 === */
+.diff-insert {
+  background: rgba(232, 186, 58, 0.25);
+  color: #f0c040;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.diff-delete {
+  background: rgba(255, 80, 80, 0.15);
+  color: rgba(255, 120, 120, 0.7);
+  text-decoration: line-through;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* ============================================================
+   Epic Oil-Painting Decorative Layer (史诗油画装饰层)
+   ============================================================ */
+
+/* --- 页面整体油画画布 --- */
+.epic-canvas {
+  position: relative;
+  padding: 22px 28px 28px;
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+}
+
+/* --- 章节标题大字版 --- */
+.epic-title {
+  font-family: var(--font-display-epic);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #f0e3c3 0%, #d4a853 55%, #8a5a2a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  filter: drop-shadow(0 0 12px rgba(212, 168, 83, 0.22));
+}
+
+/* --- 副标题（拉丁感） --- */
+.epic-kicker {
+  font-family: var(--font-display-epic);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  opacity: 0.8;
+}
+
+/* --- 油画金框容器 --- */
+.epic-frame {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(30, 42, 74, 0.78), rgba(14, 20, 36, 0.94));
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 20px 22px;
+  box-shadow: var(--epic-shadow-frame);
+  isolation: isolate;
+}
+.epic-frame::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  background: var(--epic-gradient-frame);
+  border-radius: 3px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.epic-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top left, rgba(212, 168, 83, 0.08), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(124, 92, 191, 0.06), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+  border-radius: inherit;
+}
+.epic-frame > * { position: relative; z-index: 1; }
+
+/* --- 铜制铭牌 --- */
+.epic-plate {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--epic-gradient-bronze);
+  color: #f0e3c3;
+  font-family: var(--font-display-epic);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 226, 163, 0.3);
+  box-shadow:
+    var(--epic-emboss-gold),
+    0 2px 6px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+.epic-plate--gold {
+  background: linear-gradient(135deg, #e8c87a 0%, #d4a853 45%, #b08a3e 100%);
+  color: #1a1206;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* --- 红蜡印信 --- */
+.epic-seal {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 30% 30%, #c24a2a, #6a1d1a 85%);
+  border-radius: 50%;
+  color: #f8d97a;
+  font-family: var(--font-display-epic);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  box-shadow:
+    inset 0 0 14px rgba(0, 0, 0, 0.55),
+    inset 0 2px 4px rgba(255, 200, 160, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(248, 217, 122, 0.35);
+}
+.epic-seal::after {
+  content: '';
+  position: absolute; inset: 4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(248, 217, 122, 0.4);
+}
+
+/* --- 分隔花纹（金线 + 菱形 + 金线） --- */
+.epic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--color-accent-gold);
+  opacity: 0.85;
+}
+.epic-divider::before,
+.epic-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold-dark), transparent);
+}
+.epic-divider__diamond {
+  width: 10px; height: 10px;
+  background: var(--color-accent-gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px var(--color-glow-gold);
+}
+
+/* --- 铜金按钮（优先链接到 naive-ui primary，此为原生按钮额外可用） --- */
+.epic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-family: var(--font-display-epic);
+  font-size: 12.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #d4a853, #b08a3e);
+  color: #1a1206;
+  border: 1px solid #e8c87a;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: var(--epic-emboss-gold), 0 6px 14px -4px rgba(212, 168, 83, 0.5);
+  overflow: hidden;
+}
+.epic-btn::before {
+  content: '';
+  position: absolute; top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 700ms ease;
+}
+.epic-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--epic-emboss-gold), 0 10px 20px -4px rgba(212, 168, 83, 0.65);
+}
+.epic-btn:hover::before { left: 140%; }
+
+.epic-btn--ghost {
+  background: transparent;
+  color: var(--color-accent-gold);
+  border-color: rgba(212, 168, 83, 0.55);
+  box-shadow: none;
+}
+.epic-btn--ghost:hover {
+  background: rgba(212, 168, 83, 0.08);
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 16px -4px rgba(212, 168, 83, 0.4);
+}
+
+/* --- 空状态画框（占位图，待图片填充） --- */
+.epic-placeholder {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  min-height: 180px;
+  background:
+    linear-gradient(135deg, rgba(90, 56, 24, 0.5), rgba(30, 42, 74, 0.7) 55%, rgba(14, 20, 36, 0.9)),
+    repeating-linear-gradient(45deg, rgba(212, 168, 83, 0.04) 0 2px, transparent 2px 12px);
+  border: 1px solid rgba(212, 168, 83, 0.35);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.epic-placeholder::before,
+.epic-placeholder::after {
+  content: '';
+  position: absolute;
+  width: 22px; height: 22px;
+  border-color: var(--color-accent-gold);
+  filter: drop-shadow(0 0 4px rgba(212, 168, 83, 0.5));
+}
+.epic-placeholder::before {
+  top: 10px; left: 10px;
+  border-top: 1.5px solid; border-left: 1.5px solid;
+}
+.epic-placeholder::after {
+  bottom: 10px; right: 10px;
+  border-bottom: 1.5px solid; border-right: 1.5px solid;
+}
+.epic-placeholder__text {
+  font-family: var(--font-display-epic);
+  letter-spacing: 0.24em;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+
+/* --- 金属角装 --- */
+.epic-corner {
+  position: absolute;
+  width: 28px; height: 28px;
+  color: var(--color-accent-gold);
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(212, 168, 83, 0.4));
+}
+.epic-corner--tl { top: 6px; left: 6px; border-top: 1.5px solid; border-left: 1.5px solid; }
+.epic-corner--tr { top: 6px; right: 6px; border-top: 1.5px solid; border-right: 1.5px solid; }
+.epic-corner--bl { bottom: 6px; left: 6px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+.epic-corner--br { bottom: 6px; right: 6px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
+/* --- 烛火光光环 --- */
+.epic-candle-glow {
+  box-shadow: var(--epic-shadow-candle);
+}
+
+/* --- 史诗页内标题块（可用于编辑页内小章节） --- */
+.epic-section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  position: relative;
+}
+.epic-section-head::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent-gold-dark) 0%, transparent 70%);
+  opacity: 0.6;
+}
+.epic-section-head h3 {
+  font-family: var(--font-display-epic);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-gold);
+  margin: 0;
+}
+.epic-section-head__rune {
+  color: var(--color-accent-gold);
+  font-size: 18px;
+  filter: drop-shadow(0 0 4px rgba(212, 168, 83, 0.5));
+}
+
+/* --- 编辑区加点油画感，优化全局 给 naive 表单添加群光崇背（不强制） --- */
+.n-card.n-card--bordered {
+  background-image: var(--epic-gradient-parchment) !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(212, 168, 83, 0.28) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 200, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 10px 24px -10px rgba(0, 0, 0, 0.7),
+    0 0 24px -8px rgba(212, 168, 83, 0.12) !important;
+  position: relative;
+  overflow: hidden;
+}
+.n-card.n-card--bordered::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--epic-canvas-noise);
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+.n-card.n-card--bordered > * {
+  position: relative;
+  z-index: 1;
+}
+.n-card.n-card--bordered:hover {
+  border-color: rgba(212, 168, 83, 0.45) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 200, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(212, 168, 83, 0.3),
+    0 14px 32px -10px rgba(0, 0, 0, 0.75),
+    0 0 30px -6px rgba(212, 168, 83, 0.25) !important;
+}
+
+/* --- 页面章节标题统一升级 (兼容原 有 .content-section) --- */
+.content-section h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+  font-family: var(--font-display-epic);
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #fff4d8 0%, #f4c26b 40%, #d4a853 70%, #8a5a2a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.5));
+}
+.content-section h2::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 72px; height: 2px;
+  background:
+    linear-gradient(90deg, var(--epic-candle) 0%, var(--color-accent-gold) 40%, transparent 100%);
+  box-shadow: 0 0 10px rgba(248, 207, 122, 0.6);
+}
+.content-section h2::before {
+  content: '❖';
+  position: absolute;
+  left: -22px;
+  top: 3px;
+  font-size: 10px;
+  color: var(--epic-candle);
+  -webkit-text-fill-color: var(--epic-candle);
+  opacity: 0.65;
+  filter: drop-shadow(0 0 4px rgba(248, 207, 122, 0.5));
+}
+
+/* --- 阶段工作区背景：替换掉裸露的全局底纹，使用克制的暗雾与细网格 --- */
+.phase-content {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 7, 0.16) 0, rgba(8, 8, 7, 0.74) 120px, rgba(8, 8, 7, 0.92) 100%),
+    radial-gradient(ellipse at 50% 0%, rgba(248, 207, 122, 0.08), transparent 34%),
+    radial-gradient(ellipse at 86% 36%, rgba(79, 120, 148, 0.07), transparent 38%);
+}
+
+.phase-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 240, 200, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 240, 200, 0.01) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.16;
+  mask-image: linear-gradient(180deg, transparent 0, #000 100px, #000 100%);
+  pointer-events: none;
+}
+
+.phase-content > * {
+  position: relative;
+  z-index: 1;
+}
