@@ -1,14 +1,12 @@
 {
   "jin": {
-    "entryPrompt": {
-      "narrative": "",
-      "npcDialogue": "",
-      "atmosphere": ""
-    },
-    "completionFeedback": {
-      "narrative": "",
-      "rewardStory": "",
-      "transitionText": ""
+    "systemDialogue": {
+      "opening": "",
+      "actNodes": [
+        "",
+        "",
+        ""
+      ]
     },
     "bosses": [
       {
@@ -16,78 +14,119 @@
         "identity": "",
         "motivation": "",
         "signatureLine": "",
-        "openingScene": "",
-        "storyConnection": ""
+        "act": 1,
+        "areaIndex": 3
+      },
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "act": 2,
+        "areaIndex": 6
+      },
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "act": 3,
+        "areaIndex": 9
       }
     ],
     "levelNodes": [
       {
         "name": "区域1",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域2",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域3",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域4",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域5",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域6",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域7",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域8",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域9",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       }
     ],
     "_meta": {}
   },
   "bing": {
-    "entryPrompt": {
-      "narrative": "",
-      "npcDialogue": "",
-      "atmosphere": ""
-    },
-    "completionFeedback": {
-      "narrative": "",
-      "rewardStory": "",
-      "transitionText": ""
+    "systemDialogue": {
+      "opening": "",
+      "actNodes": [
+        "",
+        "",
+        ""
+      ]
     },
     "bosses": [
       {
@@ -95,78 +134,119 @@
         "identity": "",
         "motivation": "",
         "signatureLine": "",
-        "openingScene": "",
-        "storyConnection": ""
+        "act": 1,
+        "areaIndex": 3
+      },
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "act": 2,
+        "areaIndex": 6
+      },
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "act": 3,
+        "areaIndex": 9
       }
     ],
     "levelNodes": [
       {
         "name": "区域1",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域2",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域3",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域4",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域5",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域6",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域7",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域8",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域9",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       }
     ],
     "_meta": {}
   },
   "huo": {
-    "entryPrompt": {
-      "narrative": "",
-      "npcDialogue": "",
-      "atmosphere": ""
-    },
-    "completionFeedback": {
-      "narrative": "",
-      "rewardStory": "",
-      "transitionText": ""
+    "systemDialogue": {
+      "opening": "",
+      "actNodes": [
+        "",
+        "",
+        ""
+      ]
     },
     "bosses": [
       {
@@ -174,64 +254,107 @@
         "identity": "",
         "motivation": "",
         "signatureLine": "",
-        "openingScene": "",
-        "storyConnection": ""
+        "act": 1,
+        "areaIndex": 3
+      },
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "act": 2,
+        "areaIndex": 6
+      },
+      {
+        "name": "",
+        "identity": "",
+        "motivation": "",
+        "signatureLine": "",
+        "act": 3,
+        "areaIndex": 9
       }
     ],
     "levelNodes": [
       {
         "name": "区域1",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域2",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域3",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 1,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域4",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域5",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域6",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 2,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域7",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域8",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       },
       {
         "name": "区域9",
-        "storyBeat": "",
-        "keyEncounter": "",
-        "narrativeReward": ""
+        "act": 3,
+        "storyPurpose": "",
+        "entryPrompt": "",
+        "completionFeedback": "",
+        "narrativeReward": "",
+        "gameplayHandoff": ""
       }
     ],
     "_meta": {}

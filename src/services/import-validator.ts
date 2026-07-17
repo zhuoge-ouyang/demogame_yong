@@ -312,21 +312,29 @@ function validateLanding(
     const lc = landing[lid] as Record<string, unknown>
     let hasSomeContent = false
 
-    // entryPrompt
-    const ep = isObject(lc.entryPrompt) ? lc.entryPrompt as Record<string, unknown> : null
-    if (ep) {
-      for (const f of ['narrative', 'npcDialogue', 'atmosphere']) {
-        const tmpW: ValidationWarning[] = []
-        if (checkStringField(ep, f, `landing.${lid}.entryPrompt`, errors, tmpW)) hasSomeContent = true
+    // systemDialogue
+    const dialogue = isObject(lc.systemDialogue) ? lc.systemDialogue as Record<string, unknown> : null
+    if (dialogue) {
+      const tmpW: ValidationWarning[] = []
+      if (checkStringField(dialogue, 'opening', `landing.${lid}.systemDialogue`, errors, tmpW)) hasSomeContent = true
+      if (Array.isArray(dialogue.actNodes)) {
+        for (let i = 0; i < dialogue.actNodes.length; i++) {
+          const value = dialogue.actNodes[i]
+          if (typeof value !== 'string') {
+            errors.push({ path: `landing.${lid}.systemDialogue.actNodes[${i}]`, message: '期望 string 类型', type: 'type_error' })
+          } else if (value.trim()) {
+            hasSomeContent = true
+          }
+        }
       }
     }
 
-    // completionFeedback
-    const cf = isObject(lc.completionFeedback) ? lc.completionFeedback as Record<string, unknown> : null
-    if (cf) {
-      for (const f of ['narrative', 'rewardStory', 'transitionText']) {
+    // 兼容识别旧版大陆级文本，实际载入后由 store 迁移
+    const legacyEntry = isObject(lc.entryPrompt) ? lc.entryPrompt as Record<string, unknown> : null
+    if (legacyEntry) {
+      for (const f of ['narrative', 'npcDialogue', 'atmosphere']) {
         const tmpW: ValidationWarning[] = []
-        if (checkStringField(cf, f, `landing.${lid}.completionFeedback`, errors, tmpW)) hasSomeContent = true
+        if (checkStringField(legacyEntry, f, `landing.${lid}.entryPrompt`, errors, tmpW)) hasSomeContent = true
       }
     }
 
@@ -349,7 +357,9 @@ function validateLanding(
         if (isObject(n)) {
           const no = n as Record<string, unknown>
           const tmpW: ValidationWarning[] = []
-          if (checkStringField(no, 'storyBeat', `landing.${lid}.levelNodes[${i}]`, errors, tmpW)) hasSomeContent = true
+          for (const field of ['storyPurpose', 'entryPrompt', 'completionFeedback', 'narrativeReward']) {
+            if (checkStringField(no, field, `landing.${lid}.levelNodes[${i}]`, errors, tmpW)) hasSomeContent = true
+          }
         }
       }
     }

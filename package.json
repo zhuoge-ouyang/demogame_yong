@@ -11,6 +11,7 @@
     "test:content": "node --test scripts/content-audit.test.mjs",
     "canon:audit": "node scripts/canon-audit.mjs",
     "content:audit": "node scripts/content-audit.mjs",
+    "migrate:phase3": "node scripts/migrate-phase3-schema.mjs",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },

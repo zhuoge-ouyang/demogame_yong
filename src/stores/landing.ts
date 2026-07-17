@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { reactive, computed, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
-import type { LandingsState, LandingContinentId, BossDesign, LevelNode } from '@/types/landing'
+import type { LandingsState, LandingContinentId, LandingAct } from '@/types/landing'
 import type { FieldMeta } from '@/types/content-meta'
 import { createDefaultFieldMeta } from '@/types/content-meta'
 import { defaultLandingsState } from '@/constants/defaults'
@@ -22,23 +22,29 @@ export const useLandingStore = defineStore('landing', () => {
     if (!c) return 0
     let filled = 0
     let total = 0
-    // entryPrompt
-    for (const v of Object.values(c.entryPrompt)) { total++; if ((v as string).trim()) filled++ }
-    // completionFeedback
-    for (const v of Object.values(c.completionFeedback)) { total++; if ((v as string).trim()) filled++ }
-    // bosses
+
+    const count = (value: string) => {
+      total++
+      if (value.trim()) filled++
+    }
+
+    count(c.systemDialogue.opening)
+    for (const dialogue of c.systemDialogue.actNodes) count(dialogue)
+
     for (const b of c.bosses) {
-      total += 3
-      if (b.name.trim()) filled++
-      if (b.motivation.trim()) filled++
-      if (b.signatureLine.trim()) filled++
+      count(b.name)
+      count(b.identity)
+      count(b.motivation)
+      count(b.signatureLine)
     }
-    // levelNodes
+
     for (const n of c.levelNodes) {
-      total += 2
-      if (n.storyBeat.trim()) filled++
-      if (n.keyEncounter.trim()) filled++
+      count(n.storyPurpose)
+      count(n.entryPrompt)
+      count(n.completionFeedback)
+      count(n.narrativeReward)
     }
+
     return total > 0 ? Math.round((filled / total) * 100) : 0
   }
 
@@ -47,16 +53,6 @@ export const useLandingStore = defineStore('landing', () => {
     const total = ids.reduce((sum, id) => sum + getContinentCompletion(id), 0)
     return Math.round(total / ids.length)
   })
-
-  function addBoss(continentId: LandingContinentId) {
-    state[continentId].bosses.push({
-      name: '', identity: '', motivation: '', signatureLine: '', openingScene: '', storyConnection: ''
-    })
-  }
-
-  function removeBoss(continentId: LandingContinentId, index: number) {
-    state[continentId].bosses.splice(index, 1)
-  }
 
   let _initialized = false
   // 同步中禁止自动保存（防止轮询数据触发保存循环）
@@ -110,42 +106,48 @@ export const useLandingStore = defineStore('landing', () => {
         if (!(src as any)._meta || typeof (src as any)._meta !== 'object') {
           (src as any)._meta = {}
         }
-        // entryPrompt 检查
-        if (!(src as any).entryPrompt || typeof (src as any).entryPrompt !== 'object') {
-          console.warn(`[landing.loadFromJSON] ${key}.entryPrompt 格式异常，使用默认值`)
-          ;(src as any).entryPrompt = defaults[key].entryPrompt
-        }
-        // completionFeedback 检查
-        if (!(src as any).completionFeedback || typeof (src as any).completionFeedback !== 'object') {
-          console.warn(`[landing.loadFromJSON] ${key}.completionFeedback 格式异常，使用默认值`)
-          ;(src as any).completionFeedback = defaults[key].completionFeedback
-        }
-        // bosses 检查
-        if (!Array.isArray((src as any).bosses)) {
-          console.warn(`[landing.loadFromJSON] ${key}.bosses 不是数组，使用默认值`)
-          ;(src as any).bosses = defaults[key].bosses
-        }
-        // levelNodes 检查
-        if (!Array.isArray((src as any).levelNodes)) {
-          console.warn(`[landing.loadFromJSON] ${key}.levelNodes 不是数组，使用默认值`)
-          ;(src as any).levelNodes = defaults[key].levelNodes
-        }
-        // ── 关键修复：原地（in-place）更新，不替换嵌套对象/数组引用 ──
-        // 原 Object.assign(state[key], defaults[key], src) 会替换 state[key].entryPrompt
-        // state[key].completionFeedback、state[key].bosses、state[key].levelNodes 等
-        // 若组件提取了这些嵌套引用（如 const c = state[id]），内部引用将失效，UI 不更新
-        // 修复：对各嵌套对象/数组做原地更新，其余基本类型字段直接覆盖
-        Object.assign(state[key].entryPrompt, defaults[key].entryPrompt, (src as any).entryPrompt || {})
-        Object.assign(state[key].completionFeedback, defaults[key].completionFeedback, (src as any).completionFeedback || {})
-        state[key].bosses.splice(0, state[key].bosses.length, ...((src as any).bosses || []))
-        state[key].levelNodes.splice(0, state[key].levelNodes.length, ...((src as any).levelNodes || []))
+        const raw = src as any
+        const legacyEntry = raw.entryPrompt || {}
+        const rawSystemDialogue = raw.systemDialogue || {}
+        const actNodes = Array.isArray(rawSystemDialogue.actNodes)
+          ? rawSystemDialogue.actNodes.slice(0, 3)
+          : ['', '', '']
+        while (actNodes.length < 3) actNodes.push('')
+
+        state[key].systemDialogue.opening = rawSystemDialogue.opening || legacyEntry.npcDialogue || ''
+        state[key].systemDialogue.actNodes.splice(0, 3, ...actNodes)
+
+        const sourceBosses = Array.isArray(raw.bosses) ? raw.bosses : []
+        const normalizedBosses = defaults[key].bosses.map((fallbackBoss, index) => {
+          const boss = sourceBosses[index] || {}
+          return {
+            name: boss.name || '',
+            identity: boss.identity || '',
+            motivation: boss.motivation || '',
+            signatureLine: boss.signatureLine || '',
+            act: (index + 1) as LandingAct,
+            areaIndex: ((index + 1) * 3) as 3 | 6 | 9
+          }
+        })
+        state[key].bosses.splice(0, state[key].bosses.length, ...normalizedBosses)
+
+        const sourceNodes = Array.isArray(raw.levelNodes) ? raw.levelNodes : []
+        const normalizedNodes = defaults[key].levelNodes.map((fallbackNode, index) => {
+          const node = sourceNodes[index] || {}
+          return {
+            name: node.name || fallbackNode.name,
+            act: (Math.floor(index / 3) + 1) as LandingAct,
+            storyPurpose: node.storyPurpose || node.storyBeat || '',
+            entryPrompt: node.entryPrompt || '',
+            completionFeedback: node.completionFeedback || '',
+            narrativeReward: node.narrativeReward || '',
+            gameplayHandoff: node.gameplayHandoff || node.keyEncounter || ''
+          }
+        })
+        state[key].levelNodes.splice(0, state[key].levelNodes.length, ...normalizedNodes)
+
         if (!(state[key] as any)._meta) (state[key] as any)._meta = {}
-        Object.assign((state[key] as any)._meta, (src as any)._meta || {})
-        // 其他基本类型字段直接覆盖
-        for (const field of Object.keys(src) as (keyof typeof src)[]) {
-          if (['entryPrompt', 'completionFeedback', 'bosses', 'levelNodes', '_meta'].includes(field as string)) continue
-          ;(state[key] as any)[field] = (src as any)[field]
-        }
+        Object.assign((state[key] as any)._meta, raw._meta || {})
       }
     } catch (e) {
       console.error('[landing.loadFromJSON] 加载失败:', e)
@@ -346,8 +348,6 @@ export const useLandingStore = defineStore('landing', () => {
   }
 
   function normalizeLandingFieldPath(fieldPath: string): string {
-    if (fieldPath.startsWith('entry.')) return fieldPath.replace(/^entry\./, 'entryPrompt.')
-    if (fieldPath.startsWith('completion.')) return fieldPath.replace(/^completion\./, 'completionFeedback.')
     return fieldPath
   }
 
@@ -386,20 +386,13 @@ export const useLandingStore = defineStore('landing', () => {
     // 解析字段路径
     const parts = fieldPath.split('.')
     
-    // 处理 entryPrompt 和 completionFeedback 字段
-    if (parts[0] === 'entryPrompt' || parts[0] === 'completionFeedback') {
-      const sectionLabels: Record<string, string> = {
-        entryPrompt: '进入提示',
-        completionFeedback: '通关反馈'
-      }
+    if (parts[0] === 'systemDialogue') {
       const fieldLabels: Record<string, string> = {
-        narrative: '叙事',
-        npcDialogue: 'NPC对话',
-        atmosphere: '氛围',
-        rewardStory: '奖励故事',
-        transitionText: '过渡文本'
+        opening: '开场对白',
+        actNodes: '阶段节点对白'
       }
-      return `${continentNames[continentId]}大陆-${sectionLabels[parts[0]]}-${fieldLabels[parts[1]] || parts[1]}`
+      const suffix = parts.length > 2 ? `${Number(parts[2]) + 1}` : ''
+      return `${continentNames[continentId]}大陆-${fieldLabels[parts[1]] || parts[1]}${suffix}`
     }
     
     // 处理 bosses 和 levelNodes 数组字段
@@ -414,11 +407,11 @@ export const useLandingStore = defineStore('landing', () => {
         identity: '身份',
         motivation: '动机',
         signatureLine: '标志性台词',
-        openingScene: '开场设计',
-        storyConnection: '故事关联',
-        storyBeat: '故事节拍',
-        keyEncounter: '关键遭遇',
-        narrativeReward: '叙事奖励'
+        storyPurpose: '叙事任务',
+        entryPrompt: '进入前提示',
+        completionFeedback: '结束后反馈',
+        narrativeReward: '叙事奖励',
+        gameplayHandoff: '玩法衔接备注'
       }
       return `${continentNames[continentId]}大陆-${sectionLabels[parts[0]]}${index}-${fieldLabels[parts[2]] || parts[2]}`
     }
@@ -433,23 +426,11 @@ export const useLandingStore = defineStore('landing', () => {
       const continentData = state[cid]
       if (!continentData) continue
       
-      // 快照 entryPrompt 字段
-      for (const key of Object.keys(continentData.entryPrompt)) {
-        const val = (continentData.entryPrompt as any)[key]
-        if (typeof val === 'string') {
-          if (!_fieldSnapshots[cid]) _fieldSnapshots[cid] = {}
-          _fieldSnapshots[cid][`entryPrompt.${key}`] = val
-        }
-      }
-      
-      // 快照 completionFeedback 字段
-      for (const key of Object.keys(continentData.completionFeedback)) {
-        const val = (continentData.completionFeedback as any)[key]
-        if (typeof val === 'string') {
-          if (!_fieldSnapshots[cid]) _fieldSnapshots[cid] = {}
-          _fieldSnapshots[cid][`completionFeedback.${key}`] = val
-        }
-      }
+      if (!_fieldSnapshots[cid]) _fieldSnapshots[cid] = {}
+      _fieldSnapshots[cid]['systemDialogue.opening'] = continentData.systemDialogue.opening
+      continentData.systemDialogue.actNodes.forEach((dialogue, index) => {
+        _fieldSnapshots[cid][`systemDialogue.actNodes.${index}`] = dialogue
+      })
       
       // 快照 bosses 数组
       continentData.bosses.forEach((boss, index) => {
@@ -478,8 +459,6 @@ export const useLandingStore = defineStore('landing', () => {
     state,
     overallCompletion,
     getContinentCompletion,
-    addBoss,
-    removeBoss,
     loadFromStorage,
     loadFromJSON,
     getExportData,

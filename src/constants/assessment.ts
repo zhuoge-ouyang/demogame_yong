@@ -110,14 +110,14 @@ export const ASSESSMENT_DIMENSIONS: DimensionConfig[] = [
   },
   {
     id: 'tower-defense-fit',
-    displayName: '与塔防游戏机制协调性',
+    displayName: '叙事落地可用性',
     weight: 13,
-    description: '评估玩法-设定契合、设计接口完整性',
+    description: '评估世界观能否转化为清晰、可交付的区域文案、角色动机与系统短句，不评价玩法设计',
     checkPoints: [
-      '封魂令能否自然转化为核心玩法机制',
-      '三界差异能否体现为不同塔类型或敌人',
-      '九大陆地形能否转化为独特关卡机制',
-      '世界观元素与塔防核心循环的融合度'
+      '宏观设定能否转化为具体区域事件与玩家可读文本',
+      '角色身份、动机和台词是否相互印证',
+      '区域进入提示与结束反馈是否简洁、明确且有推进作用',
+      '文案交付与外部玩法设计的职责边界是否清晰'
     ],
     gradeThresholds: {
       excellent: [12, 13],
@@ -174,7 +174,7 @@ export const GRADE_THRESHOLDS: { min: number; grade: OverallGrade; label: string
 export const VETO_CONDITIONS = [
   '封魂令与三界设定存在无法调和的逻辑冲突',
   '九大陆中超过3块仅为名称无实质描述',
-  '塔防核心玩法在世界观中完全无解释',
+  '核心设定无法转化为任何区域事件、角色动机或玩家可读文本',
   '神殿众神完全为统一派别，无任何派系分化或内部冲突描述'
 ]
 

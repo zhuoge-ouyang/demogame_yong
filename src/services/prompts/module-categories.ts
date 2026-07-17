@@ -55,9 +55,8 @@ const PHASE2_WORLDVIEW_ASPECTS = new Set([
 
 /** Phase3 剧情类模块（对应实际 moduleId 后缀） */
 const PHASE3_STORYLINE_MODULES = new Set([
-  'entry-prompt',
-  'completion-feedback',
-  'level-nodes'
+  'system-dialogue',
+  'region-copy'
 ])
 
 /** Phase3 人设类模块（对应实际 moduleId 后缀） */
@@ -173,7 +172,7 @@ export function getModuleCategory(moduleId: string): ModuleCategory {
   if (moduleId.startsWith('phase3-')) {
     const parts = moduleId.split('-')
     // 格式: phase3-{continentId}-{moduleKey}
-    // moduleKey: entry-prompt / completion-feedback / boss-design / level-nodes
+    // moduleKey: system-dialogue / boss-design / region-copy
     const moduleKey = parts.length >= 3 ? parts.slice(2).join('-') : ''
     if (PHASE3_STORYLINE_MODULES.has(moduleKey)) return 'storyline'
     if (PHASE3_CHARACTER_MODULES.has(moduleKey)) return 'character'

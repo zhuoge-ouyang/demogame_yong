@@ -219,32 +219,27 @@ function collectPhase3Data(landingState: LandingsState): string {
     const cnName = continentNames[id] || id
     parts.push(`\n【${cnName}大陆落地内容】`)
 
-    parts.push('\n进入提示：')
-    parts.push(`- 叙事：${continent.entryPrompt.narrative || '（未填写）'}`)
-    parts.push(`- NPC对话：${continent.entryPrompt.npcDialogue || '（未填写）'}`)
-    parts.push(`- 氛围：${continent.entryPrompt.atmosphere || '（未填写）'}`)
-
-    parts.push('\n通关反馈：')
-    parts.push(`- 叙事：${continent.completionFeedback.narrative || '（未填写）'}`)
-    parts.push(`- 奖励故事：${continent.completionFeedback.rewardStory || '（未填写）'}`)
-    parts.push(`- 过渡文本：${continent.completionFeedback.transitionText || '（未填写）'}`)
+    parts.push('\n少量系统对白：')
+    parts.push(`- 开场：${continent.systemDialogue.opening || '（未填写）'}`)
+    continent.systemDialogue.actNodes.forEach((dialogue, index) => {
+      parts.push(`- 第${index + 1}幕节点：${dialogue || '（未填写）'}`)
+    })
 
     parts.push('\nBoss设计：')
     continent.bosses.forEach((boss, i) => {
-      parts.push(`\nBoss ${i + 1}：${boss.name || '（未命名）'}`)
+      parts.push(`\nBoss ${i + 1}（第${boss.areaIndex}区域）：${boss.name || '（未命名）'}`)
       parts.push(`- 身份：${boss.identity || '（未填写）'}`)
       parts.push(`- 动机：${boss.motivation || '（未填写）'}`)
-      parts.push(`- 标志性台词：${boss.signatureLine || '（未填写）'}`)
-      parts.push(`- 开场设计：${boss.openingScene || '（未填写）'}`)
-      parts.push(`- 故事关联：${boss.storyConnection || '（未填写）'}`)
+      parts.push(`- 一句话台词：${boss.signatureLine || '（未填写）'}`)
     })
 
-    parts.push('\n关卡节点：')
+    parts.push('\n区域文案：')
     continent.levelNodes.forEach((node, i) => {
-      parts.push(`\n节点 ${i + 1}：${node.name || '（未命名）'}`)
-      parts.push(`- 故事节拍：${node.storyBeat || '（未填写）'}`)
-      parts.push(`- 关键遭遇：${node.keyEncounter || '（未填写）'}`)
-      parts.push(`- 叙事奖励：${node.narrativeReward || '（未填写）'}`)
+      parts.push(`\n第${node.act}幕·区域 ${i + 1}：${node.name || '（未命名）'}`)
+      parts.push(`- 叙事任务：${node.storyPurpose || '（未填写）'}`)
+      parts.push(`- 进入前提示：${node.entryPrompt || '（未填写）'}`)
+      parts.push(`- 结束后反馈：${node.completionFeedback || '（未填写）'}`)
+      parts.push(`- 叙事线索：${node.narrativeReward || '（未填写）'}`)
     })
   })
 

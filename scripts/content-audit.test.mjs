@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import { test } from 'node:test'
 
-import { auditPhase2Continents } from './content-audit.mjs'
+import { auditPhase2Continents, auditPhase3Landing } from './content-audit.mjs'
 
 const focusedAspects = JSON.parse(fs.readFileSync(new URL('../data/continents.json', import.meta.url), 'utf8')).jin.aspects
 
@@ -132,4 +132,26 @@ test('active phase2 continents use expanded plot and three-step area pacing', ()
       assert.match(aspects.playerProgressionChanges, /区域7-9|7-9/, `${sourceName} ${continentId} progression should describe areas 7-9`)
     }
   }
+})
+
+test('auditPhase3Landing ignores untouched phase3 scaffolding', () => {
+  const landing = JSON.parse(fs.readFileSync(new URL('../data/landing.json', import.meta.url), 'utf8'))
+
+  const report = auditPhase3Landing(landing)
+
+  assert.equal(report.startedCount, 0)
+  assert.equal(report.errorCount, 0)
+  assert.equal(report.warningCount, 0)
+})
+
+test('auditPhase3Landing enforces three-act boss positions and short-copy length', () => {
+  const landing = JSON.parse(fs.readFileSync(new URL('../data/landing.json', import.meta.url), 'utf8'))
+  landing.jin.systemDialogue.opening = '太短'
+  landing.jin.bosses[0].areaIndex = 4
+
+  const report = auditPhase3Landing({ jin: landing.jin })
+
+  assert.equal(report.startedCount, 1)
+  assert.ok(report.issues.some(issue => issue.ruleId === 'phase3-boss-position'))
+  assert.ok(report.issues.some(issue => issue.ruleId === 'phase3-short-copy-length'))
 })

@@ -35,7 +35,7 @@ const sidebarItems = computed(() =>
     const meta = CONTINENT_MAP[id]
     return {
       key: id,
-      label: `${meta.icon} ${meta.name}`,
+      label: `${meta.name} · ${meta.element}`,
       route: `/phase3/${id}`,
       completed: landingStore.getContinentCompletion(id as LandingContinentId) === 100
     }
@@ -49,12 +49,12 @@ const sidebarItems = computed(() =>
     <main class="phase-content">
       <EpicBanner
         kicker="CHAPTER III · LANDING EPIC"
-        title="前三大陆落地剧情"
-        subtitle="火焰、冰霜与金辉的画卷 — 三位英雄与奇遇"
+        title="前三大陆落地文案"
+        subtitle="金、冰、火依序推进 · 三幕九区 · 区域短句与Boss叙事"
         image="/images/banners/phase3.png"
         seal-char="III"
         accent="blood"
-        height="normal"
+        height="short"
       />
       <!-- 顶部操作栏 -->
       <div class="phase-header-actions">
@@ -86,11 +86,7 @@ const sidebarItems = computed(() =>
           </div>
         </NAlert>
       </div>
-      <div class="phase3-locked">
-        <div class="lock-icon">🔒</div>
-        <div class="lock-title">阶段3内容暂不开放</div>
-        <div class="lock-desc">前三大陆落地内容将在后续版本逐步开放</div>
-      </div>
+      <router-view />
     </main>
   </div>
 </template>
@@ -111,33 +107,6 @@ const sidebarItems = computed(() =>
   flex-direction: column;
 }
 
-.phase3-locked {
-  text-align: center;
-  padding: 48px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin: auto;
-}
-
-.lock-icon {
-  font-size: 56px;
-  opacity: 0.5;
-}
-
-.lock-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  font-family: var(--font-display);
-}
-
-.lock-desc {
-  font-size: 14px;
-  color: var(--color-text-tertiary);
-}
-
 .assessment-feedback-banner {
   padding: 16px 24px 0;
   margin-bottom: 16px;
@@ -156,5 +125,66 @@ const sidebarItems = computed(() =>
   display: flex;
   justify-content: flex-end;
   padding: 12px 24px 0;
+}
+
+@media (max-width: 860px) {
+  .phase-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - var(--header-height) - var(--tab-height));
+    overflow: visible;
+  }
+
+  .phase-content {
+    overflow: visible;
+  }
+
+  :deep(.app-sidebar) {
+    width: 100%;
+    padding: 8px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(236, 204, 142, 0.13);
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-sizing: border-box;
+  }
+
+  :deep(.sidebar-nav) {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  :deep(.sidebar-nav::before) {
+    display: none;
+  }
+
+  :deep(.sidebar-item) {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .phase-header-actions {
+    padding: 10px 16px 0;
+  }
+}
+
+@media (max-width: 560px) {
+  :deep(.sidebar-item) {
+    justify-content: center;
+    gap: 4px;
+    padding-inline: 6px;
+  }
+
+  :deep(.item-numeral),
+  :deep(.item-indicator) {
+    display: none;
+  }
+
+  :deep(.item-label) {
+    flex: 0 1 auto;
+    text-align: center;
+  }
 }
 </style>

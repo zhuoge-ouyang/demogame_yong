@@ -270,11 +270,11 @@ test('content modules expose prompt-reference sync entry points', () => {
     { path: 'src/components/phase1/WorldTreeSystem.vue', api: 'syncModuleReferenceBatch', target: 'worldTree' },
     { path: 'src/components/phase2/ContinentDetail.vue', api: 'syncModuleReferenceBatch', target: 'phase2Continents' },
     { path: 'src/components/phase2/OpeningBattle.vue', api: 'syncModuleReferenceBatch', target: 'openingBattle' },
-    { path: 'src/components/phase3/LandingDetail.vue', api: 'syncModuleReferenceBatch', target: 'phase3Landing' }
+    { path: 'src/components/phase3/LandingWorkbench.vue', api: 'syncModuleReferenceBatch', target: 'phase3Landing', buttonPattern: /同步参考稿/ }
   ]
   for (const entry of componentSyncEntries) {
     const source = readProjectFile(entry.path)
-    assert.match(source, /⬆同步/, `${entry.path} should expose a visible sync button`)
+    assert.match(source, entry.buttonPattern || /⬆同步/, `${entry.path} should expose a visible sync button`)
     assert.match(source, new RegExp(entry.api), `${entry.path} should call ${entry.api}`)
     assert.match(source, new RegExp(entry.target), `${entry.path} should sync to ${entry.target}`)
   }

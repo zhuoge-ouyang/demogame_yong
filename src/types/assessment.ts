@@ -24,7 +24,7 @@ export type AssessmentDimensionId =
   | 'completeness'           // 设定完整性与系统性
   | 'innovation'             // 创新性与独特识别度
   | 'narrative-potential'    // 叙事潜力与故事张力
-  | 'tower-defense-fit'      // 与塔防游戏机制协调性
+  | 'tower-defense-fit'      // 叙事落地可用性（保留ID以兼容历史报告）
   | 'deity-factions'         // 神系内部派系分化与冲突设计
 
 // 评分等级

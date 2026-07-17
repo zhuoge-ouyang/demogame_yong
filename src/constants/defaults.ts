@@ -18,14 +18,23 @@ function emptyAspects(): ContinentAspects {
 
 function emptyLanding(): LandingContinent {
   return {
-    entryPrompt: { narrative: '', npcDialogue: '', atmosphere: '' },
-    completionFeedback: { narrative: '', rewardStory: '', transitionText: '' },
-    bosses: [{ name: '', identity: '', motivation: '', signatureLine: '', openingScene: '', storyConnection: '' }],
+    systemDialogue: { opening: '', actNodes: ['', '', ''] },
+    bosses: ([1, 2, 3] as const).map((act) => ({
+      name: '',
+      identity: '',
+      motivation: '',
+      signatureLine: '',
+      act,
+      areaIndex: (act * 3) as 3 | 6 | 9
+    })),
     levelNodes: Array.from({ length: 9 }, (_, i) => ({
       name: `区域${i + 1}`,
-      storyBeat: '',
-      keyEncounter: '',
-      narrativeReward: ''
+      act: (Math.floor(i / 3) + 1) as 1 | 2 | 3,
+      storyPurpose: '',
+      entryPrompt: '',
+      completionFeedback: '',
+      narrativeReward: '',
+      gameplayHandoff: ''
     })),
     _meta: {}
   }

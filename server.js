@@ -984,7 +984,7 @@ const VALID_FIELDS = ['past', 'present', 'future']
 const PHASE2_CONTINENT_IDS = ['jin', 'mu', 'bing', 'huo', 'tu', 'feng', 'lei', 'guang', 'an']
 const PHASE2_SYNC_FIELDS = ['mainPlot', 'coreConflict', 'playerGoal']
 const PHASE3_CONTINENT_IDS = ['jin', 'bing', 'huo']
-const PHASE3_SYNC_SECTIONS = ['entryPrompt', 'completionFeedback', 'bosses', 'levelNodes']
+const PHASE3_SYNC_SECTIONS = ['systemDialogue', 'bosses', 'levelNodes']
 
 // 模块配置表：定义 realm 之外的同步目标
 const MODULE_CONFIGS = {

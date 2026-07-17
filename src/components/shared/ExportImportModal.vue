@@ -180,46 +180,42 @@ function buildTxtContent(): string {
   }
 
   add(SEP)
-  add('▓▓ 第三阶段：前三大陆落地实现')
+  add('▓▓ 第三阶段：前三大陆落地文案')
   add(SEP)
   add()
   const landingIds: LandingContinentId[] = ['jin', 'bing', 'huo']
   for (const id of landingIds) {
     const d = landing[id]
     const meta = CONTINENT_MAP[id]
-    add(`${meta.icon} ${meta.name} · 落地实现`)
+    add(`${meta.icon} ${meta.name} · 落地文案`)
     add(DASH)
-    add('◆ 进入提示')
-    addField('进入叙事', d.entryPrompt.narrative, '  ')
-    addField('NPC对话', d.entryPrompt.npcDialogue, '  ')
-    addField('氛围描述', d.entryPrompt.atmosphere, '  ')
-    add('◆ 通关反馈')
-    addField('通关叙事', d.completionFeedback.narrative, '  ')
-    addField('奖励故事', d.completionFeedback.rewardStory, '  ')
-    addField('过渡文本', d.completionFeedback.transitionText, '  ')
+    add('◆ 少量系统对白')
+    addField('开场', d.systemDialogue.opening, '  ')
+    d.systemDialogue.actNodes.forEach((dialogue, index) => {
+      addField(`第${index + 1}幕节点`, dialogue, '  ')
+    })
     const hasBoss = d.bosses.some(b => b.name || b.identity)
     if (hasBoss) {
       add('◆ Boss设计')
       d.bosses.forEach((boss, i) => {
         if (!boss.name && !boss.identity) return
-        add(`  ■ Boss #${i + 1}：${boss.name || '（未命名）'}`)
-        addField('身份背景', boss.identity, '    ')
+        add(`  ■ Boss #${i + 1}（第${boss.areaIndex}区域）：${boss.name || '（未命名）'}`)
+        addField('身份', boss.identity, '    ')
         addField('动机', boss.motivation, '    ')
-        if (boss.signatureLine) add(`    标志性台词：「${boss.signatureLine}」`)
-        addField('开场设计', boss.openingScene, '    ')
-        addField('与核心冲突的关系', boss.storyConnection, '    ')
+        if (boss.signatureLine) add(`    一句话台词：「${boss.signatureLine}」`)
       })
       add()
     }
-    const hasLevels = d.levelNodes.some(n => n.storyBeat || n.keyEncounter)
+    const hasLevels = d.levelNodes.some(n => n.storyPurpose || n.entryPrompt || n.completionFeedback || n.narrativeReward)
     if (hasLevels) {
-      add('◆ 关卡节点（9个区域）')
+      add('◆ 区域文案（3幕9区域）')
       d.levelNodes.forEach((node, i) => {
-        if (!node.storyBeat && !node.keyEncounter && !node.narrativeReward) return
-        add(`  ■ ${i + 1}. ${node.name || `区域${i + 1}`}`)
-        addField('故事节拍', node.storyBeat, '    ')
-        addField('关键遭遇', node.keyEncounter, '    ')
-        addField('叙事奖励', node.narrativeReward, '    ')
+        if (!node.storyPurpose && !node.entryPrompt && !node.completionFeedback && !node.narrativeReward) return
+        add(`  ■ 第${node.act}幕 · ${i + 1}. ${node.name || `区域${i + 1}`}`)
+        addField('叙事任务', node.storyPurpose, '    ')
+        addField('进入前提示', node.entryPrompt, '    ')
+        addField('结束后反馈', node.completionFeedback, '    ')
+        addField('叙事线索', node.narrativeReward, '    ')
       })
       add()
     }
@@ -290,7 +286,7 @@ function handleExportSplit() {
     downloadBlob(new Blob([JSON.stringify(continentsPayload, null, 2)], { type: 'application/json' }), `世界观_大陆叙事_${ds}.json`)
   }, 300)
   setTimeout(() => {
-    downloadBlob(new Blob([JSON.stringify(landingPayload, null, 2)], { type: 'application/json' }), `世界观_落地实现_${ds}.json`)
+    downloadBlob(new Blob([JSON.stringify(landingPayload, null, 2)], { type: 'application/json' }), `世界观_落地文案_${ds}.json`)
   }, 600)
 }
 
@@ -627,7 +623,7 @@ function formatSize(bytes: number): string {
       <!-- ── 多文件合并导入 ── -->
       <template v-if="importMode === 'multi' && !importPreview">
         <p style="margin-bottom:12px;color:var(--color-text-secondary);font-size:13px;">
-          分别选择世界框架、大陆叙事、落地实现文件进行合并导入（至少选择一个）。
+          分别选择世界框架、大陆叙事、落地文案文件进行合并导入（至少选择一个）。
         </p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
           <div style="display:flex;align-items:center;gap:8px;">
@@ -639,7 +635,7 @@ function formatSize(bytes: number): string {
             <span style="font-size:12px;color:var(--color-text-secondary);">{{ multiContinentsFileName || '未选择' }}</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
-            <NButton size="small" @click="pickMultiFile('landing')" style="min-width:120px;">落地实现文件</NButton>
+            <NButton size="small" @click="pickMultiFile('landing')" style="min-width:120px;">落地文案文件</NButton>
             <span style="font-size:12px;color:var(--color-text-secondary);">{{ multiLandingFileName || '未选择' }}</span>
           </div>
         </div>

@@ -38,7 +38,7 @@ export const PHASES: PhaseConfig[] = [
   {
     id: 3,
     label: '阶段三',
-    description: '前三大陆落地实现',
+    description: '前三大陆落地文案',
     route: '/phase3',
     modules: []  // 动态生成
   }

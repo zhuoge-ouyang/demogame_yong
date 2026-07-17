@@ -634,46 +634,36 @@ function collectPhase3ModuleContext(continentId: LandingContinentId, moduleKey: 
   let content = ''
   let fieldPaths: string[] = []
 
-  if (moduleKey === 'entry-prompt') {
-    label = `${CONTINENT_MAP[continentId]?.name || continentId} · 进入提示`
+  if (moduleKey === 'system-dialogue') {
+    label = `${CONTINENT_MAP[continentId]?.name || continentId} · 系统对白`
     content = [
-      `【进入叙事】\n${data.entryPrompt.narrative || ''}`,
-      `【NPC对话】\n${data.entryPrompt.npcDialogue || ''}`,
-      `【氛围描述】\n${data.entryPrompt.atmosphere || ''}`
+      `【开场对白】\n${data.systemDialogue.opening || ''}`,
+      ...data.systemDialogue.actNodes.map((dialogue, index) => `【第${index + 1}幕节点】\n${dialogue || ''}`)
     ].filter(block => block.replace(/【.*?】/g, '').trim()).join('\n\n')
-    fieldPaths = ['entry.narrative', 'entry.npcDialogue', 'entry.atmosphere']
-  } else if (moduleKey === 'completion-feedback') {
-    label = `${CONTINENT_MAP[continentId]?.name || continentId} · 通关反馈`
-    content = [
-      `【通关叙事】\n${data.completionFeedback.narrative || ''}`,
-      `【奖励故事】\n${data.completionFeedback.rewardStory || ''}`,
-      `【过渡文本】\n${data.completionFeedback.transitionText || ''}`
-    ].filter(block => block.replace(/【.*?】/g, '').trim()).join('\n\n')
-    fieldPaths = ['completion.narrative', 'completion.rewardStory', 'completion.transitionText']
+    fieldPaths = ['systemDialogue.opening', ...data.systemDialogue.actNodes.map((_, index) => `systemDialogue.actNodes.${index}`)]
   } else if (moduleKey === 'boss-design') {
     label = `${CONTINENT_MAP[continentId]?.name || continentId} · Boss设计`
     content = data.bosses
-      .filter(boss => Object.values(boss).some(value => value.trim()))
+      .filter(boss => [boss.name, boss.identity, boss.motivation, boss.signatureLine].some(value => value.trim()))
       .map((boss, index) => [
-        `【Boss${index + 1}】`,
+        `【Boss${index + 1}·第${boss.areaIndex}区域】`,
         `名字：${boss.name || ''}`,
-        `身份背景：${boss.identity || ''}`,
+        `身份：${boss.identity || ''}`,
         `动机：${boss.motivation || ''}`,
-        `标志性台词：${boss.signatureLine || ''}`,
-        `开场设计：${boss.openingScene || ''}`,
-        `核心冲突关系：${boss.storyConnection || ''}`
+        `一句话台词：${boss.signatureLine || ''}`
       ].join('\n'))
       .join('\n\n')
-  } else if (moduleKey === 'level-nodes') {
-    label = `${CONTINENT_MAP[continentId]?.name || continentId} · 关卡节点`
+  } else if (moduleKey === 'region-copy') {
+    label = `${CONTINENT_MAP[continentId]?.name || continentId} · 九区域文案`
     content = data.levelNodes
-      .filter(node => Object.values(node).some(value => value.trim()))
+      .filter(node => [node.storyPurpose, node.entryPrompt, node.completionFeedback, node.narrativeReward].some(value => value.trim()))
       .map((node, index) => [
         `【区域${index + 1}】`,
         `名称：${node.name || ''}`,
-        `故事节拍：${node.storyBeat || ''}`,
-        `关键遭遇：${node.keyEncounter || ''}`,
-        `叙事奖励：${node.narrativeReward || ''}`
+        `叙事任务：${node.storyPurpose || ''}`,
+        `进入前提示：${node.entryPrompt || ''}`,
+        `结束后反馈：${node.completionFeedback || ''}`,
+        `叙事线索：${node.narrativeReward || ''}`
       ].join('\n'))
       .join('\n\n')
   }

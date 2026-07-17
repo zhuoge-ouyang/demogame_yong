@@ -4,16 +4,13 @@
  * 用途: 作为 phase3 动态落地子模块的参考素材注入 prompt
  */
 export const PHASE3_LANDING_REFERENCES = {
-  jin_entryPrompt: ``,
-  jin_completionFeedback: ``,
+  jin_systemDialogue: ``,
   jin_bosses: ``,
   jin_levelNodes: ``,
-  bing_entryPrompt: ``,
-  bing_completionFeedback: ``,
+  bing_systemDialogue: ``,
   bing_bosses: ``,
   bing_levelNodes: ``,
-  huo_entryPrompt: ``,
-  huo_completionFeedback: ``,
+  huo_systemDialogue: ``,
   huo_bosses: ``,
   huo_levelNodes: ``,
 }

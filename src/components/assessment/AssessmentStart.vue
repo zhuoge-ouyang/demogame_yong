@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { NCard, NRadioGroup, NRadioButton, NButton, NTag, NSpace, NAlert, NProgress, useMessage } from 'naive-ui'
+import { NCard, NRadioGroup, NRadioButton, NButton, NTag, NSpace, NAlert, NProgress } from 'naive-ui'
 import { useAssessmentStore } from '@/stores/assessment'
 import { useWorldStore } from '@/stores/world'
 import { useContinentsStore } from '@/stores/continents'
@@ -13,7 +13,6 @@ import EvalConfigModal from '@/components/shared/EvalConfigModal.vue'
 import { useLocalAccess } from '@/composables/useLocalAccess'
 
 const router = useRouter()
-const message = useMessage()
 const { isLocalUser } = useLocalAccess()
 const assessmentStore = useAssessmentStore()
 const worldStore = useWorldStore()
@@ -23,10 +22,6 @@ const landingStore = useLandingStore()
 const selectedPhase = ref<1 | 2 | 3>(1)
 
 function handlePhaseChange(val: 1 | 2 | 3) {
-  if (val === 2 || val === 3) {
-    message.warning(`Phase ${val} 内容暂不开放`, { duration: 2500 })
-    return
-  }
   selectedPhase.value = val
 }
 const showConfigModal = ref(false)

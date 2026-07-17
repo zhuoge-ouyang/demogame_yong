@@ -3,6 +3,7 @@ import { useAssessmentStore } from '@/stores/assessment'
 import { phase1Prompts } from './prompts/phase1-prompts'
 import { getPhase2Prompt } from './prompts/phase2-prompts'
 import { getPhase3Prompt } from './prompts/phase3-prompts'
+import type { Phase3Module } from './prompts/phase3-prompts'
 import type { ContinentId, ContinentAspects } from '@/types/continent'
 import type { LandingContinentId } from '@/types/landing'
 import { CONTINENTS, LANDING_CONTINENT_IDS } from '@/constants/continents'
@@ -38,9 +39,7 @@ export function getCurrentPhasePrompts(phase: 1 | 2 | 3): Record<string, string>
     }
   } else if (phase === 3) {
     // Phase 3: landing-{id}-{module} (前三大陆各模块)
-    const moduleKeys: Array<'entry-prompt' | 'completion-feedback' | 'boss-design' | 'level-nodes'> = [
-      'entry-prompt', 'completion-feedback', 'boss-design', 'level-nodes'
-    ]
+    const moduleKeys: Phase3Module[] = ['system-dialogue', 'boss-design', 'region-copy']
     for (const continentId of LANDING_CONTINENT_IDS) {
       for (const moduleKey of moduleKeys) {
         const templateId = `phase3-${continentId}-${moduleKey}`

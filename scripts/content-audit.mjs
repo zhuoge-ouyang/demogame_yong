@@ -160,6 +160,73 @@ export function auditPhase2Continents(state) {
   }
 }
 
+export function auditPhase3Landing(state) {
+  const issues = []
+  const continentEntries = Object.entries(state || {})
+  let startedCount = 0
+
+  for (const [continentId, continent] of continentEntries) {
+    const contentValues = [
+      continent?.systemDialogue?.opening,
+      ...(continent?.systemDialogue?.actNodes || []),
+      ...(continent?.bosses || []).flatMap(boss => [boss.name, boss.identity, boss.motivation, boss.signatureLine]),
+      ...(continent?.levelNodes || []).flatMap(node => [node.storyPurpose, node.entryPrompt, node.completionFeedback, node.narrativeReward])
+    ].map(normalizeText)
+    if (!contentValues.some(Boolean)) continue
+    startedCount++
+
+    if (!Array.isArray(continent?.bosses) || continent.bosses.length !== 3) {
+      issues.push(makePhase3Issue('error', 'phase3-boss-count', continentId, 'Boss设计', '每个大陆必须固定配置3名关键Boss。'))
+    }
+    if (!Array.isArray(continent?.levelNodes) || continent.levelNodes.length !== 9) {
+      issues.push(makePhase3Issue('error', 'phase3-region-count', continentId, '区域文案', '每个大陆必须固定配置9个区域。'))
+    }
+
+    const dialogueEntries = [
+      ['开场对白', continent?.systemDialogue?.opening],
+      ...(continent?.systemDialogue?.actNodes || []).map((value, index) => [`第${index + 1}幕节点`, value])
+    ]
+    for (const [label, value] of dialogueEntries) {
+      checkPhase3ShortCopy(issues, continentId, label, value)
+    }
+
+    ;(continent?.bosses || []).forEach((boss, index) => {
+      const expectedArea = (index + 1) * 3
+      if (boss.areaIndex !== expectedArea) {
+        issues.push(makePhase3Issue('error', 'phase3-boss-position', continentId, `Boss${index + 1}`, `Boss必须位于第${expectedArea}区域。`))
+      }
+      for (const [field, label] of [['name', '名字'], ['identity', '身份'], ['motivation', '动机']]) {
+        if (!normalizeText(boss[field])) {
+          issues.push(makePhase3Issue('warning', 'phase3-boss-field-required', continentId, `Boss${index + 1}·${label}`, '字段尚未填写。'))
+        }
+      }
+      checkPhase3ShortCopy(issues, continentId, `Boss${index + 1}·一句话台词`, boss.signatureLine)
+    })
+
+    ;(continent?.levelNodes || []).forEach((node, index) => {
+      const expectedAct = Math.floor(index / 3) + 1
+      if (node.act !== expectedAct) {
+        issues.push(makePhase3Issue('error', 'phase3-act-order', continentId, `区域${index + 1}`, `该区域必须归入第${expectedAct}幕。`))
+      }
+      for (const [field, label] of [['storyPurpose', '叙事任务'], ['narrativeReward', '叙事线索']]) {
+        if (!normalizeText(node[field])) {
+          issues.push(makePhase3Issue('warning', 'phase3-region-field-required', continentId, `区域${index + 1}·${label}`, '字段尚未填写。'))
+        }
+      }
+      checkPhase3ShortCopy(issues, continentId, `区域${index + 1}·进入前提示`, node.entryPrompt)
+      checkPhase3ShortCopy(issues, continentId, `区域${index + 1}·结束后反馈`, node.completionFeedback)
+    })
+  }
+
+  return {
+    continentCount: continentEntries.length,
+    startedCount,
+    errorCount: issues.filter(issue => issue.severity === 'error').length,
+    warningCount: issues.filter(issue => issue.severity === 'warning').length,
+    issues
+  }
+}
+
 export function formatContentIssue(issue) {
   const prefix = issue.severity === 'error' ? 'ERROR' : 'WARN'
   return `[${prefix}] ${issue.continentName}(${issue.continentId}) / ${issue.aspectLabel}: ${issue.message}`
@@ -169,6 +236,30 @@ function makeIssue(issue) {
   return {
     aspectLabel: PHASE2_ASPECT_LABELS[issue.aspectKey] || issue.aspectKey,
     ...issue
+  }
+}
+
+function makePhase3Issue(severity, ruleId, continentId, aspectLabel, message) {
+  return {
+    severity,
+    ruleId,
+    continentId,
+    continentName: continentId === 'jin' ? '金耀大陆' : continentId === 'bing' ? '霜寒大陆' : continentId === 'huo' ? '炎狱大陆' : continentId,
+    aspectKey: aspectLabel,
+    aspectLabel,
+    message
+  }
+}
+
+function checkPhase3ShortCopy(issues, continentId, label, value) {
+  const normalized = normalizeText(value)
+  if (!normalized) {
+    issues.push(makePhase3Issue('warning', 'phase3-short-copy-required', continentId, label, '短句尚未填写。'))
+    return
+  }
+  const length = [...normalized].length
+  if (length < 20 || length > 40) {
+    issues.push(makePhase3Issue('warning', 'phase3-short-copy-length', continentId, label, `当前为${length}字，甲方要求保持在20-40字。`))
   }
 }
 
@@ -186,17 +277,26 @@ function runCli() {
   const filePath = path.join(ROOT_DIR, 'data', 'continents.json')
   const state = JSON.parse(fs.readFileSync(filePath, 'utf8'))
   const report = auditPhase2Continents(state)
+  const landingPath = path.join(ROOT_DIR, 'data', 'landing.json')
+  const landingState = JSON.parse(fs.readFileSync(landingPath, 'utf8'))
+  const phase3Report = auditPhase3Landing(landingState)
 
   if (json) {
-    console.log(JSON.stringify(report, null, 2))
+    console.log(JSON.stringify({ phase2: report, phase3: phase3Report }, null, 2))
   } else {
     console.log(`Phase2 content audit: ${report.continentCount} continents, ${report.aspectCount} aspects, ${report.errorCount} errors, ${report.warningCount} warnings.`)
     for (const issue of report.issues) {
       console.log(`- ${formatContentIssue(issue)}`)
     }
+    console.log(`Phase3 content audit: ${phase3Report.startedCount}/${phase3Report.continentCount} continents started, ${phase3Report.errorCount} errors, ${phase3Report.warningCount} warnings.`)
+    for (const issue of phase3Report.issues) {
+      console.log(`- ${formatContentIssue(issue)}`)
+    }
   }
 
-  if (report.errorCount > 0 || (strict && report.warningCount > 0)) {
+  const errorCount = report.errorCount + phase3Report.errorCount
+  const warningCount = report.warningCount + phase3Report.warningCount
+  if (errorCount > 0 || (strict && warningCount > 0)) {
     process.exitCode = 1
   }
 }
