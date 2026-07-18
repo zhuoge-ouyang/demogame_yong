@@ -135,13 +135,57 @@ test('active phase2 continents use expanded plot and three-step area pacing', ()
 })
 
 test('auditPhase3Landing ignores untouched phase3 scaffolding', () => {
-  const landing = JSON.parse(fs.readFileSync(new URL('../data/landing.json', import.meta.url), 'utf8'))
+  const emptyBosses = [1, 2, 3].map(act => ({
+    name: '',
+    identity: '',
+    motivation: '',
+    signatureLine: '',
+    act,
+    areaIndex: act * 3
+  }))
+  const emptyNodes = Array.from({ length: 9 }, (_, index) => ({
+    name: `区域${index + 1}`,
+    act: Math.floor(index / 3) + 1,
+    storyPurpose: '',
+    entryPrompt: '',
+    completionFeedback: '',
+    narrativeReward: '',
+    gameplayHandoff: ''
+  }))
+  const landing = {
+    jin: {
+      systemDialogue: { opening: '', actNodes: ['', '', ''] },
+      bosses: emptyBosses,
+      levelNodes: emptyNodes,
+      _meta: {}
+    }
+  }
 
   const report = auditPhase3Landing(landing)
 
   assert.equal(report.startedCount, 0)
   assert.equal(report.errorCount, 0)
   assert.equal(report.warningCount, 0)
+})
+
+test('active phase3 content is complete in standard and avatar data', () => {
+  const files = ['landing.json', 'landing-avatar.json']
+
+  for (const fileName of files) {
+    const landing = JSON.parse(fs.readFileSync(new URL(`../data/${fileName}`, import.meta.url), 'utf8'))
+    const report = auditPhase3Landing(landing)
+
+    assert.equal(report.startedCount, 3, `${fileName} should contain all three phase3 continents`)
+    assert.equal(report.errorCount, 0, `${fileName} should have no phase3 structural errors`)
+    assert.equal(report.warningCount, 0, `${fileName} should have no incomplete or invalid short copy`)
+  }
+})
+
+test('phase3 workbench does not display gameplay handoff fields', () => {
+  const workbench = fs.readFileSync(new URL('../src/components/phase3/LandingWorkbench.vue', import.meta.url), 'utf8')
+  const template = workbench.match(/<template>[\s\S]*?<\/template>/)?.[0] || ''
+
+  assert.doesNotMatch(template, /gameplayHandoff|玩法衔接|玩法链接/)
 })
 
 test('auditPhase3Landing enforces three-act boss positions and short-copy length', () => {

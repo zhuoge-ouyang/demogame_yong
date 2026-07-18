@@ -13,7 +13,6 @@ const props = defineProps<{ continentId?: string }>()
 const route = useRoute()
 const message = useMessage()
 const landingStore = useLandingStore()
-const activeMode = ref<'structure' | 'player-copy'>('structure')
 const syncingSections = ref<Set<string>>(new Set())
 
 const cId = computed(() => (props.continentId || route.params.continentId) as LandingContinentId)
@@ -144,7 +143,7 @@ function handleAcceptRegions(content: string) {
       if (applyAIField(fieldPath, parsed[field], value => { node[field] = value })) applied++
     })
   })
-  message.success(`已写入 ${applied} 个区域字段，玩法衔接备注未被改动`)
+  message.success(`已写入 ${applied} 个区域字段，定稿字段保持不变`)
 }
 
 function sectionSyncing(section: string): boolean {
@@ -215,7 +214,7 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
       <div class="heading-copy">
         <div class="heading-kicker">CHAPTER III / {{ meta.element }} ELEMENT</div>
         <h2>{{ meta.name }}落地文案</h2>
-        <p>三幕九区沿同一条因果链推进，区域短句、Boss立场与系统对白统一在此定稿。</p>
+        <p>三幕九区沿同一条因果链推进，区域短句、Boss立场与系统对白在同一工作面定稿。</p>
       </div>
       <div class="completion-block">
         <div class="completion-value">{{ landingStore.getContinentCompletion(cId) }}%</div>
@@ -231,81 +230,142 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
       </div>
     </header>
 
-    <div class="mode-toolbar">
-      <div class="mode-switch" role="tablist" aria-label="阶段三编辑视图">
-        <button :class="{ active: activeMode === 'structure' }" type="button" @click="activeMode = 'structure'">
-          叙事结构
-        </button>
-        <button :class="{ active: activeMode === 'player-copy' }" type="button" @click="activeMode = 'player-copy'">
-          玩家文案
-        </button>
-      </div>
-      <div class="scope-metrics" aria-label="交付范围">
+    <div class="scope-toolbar" aria-label="阶段三交付范围">
+      <span class="scope-title">落地文案总览</span>
+      <div class="scope-metrics">
         <span>3 幕</span>
         <span>9 区域</span>
         <span>3 Boss</span>
-        <span>短句交付</span>
+        <span>40 字内短句</span>
       </div>
     </div>
 
-    <template v-if="activeMode === 'structure'">
-      <section class="workbench-section">
-        <div class="section-heading">
-          <div>
-            <span class="section-index">01</span>
-            <h3>九区域叙事骨架</h3>
+    <section class="workbench-section dialogue-section">
+      <div class="section-heading">
+        <div>
+          <span class="section-index">01</span>
+          <h3>少量系统对白</h3>
+        </div>
+        <NButton size="small" quaternary :loading="sectionSyncing('systemDialogue')" @click="syncLandingSection('systemDialogue')">
+          同步参考稿
+        </NButton>
+      </div>
+
+      <div class="dialogue-grid">
+        <div class="copy-field copy-field-wide">
+          <div class="copy-field-heading">
+            <label>大陆开场</label>
+            <NTag size="small" :type="copyStatus(data.systemDialogue.opening).type">
+              {{ copyStatus(data.systemDialogue.opening).label }}
+            </NTag>
           </div>
+          <NInput
+            v-model:value="data.systemDialogue.opening"
+            type="textarea"
+            placeholder="玩家首次进入大陆时显示的一句话"
+            :autosize="{ minRows: 2, maxRows: 4 }"
+            :maxlength="40"
+            show-count
+            :disabled="isFinalized('systemDialogue.opening')"
+            @update:value="onFieldInput('systemDialogue.opening')"
+          />
+        </div>
+        <div v-for="act in ([1, 2, 3] as LandingAct[])" :key="act" class="copy-field">
+          <div class="copy-field-heading">
+            <label>第{{ act }}幕阶段节点</label>
+            <NTag size="small" :type="copyStatus(data.systemDialogue.actNodes[act - 1]).type">
+              {{ copyStatus(data.systemDialogue.actNodes[act - 1]).label }}
+            </NTag>
+          </div>
+          <NInput
+            v-model:value="data.systemDialogue.actNodes[act - 1]"
+            type="textarea"
+            :placeholder="`完成第${act * 3}区域后显示的一句话`"
+            :autosize="{ minRows: 2, maxRows: 4 }"
+            :maxlength="40"
+            show-count
+            :disabled="isFinalized(`systemDialogue.actNodes.${act - 1}`)"
+            @update:value="onFieldInput(`systemDialogue.actNodes.${act - 1}`)"
+          />
+        </div>
+      </div>
+
+      <AIPanel
+        :module-id="`phase3-${cId}-system-dialogue`"
+        :context-labels="['阶段一摘要', `${meta.name}阶段二叙事`]"
+        @accept="handleAcceptSystemDialogue"
+      />
+    </section>
+
+    <section class="workbench-section region-section">
+      <div class="section-heading">
+        <div>
+          <span class="section-index">02</span>
+          <h3>三幕九区域</h3>
+        </div>
+        <div class="section-actions">
           <NTooltip trigger="hover">
             <template #trigger>
               <NButton size="small" quaternary :loading="sectionSyncing('levelNodes')" @click="syncLandingSection('levelNodes')">
-                同步参考稿
+                同步区域稿
               </NButton>
             </template>
             同步区域文案到 AI 参考文件
           </NTooltip>
+          <NButton size="small" quaternary :loading="sectionSyncing('bosses')" @click="syncLandingSection('bosses')">
+            同步 Boss 稿
+          </NButton>
+        </div>
+      </div>
+
+      <div v-for="actGroup in acts" :key="actGroup.act" class="act-section">
+        <div class="act-heading">
+          <div class="act-number">0{{ actGroup.act }}</div>
+          <div class="act-title">
+            <h4>{{ actGroup.title }}</h4>
+            <span>{{ actGroup.subtitle }} · 区域 {{ (actGroup.act - 1) * 3 + 1 }}—{{ actGroup.act * 3 }}</span>
+          </div>
+          <div class="act-progress">
+            <span>{{ getActCompletion(actGroup.act) }}%</span>
+            <NProgress
+              type="line"
+              :percentage="getActCompletion(actGroup.act)"
+              :show-indicator="false"
+              :height="3"
+              :color="meta.color"
+              rail-color="rgba(255,255,255,0.07)"
+            />
+          </div>
         </div>
 
-        <div v-for="actGroup in acts" :key="actGroup.act" class="act-section">
-          <div class="act-heading">
-            <div class="act-number">0{{ actGroup.act }}</div>
-            <div class="act-title">
-              <h4>{{ actGroup.title }}</h4>
-              <span>{{ actGroup.subtitle }}</span>
-            </div>
-            <div class="act-progress">
-              <span>{{ getActCompletion(actGroup.act) }}%</span>
-              <NProgress
-                type="line"
-                :percentage="getActCompletion(actGroup.act)"
-                :show-indicator="false"
-                :height="3"
-                :color="meta.color"
-                rail-color="rgba(255,255,255,0.07)"
+        <div class="region-list">
+          <article
+            v-for="(node, localIndex) in actGroup.nodes"
+            :key="(actGroup.act - 1) * 3 + localIndex"
+            class="region-record"
+            :class="{ 'boss-region': localIndex === 2 }"
+          >
+            <div class="region-identity">
+              <span class="region-order">区域 {{ (actGroup.act - 1) * 3 + localIndex + 1 }}</span>
+              <NInput
+                v-model:value="node.name"
+                size="large"
+                placeholder="区域名称"
+                :maxlength="24"
+                @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.name`)"
               />
+              <NButton
+                size="tiny"
+                quaternary
+                :type="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`) ? 'warning' : 'default'"
+                @click="toggleFinalize(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`)"
+              >
+                {{ isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`) ? '已定稿' : '定稿' }}
+              </NButton>
             </div>
-          </div>
 
-          <div class="act-layout">
-            <div class="region-grid">
-              <article v-for="(node, localIndex) in actGroup.nodes" :key="(actGroup.act - 1) * 3 + localIndex" class="region-card">
-                <div class="card-heading">
-                  <span class="region-order">区域 {{ (actGroup.act - 1) * 3 + localIndex + 1 }}</span>
-                  <NButton
-                    size="tiny"
-                    quaternary
-                    :type="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`) ? 'warning' : 'default'"
-                    @click="toggleFinalize(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`)"
-                  >
-                    {{ isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`) ? '已定稿' : '定稿' }}
-                  </NButton>
-                </div>
-                <NInput
-                  v-model:value="node.name"
-                  size="small"
-                  placeholder="区域名称"
-                  :maxlength="24"
-                  @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.name`)"
-                />
+            <div class="region-edit-grid">
+              <div class="field-block narrative-field">
                 <label>叙事任务</label>
                 <NInput
                   v-model:value="node.storyPurpose"
@@ -317,223 +377,130 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
                   :disabled="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`)"
                   @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`)"
                 />
+              </div>
+              <div class="field-block narrative-field">
                 <label>叙事线索</label>
                 <NInput
                   v-model:value="node.narrativeReward"
                   type="textarea"
                   placeholder="完成区域后获得的真相、证词或下一步线索"
-                  :autosize="{ minRows: 2, maxRows: 6 }"
+                  :autosize="{ minRows: 3, maxRows: 8 }"
                   :maxlength="400"
                   show-count
                   @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.narrativeReward`)"
                 />
-                <div class="external-field-label">
-                  <label>玩法衔接</label>
-                  <NTag size="tiny" :bordered="false">外部团队</NTag>
+              </div>
+              <div class="field-block copy-block">
+                <div class="copy-field-heading">
+                  <label>进入前提示</label>
+                  <NTag size="small" :type="copyStatus(node.entryPrompt).type">{{ copyStatus(node.entryPrompt).label }}</NTag>
                 </div>
                 <NInput
-                  v-model:value="node.gameplayHandoff"
+                  v-model:value="node.entryPrompt"
                   type="textarea"
-                  placeholder="由外部玩法团队补充，不计入文案交付"
-                  :autosize="{ minRows: 2, maxRows: 5 }"
-                  :maxlength="400"
-                  @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.gameplayHandoff`)"
+                  placeholder="进入该区域前显示的一句话"
+                  :autosize="{ minRows: 2, maxRows: 4 }"
+                  :maxlength="40"
+                  show-count
+                  :disabled="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.entryPrompt`)"
+                  @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.entryPrompt`)"
                 />
-              </article>
+              </div>
+              <div class="field-block copy-block">
+                <div class="copy-field-heading">
+                  <label>结束后反馈</label>
+                  <NTag size="small" :type="copyStatus(node.completionFeedback).type">{{ copyStatus(node.completionFeedback).label }}</NTag>
+                </div>
+                <NInput
+                  v-model:value="node.completionFeedback"
+                  type="textarea"
+                  placeholder="结束该区域后显示的一句话"
+                  :autosize="{ minRows: 2, maxRows: 4 }"
+                  :maxlength="40"
+                  show-count
+                  :disabled="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.completionFeedback`)"
+                  @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.completionFeedback`)"
+                />
+              </div>
             </div>
 
-            <aside class="boss-card">
-              <div class="boss-marker">BOSS / 区域 {{ actGroup.boss.areaIndex }}</div>
-              <NInput
-                v-model:value="actGroup.boss.name"
-                size="large"
-                placeholder="Boss 名称"
-                :maxlength="30"
-                @update:value="onFieldInput(`bosses.${actGroup.act - 1}.name`)"
-              />
-              <label>身份</label>
-              <NInput
-                v-model:value="actGroup.boss.identity"
-                type="textarea"
-                placeholder="身份、阵营及与英雄的叙事关系"
-                :autosize="{ minRows: 4, maxRows: 10 }"
-                :maxlength="800"
-                show-count
-                @update:value="onFieldInput(`bosses.${actGroup.act - 1}.identity`)"
-              />
-              <label>动机</label>
-              <NInput
-                v-model:value="actGroup.boss.motivation"
-                type="textarea"
-                placeholder="它真正想守护、夺取或掩盖什么"
-                :autosize="{ minRows: 4, maxRows: 10 }"
-                :maxlength="800"
-                show-count
-                @update:value="onFieldInput(`bosses.${actGroup.act - 1}.motivation`)"
-              />
-            </aside>
-          </div>
+            <div v-if="localIndex === 2" class="boss-strip">
+              <div class="boss-heading">
+                <span class="boss-marker">BOSS / 区域 {{ actGroup.boss.areaIndex }}</span>
+                <strong>{{ actGroup.boss.name || `第${actGroup.act}幕 Boss` }}</strong>
+              </div>
+              <div class="boss-grid">
+                <div class="field-block boss-name-field">
+                  <label>Boss 名称</label>
+                  <NInput
+                    v-model:value="actGroup.boss.name"
+                    size="large"
+                    placeholder="Boss 名称"
+                    :maxlength="30"
+                    @update:value="onFieldInput(`bosses.${actGroup.act - 1}.name`)"
+                  />
+                </div>
+                <div class="field-block">
+                  <label>身份</label>
+                  <NInput
+                    v-model:value="actGroup.boss.identity"
+                    type="textarea"
+                    placeholder="身份、阵营及与英雄的叙事关系"
+                    :autosize="{ minRows: 3, maxRows: 8 }"
+                    :maxlength="800"
+                    show-count
+                    @update:value="onFieldInput(`bosses.${actGroup.act - 1}.identity`)"
+                  />
+                </div>
+                <div class="field-block">
+                  <label>动机</label>
+                  <NInput
+                    v-model:value="actGroup.boss.motivation"
+                    type="textarea"
+                    placeholder="它真正想守护、夺取或掩盖什么"
+                    :autosize="{ minRows: 3, maxRows: 8 }"
+                    :maxlength="800"
+                    show-count
+                    @update:value="onFieldInput(`bosses.${actGroup.act - 1}.motivation`)"
+                  />
+                </div>
+                <div class="field-block boss-line-field">
+                  <div class="copy-field-heading">
+                    <label>一句话台词</label>
+                    <NTag size="small" :type="copyStatus(actGroup.boss.signatureLine).type">
+                      {{ copyStatus(actGroup.boss.signatureLine).label }}
+                    </NTag>
+                  </div>
+                  <NInput
+                    v-model:value="actGroup.boss.signatureLine"
+                    type="textarea"
+                    placeholder="体现 Boss 立场与动机的一句话"
+                    :autosize="{ minRows: 2, maxRows: 4 }"
+                    :maxlength="40"
+                    show-count
+                    :disabled="isFinalized(`bosses.${actGroup.act - 1}.signatureLine`)"
+                    @update:value="onFieldInput(`bosses.${actGroup.act - 1}.signatureLine`)"
+                  />
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
+      </div>
 
+      <div class="ai-workflow-grid">
         <AIPanel
           :module-id="`phase3-${cId}-region-copy`"
           :context-labels="['阶段一摘要', `${meta.name}阶段二叙事`, '三名Boss']"
           @accept="handleAcceptRegions"
         />
-      </section>
-
-      <section class="workbench-section boss-ai-section">
-        <div class="section-heading">
-          <div>
-            <span class="section-index">02</span>
-            <h3>Boss 叙事链</h3>
-          </div>
-          <NButton size="small" quaternary :loading="sectionSyncing('bosses')" @click="syncLandingSection('bosses')">
-            同步参考稿
-          </NButton>
-        </div>
         <AIPanel
           :module-id="`phase3-${cId}-boss-design`"
           :context-labels="['阶段一摘要', `${meta.name}阶段二叙事`]"
           @accept="handleAcceptBosses"
         />
-      </section>
-    </template>
-
-    <template v-else>
-      <section class="workbench-section">
-        <div class="section-heading">
-          <div>
-            <span class="section-index">01</span>
-            <h3>系统对白</h3>
-          </div>
-          <NButton size="small" quaternary :loading="sectionSyncing('systemDialogue')" @click="syncLandingSection('systemDialogue')">
-            同步参考稿
-          </NButton>
-        </div>
-
-        <div class="dialogue-grid">
-          <div class="copy-field copy-field-wide">
-            <div class="copy-field-heading">
-              <label>大陆开场</label>
-              <NTag size="small" :type="copyStatus(data.systemDialogue.opening).type">
-                {{ copyStatus(data.systemDialogue.opening).label }}
-              </NTag>
-            </div>
-            <NInput
-              v-model:value="data.systemDialogue.opening"
-              type="textarea"
-              placeholder="玩家首次进入大陆时显示的一句话"
-              :autosize="{ minRows: 2, maxRows: 4 }"
-              :maxlength="40"
-              show-count
-              :disabled="isFinalized('systemDialogue.opening')"
-              @update:value="onFieldInput('systemDialogue.opening')"
-            />
-          </div>
-          <div v-for="act in ([1, 2, 3] as LandingAct[])" :key="act" class="copy-field">
-            <div class="copy-field-heading">
-              <label>第{{ act }}幕节点</label>
-              <NTag size="small" :type="copyStatus(data.systemDialogue.actNodes[act - 1]).type">
-                {{ copyStatus(data.systemDialogue.actNodes[act - 1]).label }}
-              </NTag>
-            </div>
-            <NInput
-              v-model:value="data.systemDialogue.actNodes[act - 1]"
-              type="textarea"
-              :placeholder="`完成第${act * 3}区域后显示的一句话`"
-              :autosize="{ minRows: 2, maxRows: 4 }"
-              :maxlength="40"
-              show-count
-              :disabled="isFinalized(`systemDialogue.actNodes.${act - 1}`)"
-              @update:value="onFieldInput(`systemDialogue.actNodes.${act - 1}`)"
-            />
-          </div>
-        </div>
-
-        <AIPanel
-          :module-id="`phase3-${cId}-system-dialogue`"
-          :context-labels="['阶段一摘要', `${meta.name}阶段二叙事`]"
-          @accept="handleAcceptSystemDialogue"
-        />
-      </section>
-
-      <section v-for="actGroup in acts" :key="actGroup.act" class="workbench-section copy-act-section">
-        <div class="section-heading act-copy-heading">
-          <div>
-            <span class="section-index">0{{ actGroup.act + 1 }}</span>
-            <h3>{{ actGroup.title }} · 区域短句</h3>
-          </div>
-          <span>区域 {{ (actGroup.act - 1) * 3 + 1 }}—{{ actGroup.act * 3 }}</span>
-        </div>
-
-        <div class="player-copy-list">
-          <article v-for="(node, localIndex) in actGroup.nodes" :key="localIndex" class="player-copy-row">
-            <div class="copy-region-name">
-              <span>{{ (actGroup.act - 1) * 3 + localIndex + 1 }}</span>
-              <strong>{{ node.name }}</strong>
-            </div>
-            <div class="copy-field">
-              <div class="copy-field-heading">
-                <label>进入前提示</label>
-                <NTag size="small" :type="copyStatus(node.entryPrompt).type">{{ copyStatus(node.entryPrompt).label }}</NTag>
-              </div>
-              <NInput
-                v-model:value="node.entryPrompt"
-                type="textarea"
-                placeholder="进入该区域前显示的一句话"
-                :autosize="{ minRows: 2, maxRows: 4 }"
-                :maxlength="40"
-                show-count
-                :disabled="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.entryPrompt`)"
-                @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.entryPrompt`)"
-              />
-            </div>
-            <div class="copy-field">
-              <div class="copy-field-heading">
-                <label>结束后反馈</label>
-                <NTag size="small" :type="copyStatus(node.completionFeedback).type">{{ copyStatus(node.completionFeedback).label }}</NTag>
-              </div>
-              <NInput
-                v-model:value="node.completionFeedback"
-                type="textarea"
-                placeholder="结束该区域后显示的一句话"
-                :autosize="{ minRows: 2, maxRows: 4 }"
-                :maxlength="40"
-                show-count
-                :disabled="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.completionFeedback`)"
-                @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.completionFeedback`)"
-              />
-            </div>
-          </article>
-
-          <article class="player-copy-row boss-copy-row">
-            <div class="copy-region-name">
-              <span>B</span>
-              <strong>{{ actGroup.boss.name || `第${actGroup.act}幕 Boss` }}</strong>
-            </div>
-            <div class="copy-field boss-line-field">
-              <div class="copy-field-heading">
-                <label>一句话台词</label>
-                <NTag size="small" :type="copyStatus(actGroup.boss.signatureLine).type">
-                  {{ copyStatus(actGroup.boss.signatureLine).label }}
-                </NTag>
-              </div>
-              <NInput
-                v-model:value="actGroup.boss.signatureLine"
-                type="textarea"
-                placeholder="体现 Boss 立场与动机的一句话"
-                :autosize="{ minRows: 2, maxRows: 4 }"
-                :maxlength="40"
-                show-count
-                :disabled="isFinalized(`bosses.${actGroup.act - 1}.signatureLine`)"
-                @update:value="onFieldInput(`bosses.${actGroup.act - 1}.signatureLine`)"
-              />
-            </div>
-          </article>
-        </div>
-      </section>
-    </template>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -546,10 +513,21 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   box-sizing: border-box;
 }
 
-.workbench-heading {
+.workbench-heading,
+.scope-toolbar,
+.section-heading,
+.act-heading,
+.region-identity,
+.copy-field-heading,
+.boss-heading {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
+  gap: 14px;
+}
+
+.workbench-heading {
+  align-items: flex-end;
   gap: 32px;
   padding: 10px 0 24px;
   border-bottom: 1px solid rgba(236, 204, 142, 0.16);
@@ -562,7 +540,8 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
 .heading-kicker,
 .section-index,
 .boss-marker,
-.region-order {
+.region-order,
+.scope-title {
   font-size: 11px;
   line-height: 1.2;
   letter-spacing: 0;
@@ -606,52 +585,26 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   color: rgba(225, 218, 203, 0.52);
 }
 
-.mode-toolbar {
+.scope-toolbar {
   position: sticky;
   top: 0;
   z-index: 8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  min-height: 48px;
   margin: 0 -30px;
-  padding: 12px 30px;
+  padding: 0 30px;
   background: rgba(10, 11, 11, 0.96);
   border-bottom: 1px solid rgba(236, 204, 142, 0.12);
   backdrop-filter: blur(14px);
 }
 
-.mode-switch {
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 3px;
-  background: #121414;
-  border: 1px solid rgba(236, 204, 142, 0.14);
-  border-radius: 6px;
-}
-
-.mode-switch button {
-  min-width: 104px;
-  height: 32px;
-  border: 0;
-  border-radius: 4px;
-  background: transparent;
-  color: rgba(225, 218, 203, 0.56);
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.mode-switch button.active {
-  color: #111312;
-  background: #d7b36a;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
-}
-
-.scope-metrics {
+.scope-metrics,
+.section-actions {
   display: flex;
   align-items: center;
   gap: 18px;
+}
+
+.scope-metrics {
   color: rgba(225, 218, 203, 0.5);
   font-size: 12px;
 }
@@ -669,15 +622,8 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   padding: 34px 0 10px;
 }
 
-.section-heading,
-.act-heading,
-.card-heading,
-.copy-field-heading,
-.external-field-label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.region-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .section-heading {
@@ -685,7 +631,7 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   margin-bottom: 18px;
 }
 
-.section-heading > div {
+.section-heading > div:first-child {
   display: flex;
   align-items: baseline;
   gap: 12px;
@@ -702,6 +648,43 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
 
 .section-heading h3 {
   font-size: 20px;
+}
+
+.dialogue-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.copy-field,
+.region-record {
+  border: 1px solid rgba(236, 204, 142, 0.12);
+  border-radius: 6px;
+  background: #101212;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.copy-field {
+  padding: 14px;
+}
+
+.copy-field-wide {
+  grid-column: span 3;
+}
+
+.copy-field-heading {
+  margin-bottom: 8px;
+}
+
+.copy-field label,
+.field-block label {
+  display: block;
+  margin: 0 0 7px;
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: rgba(235, 225, 205, 0.76);
 }
 
 .act-section {
@@ -728,8 +711,7 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   font-size: 17px;
 }
 
-.act-title span,
-.act-copy-heading > span {
+.act-title span {
   display: block;
   margin-top: 3px;
   font-size: 12px;
@@ -748,172 +730,104 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   margin-bottom: 5px;
 }
 
-.act-layout {
+.region-list {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 14px;
+  gap: 12px;
+}
+
+.region-record {
+  padding: 16px;
+}
+
+.region-record.boss-region {
+  border-color: color-mix(in srgb, var(--continent-accent) 34%, rgba(236, 204, 142, 0.12));
+}
+
+.region-identity {
+  display: grid;
+  grid-template-columns: 76px minmax(200px, 360px) 1fr;
+  justify-content: start;
+  margin-bottom: 14px;
+}
+
+.region-identity .n-button {
+  justify-self: end;
+}
+
+.region-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
   align-items: start;
 }
 
-.region-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+.field-block {
+  min-width: 0;
 }
 
-.region-card,
-.boss-card,
-.copy-field,
-.player-copy-row {
-  border: 1px solid rgba(236, 204, 142, 0.12);
-  border-radius: 6px;
-  background: #101212;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+.copy-block {
+  padding-left: 12px;
+  border-left: 1px solid rgba(236, 204, 142, 0.09);
 }
 
-.region-card,
-.boss-card {
-  padding: 15px;
+.boss-strip {
+  margin: 16px -16px -16px;
+  padding: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--continent-accent) 35%, transparent);
+  background: #121210;
 }
 
-.region-card label,
-.boss-card label,
-.copy-field label {
-  display: block;
-  margin: 14px 0 7px;
-  font-size: 12px;
-  line-height: 1.3;
+.boss-heading {
+  justify-content: flex-start;
+  margin-bottom: 14px;
+}
+
+.boss-heading strong {
+  color: #ead9b5;
+  font-family: var(--font-display);
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0;
-  color: rgba(235, 225, 205, 0.76);
 }
 
-.card-heading {
-  margin-bottom: 10px;
-}
-
-.boss-card {
-  position: sticky;
-  top: 70px;
-  border-top: 2px solid var(--continent-accent);
-  background: #121210;
-}
-
-.boss-marker {
-  margin-bottom: 12px;
-}
-
-.external-field-label {
-  margin-top: 14px;
-}
-
-.external-field-label label {
-  margin: 0 0 7px;
-}
-
-.boss-ai-section {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.dialogue-grid {
+.boss-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px;
-}
-
-.copy-field {
-  padding: 14px;
-}
-
-.copy-field-wide {
-  grid-column: span 3;
-}
-
-.copy-field-heading {
-  margin-bottom: 8px;
-}
-
-.copy-field-heading label {
-  margin: 0;
-}
-
-.copy-act-section {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.player-copy-list {
-  display: grid;
-  gap: 9px;
-}
-
-.player-copy-row {
-  display: grid;
-  grid-template-columns: 190px minmax(0, 1fr) minmax(0, 1fr);
-  gap: 10px;
-  padding: 10px;
-  align-items: stretch;
-}
-
-.copy-region-name {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  padding: 0 12px;
-}
-
-.copy-region-name span {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  flex: 0 0 28px;
-  border: 1px solid var(--continent-accent);
-  border-radius: 50%;
-  color: var(--continent-accent);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.copy-region-name strong {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #e7d9bb;
-  font-size: 13px;
-}
-
-.player-copy-row .copy-field {
-  padding: 10px 12px;
-  background: #0c0e0e;
-}
-
-.boss-copy-row {
-  border-color: color-mix(in srgb, var(--continent-accent) 35%, transparent);
-  background: #121210;
+  align-items: start;
 }
 
 .boss-line-field {
-  grid-column: span 2;
+  grid-column: 2 / 4;
+}
+
+.ai-workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: 10px;
 }
 
 @media (max-width: 1180px) {
-  .act-layout {
-    grid-template-columns: 1fr;
+  .region-edit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .boss-card {
-    position: static;
+  .copy-block {
+    padding: 12px 0 0;
+    border-top: 1px solid rgba(236, 204, 142, 0.09);
+    border-left: 0;
   }
 
-  .player-copy-row {
-    grid-template-columns: 150px 1fr;
+  .boss-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .player-copy-row .copy-field:last-child,
+  .boss-name-field {
+    grid-column: span 2;
+  }
+
   .boss-line-field {
-    grid-column: 2;
+    grid-column: span 2;
   }
 }
 
@@ -931,33 +845,40 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
     flex-basis: 120px;
   }
 
-  .mode-toolbar {
+  .scope-toolbar {
     position: static;
     margin: 0 -16px;
-    padding: 10px 16px;
+    padding: 0 16px;
   }
 
   .scope-metrics {
     display: none;
   }
 
-  .region-grid,
-  .dialogue-grid {
+  .dialogue-grid,
+  .region-edit-grid,
+  .boss-grid,
+  .ai-workflow-grid {
     grid-template-columns: 1fr;
   }
 
-  .copy-field-wide {
+  .copy-field-wide,
+  .boss-name-field,
+  .boss-line-field {
     grid-column: auto;
   }
 
-  .player-copy-row {
-    grid-template-columns: 1fr;
+  .region-identity {
+    grid-template-columns: 70px minmax(0, 1fr);
   }
 
-  .copy-region-name,
-  .player-copy-row .copy-field:last-child,
-  .boss-line-field {
-    grid-column: 1;
+  .region-identity .n-button {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .copy-block {
+    padding: 12px 0 0;
   }
 }
 
@@ -972,16 +893,24 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
     text-align: left;
   }
 
-  .mode-switch {
-    width: 100%;
+  .section-heading {
+    align-items: flex-start;
   }
 
-  .mode-switch button {
-    min-width: 0;
+  .section-actions {
+    gap: 4px;
   }
 
   .act-progress {
     width: 90px;
+  }
+
+  .region-identity {
+    grid-template-columns: 1fr;
+  }
+
+  .region-identity .n-button {
+    grid-column: auto;
   }
 }
 </style>
