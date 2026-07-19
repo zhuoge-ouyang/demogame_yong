@@ -72,12 +72,12 @@ const providerConfig: Record<AIProvider, ProviderDefaults> = {
     ]
   },
   claude: {
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'claude-opus-4-7',
     baseUrl: 'https://api.anthropic.com',
     models: [
-      { label: 'Claude 3.5 Sonnet', value: 'claude-3-5-sonnet-20241022' },
-      { label: 'Claude 3 Haiku', value: 'claude-3-haiku-20240307' },
-      { label: 'Claude 3 Opus', value: 'claude-3-opus-20240229' }
+      { label: 'Claude Opus 4.7', value: 'claude-opus-4-7' },
+      { label: 'Claude Opus 4.6', value: 'claude-opus-4-6' },
+      { label: 'Claude Sonnet 4.6', value: 'claude-sonnet-4-6' }
     ]
   },
   qwen: {
@@ -161,10 +161,26 @@ const providerHint = computed(() => {
 function onProviderChange(value: string) {
   const provider = value as AIProvider
   const defaults = providerConfig[provider]
+  const apiKeys = {
+    ...(aiStore.config.apiKeys || {}),
+    [aiStore.config.provider]: aiStore.config.apiKey
+  }
   aiStore.updateConfig({
     provider,
+    apiKey: apiKeys[provider] || '',
+    apiKeys,
     model: defaults.model,
     baseUrl: defaults.baseUrl
+  })
+}
+
+function updateTextApiKey(apiKey: string) {
+  aiStore.updateConfig({
+    apiKey,
+    apiKeys: {
+      ...(aiStore.config.apiKeys || {}),
+      [aiStore.config.provider]: apiKey
+    }
   })
 }
 
@@ -298,7 +314,7 @@ function maskKey(k: string, show: boolean) {
                   :placeholder="apiKeyPlaceholder"
                   autocomplete="off"
                   spellcheck="false"
-                  @input="(e: Event) => aiStore.updateConfig({ apiKey: (e.target as HTMLInputElement).value })"
+                  @input="(e: Event) => updateTextApiKey((e.target as HTMLInputElement).value)"
                 />
                 <button class="ap-eye" type="button" :title="showApiKey ? '隐藏' : '显示'" @click="showApiKey = !showApiKey">
                   <svg v-if="showApiKey" viewBox="0 0 24 24"><path d="M3 12 Q12 4 21 12 Q12 20 3 12 Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>

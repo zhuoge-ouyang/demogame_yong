@@ -38,8 +38,8 @@ const phaseCards = computed(() => [
     roman: 'III',
     kicker: 'LANDING EPIC',
     title: '前三大陆落地文案',
-    desc: '完成金、冰、火三大陆的三幕九区、Boss身份与玩家短句。',
-    route: '/phase3/jin',
+    desc: '完成森、冰、火三大陆的三幕九区、Boss身份与玩家短句。',
+    route: '/phase3/mu',
     image: '/images/banners/phase3.png',
     completion: landingStore.overallCompletion,
     accent: 'blood'

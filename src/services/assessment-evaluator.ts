@@ -12,6 +12,7 @@ import { getAssessmentSystemPrompt, buildDimensionEvalPrompt, buildKimiAnalysisP
 import type { WorldState } from '@/types/world'
 import type { ContinentsState } from '@/types/continent'
 import type { LandingsState } from '@/types/landing'
+import { ALL_LANDING_CONTINENT_IDS } from '@/constants/continents'
 
 /**
  * 创建评测专用的OpenAI客户端
@@ -209,13 +210,14 @@ function collectPhase2Data(continentsState: ContinentsState): string {
  * 收集Phase3世界观数据快照
  */
 function collectPhase3Data(landingState: LandingsState): string {
-  const parts: string[] = ['=== Phase3: 前三大陆落地 ===\n']
+  const parts: string[] = ['=== Phase3: 四大陆落地 ===\n']
 
   const continentNames: Record<string, string> = {
-    jin: '金', bing: '冰', huo: '火'
+    jin: '金', mu: '森', bing: '冰', huo: '火'
   }
 
-  Object.entries(landingState).forEach(([id, continent]) => {
+  ALL_LANDING_CONTINENT_IDS.forEach((id) => {
+    const continent = landingState[id]
     const cnName = continentNames[id] || id
     parts.push(`\n【${cnName}大陆落地内容】`)
 
@@ -237,9 +239,16 @@ function collectPhase3Data(landingState: LandingsState): string {
     continent.levelNodes.forEach((node, i) => {
       parts.push(`\n第${node.act}幕·区域 ${i + 1}：${node.name || '（未命名）'}`)
       parts.push(`- 叙事任务：${node.storyPurpose || '（未填写）'}`)
+      parts.push(`- 区域故事：${node.storyContent || '（未填写）'}`)
       parts.push(`- 进入前提示：${node.entryPrompt || '（未填写）'}`)
       parts.push(`- 结束后反馈：${node.completionFeedback || '（未填写）'}`)
       parts.push(`- 叙事线索：${node.narrativeReward || '（未填写）'}`)
+      if ((i + 1) % 3 !== 0) {
+        parts.push(`- 区域对手：${node.opponent.name || '（未填写）'}`)
+        parts.push(`- 对手身份：${node.opponent.identity || '（未填写）'}`)
+        parts.push(`- 对手动机：${node.opponent.motivation || '（未填写）'}`)
+        parts.push(`- 对手台词：${node.opponent.signatureLine || '（未填写）'}`)
+      }
     })
   })
 

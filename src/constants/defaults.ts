@@ -16,6 +16,15 @@ function emptyAspects(): ContinentAspects {
   }
 }
 
+function emptyRegionOpponent() {
+  return {
+    name: '',
+    identity: '',
+    motivation: '',
+    signatureLine: ''
+  }
+}
+
 function emptyLanding(): LandingContinent {
   return {
     systemDialogue: { opening: '', actNodes: ['', '', ''] },
@@ -31,9 +40,11 @@ function emptyLanding(): LandingContinent {
       name: `区域${i + 1}`,
       act: (Math.floor(i / 3) + 1) as 1 | 2 | 3,
       storyPurpose: '',
+      storyContent: '',
       entryPrompt: '',
       completionFeedback: '',
       narrativeReward: '',
+      opponent: emptyRegionOpponent(),
       gameplayHandoff: ''
     })),
     _meta: {}
@@ -111,6 +122,7 @@ export function defaultContinentsState(): ContinentsState {
 export function defaultLandingsState(): LandingsState {
   return {
     jin: emptyLanding(),
+    mu: emptyLanding(),
     bing: emptyLanding(),
     huo: emptyLanding()
   }
@@ -120,6 +132,7 @@ export function defaultAIConfig(): AIConfig {
   return {
     provider: 'openai',
     apiKey: '',
+    apiKeys: {},
     model: 'gpt-4o',
     baseUrl: 'https://api.openai.com/v1',
     temperature: 0.8,

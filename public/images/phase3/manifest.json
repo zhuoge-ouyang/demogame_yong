@@ -1,0 +1,329 @@
+{
+  "model": "gpt-image-2",
+  "assets": [
+    {
+      "id": "mu-region-01",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 1,
+      "title": "沉眠根庭",
+      "output": "/images/phase3/mu/region-01.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 沉眠根庭, region 1 of the Verdant Forest continent\nNarrative facts: 翠森地底根网连续低鸣，根语者循着痛感进入腐烂根庭，在发黑须脉深处触到一枚仍有心跳的种子灵魂。朽木守夜者受旧誓驱使，把苏醒的方舟堡视作入侵者，腐须随之扑向根核。方舟堡本能地震动根须，第一次回应外界，也让根语者听见清晰意识。守夜者退入朽土时，地表兽群已循着新生魂能逼近；森林终于有了倾听者，也立刻迎来第一场考验。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-02",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 2,
+      "title": "根雾林缘",
+      "output": "/images/phase3/mu/region-02.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 根雾林缘, region 2 of the Verdant Forest continent\nNarrative facts: 根雾林缘的白雾里，奥里克背靠古树，护着神力衰弱的艾蕾尼娅抵挡兽群。噬息枯狼循方舟堡的新生魂能而来，企图吞掉这股气息，为后续兽潮开路。根语者引导方舟堡把根须探出地表，缠住枯狼，为奥里克争出反击机会。艾蕾尼娅在根脉震动中认出等待已久的种子灵魂；奥里克也决定留下守夜。败退兽群的足迹，最终汇向林深处的腐根巢穴。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-03",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 3,
+      "title": "腐根兽巢",
+      "output": "/images/phase3/mu/region-03.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 腐根兽巢, region 3 of the Verdant Forest continent\nNarrative facts: 兽群退回腐根兽巢，巨兽苔颚正循根核气息扑向方舟堡。奥里克在巢口筑起金壁，根语者则教玩家第一次主动释放调和脉冲，扰乱苔颚赖以追猎的魂能感知。巨兽在错乱气息中扑空，被奥里克斩开腐根脊骨。它崩解后，一缕带着木令印记的残响从体内逸出，指向年轮圣所。众人由此确认：兽潮只是病征，翠森真正的伤口仍藏在木之魂令上游。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-04",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 4,
+      "title": "年轮圣所",
+      "output": "/images/phase3/mu/region-04.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 年轮圣所, region 4 of the Verdant Forest continent\nNarrative facts: 塞琳娜带着霜誓结晶抵达年轮圣所，要确认家乡寒潮是否与翠森根腐有关。被腐化唤醒的祭司长蕾丝薇拉却把冰元素和方舟堡都视作玷污，驱使年轮守卫封锁圣所。方舟堡托住结晶共鸣，奥里克斩断守卫身上的腐化锁链。冰蓝寒纹与腐褐根纹随即在同一圈年轮上重叠，证明两片大陆正承受同一场魂能失衡。共鸣的下一次震动，落在被人为凿断的古老根桥。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-05",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 5,
+      "title": "断流根桥",
+      "output": "/images/phase3/mu/region-05.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 断流根桥, region 5 of the Verdant Forest continent\nNarrative facts: 古老根桥从内侧被凿断，逃难林民困在对岸，兽群正从裂口涌上。凿根者瓦尔戈斯继续破坏主根，企图让母树在夺令仪式前失去增援。奥里克想封桥，塞琳娜要冻住裂口，根语者则坚持让根须再生；方舟堡把三股互斥力量接入同一根核，织成一座会呼吸的新桥。林民安全通过后，断口留下的工具痕迹指向木令裂坛：这不是自然腐坏，而是一场有计划的夺令。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-06",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 6,
+      "title": "木令裂坛",
+      "output": "/images/phase3/mu/region-06.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 木令裂坛, region 6 of the Verdant Forest continent\nNarrative facts: 木令裂坛上，裂根祭师正以腐化魂能撬动木之魂令，想在守护同盟合拢前打开深渊通道。奥里克封住退路，塞琳娜压低祭坛温度，根语者缠住腐土，方舟堡则把松动魂令重新按回树心。夺令仪式在最后一息崩解，祭师负伤逃向南部林区，并把腐纹烙在沿途古树上。塞琳娜亲手触到恢复流动的木令残响，确认调和之力也可能挽救霜寒；然而南方的根网已传来异常火声。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-07",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 7,
+      "title": "南部灼林",
+      "output": "/images/phase3/mu/region-07.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 南部灼林, region 7 of the Verdant Forest continent\nNarrative facts: 南部林区燃起只吞魂能的异火。伊格纳修斯循火种追来，却被祭师留下的腐纹刺入魂脉，逐渐滑向不死鸟兽形。腐火蜃影借他的旧痛诱使人格崩解，奥里克与塞琳娜只能暂时隔火降温。方舟堡沿地脉触到他尚未烧焦的名字，换来一瞬清醒和一句求救。蜃影虽被驱散，不死鸟却再次冲入火海；腐纹已把他的失控变成最后一轮兽潮的引信。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-08",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 8,
+      "title": "领主根堡",
+      "output": "/images/phase3/mu/region-08.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 领主根堡, region 8 of the Verdant Forest continent\nNarrative facts: 祭师残部驱赶全部兽群围攻领主根堡，焚翼腐将更以自身为柴，试图烧穿木之魂令的防线。根语者让古树主动褪去外皮，辟出防火空地；奥里克筑起金壁，塞琳娜把霜雾压向地火。方舟堡将三股力量编成同一张防护网，第一次让三位陌生英雄按同一节拍作战。兽潮主力被隔在焦土外，不死鸟却已越过南线，直扑母树空心。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-region-09",
+      "type": "region",
+      "continentId": "mu",
+      "regionIndex": 9,
+      "title": "母树空心",
+      "output": "/images/phase3/mu/region-09.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 母树空心, region 9 of the Verdant Forest continent\nNarrative facts: 失控不死鸟冲入母树空心，腐火与木之魂令裂隙在同一根悬枝上纠缠。艾蕾尼娅把残存神力交给方舟堡，根核一面修补魂令，一面沿伊格纳修斯的名字寻找残存人格。奥里克守住母树主干，塞琳娜兜住外泄烈焰，根语者则让整片森林共同呼唤他归来。不死鸟终于自主收拢成人形，木令重归树心；恢复流动的主干根网，也在方舟堡脚下点亮了通往霜寒的迁移道路。\nScene language: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "mu-boss-01",
+      "type": "boss",
+      "continentId": "mu",
+      "act": 1,
+      "title": "腐根巨兽·苔颚",
+      "output": "/images/phase3/mu/boss-01.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 腐根巨兽·苔颚\nIdentity and narrative relationship: 由木之魂令泄漏的魂能和腐败根须聚成的领头巨兽。它没有完整心智，只会循着方舟堡根核与活体根脉的气息吞噬前进。\nCore motivation: 它本能地寻找最强魂能作为养料，要把腐根扩散到整片根雾林，使兽群获得持续孵化和追踪方舟堡的巢穴。\nVisual world: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "mu-boss-02",
+      "type": "boss",
+      "continentId": "mu",
+      "act": 2,
+      "title": "裂根深渊祭师",
+      "output": "/images/phase3/mu/boss-02.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 裂根深渊祭师\nIdentity and narrative relationship: 潜伏在木令裂坛的深渊祭师，也是翠森根腐与兽潮的直接操纵者。他察觉方舟堡苏醒后，开始驱使兽群争夺木之魂令。\nCore motivation: 他要切断翠森与世界树主根的连接，夺取魂令并打开稳定的深渊通道，让森林守护联盟失去恢复秩序的核心。\nVisual world: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "mu-boss-03",
+      "type": "boss",
+      "continentId": "mu",
+      "act": 3,
+      "title": "失控不死鸟·伊格纳修斯",
+      "output": "/images/phase3/mu/boss-03.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 失控不死鸟·伊格纳修斯\nIdentity and narrative relationship: 受南部异常火源刺激而被迫进入兽形的伊格纳修斯。此时的不死鸟足以焚毁兽潮，却无法分辨敌人、森林和刚刚结识的同伴。\nCore motivation: 兽形本能要释放全部火焰摆脱痛苦；残存人格则拼命向方舟堡求救，希望有人在他烧毁翠森之前把自己唤醒。\nVisual world: ancient world-tree roots, living timber sanctuaries, wet stone, pale fungi, root bridges, grounded medieval forest craft\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: deep emerald, moss green, restrained amber, bone white, charcoal shadow\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "bing-region-01",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 1,
+      "title": "冻潮南境",
+      "output": "/images/phase3/bing/region-01.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 冻潮南境, region 1 of the Frost continent\nNarrative facts: 方舟堡沿地下根脉网络从翠森迁移而来，在融冰海岸浮现时接住了塞琳娜留下的冰晶信标。艾蕾尼娅提醒玩家，这片海岸本该温和，如今却被反常寒潮侵蚀。海岸村民指证北方冰原传来白色凶兽的嚎叫，每一次嚎叫后寒潮就会扩张一圈。塞琳娜确认方舟堡抵达后，承认自己离开期间领地恶化速度超出预期。方舟堡以调和之力稳住第一条根脉信标，为深入冰原做好准备，同时获知凶兽正追逐一切热源。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-02",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 2,
+      "title": "冰封村镇",
+      "output": "/images/phase3/bing/region-02.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 冰封村镇, region 2 of the Frost continent\nNarrative facts: 冰封村镇停在昨日黄昏，街道、房屋和奔逃的人都被封进厚冰。寒潮亡影把冰层视作最后庇护，阻止方舟堡靠近幸存者。根核先安抚亡影，再融开冰棺外壳，奥里克把仍有心跳的百姓逐一送往热源。塞琳娜看见离开后领地付出的真实代价，不再回避寒潮恶化的事实。幸存者指出白色凶兽会追逐活人温度，它们的巢穴正堵住北方唯一的残温通道。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-03",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 3,
+      "title": "白魇巢原",
+      "output": "/images/phase3/bing/region-03.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 白魇巢原, region 3 of the Frost continent\nNarrative facts: 白魇兽群盘踞冰原裂口，兽母赫尔莎要把方舟堡根核拖入巢穴，让寒潮获得持续扩张的热源差。伊格纳修斯以火焰引开幼兽，奥里克稳住冰原防线，塞琳娜正面压制兽母，方舟堡则切断巢穴与异常寒潮的共鸣。赫尔莎败退后，裂口底部露出一张旧冰晶图，标出尚未冻死的地下热源根脉。真正病源仍在冰之魂令，众人必须先借这条根脉迁走边民。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-04",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 4,
+      "title": "残温根脉",
+      "output": "/images/phase3/bing/region-04.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 残温根脉, region 4 of the Frost continent\nNarrative facts: 伊格纳修斯在冰层裂缝中找到残温根脉，古代守卫克雷斯特却把方舟堡误判为新的掠夺者，执意封死入口。方舟堡以调和之力唤醒守脉者残存职责，让地下热流重新沿旧路前行，足以支撑迁徙队穿越寒潮。根语者由此感知到根脉通往冰下遗迹，但出口被弗洛斯特的封城关隘截断。边境求援同时传来，塞琳娜必须用一次真正的迁民，回应叔父“弃边保城”的旧策。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-05",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 5,
+      "title": "迁民冰桥",
+      "output": "/images/phase3/bing/region-05.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 迁民冰桥, region 5 of the Frost continent\nNarrative facts: 数百名边民被困在断裂冰桥前，对岸就是热源带，封城卫队却奉命关闭关门。霜牙潜伏冰下破坏桥基，想让迁徙失败并加速霜寒崩溃。奥里克以铸金术加固桥身，伊格纳修斯融开冰障，方舟堡则锁定魔兽留下的裂纹，让塞琳娜护送百姓通过。冰封村镇的获救者当众作证，守军开始拒绝弃民命令。迁徙队抵达热源后，弗洛斯特也失去了大部分边境支持。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-06",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 6,
+      "title": "封城关隘",
+      "output": "/images/phase3/bing/region-06.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 封城关隘, region 6 of the Frost continent\nNarrative facts: 弗洛斯特封死最后关隘，声称只有牺牲边境才能保住霜寒。塞琳娜带着获救百姓与恢复的热源根脉前来对质，方舟堡则让冰壁映出旧党长期隐瞒的魂令异变记录。守军陆续放下武器，弃民政策失去最后支点。弗洛斯特被迫交出通行权，并承认寒潮源自冰下遗迹。关隘开启后，塞琳娜的领主权威不再只来自王座，而得到边民重新确认；真正的寒潮核心也终于暴露。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-07",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 7,
+      "title": "冰下遗迹",
+      "output": "/images/phase3/bing/region-07.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 冰下遗迹, region 7 of the Frost continent\nNarrative facts: 冰下遗迹封存着原初魂族维护世界树循环、又被战争放逐根域的记忆。守卫瑟拉芬奉旧令阻止真相外泄，方舟堡却以调和之力安抚残响，让冰壁重新流动。塞琳娜由此看见，寒潮是冰之魂令长期透支根系、堵死魂能回流的结果；更深处还有魂族求生派的微弱呼救。众人对深渊的判断开始动摇，但主战派已派出霜脊巨兽，要用暴力摧毁魂令。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-08",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 8,
+      "title": "封魂冰廊",
+      "output": "/images/phase3/bing/region-08.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 封魂冰廊, region 8 of the Frost continent\nNarrative facts: 封魂冰廊布满裂痕，塞琳娜必须稳住冰之魂令，方舟堡才能取得修复窗口。深渊先锋冰棘坚信破坏魂令才可挽救根域，率先冲入廊道为霜脊巨兽清路。众人击退先锋后，巨兽的影子已经覆盖整条冰廊；它背脊上的深渊骨晶，正是撕裂封魂结构的武器。魂令残响把最终坐标投向霜心裂谷，那里既是寒潮核心，也是凡界修复与主战派破坏路线的交点。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-region-09",
+      "type": "region",
+      "continentId": "bing",
+      "regionIndex": 9,
+      "title": "霜心裂谷",
+      "output": "/images/phase3/bing/region-09.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 霜心裂谷, region 9 of the Frost continent\nNarrative facts: 霜脊巨兽闯入霜心裂谷，背脊骨晶不断撕开冰之魂令。奥里克挡住正面冲击，伊格纳修斯以不死鸟火灼裂骨晶，塞琳娜则牵住失控寒潮。方舟堡抓住骨晶崩落的一刻，把调和之力送入魂令核心，让被堵死的魂能重新回流。巨兽化作冰雾，冰封村镇逐渐苏醒，但魂族的求救仍留在根核深处。塞琳娜履行约定加入英雄团，众人沿解冻根脉追向炎狱火种。\nScene language: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "bing-boss-01",
+      "type": "boss",
+      "continentId": "bing",
+      "act": 1,
+      "title": "白魇兽母·赫尔莎",
+      "output": "/images/phase3/bing/boss-01.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 白魇兽母·赫尔莎\nIdentity and narrative relationship: 由反常寒潮孕育的白色凶兽首领，盘踞南境冰原并驱使兽群追逐活物热量。它既是灾害产物，也是冰之魂令失衡最早显形的症状。\nCore motivation: 它要把方舟堡根核的热量拖入巢穴，使寒潮获得持续扩张的温差与魂能；保护兽群只是这种本能的延伸。\nVisual world: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "bing-boss-02",
+      "type": "boss",
+      "continentId": "bing",
+      "act": 2,
+      "title": "弗洛斯特·封城摄政",
+      "output": "/images/phase3/bing/boss-02.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 弗洛斯特·封城摄政\nIdentity and narrative relationship: 塞琳娜的叔叔与领主之位竞争者，封城旧党的核心。他主张收缩人口、放弃边境，以保存王城和旧贵族秩序。\nCore motivation: 他坚信牺牲边民是霜寒唯一能承受的代价，也害怕塞琳娜成功迁民后赢回民心，使自己的封城路线彻底破产。\nVisual world: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "bing-boss-03",
+      "type": "boss",
+      "continentId": "bing",
+      "act": 3,
+      "title": "霜脊巨兽",
+      "output": "/images/phase3/bing/boss-03.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 霜脊巨兽\nIdentity and narrative relationship: 深渊魂族主战派为摧毁冰之魂令制造的寒潮巨兽，背脊嵌有能够撕裂封魂结构的深渊骨晶。\nCore motivation: 它受命击碎冰之魂令，让失控寒潮吞没霜寒大陆，以此证明凡界封魂体系终将崩溃，并迫使更多魂族投入战争。\nVisual world: frozen gothic settlements, wind-carved ice, ancient thermal root channels, frostbound fortifications, aurora haze\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: glacial blue, silver, pale cyan, muted gold, near-black ice shadow\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "huo-region-01",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 1,
+      "title": "焦土营地",
+      "output": "/images/phase3/huo/region-01.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 焦土营地, region 1 of the Infernal continent\nNarrative facts: 方舟堡抵达炎狱边界时，焦土营地正被火种兽围困。伊格纳修斯以人形守在难民之前，火种每次波动却都会逼出灼伤自身的火翼。焦息追猎者循旧日焦痕逼近，要先毁掉能够调和魂能的根核。奥里克与塞琳娜守住外线，方舟堡则稳定营地根基，并从幸存者证词中确认：不死鸟失控与深处火种同步，而伊格纳修斯始终在用残存理智保护这里。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-02",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 2,
+      "title": "熔火旧路",
+      "output": "/images/phase3/huo/region-02.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 熔火旧路, region 2 of the Infernal continent\nNarrative facts: 熔痕旧道保存着伊格纳修斯每次失控留下的焦痕，也记录着他恢复人形后独自返程补救的痕迹。焦痕哨兵奉命封锁旧道，想为更深处的献炉仪式争取时间。方舟堡击碎哨兵后，将根须探入灼土，发现每片焦痕尽头都嵌着同一种人为锻造印记。伊格纳修斯终于承认自己曾误伤同伴，却仍选择继续返回熔炉核心；真正扩大灾害的人，就藏在灼心外炉之后。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-03",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 3,
+      "title": "灼心外炉",
+      "output": "/images/phase3/huo/region-03.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 灼心外炉, region 3 of the Infernal continent\nNarrative facts: 灼心外炉的裂壁不断喷出火种，兽王熔牙以污染魂能铸成炭甲，正沿伊格纳修斯的焦痕追猎方舟堡。奥里克用金壁承受冲击，塞琳娜压低炉温，伊格纳修斯则强忍共鸣牵制兽王。方舟堡切断熔牙与炉心的痛觉联系，巨兽随炭甲一同崩解。外炉深处随即响起人为锤击，那是堕落锻造师引爆火种的信号；一场以不死鸟为祭品的仪式正在旧锻坊成形。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-04",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 4,
+      "title": "旧锻坊",
+      "output": "/images/phase3/huo/region-04.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 旧锻坊, region 4 of the Infernal continent\nNarrative facts: 废炉回廊下方，火之魂令裂隙像活物般牵引伊格纳修斯体内的毁灭之火。炉魂执行者把他视作献炉必需的祭品，阻止方舟堡触碰旧炉。根核击碎守卫后读出残响：兽形并非污染源，而是身体承受过载魂能时的防御。奥里克与塞琳娜因此改变判断，决定为火寻找出口，而不是先处决危险的同伴。废炉日志也留下维萨隆的试验记录，完整献炉术就刻在灰烬铭堂。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-05",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 5,
+      "title": "灰烬铭堂",
+      "output": "/images/phase3/huo/region-05.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 灰烬铭堂, region 5 of the Infernal continent\nNarrative facts: 灰烬铭堂记载着献炉术：逼出完整兽形，烧尽人格，再把不死鸟变成无意识的永恒炉火。铭誓守焰者仍把这种背叛称作荣耀，执意守住仪式记录。方舟堡净化铭堂后发现，强行压回兽形只会积累更猛烈的爆发；尚在呼吸的原焰根道，才可能承接并转化毁灭之火。奥里克、塞琳娜与伊格纳修斯由此立下共同承力的约定，随后直赴已经点燃的引火高炉。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-06",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 6,
+      "title": "引火高炉",
+      "output": "/images/phase3/huo/region-06.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 引火高炉, region 6 of the Infernal continent\nNarrative facts: 引火高炉内，维萨隆撕大魂令裂隙，将四方火种同时灌向伊格纳修斯。方舟堡与两位英雄击溃献炉法阵，维萨隆也在崩塌中败退，但完整兽形已经冲破人身。不死鸟熔穿炉壁，直飞炎狱核心；伊格纳修斯只来得及留下撤离警告。艾蕾尼娅阻止众人继续压制，要求他们追上那团毁灭之火，在兽形仍保留名字的时候把他唤回。通往原焰之釜的火线随之全面升起。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-07",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 7,
+      "title": "失控火线",
+      "output": "/images/phase3/huo/region-07.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 失控火线, region 7 of the Infernal continent\nNarrative facts: 决战前夜，原焰之釜上空没有星辰，只有不死鸟每次振翼投下的赤光。难民熄灭营火，锻造师把最后的金锚送到前线；奥里克重整断墙，塞琳娜沿根道布下冰雾，方舟堡则在焦土下寻找伊格纳修斯“请求归队”的誓言节奏。焚誓残影不断吞噬他的旧记忆，想让名字在开战前先被烧尽。第一声归队锤音穿过火海时，不死鸟停顿了一瞬，众人知道他仍在等待。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-08",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 8,
+      "title": "原焰根道",
+      "output": "/images/phase3/huo/region-08.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 原焰根道, region 8 of the Infernal continent\nNarrative facts: 战钟落下，三条火线同时崩开。奥里克正以金壁托住坠落炉桥，塞琳娜正把冰雾压进逃生道，方舟堡的根须则穿过两军脚下，主动接住不死鸟俯冲带来的毁灭之火。根焰吞噬者沿根道反噬，企图把调和之力也变成燃料；根核当场改写火流，将烈焰导入世界树残存的净化回路。兽潮、炉桥与天空仍在燃烧，原焰根道却第一次亮成金白，为众人打开通往釜心的道路。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-region-09",
+      "type": "region",
+      "continentId": "huo",
+      "regionIndex": 9,
+      "title": "原焰之釜",
+      "output": "/images/phase3/huo/region-09.png",
+      "prompt": "Use case: stylized concept art\nAsset type: cinematic region key art for a Western dark-fantasy worldbuilding website\nRegion: 原焰之釜, region 9 of the Infernal continent\nNarrative facts: 原焰之釜里，天地只剩一只燃烧的鸟，以及同伴反复呼唤的名字。方舟堡没有击败不死鸟，而是承受它每一次失控振翼，把毁灭之火送回净焰循环。奥里克与塞琳娜守在火海边缘，艾蕾尼娅一遍遍唤出伊格纳修斯。那名字终于穿过兽形，他主动收拢双翼，以人身从金白烈焰中走回众人。熔炉重新点燃，烧裂的根脉却留下永不愈合的火痕；金、冰、火也由此在方舟堡中结成最初循环。\nScene language: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy film keyframe, painterly photorealism, grounded materials, large-scale environmental concept art, subtle oil-paint texture\nComposition/framing: cinematic widescreen establishing shot, one clear focal path, strong foreground-midground-background separation, characters remain small enough that the location is the subject\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nContinuity: original setting, solemn mythic tone, believable ecology and architecture, no modern technology\nConstraints: depict only this story beat; no readable text, no letters, no logos, no UI, no watermark, no decorative border, no split panels, no collage"
+    },
+    {
+      "id": "huo-boss-01",
+      "type": "boss",
+      "continentId": "huo",
+      "act": 1,
+      "title": "炭甲兽王·熔牙",
+      "output": "/images/phase3/huo/boss-01.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 炭甲兽王·熔牙\nIdentity and narrative relationship: 从灼心外炉中诞生的火种兽王，甲壳由熔炉残渣和被污染的魂能凝结。它会沿伊格纳修斯失控后留下的焦痕追逐方舟堡。\nCore motivation: 它把熔炉核心的疼痛当作召唤，试图吞噬更多热量和魂能，让整片焦土变成能持续孵化火种兽群的巢穴。\nVisual world: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "huo-boss-02",
+      "type": "boss",
+      "continentId": "huo",
+      "act": 2,
+      "title": "维萨隆·堕炉领主",
+      "output": "/images/phase3/huo/boss-02.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 维萨隆·堕炉领主\nIdentity and narrative relationship: 堕落锻造师的首领，也是当年把毁灭之火引入魂令裂隙的人。他将伊格纳修斯视为最完美的活体熔炉。\nCore motivation: 他要引爆火种逼出完整不死鸟，使兽形烧尽伊格纳修斯的人格，再把永不熄灭的净火献给深渊主战派。\nVisual world: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    },
+    {
+      "id": "huo-boss-03",
+      "type": "boss",
+      "continentId": "huo",
+      "act": 3,
+      "title": "失控不死鸟·伊格纳修斯",
+      "output": "/images/phase3/huo/boss-03.png",
+      "prompt": "Use case: stylized character concept art\nAsset type: final Boss key art for a Western dark-fantasy worldbuilding website\nBoss: 失控不死鸟·伊格纳修斯\nIdentity and narrative relationship: 被火之魂令裂隙彻底逼入兽形的伊格纳修斯。此时的不死鸟拥有焚尽兽群的力量，却已经无法分辨敌人、故土与同伴。\nCore motivation: 兽形本能要释放所有被压抑的毁灭之火；残存的人格则不断向方舟堡求救，希望同伴阻止自己再次伤害需要守护的人。\nVisual world: volcanic forges, basalt citadels, ash plains, molten root channels, monumental medieval furnace architecture\nStyle/medium: prestige Western dark fantasy character concept painting, painterly photorealism, grounded medieval armor and materials, highly resolved face and silhouette, subtle oil-paint texture\nComposition/framing: vertical 4:5 full-body hero framing, single character, readable silhouette, restrained atmospheric environment from their act, no character sheet panels\nColor palette: obsidian black, furnace red, ember orange, white-gold fire, cold steel accents\nCharacter direction: threatening but narratively tragic, visual details must express identity and motivation rather than generic evil\nConstraints: one original character only; no readable text, no labels, no logos, no UI, no watermark, no decorative border, no split panels, no collage, no franchise resemblance"
+    }
+  ]
+}

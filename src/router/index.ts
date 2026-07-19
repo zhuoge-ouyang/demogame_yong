@@ -35,7 +35,7 @@ const router = createRouter({
     {
       path: '/phase3',
       component: () => import('@/views/Phase3View.vue'),
-      redirect: '/phase3/jin',
+      redirect: '/phase3/mu',
       children: [
         { path: ':continentId', component: () => import('@/components/phase3/LandingDetail.vue'), props: true }
       ]

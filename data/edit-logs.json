@@ -5288,5 +5288,2775 @@
     "fieldLabel": "土大陆-核心冲突",
     "oldContent": "核心冲突是佩特拉与方舟堡代表的新承重同盟，对抗深岩议会、堕落石碑守卫和深渊根裂的斗争。区域1-3，塌岩傀儡和根裂虫群攻击方舟堡，因为它的根须会分担地层压力，暴露议会牺牲矿区的谎言；区域4-6，深岩议会封锁矿道并放出石像守卫，阻止方舟堡读取石碑档案；区域7-9，根裂穹顶的决战不是继续压住裂缝，而是由佩特拉打碎承重王座，让磐岩人承认旧封印造成的债，并让下层矿城真正活下来。",
     "newContent": "核心冲突是佩特拉与方舟堡代表的新承重同盟，对抗深岩议会、堕落石碑守卫和深渊根裂的斗争。\n\n区域1-3，塌岩傀儡和根裂虫群攻击方舟堡，因为它的根须会分担地层压力，暴露议会牺牲矿区的谎言；\n\n区域4-6，深岩议会封锁矿道并放出石像守卫，阻止方舟堡读取石碑档案；\n\n区域7-9，根裂穹顶的决战不是继续压住裂缝，而是由佩特拉打碎承重王座，让磐岩人承认旧封印造成的债，并让下层矿城真正活下来。"
+  },
+  {
+    "id": "1784467153298-yke1mw",
+    "username": "ouyang",
+    "timestamp": 1784467153298,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点1-叙事任务",
+    "oldContent": "由根语者把意识接入深层根网，唤醒沉睡的方舟堡，并让玩家第一次通过树木、根须和森林生灵感知外界。",
+    "newContent": "由根语者把意识接入深层根网，唤醒沉睡的方舟堡，让玩家第一次通过树木、根须和森林生灵感知外界，确认自身为世界树种子灵魂。"
+  },
+  {
+    "id": "1784467153320-tr5jdo",
+    "username": "ouyang",
+    "timestamp": 1784467153320,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.storyContent",
+    "fieldLabel": "森大陆-关卡节点1-区域故事",
+    "oldContent": "",
+    "newContent": "翠森大陆地底根网连日低鸣，根语者循着痛感深入腐烂根庭，试图找出让森林失语的源头。他将意识扎入发黑的须脉，触到一枚在根核深处缓慢跳动的沉睡种子——那是方舟堡尚未睁眼的灵魂。腐须化作朽木守卫扑向他，方舟堡本能地颤动根须将其绞断，第一次以自己的方式回应了世界。根语者由此确认：一枚世界树的种子灵魂已在翠森苏醒，森林的哀鸣终于有了倾听者，而地表之上，兽群正循着这股新生的气息扑来。"
+  },
+  {
+    "id": "1784467153340-67a8e0",
+    "username": "ouyang",
+    "timestamp": 1784467153340,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点1-进入前提示",
+    "oldContent": "根语者正把意识扎入腐烂根网，地下有什么正在回应他。",
+    "newContent": "地底传来一声不属于任何生者的心跳，根语者屏住呼吸，将手按入腐土。"
+  },
+  {
+    "id": "1784467153360-f7anpo",
+    "username": "ouyang",
+    "timestamp": 1784467153360,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点1-结束后反馈",
+    "oldContent": "沉睡的方舟堡睁开根须视野，第一次听见森林的疼痛。",
+    "newContent": "森林第一次被人听见，沉睡的根核睁开了不属于凡人的视野。"
+  },
+  {
+    "id": "1784467153381-i1mx54",
+    "username": "ouyang",
+    "timestamp": 1784467153381,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点1-叙事奖励",
+    "oldContent": "根语者确认方舟堡拥有世界树种子灵魂，能够听见并调和失序魂能。",
+    "newContent": "根语者确认方舟堡承载着世界树种子灵魂，能听见并回应失序魂能；地表求救声正从根雾林传来。"
+  },
+  {
+    "id": "1784467153402-ytmk30",
+    "username": "ouyang",
+    "timestamp": 1784467153402,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.opponent.name",
+    "fieldLabel": "森大陆-关卡节点1-区域对手名称",
+    "oldContent": "",
+    "newContent": "朽木守夜者·维恩戈"
+  },
+  {
+    "id": "1784467153422-hbcbrm",
+    "username": "ouyang",
+    "timestamp": 1784467153422,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.opponent.identity",
+    "fieldLabel": "森大陆-关卡节点1-区域对手身份",
+    "oldContent": "",
+    "newContent": "太古纪元战死于根庭的森元素守卫残魂,如今被腐化魂能重新拼合的朽木亡卫"
+  },
+  {
+    "id": "1784467153442-8gefw1",
+    "username": "ouyang",
+    "timestamp": 1784467153442,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.opponent.motivation",
+    "fieldLabel": "森大陆-关卡节点1-区域对手动机",
+    "oldContent": "",
+    "newContent": "误将新生的种子灵魂视为侵入根庭的异物,以最后一道旧誓将其绞杀在苏醒之前"
+  },
+  {
+    "id": "1784467153462-pt07xx",
+    "username": "ouyang",
+    "timestamp": 1784467153462,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.0.opponent.signatureLine",
+    "fieldLabel": "森大陆-关卡节点1-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "（译出的誓约残响）\"根不识汝……根不识汝……凡触根核者,皆当归土。\""
+  },
+  {
+    "id": "1784467153486-nnruw1",
+    "username": "ouyang",
+    "timestamp": 1784467153486,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点2-叙事任务",
+    "oldContent": "让方舟堡第一次回应求救，在根雾中找到保护虚弱艾蕾尼娅的奥里克，并建立玩家与第一位英雄的信任。",
+    "newContent": "让方舟堡第一次将根须探出地表回应求救，在根雾中救下护着虚弱艾蕾尼娅的奥里克，建立玩家与第一位英雄及引导女神的连接。"
+  },
+  {
+    "id": "1784467153510-3neuoz",
+    "username": "ouyang",
+    "timestamp": 1784467153510,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.storyContent",
+    "fieldLabel": "森大陆-关卡节点2-区域故事",
+    "oldContent": "",
+    "newContent": "根雾林缘白雾翻涌，深渊兽群顺着方舟堡新生的魂能气息扑向林口。一名满身金铠的骑士背抵古树，怀中护着一位燃烧了大半神力、几乎无法站立的女子——奥里克·铸金远渡而来，却在踏入翠森的第一夜就被兽潮围困。根语者引方舟堡将根须自地表破土而出，缠住扑来的枯根兽，为奥里克争出一线生机。艾蕾尼娅在昏沉中睁眼，认出了这枚她等待多年的种子灵魂，低声说出了引导之言。奥里克收剑跪地——他远行寻求的调和之力，正在他脚下呼吸。"
+  },
+  {
+    "id": "1784467153534-loxdjc",
+    "username": "ouyang",
+    "timestamp": 1784467153534,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点2-进入前提示",
+    "oldContent": "深渊兽群循魂能而来，奥里克正护着虚弱的艾蕾尼娅。",
+    "newContent": "白雾里传来钢铁与利齿的撞击声，一位骑士正把最后一寸退路留给身后的女子。"
+  },
+  {
+    "id": "1784467153553-ezvw5c",
+    "username": "ouyang",
+    "timestamp": 1784467153553,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点2-结束后反馈",
+    "oldContent": "外围防线暂时稳住，方舟堡认出了第一个愿意守护它的人。",
+    "newContent": "外围防线暂稳，方舟堡认出了第一个愿意为它守夜的人，也听见了那句将陪伴自己整段旅途的低语。"
+  },
+  {
+    "id": "1784467153573-q3jw87",
+    "username": "ouyang",
+    "timestamp": 1784467153573,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点2-叙事奖励",
+    "oldContent": "艾蕾尼娅的命运线因方舟堡苏醒而亮起，奥里克也决定留下共同守根。",
+    "newContent": "艾蕾尼娅的命运线因方舟堡苏醒而亮起，从此不再离开；奥里克决定留下共守根雾林；兽群的源头指向林深处的腐根巢穴。"
+  },
+  {
+    "id": "1784467153593-jkvesu",
+    "username": "ouyang",
+    "timestamp": 1784467153593,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.opponent.name",
+    "fieldLabel": "森大陆-关卡节点2-区域对手名称",
+    "oldContent": "",
+    "newContent": "噬息枯狼·葛拉恩"
+  },
+  {
+    "id": "1784467153613-0tv7at",
+    "username": "ouyang",
+    "timestamp": 1784467153613,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.opponent.identity",
+    "fieldLabel": "森大陆-关卡节点2-区域对手身份",
+    "oldContent": "",
+    "newContent": "最早穿过木令裂隙进入翠森的深渊兽群头狼，被腐化魂能改造后专司循魂能气息猎杀"
+  },
+  {
+    "id": "1784467153633-21zcfw",
+    "username": "ouyang",
+    "timestamp": 1784467153633,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.opponent.motivation",
+    "fieldLabel": "森大陆-关卡节点2-区域对手动机",
+    "oldContent": "",
+    "newContent": "将新生的魂能源头撕碎并吞入腹中，为身后更大规模的兽潮开辟出一条安全的猎径"
+  },
+  {
+    "id": "1784467153652-2vx94s",
+    "username": "ouyang",
+    "timestamp": 1784467153652,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.1.opponent.signatureLine",
+    "fieldLabel": "森大陆-关卡节点2-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "新的气味……甜的……把它挖出来，让森林重新变哑。"
+  },
+  {
+    "id": "1784467153672-ilqg3d",
+    "username": "ouyang",
+    "timestamp": 1784467153672,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.2.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点3-叙事任务",
+    "oldContent": "让方舟堡首次主动使用调和之力扰乱兽群感知，协助奥里克击败苔颚，并确认根腐来自木之魂令失衡。",
+    "newContent": "让方舟堡首次主动运用调和之力扰乱兽群感知，与奥里克协力击败苔颚，确认根腐源自木之魂令的裂隙。"
+  },
+  {
+    "id": "1784467153692-hjmquw",
+    "username": "ouyang",
+    "timestamp": 1784467153692,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.2.storyContent",
+    "fieldLabel": "森大陆-关卡节点3-区域故事",
+    "oldContent": "",
+    "newContent": "兽群溯着方舟堡的魂能一路退回腐根兽巢，巢穴中央盘踞着由腐须与魂能残渣凝成的巨兽·苔颚，它没有心智，只有把最强魂能吞入腹中的本能。奥里克以铸金术在巢口筑起金壁，根语者引导方舟堡第一次主动搏动调和之力，扰乱苔颚循迹的感官。苔颚在幻息中扑空，被奥里克一剑劈开脊骨。腐尸崩解的瞬间，一缕带着木令印记的魂能残响自其体内逸出——腐根并非源于兽，兽只是被更深的裂隙牵引而来。翠森的病根在更上游。"
+  },
+  {
+    "id": "1784467153713-bnpwnd",
+    "username": "ouyang",
+    "timestamp": 1784467153713,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.2.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点3-进入前提示",
+    "oldContent": "腐根巨兽堵住根雾林，它正循着方舟堡的根核气息逼近。",
+    "newContent": "巢穴深处有什么正循着心跳靠近，它没有眼睛，却清楚地知道方舟堡在哪。"
+  },
+  {
+    "id": "1784467153733-wxey3w",
+    "username": "ouyang",
+    "timestamp": 1784467153733,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.2.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点3-结束后反馈",
+    "oldContent": "调和之力扰乱兽群感知，奥里克斩断了第一轮根腐扩张。",
+    "newContent": "调和之力第一次撕开了兽群的感官，苔颚倒在腐叶之上，森林短暂地喘了一口气。"
+  },
+  {
+    "id": "1784467153752-dt97f9",
+    "username": "ouyang",
+    "timestamp": 1784467153752,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.2.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点3-叙事奖励",
+    "oldContent": "苔颚体内的魂令残响指向年轮圣所，证明兽潮只是翠森危机的表层。",
+    "newContent": "苔颚体内残响指向年轮圣所方向的木之魂令裂隙，兽潮只是表层症状；更深的操纵者尚未现身。"
+  },
+  {
+    "id": "1784467153773-ldnf8d",
+    "username": "ouyang",
+    "timestamp": 1784467153773,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点4-叙事任务",
+    "oldContent": "让塞琳娜带着霜誓结晶抵达翠森，通过根网对照寒潮与根腐波动，证明九大陆危机彼此相连。",
+    "newContent": "让塞琳娜携霜誓结晶抵达翠森，通过年轮共振对照寒潮与根腐波形，让玩家确认九大陆危机同源相连。"
+  },
+  {
+    "id": "1784467153793-9we4w9",
+    "username": "ouyang",
+    "timestamp": 1784467153793,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.storyContent",
+    "fieldLabel": "森大陆-关卡节点4-区域故事",
+    "oldContent": "",
+    "newContent": "年轮圣所是翠森记录岁月的活体档案，古树内圈的年轮能与其他大陆的元素残响共鸣。塞琳娜·霜誓一路穿过废弃符文通道抵达此地，将霜誓结晶按在年轮之上——冰蓝与腐褐的波纹竟在同一圈年轮上重叠震颤。就在此刻，一队被腐化魂能奴役的旧圣所守卫从年轮阴影中走出，它们曾是翠森最后一批年轮祭司，如今只剩守护本能被扭曲成排外的杀意。方舟堡以根须托住塞琳娜，奥里克斩断腐化祭司的锁链。年轮停止哀鸣时，三人都看清了：翠森之病，与霜寒之寒，是同一场溃烂的两副面孔。"
+  },
+  {
+    "id": "1784467153814-9vmmju",
+    "username": "ouyang",
+    "timestamp": 1784467153814,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点4-进入前提示",
+    "oldContent": "塞琳娜带着霜誓结晶赶来，寒潮警告正在根网中回响。",
+    "newContent": "一位霜蓝披风的女子踏碎腐叶而来，她掌中的结晶与古树年轮同时颤抖。"
+  },
+  {
+    "id": "1784467153833-vojo57",
+    "username": "ouyang",
+    "timestamp": 1784467153833,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点4-结束后反馈",
+    "oldContent": "翠森与霜寒的异变同源，九大陆并非各自孤立受灾。",
+    "newContent": "年轮之上冰与腐同频跳动，翠森不再是一座孤岛，九大陆的伤口连成了同一道疤。"
+  },
+  {
+    "id": "1784467153853-wgytyp",
+    "username": "ouyang",
+    "timestamp": 1784467153853,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点4-叙事奖励",
+    "oldContent": "霜誓结晶与木之魂令残响同频，下一处异常落在被切断的古老根桥。",
+    "newContent": "霜誓结晶与木之魂令残响同频；下一处波动落在被人为切断的古老根桥，那里有清晰的凿痕。"
+  },
+  {
+    "id": "1784467153874-mbpr4s",
+    "username": "ouyang",
+    "timestamp": 1784467153874,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.opponent.name",
+    "fieldLabel": "森大陆-关卡节点4-区域对手名称",
+    "oldContent": "",
+    "newContent": "年轮腐祭·蕾丝薇拉"
+  },
+  {
+    "id": "1784467153895-txbpox",
+    "username": "ouyang",
+    "timestamp": 1784467153895,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.opponent.identity",
+    "fieldLabel": "森大陆-关卡节点4-区域对手身份",
+    "oldContent": "",
+    "newContent": "年轮圣所最后一任祭司长，殉职后被祭师用腐化魂能强行唤起的旧守护者"
+  },
+  {
+    "id": "1784467153916-2u9gcq",
+    "username": "ouyang",
+    "timestamp": 1784467153916,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.opponent.motivation",
+    "fieldLabel": "森大陆-关卡节点4-区域对手动机",
+    "oldContent": "",
+    "newContent": "以扭曲的守护誓约驱逐一切\"外来元素\"，包括塞琳娜的冰与方舟堡的调和，只为保住她记忆里那座早已不存在的纯净圣所"
+  },
+  {
+    "id": "1784467153935-3e2p0c",
+    "username": "ouyang",
+    "timestamp": 1784467153935,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.3.opponent.signatureLine",
+    "fieldLabel": "森大陆-关卡节点4-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "外者……止步……年轮之内，只容一种颜色的血流淌。"
+  },
+  {
+    "id": "1784467153966-wuwh9e",
+    "username": "ouyang",
+    "timestamp": 1784467153966,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点5-叙事任务",
+    "oldContent": "迫使根语者、奥里克与塞琳娜暂时放下戒备，把根语、金壁和冰雾交给方舟堡统一调和，重新接通救援路线。",
+    "newContent": "让根语者、奥里克与塞琳娜首次把各自的力量交给同一根脉，由方舟堡统一调和，重新接通被切断的救援路线。"
+  },
+  {
+    "id": "1784467153986-kaxbov",
+    "username": "ouyang",
+    "timestamp": 1784467153986,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.storyContent",
+    "fieldLabel": "森大陆-关卡节点5-区域故事",
+    "oldContent": "",
+    "newContent": "连通母树空心与外围林境的古老根桥被人从内侧凿断，断口整齐得不像自然腐坏。深渊兽群正从裂口下方涌上，逃难的林民困在桥的另一端。三位陌生人各执一端：奥里克要以金壁封桥，塞琳娜要以冰雾冻兽，根语者要让根须重新生长——三种做法互相抵触。艾蕾尼娅在方舟堡意识中低声开口，让方舟堡把三股力量同时接入根核，以调和之力编成一道会呼吸的桥。金、冰、根第一次交织成同一根脉络。林民踏桥而过时，凿痕在桥面上清晰可见——切断者不是野兽，是有手、有工具、有意图的人。"
+  },
+  {
+    "id": "1784467154006-uqynt1",
+    "username": "ouyang",
+    "timestamp": 1784467154006,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点5-进入前提示",
+    "oldContent": "断流根桥正在崩坏，三位陌生人必须把力量交给同一根脉。",
+    "newContent": "桥的断口太整齐了，森林不会这样自己折断自己的骨头。"
+  },
+  {
+    "id": "1784467154026-8se9dj",
+    "username": "ouyang",
+    "timestamp": 1784467154026,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点5-结束后反馈",
+    "oldContent": "金壁、冰雾与根语第一次协同，方舟堡学会连接他人。",
+    "newContent": "金壁、冰雾与根语第一次呼吸在同一处，方舟堡学会了把陌生人连成一根脉。"
+  },
+  {
+    "id": "1784467154046-xf7fd9",
+    "username": "ouyang",
+    "timestamp": 1784467154046,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点5-叙事奖励",
+    "oldContent": "根桥恢复后显露人为切断痕迹，深渊祭师正在木令裂坛准备夺取魂令。",
+    "newContent": "根桥修复处显露人为凿痕，操纵者是深渊祭师，他正在下游的木令裂坛准备夺令仪式。"
+  },
+  {
+    "id": "1784467154066-0gi636",
+    "username": "ouyang",
+    "timestamp": 1784467154066,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.opponent.name",
+    "fieldLabel": "森大陆-关卡节点5-区域对手名称",
+    "oldContent": "",
+    "newContent": "凿根者·瓦尔戈斯"
+  },
+  {
+    "id": "1784467154086-evp3y7",
+    "username": "ouyang",
+    "timestamp": 1784467154086,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.opponent.identity",
+    "fieldLabel": "森大陆-关卡节点5-区域对手身份",
+    "oldContent": "",
+    "newContent": "深渊祭师麾下的先遣工兵，专门负责在裂隙扩大前切断翠森根网的关键节点"
+  },
+  {
+    "id": "1784467154106-8c4rkq",
+    "username": "ouyang",
+    "timestamp": 1784467154106,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.opponent.motivation",
+    "fieldLabel": "森大陆-关卡节点5-区域对手动机",
+    "oldContent": "",
+    "newContent": "切断母树空心与外围的根系联络，让翠森在祭师夺令时失去自愈之力，也让守林人无法向核心增援"
+  },
+  {
+    "id": "1784467154125-in3nxo",
+    "username": "ouyang",
+    "timestamp": 1784467154126,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.4.opponent.signatureLine",
+    "fieldLabel": "森大陆-关卡节点5-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "让森林先断气，主人才好从容动刀——每一根被我凿断的根，都是深渊多出的一次呼吸。"
+  },
+  {
+    "id": "1784467154146-sxad63",
+    "username": "ouyang",
+    "timestamp": 1784467154146,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.5.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点6-叙事任务",
+    "oldContent": "让森林守护联盟正面对抗裂根深渊祭师，阻止夺令仪式并保住木之魂令，为塞琳娜争取验证调和之力的机会。",
+    "newContent": "让森林守护同盟正面对抗裂根深渊祭师，阻止夺令仪式并守住木之魂令，让塞琳娜亲眼验证调和之力足以修复寒潮。"
+  },
+  {
+    "id": "1784467154166-fokqvy",
+    "username": "ouyang",
+    "timestamp": 1784467154166,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.5.storyContent",
+    "fieldLabel": "森大陆-关卡节点6-区域故事",
+    "oldContent": "",
+    "newContent": "木令裂坛暴露在断桥下游，深渊祭师立于坛心，正以腐化魂能撬动木之魂令的封印节。他察觉方舟堡已苏醒，急欲抢在森林同盟合拢之前完成夺令。奥里克金壁封住四方退路，塞琳娜霜雾压低祭坛温度，根语者引根须缠住祭师足下腐土，方舟堡以调和之力将松动的魂令重新按回树心。夺令仪式在最后一息前崩解，祭师负伤退入南部林区，临走时将一缕腐纹烙印在逃亡路径的树身之上。塞琳娜按住尚在震颤的木之魂令，确认——这份力量，能救她的家乡。"
+  },
+  {
+    "id": "1784467154187-bukvxq",
+    "username": "ouyang",
+    "timestamp": 1784467154187,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.5.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点6-进入前提示",
+    "oldContent": "深渊祭师逼近木令裂坛，他要趁方舟堡苏醒夺走魂令。",
+    "newContent": "坛心的木之魂令正被一双腐黑的手一寸寸抽离树心，四道呼吸同时逼近祭坛。"
+  },
+  {
+    "id": "1784467154208-64gzvs",
+    "username": "ouyang",
+    "timestamp": 1784467154208,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.5.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点6-结束后反馈",
+    "oldContent": "祭师暂时退却，塞琳娜确认调和之力能够修复寒潮。",
+    "newContent": "夺令仪式在最后一息崩碎，祭师带伤退入南方，塞琳娜掌下的魂令还在余悸中颤抖。"
+  },
+  {
+    "id": "1784467154228-d59feo",
+    "username": "ouyang",
+    "timestamp": 1784467154228,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.5.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点6-叙事奖励",
+    "oldContent": "塞琳娜承诺引导方舟堡前往霜寒；祭师残部则带着腐纹逃向南部林区。",
+    "newContent": "塞琳娜承诺在翠森稳定后引方舟堡前往霜寒；祭师残部带着腐纹逃向南部林区，那里的火已经开始不对劲。"
+  },
+  {
+    "id": "1784467154249-3gt8xe",
+    "username": "ouyang",
+    "timestamp": 1784467154249,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点7-叙事任务",
+    "oldContent": "承接伊格纳修斯追查异常火源闯入翠森的事件，让方舟堡从狂暴火声中抓住他的残存意识，确认他并非主动纵火。",
+    "newContent": "承接伊格纳修斯追异火而至的事件，让方舟堡从狂暴火声中抓住他的残存人格，确认他并非纵火者，而是被祭师腐纹引爆的猎物。"
+  },
+  {
+    "id": "1784467154269-kschna",
+    "username": "ouyang",
+    "timestamp": 1784467154269,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.storyContent",
+    "fieldLabel": "森大陆-关卡节点7-区域故事",
+    "oldContent": "",
+    "newContent": "南部林区一夜之间燃起不属于翠森的火——它不吞氧，只吞魂能。伊格纳修斯·焚誓循这股熟悉的毁灭之火气息追来，却在踏入灼林的刹那被祭师留下的腐纹刺入魂脉，背生火翼，人格开始滑向不死鸟。奥里克以金壁隔火，塞琳娜以霜雾压焰，根语者引方舟堡将调和之力顺着地脉贴上他的胸口。在艾蕾尼娅的引导下，方舟堡触到他人格最深处那一点没被烧焦的名字。伊格纳修斯咬碎自己的舌尖，用疼痛把意识拽回一瞬——只够留下一句求救，随即再次沉入火中。"
+  },
+  {
+    "id": "1784467154290-g5m3k1",
+    "username": "ouyang",
+    "timestamp": 1784467154290,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点7-进入前提示",
+    "oldContent": "南部林区燃起异常烈火，伊格纳修斯正在兽形边缘挣扎。",
+    "newContent": "南边的林梢烧成了不该有的颜色，火里传来一个人咬着牙不肯化成鸟的声音。"
+  },
+  {
+    "id": "1784467154310-b46zb6",
+    "username": "ouyang",
+    "timestamp": 1784467154310,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点7-结束后反馈",
+    "oldContent": "方舟堡抓住他残存的意识，却还无法让不死鸟彻底平静。",
+    "newContent": "方舟堡抓住了他名字里的最后一颗火星，却还无法把整只不死鸟从火中拉回。"
+  },
+  {
+    "id": "1784467154331-bog99t",
+    "username": "ouyang",
+    "timestamp": 1784467154331,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点7-叙事奖励",
+    "oldContent": "火源中混有祭师留下的腐纹，伊格纳修斯的失控是最后一轮兽潮的引信。",
+    "newContent": "南部异火中混着祭师留下的腐纹，伊格纳修斯的失控是祭师精心引燃的引信，最后一轮兽潮已在集结。"
+  },
+  {
+    "id": "1784467154363-9wcdcj",
+    "username": "ouyang",
+    "timestamp": 1784467154363,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.opponent.name",
+    "fieldLabel": "森大陆-关卡节点7-区域对手名称",
+    "oldContent": "",
+    "newContent": "腐火蜃影·塞尔卡拉"
+  },
+  {
+    "id": "1784467154385-m1q3bf",
+    "username": "ouyang",
+    "timestamp": 1784467154385,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.opponent.identity",
+    "fieldLabel": "森大陆-关卡节点7-区域对手身份",
+    "oldContent": "",
+    "newContent": "由祭师腐纹与毁灭之火杂交而生的火系深渊蜃兽，专以放大宿主内心之痛为食"
+  },
+  {
+    "id": "1784467154406-ljxcna",
+    "username": "ouyang",
+    "timestamp": 1784467154406,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.opponent.motivation",
+    "fieldLabel": "森大陆-关卡节点7-区域对手动机",
+    "oldContent": "",
+    "newContent": "不断将伊格纳修斯记忆里被同族陷害的那一夜投射到灼林上空，让他在痛与恨中彻底兽化，成为攻打领主根堡的活体火种"
+  },
+  {
+    "id": "1784467154426-eq5w1g",
+    "username": "ouyang",
+    "timestamp": 1784467154426,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.6.opponent.signatureLine",
+    "fieldLabel": "森大陆-关卡节点7-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "（灼林中回荡的、用他自己嗓音说出的话）\"是他们送火进你身体里的——烧啊，烧回去，烧到没人再敢叫你的名字。\""
+  },
+  {
+    "id": "1784467154445-bgwih6",
+    "username": "ouyang",
+    "timestamp": 1784467154445,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点8-叙事任务",
+    "oldContent": "让祭师残部借火势发动总攻，由根语者制造防火空地，奥里克建立金壁、塞琳娜压低热浪，完成三英雄第一次真正协作。",
+    "newContent": "让祭师残部借火势发动总攻，由根语者辟出防火空地、奥里克筑金壁、塞琳娜压热浪，方舟堡将三力织为一体，完成三英雄第一次真正意义上的协作战。"
+  },
+  {
+    "id": "1784467154466-hs2gnt",
+    "username": "ouyang",
+    "timestamp": 1784467154466,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.storyContent",
+    "fieldLabel": "森大陆-关卡节点8-区域故事",
+    "oldContent": "",
+    "newContent": "翠森领主根堡是根语者世代守护的最后据点，也是木之魂令暂存之所。祭师残部驱赶被灼林点燃的全部兽群向此合围，火海与腐潮同时逼近堡墙。根语者请求整座森林让出一圈防火空地——古树主动枯萎自身外皮以断火路；奥里克金壁沿空地边缘立起熔而不塌的城墙；塞琳娜将霜誓压成低伏的冷雾贴地推进，压住地火。方舟堡以调和之力将三股力量结成一张会收放的网，第一次真正指挥了一场协同战。堡下的林民从地窖抬头望向天空——他们看见的不是三位陌生英雄，而是一支已经能被称作队伍的人。"
+  },
+  {
+    "id": "1784467154486-jheie1",
+    "username": "ouyang",
+    "timestamp": 1784467154486,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点8-进入前提示",
+    "oldContent": "祭师借火势引来全部兽群，领主根堡即将被腐火合围。",
+    "newContent": "南方的火与北方的兽同时压向根堡，森林正被要求做出让哪一部分自己先死的选择。"
+  },
+  {
+    "id": "1784467154507-0lqw6c",
+    "username": "ouyang",
+    "timestamp": 1784467154507,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点8-结束后反馈",
+    "oldContent": "根语者让森林让出防火空地，三位英雄完成第一次协作。",
+    "newContent": "兽潮主力被隔在焦土之外，三个陌生人第一次呼吸在同一节拍上，森林记住了他们。"
+  },
+  {
+    "id": "1784467154527-xy4fb7",
+    "username": "ouyang",
+    "timestamp": 1784467154527,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点8-叙事奖励",
+    "oldContent": "兽潮主力被隔断，但不死鸟已冲入母树空心，木之魂令也开始同时失控。",
+    "newContent": "兽潮外圈被隔断，但不死鸟已经冲破南线，直扑母树空心；木之魂令与伊格纳修斯的火同时开始失控。"
+  },
+  {
+    "id": "1784467154547-yltnuw",
+    "username": "ouyang",
+    "timestamp": 1784467154547,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.opponent.name",
+    "fieldLabel": "森大陆-关卡节点8-区域对手名称",
+    "oldContent": "",
+    "newContent": "焚翼腐将·卡尔戈斯"
+  },
+  {
+    "id": "1784467154567-rrtnme",
+    "username": "ouyang",
+    "timestamp": 1784467154567,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.opponent.identity",
+    "fieldLabel": "森大陆-关卡节点8-区域对手身份",
+    "oldContent": "",
+    "newContent": "裂根深渊祭师帐下最后一名领兵副官，半兽化的深渊武士，负责驱赶被腐纹感染的兽群完成合围"
+  },
+  {
+    "id": "1784467154587-ogzkos",
+    "username": "ouyang",
+    "timestamp": 1784467154587,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.opponent.motivation",
+    "fieldLabel": "森大陆-关卡节点8-区域对手动机",
+    "oldContent": "",
+    "newContent": "以自身与全部兽群为柴，把领主根堡烧穿一个口子，好让主人在母树空心从容取走木之魂令"
+  },
+  {
+    "id": "1784467154608-kimfnu",
+    "username": "ouyang",
+    "timestamp": 1784467154608,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.7.opponent.signatureLine",
+    "fieldLabel": "森大陆-关卡节点8-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "烧！让翠森学会——它守护的每一寸根，都能被自己的火烤成主人手里的钥匙。"
+  },
+  {
+    "id": "1784467154628-xzem99",
+    "username": "ouyang",
+    "timestamp": 1784467154628,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.8.storyPurpose",
+    "fieldLabel": "森大陆-关卡节点9-叙事任务",
+    "oldContent": "由方舟堡调和不死鸟残存意识与木之魂令，唤回伊格纳修斯并结束三日守城战，使森林秩序与迁移根网同时恢复。",
+    "newContent": "由方舟堡在艾蕾尼娅指引下同时调和不死鸟残存意识与木之魂令，唤回伊格纳修斯，结束三日守城战，让翠森秩序与迁移根网一同复苏。"
+  },
+  {
+    "id": "1784467154649-um14d9",
+    "username": "ouyang",
+    "timestamp": 1784467154649,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.8.storyContent",
+    "fieldLabel": "森大陆-关卡节点9-区域故事",
+    "oldContent": "",
+    "newContent": "母树空心是翠森的心脏，也是木之魂令最后的悬挂之处。失控的不死鸟冲入空心，火焰卷着腐化魂能同时逼向魂令，两股失控在同一根悬枝上纠缠。艾蕾尼娅将残存神力借与方舟堡，指引它把调和之力一分为二——一半顺魂令裂痕缓缓合拢，一半沿伊格纳修斯焚烧的名字回溯。奥里克以金壁护住母树主干，塞琳娜以霜雾兜住外泄之火，根语者第一次让森林向一位外来者呼唤：回来。伊格纳修斯在火中听见自己的名字被森林叫出，兽形第一次自主收拢入人形。木之魂令重归树心，翠森的根网自母树空心向下贯通，一条通往霜寒的地下根路，在方舟堡脚下亮起。"
+  },
+  {
+    "id": "1784467154671-oaaga1",
+    "username": "ouyang",
+    "timestamp": 1784467154671,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.8.entryPrompt",
+    "fieldLabel": "森大陆-关卡节点9-进入前提示",
+    "oldContent": "木之魂令就在母树空心，根腐与不死鸟火正同时失控。",
+    "newContent": "母树空心里，一枚魂令与一只不死鸟正在同一根枝上决定谁先熄灭。"
+  },
+  {
+    "id": "1784467154691-04niw6",
+    "username": "ouyang",
+    "timestamp": 1784467154691,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.8.completionFeedback",
+    "fieldLabel": "森大陆-关卡节点9-结束后反馈",
+    "oldContent": "魂令恢复流动，方舟堡获得迁移根路，霜寒信标随之亮起。",
+    "newContent": "魂令重新流动，不死鸟落回人形，翠森的根网自母树深处向北方伸出了第一段发亮的路。"
+  },
+  {
+    "id": "1784467154711-gpsl13",
+    "username": "ouyang",
+    "timestamp": 1784467154711,
+    "moduleName": "landing",
+    "fieldPath": "mu.levelNodes.8.narrativeReward",
+    "fieldLabel": "森大陆-关卡节点9-叙事奖励",
+    "oldContent": "伊格纳修斯开始信任同伴，木之魂令恢复秩序，主干根网开启通往霜寒的路线。",
+    "newContent": "伊格纳修斯开始信任同伴，愿加入队伍以求归乡净火；木之魂令恢复秩序，主干根网开启通往霜寒大陆的迁移路线；艾蕾尼娅确认方舟堡的调和之力已可跨大陆运作。"
+  },
+  {
+    "id": "1784467293167-sjhp9e",
+    "username": "ouyang",
+    "timestamp": 1784467293167,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.name",
+    "fieldLabel": "冰大陆-关卡节点1-名称",
+    "oldContent": "冻潮南境",
+    "newContent": "融冰海岸"
+  },
+  {
+    "id": "1784467293193-nfa4o3",
+    "username": "ouyang",
+    "timestamp": 1784467293193,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点1-叙事任务",
+    "oldContent": "让方舟堡沿翠森根脉迁入霜寒，接住塞琳娜留下的冰晶信标，并确认反常寒潮仍在向南境村镇扩张。",
+    "newContent": "让方舟堡沿翠森根脉成功迁移至霜寒大陆，接应塞琳娜留下的冰晶信标，确认反常寒潮正从北方向南境村镇扩张，建立初步立足点。"
+  },
+  {
+    "id": "1784467293214-d1iucq",
+    "username": "ouyang",
+    "timestamp": 1784467293214,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.storyContent",
+    "fieldLabel": "冰大陆-关卡节点1-区域故事",
+    "oldContent": "",
+    "newContent": "方舟堡沿地下根脉网络从翠森迁移而来,在融冰海岸浮现时接住了塞琳娜留下的冰晶信标。艾蕾尼娅提醒玩家,这片海岸本该温和,如今却被反常寒潮侵蚀。海岸村民指证北方冰原传来白色凶兽的嚎叫,每一次嚎叫后寒潮就会扩张一圈。塞琳娜确认方舟堡抵达后,承认自己离开期间领地恶化速度超出预期。方舟堡以调和之力稳住第一条根脉信标,为深入冰原做好准备,同时获知凶兽正追逐一切热源。"
+  },
+  {
+    "id": "1784467293236-3r16yg",
+    "username": "ouyang",
+    "timestamp": 1784467293236,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点1-进入前提示",
+    "oldContent": "冰晶信标即将熄灭，方舟堡必须先接住南境求救。",
+    "newContent": "冰晶信标的微光即将熄灭,寒潮正吞噬最后的温暖。"
+  },
+  {
+    "id": "1784467293261-bz55fg",
+    "username": "ouyang",
+    "timestamp": 1784467293261,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点1-结束后反馈",
+    "oldContent": "第一条根脉被重新点亮，塞琳娜确认寒潮仍在扩张。",
+    "newContent": "第一条根脉重新点亮,但寒潮仍在向南境蔓延。"
+  },
+  {
+    "id": "1784467293282-hf9gbt",
+    "username": "ouyang",
+    "timestamp": 1784467293282,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点1-叙事奖励",
+    "oldContent": "冰晶信标记录显示，寒潮扩张速度与冰之魂令波动完全同步。",
+    "newContent": "冰晶信标记录显示寒潮扩张速度与冰之魂令波动完全同步,凶兽踪迹指向北方冰原深处。"
+  },
+  {
+    "id": "1784467293302-ng8s5t",
+    "username": "ouyang",
+    "timestamp": 1784467293302,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.opponent.name",
+    "fieldLabel": "冰大陆-关卡节点1-区域对手名称",
+    "oldContent": "",
+    "newContent": "裂冰兽群先锋"
+  },
+  {
+    "id": "1784467293324-7psbms",
+    "username": "ouyang",
+    "timestamp": 1784467293324,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.opponent.identity",
+    "fieldLabel": "冰大陆-关卡节点1-区域对手身份",
+    "oldContent": "",
+    "newContent": "被寒潮扭曲的冰原猎食者,失去理智只剩吞噬热量的本能"
+  },
+  {
+    "id": "1784467293349-2l9l15",
+    "username": "ouyang",
+    "timestamp": 1784467293349,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.opponent.motivation",
+    "fieldLabel": "冰大陆-关卡节点1-区域对手动机",
+    "oldContent": "",
+    "newContent": "它们被方舟堡根核散发的热源吸引,渴望吞噬这股能够融化冰层的力量"
+  },
+  {
+    "id": "1784467293371-8hsqev",
+    "username": "ouyang",
+    "timestamp": 1784467293371,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.0.opponent.signatureLine",
+    "fieldLabel": "冰大陆-关卡节点1-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "温暖的气息...必须吞噬...必须带回巢穴..."
+  },
+  {
+    "id": "1784467293403-cuvtpa",
+    "username": "ouyang",
+    "timestamp": 1784467293403,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点2-叙事任务",
+    "oldContent": "救出被封在冰层中的幸存者，让玩家看见塞琳娜离开后领地恶化的真实代价，并找到白色凶兽的踪迹。",
+    "newContent": "救出被封在冰层中的幸存者,让玩家直观看见塞琳娜离开后领地恶化的真实代价,追踪白色凶兽足迹并确认兽巢位置。"
+  },
+  {
+    "id": "1784467293427-w4ac2w",
+    "username": "ouyang",
+    "timestamp": 1784467293427,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.storyContent",
+    "fieldLabel": "冰大陆-关卡节点2-区域故事",
+    "oldContent": "",
+    "newContent": "整座村镇在昨夜黄昏被瞬间冻结,街巷、房屋、甚至逃跑的村民都成了冰雕。方舟堡以调和之力融化冰层外壳,奥里克带领众人将仍有微弱心跳的幸存者从冰棺中救出。幸存者惊恐地描述白色凶兽如何追逐活人热量,将整个村镇拖入寒潮。塞琳娜沉默地看着冰封街道,终于承认封存真相的代价比她预想的更残酷。根语者通过残留根脉感知到兽群足迹指向北方,那里有一处散发异常寒意的巢穴,正堵住唯一残温通道。"
+  },
+  {
+    "id": "1784467293447-t86phy",
+    "username": "ouyang",
+    "timestamp": 1784467293447,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点2-进入前提示",
+    "oldContent": "整座村镇冻结在昨日黄昏，冰层下仍传来微弱心跳。",
+    "newContent": "村镇冻结在昨日黄昏,冰层下仍有心跳在挣扎。"
+  },
+  {
+    "id": "1784467293468-g3jb70",
+    "username": "ouyang",
+    "timestamp": 1784467293468,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点2-结束后反馈",
+    "oldContent": "幸存者被带离冰封街巷，白色凶兽的足迹指向北方。",
+    "newContent": "幸存者脱离冰封,白魇兽群的巢穴位置已经锁定。"
+  },
+  {
+    "id": "1784467293489-v0dcb1",
+    "username": "ouyang",
+    "timestamp": 1784467293489,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点2-叙事奖励",
+    "oldContent": "幸存者证实凶兽会追逐根核热量，兽巢正堵住唯一残温通道。",
+    "newContent": "幸存者证实凶兽会主动追逐根核热量,兽巢堵住的残温通道是边境百姓最后的生路。"
+  },
+  {
+    "id": "1784467293509-0bvti7",
+    "username": "ouyang",
+    "timestamp": 1784467293509,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.opponent.name",
+    "fieldLabel": "冰大陆-关卡节点2-区域对手名称",
+    "oldContent": "",
+    "newContent": "寒潮亡影"
+  },
+  {
+    "id": "1784467293539-3zjbrh",
+    "username": "ouyang",
+    "timestamp": 1784467293539,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.opponent.identity",
+    "fieldLabel": "冰大陆-关卡节点2-区域对手身份",
+    "oldContent": "",
+    "newContent": "被冻死村民的魂能残响,在寒潮中凝结成游荡的冰霜幽灵"
+  },
+  {
+    "id": "1784467293560-ijox3v",
+    "username": "ouyang",
+    "timestamp": 1784467293560,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.opponent.motivation",
+    "fieldLabel": "冰大陆-关卡节点2-区域对手动机",
+    "oldContent": "",
+    "newContent": "它们被困在冻结瞬间的恐惧中,本能驱使它们阻止一切试图融化冰层的力量"
+  },
+  {
+    "id": "1784467293582-4cktry",
+    "username": "ouyang",
+    "timestamp": 1784467293582,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.1.opponent.signatureLine",
+    "fieldLabel": "冰大陆-关卡节点2-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "不要融化...冰层是我们最后的庇护...外面只有凶兽..."
+  },
+  {
+    "id": "1784467293603-8uuztd",
+    "username": "ouyang",
+    "timestamp": 1784467293603,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.2.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点3-叙事任务",
+    "oldContent": "清除追逐热源的白魇兽群并击退赫尔莎，确认凶兽是寒潮的衍生物，而真正源头仍在冰之魂令。",
+    "newContent": "清除追逐热源的白魇兽群并击退赫尔莎,确认凶兽是寒潮的衍生物而非根源,打开通往地下热源根脉的道路。"
+  },
+  {
+    "id": "1784467293625-jhu7fj",
+    "username": "ouyang",
+    "timestamp": 1784467293625,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.2.storyContent",
+    "fieldLabel": "冰大陆-关卡节点3-区域故事",
+    "oldContent": "",
+    "newContent": "白魇兽群盘踞在冰原裂口,巢穴深处散发着吞噬一切温度的寒意。兽母赫尔莎感知到方舟堡根核的热量后率领兽群发起猛攻,试图将这股热源拖入巢穴作为寒潮扩张的燃料。伊格纳修斯以火焰牵制兽群,奥里克构筑铸金防线,塞琳娜则以冰霜术反制赫尔莎的寒潮侵蚀。激战后赫尔莎被击退,兽巢散去时众人在裂口底部发现一张残破的旧冰晶图,标注着未被寒潮熄灭的地下热源根脉。艾蕾尼娅指出真正源头仍在冰之魂令,凶兽只是灾害的表象。"
+  },
+  {
+    "id": "1784467293646-bbtlwk",
+    "username": "ouyang",
+    "timestamp": 1784467293646,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.2.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点3-进入前提示",
+    "oldContent": "白魇兽群守住寒潮源口，它们正追逐方舟堡的根核热量。",
+    "newContent": "兽母守住寒潮源口,它要将方舟堡的热量献祭。"
+  },
+  {
+    "id": "1784467293674-6u39i1",
+    "username": "ouyang",
+    "timestamp": 1784467293674,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.2.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点3-结束后反馈",
+    "oldContent": "兽巢散去后，众人找到通往残温根脉的旧冰晶图。",
+    "newContent": "兽巢崩解,旧冰晶图指向未冻死的地下根脉。"
+  },
+  {
+    "id": "1784467293696-28cjxo",
+    "username": "ouyang",
+    "timestamp": 1784467293696,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.2.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点3-叙事奖励",
+    "oldContent": "旧冰晶图标出未冻死的地下根脉，可为大规模迁民提供热源路线。",
+    "newContent": "冰晶图标出可供大规模迁民的热源路线,但入口方向传来弗洛斯特旧党封锁边境的消息。"
+  },
+  {
+    "id": "1784467293718-7kjfl5",
+    "username": "ouyang",
+    "timestamp": 1784467293718,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点4-叙事任务",
+    "oldContent": "由伊格纳修斯寻找未被寒潮熄灭的热源，让方舟堡恢复根脉导向，为边境百姓建立可行的迁徙路线。",
+    "newContent": "由伊格纳修斯寻找未被寒潮熄灭的热源根脉,让方舟堡恢复根脉导向,为边境百姓建立可行的迁徙路线。"
+  },
+  {
+    "id": "1784467293739-y6v0cb",
+    "username": "ouyang",
+    "timestamp": 1784467293739,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.storyContent",
+    "fieldLabel": "冰大陆-关卡节点4-区域故事",
+    "oldContent": "",
+    "newContent": "伊格纳修斯凭借对火元素的敏感深入冰层裂缝,在近乎熄灭的根脉中找到仍有余温的节点。方舟堡将调和之力引入根脉,地下通道开始恢复微弱热流,足以支撑迁徙队伍穿越寒潮区域。根语者通过根脉感知到这条通道延伸至冰下遗迹,但入口被弗洛斯特控制的封城关隘阻断。塞琳娜收到边境求援信号,封城旧党正关闭所有通道,宣称迁民只会消耗王城储备。奥里克提议直接护送百姓突破关隘,艾蕾尼娅则提醒这是塞琳娜必须面对的领主之争。"
+  },
+  {
+    "id": "1784467293761-w57c57",
+    "username": "ouyang",
+    "timestamp": 1784467293761,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点4-进入前提示",
+    "oldContent": "未冻死的根脉藏在冰层深处，它能为迁徙队伍引路。",
+    "newContent": "未冻死的根脉埋在冰层深处,它是百姓唯一的生路。"
+  },
+  {
+    "id": "1784467293782-0837ua",
+    "username": "ouyang",
+    "timestamp": 1784467293782,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点4-结束后反馈",
+    "oldContent": "伊格纳修斯重新点亮热源，安全迁徙路线终于成形。",
+    "newContent": "热源根脉被重新点燃,但封城关隘已经关闭。"
+  },
+  {
+    "id": "1784467293804-0eltj4",
+    "username": "ouyang",
+    "timestamp": 1784467293804,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点4-叙事奖励",
+    "oldContent": "根脉延伸至冰下遗迹，但入口被弗洛斯特控制的封城关隘阻断。",
+    "newContent": "根脉延伸至冰下遗迹,弗洛斯特正以封锁关隘逼迫塞琳娜放弃迁民计划。"
+  },
+  {
+    "id": "1784467293826-yav482",
+    "username": "ouyang",
+    "timestamp": 1784467293826,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.opponent.name",
+    "fieldLabel": "冰大陆-关卡节点4-区域对手名称",
+    "oldContent": "",
+    "newContent": "冰魄守卫·克雷斯特"
+  },
+  {
+    "id": "1784467293846-mskg41",
+    "username": "ouyang",
+    "timestamp": 1784467293846,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.opponent.identity",
+    "fieldLabel": "冰大陆-关卡节点4-区域对手身份",
+    "oldContent": "",
+    "newContent": "被冰之魂令异变侵蚀的古代根脉守卫,曾负责维护地下热源平衡"
+  },
+  {
+    "id": "1784467293869-e6r0ti",
+    "username": "ouyang",
+    "timestamp": 1784467293869,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.opponent.motivation",
+    "fieldLabel": "冰大陆-关卡节点4-区域对手动机",
+    "oldContent": "",
+    "newContent": "它误将方舟堡的调和之力判定为新的入侵,试图封死根脉入口以保护残存热源"
+  },
+  {
+    "id": "1784467293895-f7ynwm",
+    "username": "ouyang",
+    "timestamp": 1784467293895,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.3.opponent.signatureLine",
+    "fieldLabel": "冰大陆-关卡节点4-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "外来者不得触碰根脉...这是守脉者的最后职责..."
+  },
+  {
+    "id": "1784467293915-043t0a",
+    "username": "ouyang",
+    "timestamp": 1784467293915,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点5-叙事任务",
+    "oldContent": "让奥里克保护百姓穿越断裂冰桥，以实际救援证明塞琳娜的路线能够保住边境人民，而非只保住王城。",
+    "newContent": "让奥里克保护百姓穿越断裂冰桥,以实际救援证明塞琳娜的路线能够保住边境人民,而非只保住王城。"
+  },
+  {
+    "id": "1784467293935-d0ady5",
+    "username": "ouyang",
+    "timestamp": 1784467293935,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.storyContent",
+    "fieldLabel": "冰大陆-关卡节点5-区域故事",
+    "oldContent": "",
+    "newContent": "数百名边境百姓聚集在断裂冰桥前,对岸就是热源根脉入口,但弗洛斯特的封城卫队已经关闭关门。奥里克以铸金术加固断裂冰桥,伊格纳修斯融化阻路冰障,塞琳娜则亲自引导百姓穿越。封城卫队试图阻拦,却被获救村民的证词动摇——方舟堡确实拯救了冰封村镇,而旧党只会弃民保城。迁徙队伍最终平安抵达热源带,边民重新拥护塞琳娜。艾蕾尼娅指出这次迁民不只是救援,更是对封城路线的彻底否定。弗洛斯特失去多数边境支持者,封城关隘内部开始分裂。"
+  },
+  {
+    "id": "1784467293957-lw1zvn",
+    "username": "ouyang",
+    "timestamp": 1784467293957,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点5-进入前提示",
+    "oldContent": "百姓必须穿过断裂冰桥，封城旧党却在前方关闭关门。",
+    "newContent": "百姓必须穿过断裂冰桥,封城旧党却要关死最后的门。"
+  },
+  {
+    "id": "1784467293980-s4hldt",
+    "username": "ouyang",
+    "timestamp": 1784467293980,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点5-结束后反馈",
+    "oldContent": "迁徙队伍平安抵达热源带，塞琳娜重新赢得边民拥护。",
+    "newContent": "迁徙队伍抵达热源带,塞琳娜重新赢得边民拥护。"
+  },
+  {
+    "id": "1784467294002-412xx5",
+    "username": "ouyang",
+    "timestamp": 1784467294002,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点5-叙事奖励",
+    "oldContent": "迁民成功使弗洛斯特失去多数边境支持者，封城关隘内部开始分裂。",
+    "newContent": "迁民成功使弗洛斯特失去边境支持,封城关隘内部守卫开始质疑旧党路线。"
+  },
+  {
+    "id": "1784467294023-ujpyam",
+    "username": "ouyang",
+    "timestamp": 1784467294023,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.opponent.name",
+    "fieldLabel": "冰大陆-关卡节点5-区域对手名称",
+    "oldContent": "",
+    "newContent": "冰下魔兽·霜牙"
+  },
+  {
+    "id": "1784467294046-vzr6s6",
+    "username": "ouyang",
+    "timestamp": 1784467294046,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.opponent.identity",
+    "fieldLabel": "冰大陆-关卡节点5-区域对手身份",
+    "oldContent": "",
+    "newContent": "深渊魔族派遣的冰原潜行者,专门破坏凡界迁徙路线"
+  },
+  {
+    "id": "1784467294066-2ejxr2",
+    "username": "ouyang",
+    "timestamp": 1784467294066,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.opponent.motivation",
+    "fieldLabel": "冰大陆-关卡节点5-区域对手动机",
+    "oldContent": "",
+    "newContent": "它奉命消灭一切阻碍深渊主战派摧毁冰之魂令计划的力量,迁民成功会延缓霜寒崩溃"
+  },
+  {
+    "id": "1784467294088-1kup3j",
+    "username": "ouyang",
+    "timestamp": 1784467294088,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.4.opponent.signatureLine",
+    "fieldLabel": "冰大陆-关卡节点5-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "迁徙只是徒劳,冰之魂令终将破碎,你们不过是延长痛苦!"
+  },
+  {
+    "id": "1784467294111-wvqiw4",
+    "username": "ouyang",
+    "timestamp": 1784467294111,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.5.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点6-叙事任务",
+    "oldContent": "让塞琳娜与弗洛斯特正面对质，以迁民结果否定弃民政策，打开前往冰下遗迹的道路并结束领主之争。",
+    "newContent": "让塞琳娜与弗洛斯特正面对质,以迁民结果否定弃民政策,打开前往冰下遗迹的道路并结束领主之争。"
+  },
+  {
+    "id": "1784467294132-o2h8ew",
+    "username": "ouyang",
+    "timestamp": 1784467294132,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.5.storyContent",
+    "fieldLabel": "冰大陆-关卡节点6-区域故事",
+    "oldContent": "",
+    "newContent": "弗洛斯特封死最后关隘,宣称塞琳娜带回的希望只会害死更多人,唯有封城弃边才能让霜寒存续。塞琳娜以获救百姓和稳定的热源根脉为证,指出弃民政策只是旧党掩盖无能的借口。关隘内守卫开始动摇,部分士兵放下武器加入迁民队伍。弗洛斯特被迫承认寒潮源自冰下遗迹深处,旧党数十年来一直掩盖冰之魂令异变,因为承认真相就意味着必须向其他大陆求援。关隘开启,封城旧党彻底失去民心,冰下遗迹入口随之显露。塞琳娜正式宣布接管霜寒领主之位。"
+  },
+  {
+    "id": "1784467294155-bblv0x",
+    "username": "ouyang",
+    "timestamp": 1784467294155,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.5.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点6-进入前提示",
+    "oldContent": "弗洛斯特封死最后关隘，他要让所有人接受弃民之策。",
+    "newContent": "弗洛斯特封死最后关隘,他要让所有人接受弃民之策。"
+  },
+  {
+    "id": "1784467294179-yk3hxy",
+    "username": "ouyang",
+    "timestamp": 1784467294179,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.5.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点6-结束后反馈",
+    "oldContent": "关隘开启，封城旧党失去民心，冰下遗迹入口随之显露。",
+    "newContent": "关隘开启,封城旧党失去民心,冰下遗迹入口显露。"
+  },
+  {
+    "id": "1784467294205-13lzml",
+    "username": "ouyang",
+    "timestamp": 1784467294205,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.5.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点6-叙事奖励",
+    "oldContent": "弗洛斯特承认寒潮源自遗迹深处，旧党曾长期掩盖冰之魂令异变。",
+    "newContent": "弗洛斯特承认旧党长期掩盖冰之魂令异变,真正源头在遗迹深处,而深渊已经逼近。"
+  },
+  {
+    "id": "1784467294227-sf4os6",
+    "username": "ouyang",
+    "timestamp": 1784467294227,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点7-叙事任务",
+    "oldContent": "让方舟堡的调和之力与冰之魂令残响共鸣，展示魂族被压迫的历史和求救信号，改变众人对深渊的单一判断。",
+    "newContent": "让方舟堡的调和之力与冰之魂令残响共鸣,展示魂族被压迫的历史和求救信号,改变众人对深渊的单一判断。"
+  },
+  {
+    "id": "1784467294249-9isdko",
+    "username": "ouyang",
+    "timestamp": 1784467294249,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.storyContent",
+    "fieldLabel": "冰大陆-关卡节点7-区域故事",
+    "oldContent": "",
+    "newContent": "冰下遗迹冰壁上封存着数千年前的魂族记忆,方舟堡触及冰之魂令残响时调和之力产生共鸣,冰封画面开始流动。众人看见原初魂族如何维护世界树根系循环,又如何在魂域第二次大战后被强行封入深渊。塞琳娜震惊地发现,霜寒大陆的寒潮并非单纯灾害,而是冰之魂令长期透支根系后魂能回流被堵死的症状。更令人动摇的是,冰层深处传来微弱的魂族求救信号——他们不是要毁灭凡界,而是在根域即将自毁前寻找出路。艾蕾尼娅沉重地指出,恐惧正把求生者推成侵略者。"
+  },
+  {
+    "id": "1784467294271-4gj1ke",
+    "username": "ouyang",
+    "timestamp": 1784467294271,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点7-进入前提示",
+    "oldContent": "遗迹冰壁保存着魂族记忆，方舟堡的调和之力正在回应。",
+    "newContent": "遗迹冰壁封存着魂族记忆,调和之力正在唤醒它们。"
+  },
+  {
+    "id": "1784467294292-gs41a5",
+    "username": "ouyang",
+    "timestamp": 1784467294292,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点7-结束后反馈",
+    "oldContent": "众人看见魂族受压迫的历史，也听见来自深渊的求救声。",
+    "newContent": "众人看见魂族受压迫的历史,也听见来自深渊的求救。"
+  },
+  {
+    "id": "1784467294317-jqhk49",
+    "username": "ouyang",
+    "timestamp": 1784467294317,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点7-叙事奖励",
+    "oldContent": "求救记忆证明魂族内部存在求生派，而主战派正派巨兽摧毁魂令。",
+    "newContent": "求救记忆证明魂族内部存在求生派,但主战派已派霜脊巨兽前来摧毁冰之魂令。"
+  },
+  {
+    "id": "1784467294342-x885dj",
+    "username": "ouyang",
+    "timestamp": 1784467294342,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.opponent.name",
+    "fieldLabel": "冰大陆-关卡节点7-区域对手名称",
+    "oldContent": "",
+    "newContent": "冰封记忆守卫·瑟拉芬"
+  },
+  {
+    "id": "1784467294366-557i6e",
+    "username": "ouyang",
+    "timestamp": 1784467294366,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.opponent.identity",
+    "fieldLabel": "冰大陆-关卡节点7-区域对手身份",
+    "oldContent": "",
+    "newContent": "遗迹中残存的魂族记忆投影,被设定为阻止外来者触碰封存历史"
+  },
+  {
+    "id": "1784467294391-ipsgk5",
+    "username": "ouyang",
+    "timestamp": 1784467294391,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.opponent.motivation",
+    "fieldLabel": "冰大陆-关卡节点7-区域对手动机",
+    "oldContent": "",
+    "newContent": "它执行着数千年前的封存指令,认为让凡界看见真相会引发新的战争"
+  },
+  {
+    "id": "1784467294413-7qmult",
+    "username": "ouyang",
+    "timestamp": 1784467294413,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.6.opponent.signatureLine",
+    "fieldLabel": "冰大陆-关卡节点7-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "[誓约残响]封存的历史不应被触碰...遗忘是众神给予的慈悲..."
+  },
+  {
+    "id": "1784467294436-s4ryas",
+    "username": "ouyang",
+    "timestamp": 1784467294436,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点8-叙事任务",
+    "oldContent": "协助塞琳娜稳住即将碎裂的冰之魂令，使方舟堡取得修复窗口，同时确认霜脊巨兽已经逼近寒潮核心。",
+    "newContent": "协助塞琳娜稳住即将碎裂的冰之魂令,使方舟堡取得修复窗口,同时确认霜脊巨兽已经逼近寒潮核心。"
+  },
+  {
+    "id": "1784467294459-jidwe1",
+    "username": "ouyang",
+    "timestamp": 1784467294459,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.storyContent",
+    "fieldLabel": "冰大陆-关卡节点8-区域故事",
+    "oldContent": "",
+    "newContent": "封魂冰廊是冰之魂令锚定点所在,魂令结构已经布满裂痕,寒潮核心正在失控扩张。塞琳娜以霜誓之力暂时稳住魂令残响,方舟堡则将调和之力引入裂缝,为最终修复争取时间。就在此时,冰廊尽头传来沉重的脚步声,霜脊巨兽的巨大影子覆盖了整条走廊。根语者通过残留根脉感知到巨兽背脊嵌有深渊骨晶,那是专门用来撕裂封魂结构的武器。艾蕾尼娅警告众人,主战派已经逼近,如果不能在霜心裂谷击退巨兽,冰之魂令将彻底崩溃,霜寒大陆会在数日内被寒潮吞没。"
+  },
+  {
+    "id": "1784467294482-48nhep",
+    "username": "ouyang",
+    "timestamp": 1784467294482,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点8-进入前提示",
+    "oldContent": "主战派已经逼近封魂冰廊，冰之魂令正在加速碎裂。",
+    "newContent": "冰之魂令正在加速碎裂,深渊主战派已经逼近。"
+  },
+  {
+    "id": "1784467294504-vw60pj",
+    "username": "ouyang",
+    "timestamp": 1784467294504,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点8-结束后反馈",
+    "oldContent": "塞琳娜稳住魂令残响，霜脊巨兽的影子覆盖了裂谷。",
+    "newContent": "魂令残响暂时稳定,霜脊巨兽的影子覆盖了裂谷。"
+  },
+  {
+    "id": "1784467294525-5r6xiq",
+    "username": "ouyang",
+    "timestamp": 1784467294525,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点8-叙事奖励",
+    "oldContent": "魂令残响揭示巨兽背脊骨晶是破坏核心的关键，决战地点锁定霜心裂谷。",
+    "newContent": "魂令残响揭示巨兽背脊骨晶是破坏核心,决战地点锁定霜心裂谷。"
+  },
+  {
+    "id": "1784467294551-edwhyu",
+    "username": "ouyang",
+    "timestamp": 1784467294551,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.opponent.name",
+    "fieldLabel": "冰大陆-关卡节点8-区域对手名称",
+    "oldContent": "",
+    "newContent": "深渊先锋·冰棘"
+  },
+  {
+    "id": "1784467294572-dx5kzj",
+    "username": "ouyang",
+    "timestamp": 1784467294572,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.opponent.identity",
+    "fieldLabel": "冰大陆-关卡节点8-区域对手身份",
+    "oldContent": "",
+    "newContent": "深渊主战派派遣的魂族战士,负责为霜脊巨兽清理进攻路线"
+  },
+  {
+    "id": "1784467294594-aznela",
+    "username": "ouyang",
+    "timestamp": 1784467294594,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.opponent.motivation",
+    "fieldLabel": "冰大陆-关卡节点8-区域对手动机",
+    "oldContent": "",
+    "newContent": "他坚信只有摧毁冰之魂令才能为根域撕开生路,方舟堡的修复只会延长深渊的痛苦"
+  },
+  {
+    "id": "1784467294617-jnr6h5",
+    "username": "ouyang",
+    "timestamp": 1784467294617,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.7.opponent.signatureLine",
+    "fieldLabel": "冰大陆-关卡节点8-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "你们的修复只是延缓死亡!根域已经等不起虚假的和平!"
+  },
+  {
+    "id": "1784467294639-744odv",
+    "username": "ouyang",
+    "timestamp": 1784467294639,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.8.storyPurpose",
+    "fieldLabel": "冰大陆-关卡节点9-叙事任务",
+    "oldContent": "击退霜脊巨兽并把调和之力引入遗迹核心，修复冰之魂令，让寒潮退去、村镇复苏并完成塞琳娜的回归。",
+    "newContent": "击退霜脊巨兽并把调和之力引入遗迹核心,修复冰之魂令,让寒潮退去、村镇复苏并完成塞琳娜的回归。"
+  },
+  {
+    "id": "1784467294662-5g0lg4",
+    "username": "ouyang",
+    "timestamp": 1784467294662,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.8.storyContent",
+    "fieldLabel": "冰大陆-关卡节点9-区域故事",
+    "oldContent": "",
+    "newContent": "霜心裂谷是冰之魂令的最深处,寒潮核心在此凝结成巨大的冰晶旋涡。霜脊巨兽咆哮着冲入裂谷,背脊骨晶释放撕裂魂令结构的深渊之力。奥里克构筑铸金防线拖住巨兽,伊格纳修斯切换兽形以不死鸟之火灼烧骨晶,塞琳娜则以霜誓之力牵制寒潮失控。方舟堡抓住时机将调和之力引入冰之魂令核心,让堵死的魂能回流重新疏通。霜脊巨兽发出不甘的嚎叫后崩解成冰雾,寒潮开始退去,冰封村镇的冰层缓缓融化。塞琳娜履行誓言,正式加入英雄团前往炎狱大陆。艾蕾尼娅提醒众人,魂族的求救信号将成为理解三界真相的关键。"
+  },
+  {
+    "id": "1784467294684-4r1pgt",
+    "username": "ouyang",
+    "timestamp": 1784467294684,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.8.entryPrompt",
+    "fieldLabel": "冰大陆-关卡节点9-进入前提示",
+    "oldContent": "寒潮核心就在裂谷尽头，霜脊巨兽正试图撕碎冰之魂令。",
+    "newContent": "霜脊巨兽正试图撕碎冰之魂令,寒潮核心就在裂谷尽头。"
+  },
+  {
+    "id": "1784467294706-1mc12u",
+    "username": "ouyang",
+    "timestamp": 1784467294706,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.8.completionFeedback",
+    "fieldLabel": "冰大陆-关卡节点9-结束后反馈",
+    "oldContent": "冰之魂令完成修复，寒潮退去，霜寒村镇重新苏醒。",
+    "newContent": "冰之魂令完成修复,寒潮退去,霜寒村镇重新苏醒。"
+  },
+  {
+    "id": "1784467294729-2dm8lg",
+    "username": "ouyang",
+    "timestamp": 1784467294729,
+    "moduleName": "landing",
+    "fieldPath": "bing.levelNodes.8.narrativeReward",
+    "fieldLabel": "冰大陆-关卡节点9-叙事奖励",
+    "oldContent": "霜寒安全线建立，塞琳娜正式加入英雄团，魂族求救信号成为后续三界线索。",
+    "newContent": "霜寒安全线建立,塞琳娜正式加入英雄团,魂族求救信号成为理解三界裂痕的新线索。"
+  },
+  {
+    "id": "1784467594840-wzyl9j",
+    "username": "ouyang",
+    "timestamp": 1784467594840,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.name",
+    "fieldLabel": "火大陆-关卡节点1-名称",
+    "oldContent": "焦土营地",
+    "newContent": "焦炭边界"
+  },
+  {
+    "id": "1784467594862-bzw991",
+    "username": "ouyang",
+    "timestamp": 1784467594862,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点1-叙事任务",
+    "oldContent": "让方舟堡进入炎狱后先保护幸存者，并确认伊格纳修斯既会失控伤人，也是被火种持续反噬的受害者。",
+    "newContent": "让方舟堡进入炎狱后先目睹灾厄现状,确认伊格纳修斯既会失控伤人,也是正在承受火种反噬的守护者"
+  },
+  {
+    "id": "1784467594884-9wh59l",
+    "username": "ouyang",
+    "timestamp": 1784467594884,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.storyContent",
+    "fieldLabel": "火大陆-关卡节点1-区域故事",
+    "oldContent": "",
+    "newContent": "方舟堡沿根脉迁移至炎狱边缘,焦土营地被火种兽群围困。伊格纳修斯以人形守在防线前沿,却不断压制体内不死鸟的躁动。每当火种波动加剧,他背后便生出火翼,灼伤自己也险些攻击难民。方舟堡展开调和之力稳定营地根基,奥里克与塞琳娜协助抵挡兽群。战后,幸存者证实不死鸟每次失控都与深处火种共鸣同步,伊格纳修斯始终在用残存理智保护他们。艾蕾尼娅低语:他不是灾厄本身,而是被选中承受灾厄的人。"
+  },
+  {
+    "id": "1784467594904-2b5ejm",
+    "username": "ouyang",
+    "timestamp": 1784467594904,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点1-进入前提示",
+    "oldContent": "焦土营地被火种包围，先确认伊格纳修斯还能否保持清醒。",
+    "newContent": "焦土边界的灰烬仍有余温,守在营地前的身影正在颤抖"
+  },
+  {
+    "id": "1784467594926-29yonv",
+    "username": "ouyang",
+    "timestamp": 1784467594926,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点1-结束后反馈",
+    "oldContent": "营地火线暂时退却，他却在灰烬中看见自己留下的伤痕。",
+    "newContent": "营地火线暂时退却,但他留在灰烬中的焦痕比兽群更深"
+  },
+  {
+    "id": "1784467594948-ffdpwh",
+    "username": "ouyang",
+    "timestamp": 1784467594948,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点1-叙事奖励",
+    "oldContent": "幸存者证实不死鸟失控与火种波动同步，伊格纳修斯仍在主动保护营地。",
+    "newContent": "幸存者指认不死鸟失控与地下火种波动同步;伊格纳修斯承认自己正被某种力量持续牵引,必须前往核心寻找源头"
+  },
+  {
+    "id": "1784467594970-ml9aj9",
+    "username": "ouyang",
+    "timestamp": 1784467594970,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.opponent.name",
+    "fieldLabel": "火大陆-关卡节点1-区域对手名称",
+    "oldContent": "",
+    "newContent": "焦息追猎者"
+  },
+  {
+    "id": "1784467594995-o54mb5",
+    "username": "ouyang",
+    "timestamp": 1784467594995,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.opponent.identity",
+    "fieldLabel": "火大陆-关卡节点1-区域对手身份",
+    "oldContent": "",
+    "newContent": "沿伊格纳修斯失控焦痕聚集的火种兽群前哨,以灼烧痕迹为路标追踪方舟堡"
+  },
+  {
+    "id": "1784467595018-qu8fba",
+    "username": "ouyang",
+    "timestamp": 1784467595018,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.0.opponent.motivation",
+    "fieldLabel": "火大陆-关卡节点1-区域对手动机",
+    "oldContent": "",
+    "newContent": "它们把方舟堡根核散发的调和之力视为威胁,要在玩家稳定营地前将其驱离炎狱"
+  },
+  {
+    "id": "1784467595040-6xrkin",
+    "username": "ouyang",
+    "timestamp": 1784467595040,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.name",
+    "fieldLabel": "火大陆-关卡节点2-名称",
+    "oldContent": "熔火旧路",
+    "newContent": "熔痕旧道"
+  },
+  {
+    "id": "1784467595063-xdezmd",
+    "username": "ouyang",
+    "timestamp": 1784467595063,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点2-叙事任务",
+    "oldContent": "追踪伊格纳修斯过往失控留下的焦痕，让他承认曾误伤同伴的事实，同时证明他仍愿回到核心承担责任。",
+    "newContent": "追踪伊格纳修斯过往失控留下的焦痕,让他承认曾误伤同伴,同时证明他仍愿返回核心承担责任"
+  },
+  {
+    "id": "1784467595084-4p2tqt",
+    "username": "ouyang",
+    "timestamp": 1784467595084,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.storyContent",
+    "fieldLabel": "火大陆-关卡节点2-区域故事",
+    "oldContent": "",
+    "newContent": "旧道两侧遍布不规则焦痕,那是伊格纳修斯失控后留下的。他领着众人前行,每经过一处便停顿片刻——这里曾烧穿运输队的补给车,那里差点吞没一队避难者。塞琳娜质疑他是否还能控制自己,奥里克则沉默地检查焦痕边缘:每一处都有人为浇水和掩埋的痕迹。伊格纳修斯最终承认,每次恢复人形后他都会独自返回,试图抹去兽形造成的伤害。方舟堡根须探入地下,发现焦痕尽头出现锻造印记——有人在利用他的失控扩大火种污染。"
+  },
+  {
+    "id": "1784467595105-chw2xn",
+    "username": "ouyang",
+    "timestamp": 1784467595105,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点2-进入前提示",
+    "oldContent": "旧路上的焦痕并非兽群所留，它们属于失控后的不死鸟。",
+    "newContent": "旧道焦痕并非兽群所留,每一处都刻着不死鸟失控的代价"
+  },
+  {
+    "id": "1784467595129-3nmla4",
+    "username": "ouyang",
+    "timestamp": 1784467595129,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点2-结束后反馈",
+    "oldContent": "伊格纳修斯承认自己曾袭击同伴，仍决定继续返回核心。",
+    "newContent": "他承认自己曾袭击同伴,仍选择继续前往最危险的核心"
+  },
+  {
+    "id": "1784467595150-il64p8",
+    "username": "ouyang",
+    "timestamp": 1784467595150,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点2-叙事奖励",
+    "oldContent": "焦痕尽头出现人为锻造痕迹，说明有人正利用他的兽形扩大火种污染。",
+    "newContent": "焦痕深处发现人为锻造痕迹,证明有堕落锻造师在故意引爆火种;伊格纳修斯决意追查真相,即便代价是再次面对兽形"
+  },
+  {
+    "id": "1784467595170-b8u5xd",
+    "username": "ouyang",
+    "timestamp": 1784467595170,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.opponent.name",
+    "fieldLabel": "火大陆-关卡节点2-区域对手名称",
+    "oldContent": "",
+    "newContent": "焦痕哨兵"
+  },
+  {
+    "id": "1784467595191-pdn5eb",
+    "username": "ouyang",
+    "timestamp": 1784467595191,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.opponent.identity",
+    "fieldLabel": "火大陆-关卡节点2-区域对手身份",
+    "oldContent": "",
+    "newContent": "被堕落锻造师改造的熔炉残兵,专门守卫旧道阻止外来者接近核心真相"
+  },
+  {
+    "id": "1784467595211-4ndz1o",
+    "username": "ouyang",
+    "timestamp": 1784467595211,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.opponent.motivation",
+    "fieldLabel": "火大陆-关卡节点2-区域对手动机",
+    "oldContent": "",
+    "newContent": "它们奉命拖延方舟堡,为维萨隆争取完成献炉仪式的时间"
+  },
+  {
+    "id": "1784467595233-ua6c6y",
+    "username": "ouyang",
+    "timestamp": 1784467595233,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.1.opponent.signatureLine",
+    "fieldLabel": "火大陆-关卡节点2-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "旧道之上不容外族根须,回头还能保住性命"
+  },
+  {
+    "id": "1784467595254-lmfm59",
+    "username": "ouyang",
+    "timestamp": 1784467595254,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.2.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点3-叙事任务",
+    "oldContent": "击退由熔炉疼痛孕育的熔牙，确认火种兽群只是表层灾害，并取得通往旧锻坊的人工引火证据。",
+    "newContent": "击退由炉心疼痛孕育的熔牙,确认火种兽群只是表层灾害,并取得通往旧锻坊的人为引火证据"
+  },
+  {
+    "id": "1784467595276-v7iw7b",
+    "username": "ouyang",
+    "timestamp": 1784467595276,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.2.storyContent",
+    "fieldLabel": "火大陆-关卡节点3-区域故事",
+    "oldContent": "",
+    "newContent": "灼心外炉是炎狱最古老的副炉之一,如今炉壁龟裂,火种从地下涌出。炭甲兽王熔牙盘踞其中,它的甲壳由熔炉残渣和污染魂能凝结,沿伊格纳修斯的焦痕追逐而来。方舟堡展开防线,奥里克用金壁压制兽王冲击,塞琳娜以冰雾降温,伊格纳修斯强忍体内火种共鸣协助作战。熔牙倒下后,外炉深处传来有节奏的锤击声——那是锻造师引爆火种的信号。艾蕾尼娅警告:真正操纵者藏在旧锻坊,他要用伊格纳修斯的兽形完成某个献祭。"
+  },
+  {
+    "id": "1784467595297-e70063",
+    "username": "ouyang",
+    "timestamp": 1784467595297,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.2.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点3-进入前提示",
+    "oldContent": "灼心外炉正在孕育火种兽王，它以炉心痛苦为食。",
+    "newContent": "灼心外炉正在孕育兽王,它以炉心的疼痛为食"
+  },
+  {
+    "id": "1784467595319-xgm939",
+    "username": "ouyang",
+    "timestamp": 1784467595319,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.2.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点3-结束后反馈",
+    "oldContent": "兽王倒下后，旧锻坊传来人为引爆火种的锤击节奏。",
+    "newContent": "兽王倒下,但旧锻坊深处传来蓄意引火的锤击节奏"
+  },
+  {
+    "id": "1784467595341-qurbkz",
+    "username": "ouyang",
+    "timestamp": 1784467595341,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.2.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点3-叙事奖励",
+    "oldContent": "兽王甲壳中嵌有堕落锻造印记，真正操纵者藏在旧锻坊深处。",
+    "newContent": "熔牙甲壳中嵌有堕落锻造印记,指向旧锻坊的维萨隆;火种兽群只是表象,真正危机在人为操纵的火之魂令裂隙"
+  },
+  {
+    "id": "1784467595362-qqdtq9",
+    "username": "ouyang",
+    "timestamp": 1784467595362,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.name",
+    "fieldLabel": "火大陆-关卡节点4-名称",
+    "oldContent": "旧锻坊",
+    "newContent": "废炉回廊"
+  },
+  {
+    "id": "1784467595385-tpuut0",
+    "username": "ouyang",
+    "timestamp": 1784467595385,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点4-叙事任务",
+    "oldContent": "让方舟堡根须接触旧锻炉，确认火之魂令裂隙把伊格纳修斯当成活容器，改变众人对他的危险判断。",
+    "newContent": "让方舟堡根须接触废弃锻炉,确认火之魂令裂隙正把伊格纳修斯当成活体容器,改变众人对他的危险判断"
+  },
+  {
+    "id": "1784467595406-bbgp1r",
+    "username": "ouyang",
+    "timestamp": 1784467595406,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.storyContent",
+    "fieldLabel": "火大陆-关卡节点4-区域故事",
+    "oldContent": "",
+    "newContent": "废炉回廊曾是炎狱锻造学徒的试炼场,如今只剩坍塌炉壁与破碎符文。方舟堡根须探入地下,触及一处火之魂令裂隙——它像活物般脉动,每次跳动都牵引伊格纳修斯体内的毁灭之火。艾蕾尼娅解读共鸣:裂隙正把他当成承载过载魂能的活容器,兽形不是污染结果,而是被迫容纳超限火焰的防御反应。塞琳娅动摇了,奥里克沉默片刻后说:那我们就帮他找到新的出口。废炉深处留有锻造日志,记载维萨隆曾在此测试\"将活体转化为永恒炉火\"的献炉术。"
+  },
+  {
+    "id": "1784467595426-2510i4",
+    "username": "ouyang",
+    "timestamp": 1784467595426,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点4-进入前提示",
+    "oldContent": "方舟堡根须触及旧锻坊，火之魂令残响正牵引伊格纳修斯。",
+    "newContent": "方舟堡根须触及废炉深处,火之魂令的残响正在召唤他"
+  },
+  {
+    "id": "1784467595447-6n1q3z",
+    "username": "ouyang",
+    "timestamp": 1784467595447,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点4-结束后反馈",
+    "oldContent": "众人确认他并非污染源，而是被魂令裂隙选中的活容器。",
+    "newContent": "众人确认他并非污染源,而是被魂令裂隙选中的活容器"
+  },
+  {
+    "id": "1784467595468-laorms",
+    "username": "ouyang",
+    "timestamp": 1784467595468,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点4-叙事奖励",
+    "oldContent": "旧锻炉记录指出维萨隆将在引火高炉完成献炉仪式。",
+    "newContent": "废炉日志揭示维萨隆的献炉计划:将伊格纳修斯彻底转化为不死鸟,献给深渊作为永恒火源;引火高炉是仪式的最终地点"
+  },
+  {
+    "id": "1784467595489-32yebl",
+    "username": "ouyang",
+    "timestamp": 1784467595489,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.opponent.name",
+    "fieldLabel": "火大陆-关卡节点4-区域对手名称",
+    "oldContent": "",
+    "newContent": "炉魂执行者"
+  },
+  {
+    "id": "1784467595510-4wsfcd",
+    "username": "ouyang",
+    "timestamp": 1784467595510,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.opponent.identity",
+    "fieldLabel": "火大陆-关卡节点4-区域对手身份",
+    "oldContent": "",
+    "newContent": "维萨隆麾下的堕落锻造精英,奉命守卫废炉回廊阻止方舟堡破解真相"
+  },
+  {
+    "id": "1784467595530-xkdnai",
+    "username": "ouyang",
+    "timestamp": 1784467595530,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.opponent.motivation",
+    "fieldLabel": "火大陆-关卡节点4-区域对手动机",
+    "oldContent": "",
+    "newContent": "他们相信献炉术能让炎狱重获荣光,将伊格纳修斯视为必要的祭品而非同胞"
+  },
+  {
+    "id": "1784467595551-0sooad",
+    "username": "ouyang",
+    "timestamp": 1784467595551,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.3.opponent.signatureLine",
+    "fieldLabel": "火大陆-关卡节点4-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "不死鸟本就该烧尽凡躯,你们的阻挠只会让炎狱继续衰败"
+  },
+  {
+    "id": "1784467595574-xlue9n",
+    "username": "ouyang",
+    "timestamp": 1784467595574,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点5-叙事任务",
+    "oldContent": "读取献炉铭文和堕落锻造师留下的计划，让奥里克、塞琳娜决定共同限制并承接兽形力量，而非处决同伴。",
+    "newContent": "读取献炉铭文和堕落锻造师的完整计划,让奥里克、塞琳娜决定共同承接兽形力量,而非处决同伴"
+  },
+  {
+    "id": "1784467595594-azbm6l",
+    "username": "ouyang",
+    "timestamp": 1784467595594,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.storyContent",
+    "fieldLabel": "火大陆-关卡节点5-区域故事",
+    "oldContent": "",
+    "newContent": "灰烬铭堂是炎狱记录重大锻造仪式的圣地,墙壁铭文记载着献炉术的全部流程:引爆火种逼出完整兽形,用符文锁链困住不死鸟,再将其人格彻底烧尽化为无意识的永恒炉火。铭文末尾刻着维萨隆的誓言:\"唯有献上最纯粹的火,深渊才会接纳炎狱。\"塞琳娜握紧冰刃,奥里克检查铭文结构后说:强行压制只会积累更大爆发,必须给火找到新的去处。方舟堡根须共鸣显示,原焰根道仍在呼吸,可以承接并转化毁灭之火。三人决定:不让伊格纳修斯独自压制,而是共同为他的兽形建立出口。"
+  },
+  {
+    "id": "1784467595615-yt966p",
+    "username": "ouyang",
+    "timestamp": 1784467595615,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点5-进入前提示",
+    "oldContent": "灰烬铭文记录着献炉仪式，也留下堕落锻造师的真实计划。",
+    "newContent": "灰烬铭文记录着献炉仪式,也刻下了堕落者的真实野心"
+  },
+  {
+    "id": "1784467595638-i9dpk0",
+    "username": "ouyang",
+    "timestamp": 1784467595638,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点5-结束后反馈",
+    "oldContent": "奥里克与塞琳娜决定共同承力，不再让他独自压制兽形。",
+    "newContent": "奥里克与塞琳娜决定共同承力,不再让他孤身对抗兽形"
+  },
+  {
+    "id": "1784467595660-jkrcd5",
+    "username": "ouyang",
+    "timestamp": 1784467595660,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点5-叙事奖励",
+    "oldContent": "铭文证明强行压回兽形只会积累更大爆发，必须让火获得新的去处。",
+    "newContent": "铭文证实强压兽形只会导致更剧烈失控;原焰根道是唯一能承接并转化毁灭之火的通道;维萨隆已在引火高炉完成献炉准备"
+  },
+  {
+    "id": "1784467595681-a82moa",
+    "username": "ouyang",
+    "timestamp": 1784467595681,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.opponent.name",
+    "fieldLabel": "火大陆-关卡节点5-区域对手名称",
+    "oldContent": "",
+    "newContent": "铭誓守焰者"
+  },
+  {
+    "id": "1784467595702-w04qq8",
+    "username": "ouyang",
+    "timestamp": 1784467595702,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.opponent.identity",
+    "fieldLabel": "火大陆-关卡节点5-区域对手身份",
+    "oldContent": "",
+    "newContent": "曾侍奉古代炎狱大师的炉火守卫,被维萨隆以扭曲的荣誉观说服协助献炉"
+  },
+  {
+    "id": "1784467595725-x7cqc6",
+    "username": "ouyang",
+    "timestamp": 1784467595725,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.opponent.motivation",
+    "fieldLabel": "火大陆-关卡节点5-区域对手动机",
+    "oldContent": "",
+    "newContent": "他们相信献出伊格纳修斯能延续炎狱锻造传统,拒绝承认这是背叛而非牺牲"
+  },
+  {
+    "id": "1784467595747-gcddqi",
+    "username": "ouyang",
+    "timestamp": 1784467595747,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.4.opponent.signatureLine",
+    "fieldLabel": "火大陆-关卡节点5-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "唯有最纯粹的火焰配得上永恒,怜悯只会让炎狱在犹豫中熄灭"
+  },
+  {
+    "id": "1784467595768-uw7a6u",
+    "username": "ouyang",
+    "timestamp": 1784467595768,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.5.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点6-叙事任务",
+    "oldContent": "揭露维萨隆并阻止献炉仪式，在冲突中让不死鸟彻底爆发，把问题从压制变身推进为保住变身中的自我。",
+    "newContent": "揭露维萨隆并阻止献炉仪式,在冲突中让不死鸟彻底爆发,把问题从压制变身推进为保住变身中的自我"
+  },
+  {
+    "id": "1784467595797-hijs99",
+    "username": "ouyang",
+    "timestamp": 1784467595797,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.5.storyContent",
+    "fieldLabel": "火大陆-关卡节点6-区域故事",
+    "oldContent": "",
+    "newContent": "引火高炉是献炉仪式的终点,维萨隆已点燃符文阵列,火种从四面八方涌向伊格纳修斯。他咬牙压制,却在维萨隆引爆核心火种时彻底失控——不死鸟冲破人形,双翼展开时炉壁融化。方舟堡、奥里克与塞琳娜联手击溃维萨隆,却已无法阻止兽形。维萨隆临死前狂笑:你们晚了,不死鸟会烧尽一切,包括他自己。伊格纳修斯残存的人格发出最后警告,随即冲向原焰之釜——那里是炎狱核心,也是唯一能承接毁灭之火的地方。艾蕾尼娅催促:别再想着压制,跟上他,在兽形中把他拉回来。"
+  },
+  {
+    "id": "1784467595818-i059ue",
+    "username": "ouyang",
+    "timestamp": 1784467595818,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.5.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点6-进入前提示",
+    "oldContent": "维萨隆已经点燃引火高炉，他要逼不死鸟彻底吞没人形。",
+    "newContent": "维萨隆已点燃引火高炉,他要逼不死鸟彻底吞没人形"
+  },
+  {
+    "id": "1784467595840-hhns3d",
+    "username": "ouyang",
+    "timestamp": 1784467595840,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.5.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点6-结束后反馈",
+    "oldContent": "高炉熄灭太迟，不死鸟已冲向核心，决战无法避免。",
+    "newContent": "高炉崩塌时已太迟,不死鸟冲向核心,最终对决无可避免"
+  },
+  {
+    "id": "1784467595860-rh7eed",
+    "username": "ouyang",
+    "timestamp": 1784467595860,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.5.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点6-叙事奖励",
+    "oldContent": "维萨隆败露后留下导火图，原焰根道是承接毁灭之火的唯一可能。",
+    "newContent": "维萨隆败亡前留下导火残图,指向原焰根道;唯有让不死鸟的火导入根脉,才能在兽形中保住伊格纳修斯的自我"
+  },
+  {
+    "id": "1784467595879-ctdxsu",
+    "username": "ouyang",
+    "timestamp": 1784467595879,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.name",
+    "fieldLabel": "火大陆-关卡节点7-名称",
+    "oldContent": "失控火线",
+    "newContent": "净焰前夜"
+  },
+  {
+    "id": "1784467595900-1lw54z",
+    "username": "ouyang",
+    "timestamp": 1784467595900,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点7-叙事任务",
+    "oldContent": "让奥里克以金壁限界、塞琳娜用冰雾降温，为方舟堡争取与伊格纳修斯残存人格建立共鸣的时间。",
+    "newContent": "用压迫、集结与决绝的口吻写大战前夜,让奥里克以金壁限界、塞琳娜用冰雾降温,为方舟堡争取与残存人格建立共鸣的时间"
+  },
+  {
+    "id": "1784467595921-vybvly",
+    "username": "ouyang",
+    "timestamp": 1784467595921,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.storyContent",
+    "fieldLabel": "火大陆-关卡节点7-区域故事",
+    "oldContent": "",
+    "newContent": "失控火海切断前路。不死鸟盘旋在原焰之釜上方,每一次俯冲都让地表龟裂。奥里克在火线前竖起金壁,塞琳娜以冰雾压低温度,两人都在用身体为方舟堡争取时间。艾蕾尼娅说:他还在,我能感知到他残存的意识正在呼救。方舟堡根须探向火海深处,捕捉到微弱的人格共鸣——那是伊格纳修斯在兽形本能的间隙,反复敲击胸口的节奏:炎狱锻造师\"请求归队\"的旧誓。奥里克听出来了,他对着火海喊出那个名字。不死鸟停顿片刻,火翼收拢,残存理智短暂浮现。塞琳娜低语:抓住这个瞬间,别让他再次迷失。"
+  },
+  {
+    "id": "1784467595942-huiy47",
+    "username": "ouyang",
+    "timestamp": 1784467595942,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点7-进入前提示",
+    "oldContent": "失控火海切断前路，三位英雄必须先让伊格纳修斯听见呼唤。",
+    "newContent": "失控火海切断前路,三位英雄必须让他听见同伴的呼唤"
+  },
+  {
+    "id": "1784467595963-c434ll",
+    "username": "ouyang",
+    "timestamp": 1784467595963,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点7-结束后反馈",
+    "oldContent": "金壁与冰雾争取到片刻清醒，他终于认出并肩而来的同伴。",
+    "newContent": "金壁与冰雾争取到片刻清醒,他终于认出并肩而来的战友"
+  },
+  {
+    "id": "1784467595983-4qi1du",
+    "username": "ouyang",
+    "timestamp": 1784467595983,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点7-叙事奖励",
+    "oldContent": "伊格纳修斯短暂回应方舟堡，证明兽形之中仍有可以被拉回的自我。",
+    "newContent": "伊格纳修斯在兽形中短暂回应方舟堡,证明人格未灭;原焰根道已被火海激活,可以承接毁灭之火并将其转化为净焰"
+  },
+  {
+    "id": "1784467596004-94jc7e",
+    "username": "ouyang",
+    "timestamp": 1784467596004,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.opponent.name",
+    "fieldLabel": "火大陆-关卡节点7-区域对手名称",
+    "oldContent": "",
+    "newContent": "焚誓残影"
+  },
+  {
+    "id": "1784467596025-c23tzj",
+    "username": "ouyang",
+    "timestamp": 1784467596025,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.opponent.identity",
+    "fieldLabel": "火大陆-关卡节点7-区域对手身份",
+    "oldContent": "",
+    "newContent": "伊格纳修斯失控时剥离的记忆碎片,凝聚为具象的火焰幻影阻挡众人"
+  },
+  {
+    "id": "1784467596051-6bom99",
+    "username": "ouyang",
+    "timestamp": 1784467596051,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.6.opponent.motivation",
+    "fieldLabel": "火大陆-关卡节点7-区域对手动机",
+    "oldContent": "",
+    "newContent": "它是兽形本能的具象化,试图隔绝一切外来呼唤,让不死鸟彻底烧尽人格枷锁"
+  },
+  {
+    "id": "1784467596074-eqm2mj",
+    "username": "ouyang",
+    "timestamp": 1784467596074,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点8-叙事任务",
+    "oldContent": "让方舟堡放弃强行压制，主动接住不死鸟火并导入熔炉根节点，为伊格纳修斯建立可控的力量出口。",
+    "newContent": "用现在时写多线同时爆发,让方舟堡放弃强行压制,主动接住不死鸟火并导入熔炉根节点,为伊格纳修斯建立可控的力量出口"
+  },
+  {
+    "id": "1784467596095-fnf9t2",
+    "username": "ouyang",
+    "timestamp": 1784467596095,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.storyContent",
+    "fieldLabel": "火大陆-关卡节点8-区域故事",
+    "oldContent": "",
+    "newContent": "方舟堡根须破开焦土,贯通原焰根道。不死鸟俯冲而下,毁灭之火即将吞没一切——方舟堡不再闪避,而是展开调和之力,主动接住那团烈焰。火焰灌入根须,方舟堡将其导向熔炉根节点。根道震颤,世界树残存的净化本能被唤醒,开始转化毁灭之火。奥里克维持金壁防止火焰外溢,塞琳娜用冰雾稳定根道温度,艾蕾尼娅的声音在火海中回荡:告诉他,火不是罪,失控也不是终点。方舟堡通过根脉共鸣向不死鸟传递信息:你可以燃烧,但不必独自承受。原焰根道重新贯通,不死鸟的火从暗红转为金白——那是净焰的颜色。"
+  },
+  {
+    "id": "1784467596116-yjcomr",
+    "username": "ouyang",
+    "timestamp": 1784467596116,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点8-进入前提示",
+    "oldContent": "方舟堡决定承接毁灭之火，将它导入仍能呼吸的熔炉根脉。",
+    "newContent": "方舟堡决定承接毁灭之火,将它导入仍在呼吸的熔炉根脉"
+  },
+  {
+    "id": "1784467596136-eungaz",
+    "username": "ouyang",
+    "timestamp": 1784467596136,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点8-结束后反馈",
+    "oldContent": "原焰根道重新贯通，不死鸟的火开始从毁灭转向净化。",
+    "newContent": "原焰根道重新贯通,不死鸟的火从毁灭转向净化"
+  },
+  {
+    "id": "1784467596158-b7s2dq",
+    "username": "ouyang",
+    "timestamp": 1784467596158,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点8-叙事奖励",
+    "oldContent": "根道完成承火循环，最终净化必须由伊格纳修斯自己选择恢复人形。",
+    "newContent": "根道完成承火循环,毁灭之火获得可控出口;最终净化必须由伊格纳修斯自己选择恢复人格,在两种形态间找到平衡"
+  },
+  {
+    "id": "1784467596178-wh1rkz",
+    "username": "ouyang",
+    "timestamp": 1784467596178,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.opponent.name",
+    "fieldLabel": "火大陆-关卡节点8-区域对手名称",
+    "oldContent": "",
+    "newContent": "根焰吞噬者"
+  },
+  {
+    "id": "1784467596200-zfco2z",
+    "username": "ouyang",
+    "timestamp": 1784467596200,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.opponent.identity",
+    "fieldLabel": "火大陆-关卡节点8-区域对手身份",
+    "oldContent": "",
+    "newContent": "根道深处被污染的古老火种,试图吞噬方舟堡的调和之力并占据根节点"
+  },
+  {
+    "id": "1784467596222-es6ueo",
+    "username": "ouyang",
+    "timestamp": 1784467596222,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.7.opponent.motivation",
+    "fieldLabel": "火大陆-关卡节点8-区域对手动机",
+    "oldContent": "",
+    "newContent": "它把方舟堡视为入侵的异质根系,要在净化完成前将其驱逐或同化"
+  },
+  {
+    "id": "1784467596243-ulybm5",
+    "username": "ouyang",
+    "timestamp": 1784467596243,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.8.storyPurpose",
+    "fieldLabel": "火大陆-关卡节点9-叙事任务",
+    "oldContent": "在不死鸟全盛形态下唤回伊格纳修斯，让他自主完成形态切换，把毁灭之火转化为净焰并稳定核心熔炉。",
+    "newContent": "用神话悲剧口吻,在不死鸟全盛形态下唤回伊格纳修斯,让他自主完成形态切换,把毁灭之火转化为净焰并稳定核心熔炉"
+  },
+  {
+    "id": "1784467596264-02w660",
+    "username": "ouyang",
+    "timestamp": 1784467596264,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.8.storyContent",
+    "fieldLabel": "火大陆-关卡节点9-区域故事",
+    "oldContent": "",
+    "newContent": "原焰之釜是炎狱心脏,也是火之魂令锚定之地。不死鸟立于釜心,双翼张开时天空被染成金红。它已不再攻击,却也无法回应——兽形达到全盛,人格正在最后的边缘。方舟堡根须环绕釜壁,将净焰循环稳定在临界点。奥里克与塞琳娜不再阻拦,而是站在火海边缘,等待他自己做出选择。艾蕾尼娅轻声呼唤那个名字,一遍又一遍。不死鸟低下头,火翼收拢,金白色的火焰从羽翼流向躯体——伊格纳修斯在光焰中显现,他伸出手,火焰在掌心凝聚又散开。他终于学会了:不是压制,而是驾驭;不是逃避,而是接纳。原焰之釜恢复平静,炎狱核心熔炉重新点燃,金、冰、火三元素在方舟堡根核中形成初始循环。"
+  },
+  {
+    "id": "1784467596285-fstvt2",
+    "username": "ouyang",
+    "timestamp": 1784467596285,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.8.entryPrompt",
+    "fieldLabel": "火大陆-关卡节点9-进入前提示",
+    "oldContent": "原焰之釜内只剩失控兽形，伊格纳修斯正在最后一次求救。",
+    "newContent": "原焰之釜内只剩全盛兽形,伊格纳修斯正在做最后的抉择"
+  },
+  {
+    "id": "1784467596308-gw3zar",
+    "username": "ouyang",
+    "timestamp": 1784467596308,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.8.completionFeedback",
+    "fieldLabel": "火大陆-关卡节点9-结束后反馈",
+    "oldContent": "他在两种形态间找回自我，炎狱炉火与三英雄同时归位。",
+    "newContent": "他在两种形态间找回自我,炎狱炉火与三英雄同时归位"
+  },
+  {
+    "id": "1784467596328-1r58ay",
+    "username": "ouyang",
+    "timestamp": 1784467596328,
+    "moduleName": "landing",
+    "fieldPath": "huo.levelNodes.8.narrativeReward",
+    "fieldLabel": "火大陆-关卡节点9-叙事奖励",
+    "oldContent": "伊格纳修斯正式加入，金、冰、火在方舟堡根核中形成初始元素循环。",
+    "newContent": "伊格纳修斯正式加入,掌握人形与不死鸟的自主切换;金、冰、火在方舟堡根核中形成初始元素循环;炎狱火之魂令暂时稳定,但裂隙仍在,真正修复需要触及神界层面"
+  },
+  {
+    "id": "1784467703700-tdts6n",
+    "username": "ouyang",
+    "timestamp": 1784467703700,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点1-叙事任务",
+    "oldContent": "让方舟堡随奥里克重返金耀边境，直观看见黑金矿脉、失魂巡骑与仍在运转的腐化秩序，确认危机源头并非普通城防失守。",
+    "newContent": "让方舟堡随奥里克重返金耀边境,直观看见黑金矿脉、失魂巡骑与仍在运转的腐化秩序,确认危机源头并非普通城防失守。"
+  },
+  {
+    "id": "1784467703721-igd978",
+    "username": "ouyang",
+    "timestamp": 1784467703721,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.storyContent",
+    "fieldLabel": "金大陆-关卡节点1-区域故事",
+    "oldContent": "",
+    "newContent": "方舟堡沿根脉迁移至金耀大陆边境,奥里克领路穿过黑金矿脉。山脊间,失魂骑士仍按旧军令巡逻,却不辨敌友只会攻击靠近者。根语者感知到地下根核与污染矿脉纠缠,艾蕾尼娅提醒方舟堡以调和之力暂时压制黑金蔓延。首批失魂巡骑被击退后,奥里克辨认出他们胸甲上的归队刻痕——这些人还记得金耀军礼,污染没有彻底抹去人格。隘口暂时稳定,但更深处的失誓哨塔仍在燃灯,那里或许藏着更多证据。"
+  },
+  {
+    "id": "1784467703742-d8zw1t",
+    "username": "ouyang",
+    "timestamp": 1784467703742,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点1-进入前提示",
+    "oldContent": "黑金正在沿山脊蔓延，先找到仍能回应的巡骑。",
+    "newContent": "黑金正在沿山脊蔓延,先找到仍能回应的巡骑。"
+  },
+  {
+    "id": "1784467703765-i630rj",
+    "username": "ouyang",
+    "timestamp": 1784467703765,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点1-结束后反馈",
+    "oldContent": "第一名失魂骑士放下武器，他还记得旧日军礼。",
+    "newContent": "第一名失魂骑士放下武器,他还记得旧日军礼。"
+  },
+  {
+    "id": "1784467703790-nq5v8x",
+    "username": "ouyang",
+    "timestamp": 1784467703790,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点1-叙事奖励",
+    "oldContent": "失魂骑士仍会回应金耀军礼，证明污染没有彻底抹去人格。",
+    "newContent": "失魂骑士仍会回应金耀军礼,证明污染没有彻底抹去人格。"
+  },
+  {
+    "id": "1784467703811-eixpup",
+    "username": "ouyang",
+    "timestamp": 1784467703811,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.opponent.name",
+    "fieldLabel": "金大陆-关卡节点1-区域对手名称",
+    "oldContent": "",
+    "newContent": "瓦伦·黑金巡骑长"
+  },
+  {
+    "id": "1784467703831-9ycsiw",
+    "username": "ouyang",
+    "timestamp": 1784467703831,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.opponent.identity",
+    "fieldLabel": "金大陆-关卡节点1-区域对手身份",
+    "oldContent": "",
+    "newContent": "金耀北境巡防队长,被黑金污染后仍执行封锁边境的旧令。"
+  },
+  {
+    "id": "1784467703854-as3a63",
+    "username": "ouyang",
+    "timestamp": 1784467703854,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.opponent.motivation",
+    "fieldLabel": "金大陆-关卡节点1-区域对手动机",
+    "oldContent": "",
+    "newContent": "被扭曲的职责让他攻击一切外来者,却保留着对部下的保护本能。"
+  },
+  {
+    "id": "1784467703877-sifhig",
+    "username": "ouyang",
+    "timestamp": 1784467703877,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.0.opponent.signatureLine",
+    "fieldLabel": "金大陆-关卡节点1-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "封境令未解除,任何人不得入内——包括你,奥里克!"
+  },
+  {
+    "id": "1784467703899-v9kiqv",
+    "username": "ouyang",
+    "timestamp": 1784467703899,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点2-叙事任务",
+    "oldContent": "追查无人哨塔持续燃灯的原因，让奥里克辨认战友使用的归队暗号，并取得腐化者仍保有意识的第二份证据。",
+    "newContent": "追查无人哨塔持续燃灯的原因,让奥里克辨认战友使用的归队暗号,并取得腐化者仍保有意识的第二份证据。"
+  },
+  {
+    "id": "1784467703921-knbfu0",
+    "username": "ouyang",
+    "timestamp": 1784467703921,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.storyContent",
+    "fieldLabel": "金大陆-关卡节点2-区域故事",
+    "oldContent": "",
+    "newContent": "方舟堡推进至失誓哨塔群,这里空无一人却仍按旧军令燃灯。奥里克在塔顶发现熟悉的归队暗号——三长两短的火光节奏,那是只有金耀骑士才懂的求援信号。艾蕾尼娅引导方舟堡以调和之力稳定哨塔下方根脉,黑金侵蚀暂时减弱,塔内传出微弱回应:被囚骑士仍在用残存意识敲击牢门。根语者确认暗号来自沉默骑士厅,那里关押着最早一批腐化骑士。奥里克决定不再绕行,直接前往骑士厅打开封锁。"
+  },
+  {
+    "id": "1784467703943-pnbp8v",
+    "username": "ouyang",
+    "timestamp": 1784467703943,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点2-进入前提示",
+    "oldContent": "哨塔仍按旧军令燃灯，奥里克听见熟悉的归队暗号。",
+    "newContent": "哨塔仍按旧军令燃灯,奥里克听见熟悉的归队暗号。"
+  },
+  {
+    "id": "1784467703965-3ldfk0",
+    "username": "ouyang",
+    "timestamp": 1784467703965,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点2-结束后反馈",
+    "oldContent": "求援暗号来自被囚骑士，腐化没有夺走全部意识。",
+    "newContent": "求援暗号来自被囚骑士,腐化没有夺走全部意识。"
+  },
+  {
+    "id": "1784467703985-26te4t",
+    "username": "ouyang",
+    "timestamp": 1784467703985,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点2-叙事奖励",
+    "oldContent": "哨塔记录指向沉默骑士厅，那里关押着最早一批腐化骑士。",
+    "newContent": "哨塔记录指向沉默骑士厅,那里关押着最早一批腐化骑士。"
+  },
+  {
+    "id": "1784467704006-ewux8l",
+    "username": "ouyang",
+    "timestamp": 1784467704006,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.opponent.name",
+    "fieldLabel": "金大陆-关卡节点2-区域对手名称",
+    "oldContent": "",
+    "newContent": "铁锁誓言守卫"
+  },
+  {
+    "id": "1784467704029-j6evs6",
+    "username": "ouyang",
+    "timestamp": 1784467704029,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.opponent.identity",
+    "fieldLabel": "金大陆-关卡节点2-区域对手身份",
+    "oldContent": "",
+    "newContent": "失誓哨塔的无人守卫机关,由黑金符文驱动的矿脉傀儡。"
+  },
+  {
+    "id": "1784467704050-c3zbts",
+    "username": "ouyang",
+    "timestamp": 1784467704050,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.opponent.motivation",
+    "fieldLabel": "金大陆-关卡节点2-区域对手动机",
+    "oldContent": "",
+    "newContent": "被篡改的守塔符文将\"保护哨塔\"扭曲为\"不许任何人靠近求援信号\"。"
+  },
+  {
+    "id": "1784467704071-9hdmiw",
+    "username": "ouyang",
+    "timestamp": 1784467704071,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.1.opponent.signatureLine",
+    "fieldLabel": "金大陆-关卡节点2-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "\"封锁……永续……归队暗号……不得传出……\"(符文残响译文)"
+  },
+  {
+    "id": "1784467704093-dmmzgz",
+    "username": "ouyang",
+    "timestamp": 1784467704093,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.2.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点3-叙事任务",
+    "oldContent": "面对执行封锁军令的赫恩，迫使他短暂恢复清醒，并让奥里克以不处决旧部的方式打开通往矿城的道路。",
+    "newContent": "面对执行封锁军令的赫恩,迫使他短暂恢复清醒,并让奥里克以不处决旧部的方式打开通往矿城的道路。"
+  },
+  {
+    "id": "1784467704115-xykfmk",
+    "username": "ouyang",
+    "timestamp": 1784467704115,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.2.storyContent",
+    "fieldLabel": "金大陆-关卡节点3-区域故事",
+    "oldContent": "",
+    "newContent": "沉默骑士厅封住王都入口,失魂先锋赫恩率部死守。他把封锁当成最后军令,宁愿永困此地也不让方舟堡进入。奥里克没有强攻,而是以金耀旧礼呼唤赫恩残存的记忆。方舟堡以调和之力削弱黑金誓纹,赫恩片刻清醒,认出奥里克并交出守誓徽记。他用最后的理智说:处决派正在矿城销毁治疗记录,必须阻止。赫恩再次陷入失魂,但已不再阻拦。奥里克接过徽记,发誓会带回真正的救赎之路。骑士厅大门开启,通往矿城的道路在众人面前展开。"
+  },
+  {
+    "id": "1784467704135-d3lewi",
+    "username": "ouyang",
+    "timestamp": 1784467704135,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.2.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点3-进入前提示",
+    "oldContent": "沉默骑士厅封住王都入口，失魂先锋拒绝任何来者。",
+    "newContent": "沉默骑士厅封住王都入口,失魂先锋拒绝任何来者。"
+  },
+  {
+    "id": "1784467704156-hp51w1",
+    "username": "ouyang",
+    "timestamp": 1784467704156,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.2.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点3-结束后反馈",
+    "oldContent": "先锋恢复片刻清醒，交出通往矿城的守誓徽记。",
+    "newContent": "先锋恢复片刻清醒,交出通往矿城的守誓徽记。"
+  },
+  {
+    "id": "1784467704177-4z58gq",
+    "username": "ouyang",
+    "timestamp": 1784467704177,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.2.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点3-叙事奖励",
+    "oldContent": "赫恩交出守誓徽记，并证实处决派正在矿城销毁治疗记录。",
+    "newContent": "赫恩交出守誓徽记,并证实处决派正在矿城销毁治疗记录。"
+  },
+  {
+    "id": "1784467704198-z3nhna",
+    "username": "ouyang",
+    "timestamp": 1784467704198,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点4-叙事任务",
+    "oldContent": "阻止处决派带走救赎派证人，让矿工、医师和幸存骑士公开说明黑金腐化曾出现逆转迹象。",
+    "newContent": "阻止处决派带走救赎派证人,让矿工、医师和幸存骑士公开说明黑金腐化曾出现逆转迹象。"
+  },
+  {
+    "id": "1784467704219-65pi9k",
+    "username": "ouyang",
+    "timestamp": 1784467704219,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.storyContent",
+    "fieldLabel": "金大陆-关卡节点4-区域故事",
+    "oldContent": "",
+    "newContent": "方舟堡抵达断誓矿城,处决派正在执行清洗令。矿工、医师与幸存骑士被押往刑场,他们掌握的治疗记录证明腐化可逆,却因此成为守城派眼中的异端。奥里克以守誓徽记暂缓处决,艾蕾尼娅指引方舟堡接入矿城根脉,调和之力让被黑金侵蚀的证人短暂恢复清醒。获救证词当众宣读:黑金腐化曾在调和魂能作用下出现逆转。民众开始动摇,处决派失去部分威信。奥里克获得民众信任,治疗记录指向真相——金之魂令裂隙才是持续污染的源头。"
+  },
+  {
+    "id": "1784467704242-svwc9u",
+    "username": "ouyang",
+    "timestamp": 1784467704242,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点4-进入前提示",
+    "oldContent": "矿城正在执行处决令，救赎派的证人即将被带走。",
+    "newContent": "矿城正在执行处决令,救赎派的证人即将被带走。"
+  },
+  {
+    "id": "1784467704265-z8kb49",
+    "username": "ouyang",
+    "timestamp": 1784467704265,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点4-结束后反馈",
+    "oldContent": "获救证词证明腐化可逆，奥里克重新获得民众信任。",
+    "newContent": "获救证词证明腐化可逆,奥里克重新获得民众信任。"
+  },
+  {
+    "id": "1784467704286-j17qc3",
+    "username": "ouyang",
+    "timestamp": 1784467704286,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.opponent.name",
+    "fieldLabel": "金大陆-关卡节点4-区域对手名称",
+    "oldContent": "",
+    "newContent": "卡索尔·处刑官"
+  },
+  {
+    "id": "1784467704306-m8c899",
+    "username": "ouyang",
+    "timestamp": 1784467704306,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.opponent.identity",
+    "fieldLabel": "金大陆-关卡节点4-区域对手身份",
+    "oldContent": "",
+    "newContent": "守城处决派的前线执行者,负责清除所有质疑铁律的声音。"
+  },
+  {
+    "id": "1784467704328-as6zp9",
+    "username": "ouyang",
+    "timestamp": 1784467704328,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.opponent.motivation",
+    "fieldLabel": "金大陆-关卡节点4-区域对手动机",
+    "oldContent": "",
+    "newContent": "他相信腐化者必死,任何关于逆转的证词都是动摇秩序的谎言。"
+  },
+  {
+    "id": "1784467704350-hfopn0",
+    "username": "ouyang",
+    "timestamp": 1784467704350,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.3.opponent.signatureLine",
+    "fieldLabel": "金大陆-关卡节点4-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "证词只会散播虚妄希望,铁律不容任何例外!"
+  },
+  {
+    "id": "1784467704371-mudnt8",
+    "username": "ouyang",
+    "timestamp": 1784467704371,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点5-叙事任务",
+    "oldContent": "核对被篡改的污染档案与处决依据，揭露守城贵族明知腐化可逆仍扩大处决，以维持恐惧和统治。",
+    "newContent": "核对被篡改的污染档案与处决依据,揭露守城贵族明知腐化可逆仍扩大处决,以维持恐惧和统治。"
+  },
+  {
+    "id": "1784467704393-f0sr1g",
+    "username": "ouyang",
+    "timestamp": 1784467704393,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.storyContent",
+    "fieldLabel": "金大陆-关卡节点5-区域故事",
+    "oldContent": "",
+    "newContent": "铸币圣堂保存着金耀污染档案,也藏着被篡改的处决依据。方舟堡以调和之力稳定圣堂地下根脉,艾蕾尼娅引导奥里克找到原始记录:守城贵族早已知晓腐化可逆,却隐瞒真相扩大处决,以恐惧维持统治。原始档案还指出,金之魂令被移入王室陵墓,塞维尔封死了唯一入口。根语者感知到陵墓根脉正在崩解,若不尽快净化魂令,整座王城将被黑金吞没。奥里克决定公开真相,前往王城外墙与塞维尔对质。"
+  },
+  {
+    "id": "1784467704414-j6eett",
+    "username": "ouyang",
+    "timestamp": 1784467704414,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点5-进入前提示",
+    "oldContent": "铸币圣堂保存着污染记录，也藏着被篡改的处决依据。",
+    "newContent": "铸币圣堂保存着污染记录,也藏着被篡改的处决依据。"
+  },
+  {
+    "id": "1784467704436-1yubqm",
+    "username": "ouyang",
+    "timestamp": 1784467704436,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点5-结束后反馈",
+    "oldContent": "原始记录揭露贵族隐瞒，黑金源头指向王室陵墓。",
+    "newContent": "原始记录揭露贵族隐瞒,黑金源头指向王室陵墓。"
+  },
+  {
+    "id": "1784467704457-dg74qi",
+    "username": "ouyang",
+    "timestamp": 1784467704457,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点5-叙事奖励",
+    "oldContent": "原始档案指出金之魂令被移入王陵，塞维尔封死了唯一入口。",
+    "newContent": "原始档案指出金之魂令被移入王陵,塞维尔封死了唯一入口。"
+  },
+  {
+    "id": "1784467704479-cpvupj",
+    "username": "ouyang",
+    "timestamp": 1784467704479,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.opponent.name",
+    "fieldLabel": "金大陆-关卡节点5-区域对手名称",
+    "oldContent": "",
+    "newContent": "格温多林·铸币长老"
+  },
+  {
+    "id": "1784467704501-9z04m9",
+    "username": "ouyang",
+    "timestamp": 1784467704501,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.opponent.identity",
+    "fieldLabel": "金大陆-关卡节点5-区域对手身份",
+    "oldContent": "",
+    "newContent": "铸币圣堂守护者,守城派安插的档案管理者。"
+  },
+  {
+    "id": "1784467704523-nqco66",
+    "username": "ouyang",
+    "timestamp": 1784467704523,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.opponent.motivation",
+    "fieldLabel": "金大陆-关卡节点5-区域对手动机",
+    "oldContent": "",
+    "newContent": "她负责销毁原始记录,因为真相会让守城派失去合法性。"
+  },
+  {
+    "id": "1784467704544-86fbc2",
+    "username": "ouyang",
+    "timestamp": 1784467704544,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.4.opponent.signatureLine",
+    "fieldLabel": "金大陆-关卡节点5-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "档案只会引发混乱,金耀需要的是秩序而非真相!"
+  },
+  {
+    "id": "1784467704567-tamtfu",
+    "username": "ouyang",
+    "timestamp": 1784467704567,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.5.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点6-叙事任务",
+    "oldContent": "让奥里克与塞维尔正面对质，在民众和骑士见证下瓦解处决派权威，使王城主动开启通往王陵的旧门。",
+    "newContent": "让奥里克与塞维尔正面对质,在民众和骑士见证下瓦解处决派权威,使王城主动开启通往王陵的旧门。"
+  },
+  {
+    "id": "1784467704590-pq2bxe",
+    "username": "ouyang",
+    "timestamp": 1784467704590,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.5.storyContent",
+    "fieldLabel": "金大陆-关卡节点6-区域故事",
+    "oldContent": "",
+    "newContent": "方舟堡推进至王城外墙,铁律执政官塞维尔拒绝交出通行权。奥里克当众公开铸币圣堂的原始档案,揭露处决派隐瞒真相的罪责。民众与骑士开始倒戈,塞维尔孤注一掷,试图以武力镇压。艾蕾尼娅引导方舟堡以调和之力削弱外墙黑金符文,塞维尔的最后防线崩解。他在众人见证下失去权威,陵墓旧门在救赎派的请求下重新开启。根语者警告:也戈仍在陵墓深处守护被污染的魂令,他的执念比任何黑金符文都要坚固。奥里克握紧守誓徽记,决心以不放弃战友的方式完成最后一战。"
+  },
+  {
+    "id": "1784467704611-qxpq89",
+    "username": "ouyang",
+    "timestamp": 1784467704611,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.5.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点6-进入前提示",
+    "oldContent": "王城外墙已经封锁，铁律执政官拒绝交出通行权。",
+    "newContent": "王城外墙已经封锁,铁律执政官拒绝交出通行权。"
+  },
+  {
+    "id": "1784467704633-jb37qc",
+    "username": "ouyang",
+    "timestamp": 1784467704633,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.5.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点6-结束后反馈",
+    "oldContent": "处决派失去民心，陵墓旧门在众人见证下重新开启。",
+    "newContent": "处决派失去民心,陵墓旧门在众人见证下重新开启。"
+  },
+  {
+    "id": "1784467704663-p7cezv",
+    "username": "ouyang",
+    "timestamp": 1784467704663,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.5.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点6-叙事奖励",
+    "oldContent": "王城守军倒向救赎派，也戈仍在陵墓深处守护被污染的魂令。",
+    "newContent": "王城守军倒向救赎派,也戈仍在陵墓深处守护被污染的魂令。"
+  },
+  {
+    "id": "1784467704684-ec18kr",
+    "username": "ouyang",
+    "timestamp": 1784467704684,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点7-叙事任务",
+    "oldContent": "让方舟堡接入王城地下根脉，逐段削弱黑金誓纹，避免王陵污染在接近魂令时反噬获救骑士。",
+    "newContent": "让方舟堡接入王城地下根脉,逐段削弱黑金誓纹,避免王陵污染在接近魂令时反噬获救骑士。"
+  },
+  {
+    "id": "1784467704704-j3sun4",
+    "username": "ouyang",
+    "timestamp": 1784467704704,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.storyContent",
+    "fieldLabel": "金大陆-关卡节点7-区域故事",
+    "oldContent": "",
+    "newContent": "王室墓道遍布黑金誓纹,每一步都会引发根脉反噬。方舟堡必须先稳定根核共鸣,才能继续深入。艾蕾尼娅引导调和之力逐段削弱誓纹,根语者感知到墓道深处传来也戈的意识残响——他并非主动背叛,而是独自承担了金之魂令污染,以一人之躯守住最后防线。被扭曲的誓纹逐一沉寂,墓道尽头的陵心大门显露。奥里克在门前停顿,他知道也戈仍在等待,等待被击败,也等待被证明。方舟堡与众英雄准备进入历王誓冢,那里保存着金令残响与骑士团分裂的完整真相。"
+  },
+  {
+    "id": "1784467704725-su8rnt",
+    "username": "ouyang",
+    "timestamp": 1784467704725,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点7-进入前提示",
+    "oldContent": "王室墓道遍布黑金誓纹，方舟堡必须先稳定根核共鸣。",
+    "newContent": "王室墓道遍布黑金誓纹,方舟堡必须先稳定根核共鸣。"
+  },
+  {
+    "id": "1784467704748-j8o1ca",
+    "username": "ouyang",
+    "timestamp": 1784467704748,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点7-结束后反馈",
+    "oldContent": "被扭曲的誓纹逐一沉寂，也戈仍在陵心等待奥里克。",
+    "newContent": "被扭曲的誓纹逐一沉寂,也戈仍在陵心等待奥里克。"
+  },
+  {
+    "id": "1784467704768-kqueun",
+    "username": "ouyang",
+    "timestamp": 1784467704768,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点7-叙事奖励",
+    "oldContent": "墓道誓纹显示也戈并非主动背叛，而是独自承担了魂令污染。",
+    "newContent": "墓道誓纹显示也戈并非主动背叛,而是独自承担了魂令污染。"
+  },
+  {
+    "id": "1784467704789-s6kbze",
+    "username": "ouyang",
+    "timestamp": 1784467704789,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.opponent.name",
+    "fieldLabel": "金大陆-关卡节点7-区域对手名称",
+    "oldContent": "",
+    "newContent": "誓冢守灵者"
+  },
+  {
+    "id": "1784467704810-j0pz8z",
+    "username": "ouyang",
+    "timestamp": 1784467704810,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.opponent.identity",
+    "fieldLabel": "金大陆-关卡节点7-区域对手身份",
+    "oldContent": "",
+    "newContent": "王室墓道的古老守卫,由历代领主魂能凝聚而成的元素卫士。"
+  },
+  {
+    "id": "1784467704834-y5b52c",
+    "username": "ouyang",
+    "timestamp": 1784467704834,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.opponent.motivation",
+    "fieldLabel": "金大陆-关卡节点7-区域对手动机",
+    "oldContent": "",
+    "newContent": "被黑金污染的守灵誓约让它们攻击一切靠近魂令的存在。"
+  },
+  {
+    "id": "1784467704858-d3pzre",
+    "username": "ouyang",
+    "timestamp": 1784467704858,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.6.opponent.signatureLine",
+    "fieldLabel": "金大陆-关卡节点7-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "\"领主安眠……不容打扰……外来者……退去……\"(魂能回声译文)"
+  },
+  {
+    "id": "1784467704882-639o7q",
+    "username": "ouyang",
+    "timestamp": 1784467704882,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点8-叙事任务",
+    "oldContent": "公开奥里克离乡求援的真相，让被污染的旧战友重新回应骑士誓言，并为最终净化建立稳定共鸣。",
+    "newContent": "公开奥里克离乡求援的真相,让被污染的旧战友重新回应骑士誓言,并为最终净化建立稳定共鸣。"
+  },
+  {
+    "id": "1784467704908-qaseib",
+    "username": "ouyang",
+    "timestamp": 1784467704908,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.storyContent",
+    "fieldLabel": "金大陆-关卡节点8-区域故事",
+    "oldContent": "",
+    "newContent": "历王誓冢保存着金令残响,也记录着骑士团分裂的真相。方舟堡以调和之力唤醒历代领主的誓词残响,奥里克当众说明离乡缘由:不是逃避,而是为了带回拯救战友的道路。誓词残响与方舟堡产生共鸣,被污染的旧战友终于回应他的归队誓言,黑金侵蚀在共鸣中短暂减弱。艾蕾尼娅确认金之魂令出现可被净化的窗口,但也戈的守陵执念正在抵抗这一变化。根语者警告:若不在窗口关闭前击败也戈,魂令将永久锁死在腐化状态。奥里克握紧战友交还的徽记,推开陵心大门。"
+  },
+  {
+    "id": "1784467704929-uiauh3",
+    "username": "ouyang",
+    "timestamp": 1784467704929,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点8-进入前提示",
+    "oldContent": "历王誓冢保存着金令残响，也记录骑士团分裂的真相。",
+    "newContent": "历王誓冢保存着金令残响,也记录骑士团分裂的真相。"
+  },
+  {
+    "id": "1784467704952-ly88hz",
+    "username": "ouyang",
+    "timestamp": 1784467704952,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点8-结束后反馈",
+    "oldContent": "奥里克公开离乡缘由，旧战友终于回应他的归队誓言。",
+    "newContent": "奥里克公开离乡缘由,旧战友终于回应他的归队誓言。"
+  },
+  {
+    "id": "1784467704974-iu8zyu",
+    "username": "ouyang",
+    "timestamp": 1784467704974,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点8-叙事奖励",
+    "oldContent": "历王誓词与方舟堡共鸣，金之魂令出现可被净化的短暂窗口。",
+    "newContent": "历王誓词与方舟堡共鸣,金之魂令出现可被净化的短暂窗口。"
+  },
+  {
+    "id": "1784467704994-v7ikfe",
+    "username": "ouyang",
+    "timestamp": 1784467704994,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.opponent.name",
+    "fieldLabel": "金大陆-关卡节点8-区域对手名称",
+    "oldContent": "",
+    "newContent": "断誓之影"
+  },
+  {
+    "id": "1784467705015-8dq2x0",
+    "username": "ouyang",
+    "timestamp": 1784467705015,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.opponent.identity",
+    "fieldLabel": "金大陆-关卡节点8-区域对手身份",
+    "oldContent": "",
+    "newContent": "历代背誓骑士的怨念凝聚体,被黑金污染放大成实体。"
+  },
+  {
+    "id": "1784467705036-ds4rii",
+    "username": "ouyang",
+    "timestamp": 1784467705036,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.opponent.motivation",
+    "fieldLabel": "金大陆-关卡节点8-区域对手动机",
+    "oldContent": "",
+    "newContent": "它们憎恨一切重立誓言的尝试,因为那会证明自己的背叛毫无意义。"
+  },
+  {
+    "id": "1784467705057-kyxbnm",
+    "username": "ouyang",
+    "timestamp": 1784467705057,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.7.opponent.signatureLine",
+    "fieldLabel": "金大陆-关卡节点8-区域对手标志性台词",
+    "oldContent": "",
+    "newContent": "誓言终将破碎,荣耀不过是自欺的谎言!"
+  },
+  {
+    "id": "1784467705082-xfyxhy",
+    "username": "ouyang",
+    "timestamp": 1784467705082,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.8.storyPurpose",
+    "fieldLabel": "金大陆-关卡节点9-叙事任务",
+    "oldContent": "协助奥里克击败也戈而不放弃其人格，以调和之力净化金之魂令，让腐化骑士恢复理智并共同重立誓约。",
+    "newContent": "协助奥里克击败也戈而不放弃其人格,以调和之力净化金之魂令,让腐化骑士恢复理智并共同重立誓约。"
+  },
+  {
+    "id": "1784467705104-fjhon3",
+    "username": "ouyang",
+    "timestamp": 1784467705104,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.8.storyContent",
+    "fieldLabel": "金大陆-关卡节点9-区域故事",
+    "oldContent": "",
+    "newContent": "金之魂令近在眼前,也戈的最后一剑仍守着腐化王陵。他攻击所有靠近者,却在剑锋落下前反复迟疑。奥里克没有闪避,而是以金耀旧礼回应:若我已不配记住誓言,就请你替我守住最后一剑。方舟堡以调和之力削弱也戈体内的黑金侵蚀,艾蕾尼娅引导魂令净化窗口扩大。也戈在最后一击中恢复清醒,选择将剑刺入魂令裂隙而非奥里克胸膛。金之魂令恢复清明,被腐化的骑士集体苏醒。他们与奥里克共同重立金耀誓约:不抛弃仍能被救回的人。金耀危机解除,获救骑士成为后续修复大陆的可靠支点。"
+  },
+  {
+    "id": "1784467705126-styxhp",
+    "username": "ouyang",
+    "timestamp": 1784467705126,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.8.entryPrompt",
+    "fieldLabel": "金大陆-关卡节点9-进入前提示",
+    "oldContent": "金之魂令近在眼前，也戈的最后一剑仍守着腐化王陵。",
+    "newContent": "金之魂令近在眼前,也戈的最后一剑仍守着腐化王陵。"
+  },
+  {
+    "id": "1784467705148-k4bo77",
+    "username": "ouyang",
+    "timestamp": 1784467705148,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.8.completionFeedback",
+    "fieldLabel": "金大陆-关卡节点9-结束后反馈",
+    "oldContent": "魂令恢复清明，获救骑士与奥里克共同重立金耀誓约。",
+    "newContent": "魂令恢复清明,获救骑士与奥里克共同重立金耀誓约。"
+  },
+  {
+    "id": "1784467705170-skzx0t",
+    "username": "ouyang",
+    "timestamp": 1784467705170,
+    "moduleName": "landing",
+    "fieldPath": "jin.levelNodes.8.narrativeReward",
+    "fieldLabel": "金大陆-关卡节点9-叙事奖励",
+    "oldContent": "金耀危机解除，金之魂令与获救骑士成为后续修复大陆的可靠支点。",
+    "newContent": "金耀危机解除,金之魂令与获救骑士成为后续修复大陆的可靠支点。"
   }
 ]

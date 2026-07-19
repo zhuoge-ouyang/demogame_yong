@@ -983,7 +983,7 @@ const VALID_REALMS = ['upper', 'mortal', 'abyss']
 const VALID_FIELDS = ['past', 'present', 'future']
 const PHASE2_CONTINENT_IDS = ['jin', 'mu', 'bing', 'huo', 'tu', 'feng', 'lei', 'guang', 'an']
 const PHASE2_SYNC_FIELDS = ['mainPlot', 'coreConflict', 'playerGoal']
-const PHASE3_CONTINENT_IDS = ['jin', 'bing', 'huo']
+const PHASE3_CONTINENT_IDS = ['jin', 'mu', 'bing', 'huo']
 const PHASE3_SYNC_SECTIONS = ['systemDialogue', 'bosses', 'levelNodes']
 
 // 模块配置表：定义 realm 之外的同步目标
@@ -1086,7 +1086,7 @@ const MODULE_CONFIGS = {
     validFields: PHASE3_CONTINENT_IDS.flatMap(id => PHASE3_SYNC_SECTIONS.map(section => `${id}_${section}`)),
     header: `/**
  * 阶段三落地剧情参考文档
- * 来源: data/landing.json 中已审阅的前三大陆落地文稿
+ * 来源: data/landing.json 中已审阅的四大陆落地文稿
  * 用途: 作为 phase3 动态落地子模块的参考素材注入 prompt
  */
 `,

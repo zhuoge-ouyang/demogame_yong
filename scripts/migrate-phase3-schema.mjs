@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(__dirname, '..')
-const continentIds = ['jin', 'bing', 'huo']
+const continentIds = ['jin', 'mu', 'bing', 'huo']
 const dataFiles = ['landing.json', 'landing-avatar.json']
 
 function migrateContinent(source = {}) {
@@ -31,13 +31,21 @@ function migrateContinent(source = {}) {
   const sourceNodes = Array.isArray(source.levelNodes) ? source.levelNodes : []
   const levelNodes = Array.from({ length: 9 }, (_, index) => {
     const node = sourceNodes[index] || {}
+    const opponent = node.opponent || {}
     return {
       name: node.name || `区域${index + 1}`,
       act: Math.floor(index / 3) + 1,
       storyPurpose: node.storyPurpose || node.storyBeat || '',
+      storyContent: node.storyContent || node.story || '',
       entryPrompt: node.entryPrompt || '',
       completionFeedback: node.completionFeedback || '',
       narrativeReward: node.narrativeReward || '',
+      opponent: {
+        name: opponent.name || '',
+        identity: opponent.identity || '',
+        motivation: opponent.motivation || '',
+        signatureLine: opponent.signatureLine || ''
+      },
       gameplayHandoff: node.gameplayHandoff || node.keyEncounter || ''
     }
   })

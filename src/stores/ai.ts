@@ -53,6 +53,12 @@ export const useAIStore = defineStore('ai', () => {
           if (!SUPPORTED_PROVIDERS.has(config.provider)) {
             Object.assign(config, defaults)
           }
+          const storedApiKeys = { ...(data.config.apiKeys || {}) }
+          if (data.config.apiKey && data.config.provider && !storedApiKeys[data.config.provider as keyof typeof storedApiKeys]) {
+            storedApiKeys[data.config.provider as keyof typeof storedApiKeys] = data.config.apiKey
+          }
+          config.apiKeys = storedApiKeys
+          config.apiKey = storedApiKeys[config.provider] || ''
           // 确保 image 子配置完整地合并（而不是被空/缺失字段覆盖）
           config.image = { ...defaults.image!, ...(data.config.image || {}) }
         }

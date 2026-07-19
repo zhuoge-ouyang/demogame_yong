@@ -1,4 +1,5 @@
 import type { ContinentId } from '@/types/continent'
+import type { LandingContinentId } from '@/types/landing'
 
 export interface ContinentMeta {
   id: ContinentId
@@ -25,4 +26,8 @@ export const CONTINENT_MAP: Record<ContinentId, ContinentMeta> = Object.fromEntr
   CONTINENTS.map(c => [c.id, c])
 ) as Record<ContinentId, ContinentMeta>
 
-export const LANDING_CONTINENT_IDS: ContinentId[] = ['jin', 'bing', 'huo']
+/** 阶段三正式交付范围：翠森、霜寒、炎狱。 */
+export const LANDING_CONTINENT_IDS: LandingContinentId[] = ['mu', 'bing', 'huo']
+
+/** 完整持久化范围：保留已经完成的金耀数据及旧链接兼容。 */
+export const ALL_LANDING_CONTINENT_IDS: LandingContinentId[] = ['jin', ...LANDING_CONTINENT_IDS]

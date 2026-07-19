@@ -34,12 +34,16 @@ export function proxyBaseUrl(baseUrl: string): string {
   return cleaned
 }
 
+function claudeBaseUrl(baseUrl: string): string {
+  return proxyBaseUrl(baseUrl).replace(/\/v1$/i, '')
+}
+
 function resolveEndpoint(config: AIConfig): string {
-  const base = proxyBaseUrl(config.baseUrl.replace(/\/+$/, ''))
   if (config.provider === 'claude') {
-    return `${base}/v1/messages`
+    return `${claudeBaseUrl(config.baseUrl)}/v1/messages`
   }
   // All OpenAI-compatible providers
+  const base = proxyBaseUrl(config.baseUrl.replace(/\/+$/, ''))
   return `${base}/chat/completions`
 }
 
@@ -125,8 +129,7 @@ async function generateWithClaude(
   userPrompt: string,
   onChunk?: (text: string) => void
 ): Promise<AIGenerateResult> {
-  const base = proxyBaseUrl(config.baseUrl.replace(/\/+$/, ''))
-  const endpoint = `${base}/v1/messages`
+  const endpoint = `${claudeBaseUrl(config.baseUrl)}/v1/messages`
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -206,14 +209,13 @@ export interface TestConnectionResult {
 }
 
 export async function testAIConnection(config: AIConfig): Promise<TestConnectionResult> {
-  const base = proxyBaseUrl(config.baseUrl.replace(/\/+$/, ''))
 
   let endpoint: string
   let headers: Record<string, string>
   let body: Record<string, any>
 
   if (config.provider === 'claude') {
-    endpoint = `${base}/v1/messages`
+    endpoint = `${claudeBaseUrl(config.baseUrl)}/v1/messages`
     headers = {
       'Content-Type': 'application/json',
       'x-api-key': config.apiKey,
@@ -226,6 +228,7 @@ export async function testAIConnection(config: AIConfig): Promise<TestConnection
       messages: [{ role: 'user', content: 'hi' }]
     }
   } else {
+    const base = proxyBaseUrl(config.baseUrl.replace(/\/+$/, ''))
     endpoint = `${base}/chat/completions`
     headers = {
       'Content-Type': 'application/json',

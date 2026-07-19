@@ -170,7 +170,17 @@ export function auditPhase3Landing(state) {
       continent?.systemDialogue?.opening,
       ...(continent?.systemDialogue?.actNodes || []),
       ...(continent?.bosses || []).flatMap(boss => [boss.name, boss.identity, boss.motivation, boss.signatureLine]),
-      ...(continent?.levelNodes || []).flatMap(node => [node.storyPurpose, node.entryPrompt, node.completionFeedback, node.narrativeReward])
+      ...(continent?.levelNodes || []).flatMap(node => [
+        node.storyPurpose,
+        node.storyContent,
+        node.entryPrompt,
+        node.completionFeedback,
+        node.narrativeReward,
+        node.opponent?.name,
+        node.opponent?.identity,
+        node.opponent?.motivation,
+        node.opponent?.signatureLine
+      ])
     ].map(normalizeText)
     if (!contentValues.some(Boolean)) continue
     startedCount++
@@ -213,8 +223,21 @@ export function auditPhase3Landing(state) {
           issues.push(makePhase3Issue('warning', 'phase3-region-field-required', continentId, `区域${index + 1}·${label}`, '字段尚未填写。'))
         }
       }
+      checkPhase3StoryContent(issues, continentId, `区域${index + 1}·区域故事`, node.storyContent)
       checkPhase3ShortCopy(issues, continentId, `区域${index + 1}·进入前提示`, node.entryPrompt)
       checkPhase3ShortCopy(issues, continentId, `区域${index + 1}·结束后反馈`, node.completionFeedback)
+      checkPhase3NarrativeLanguage(issues, continentId, `区域${index + 1}·进入前提示`, node.entryPrompt)
+      checkPhase3NarrativeLanguage(issues, continentId, `区域${index + 1}·结束后反馈`, node.completionFeedback)
+
+      if ((index + 1) % 3 !== 0) {
+        const opponent = node.opponent || {}
+        for (const [field, label] of [['name', '名字'], ['identity', '身份'], ['motivation', '动机']]) {
+          if (!normalizeText(opponent[field])) {
+            issues.push(makePhase3Issue('warning', 'phase3-opponent-field-required', continentId, `区域${index + 1}·区域对手${label}`, '字段尚未填写。'))
+          }
+        }
+        checkPhase3ShortCopy(issues, continentId, `区域${index + 1}·区域对手台词`, opponent.signatureLine)
+      }
     })
   }
 
@@ -244,7 +267,7 @@ function makePhase3Issue(severity, ruleId, continentId, aspectLabel, message) {
     severity,
     ruleId,
     continentId,
-    continentName: continentId === 'jin' ? '金耀大陆' : continentId === 'bing' ? '霜寒大陆' : continentId === 'huo' ? '炎狱大陆' : continentId,
+    continentName: continentId === 'jin' ? '金耀大陆' : continentId === 'mu' ? '翠森大陆' : continentId === 'bing' ? '霜寒大陆' : continentId === 'huo' ? '炎狱大陆' : continentId,
     aspectKey: aspectLabel,
     aspectLabel,
     message
@@ -260,6 +283,27 @@ function checkPhase3ShortCopy(issues, continentId, label, value) {
   const length = [...normalized].length
   if (length < 20 || length > 40) {
     issues.push(makePhase3Issue('warning', 'phase3-short-copy-length', continentId, label, `当前为${length}字，甲方要求保持在20-40字。`))
+  }
+}
+
+function checkPhase3StoryContent(issues, continentId, label, value) {
+  const normalized = normalizeText(value)
+  if (!normalized) {
+    issues.push(makePhase3Issue('warning', 'phase3-story-required', continentId, label, '区域故事尚未填写。'))
+    return
+  }
+  const length = [...normalized].length
+  if (length < 120 || length > 180) {
+    issues.push(makePhase3Issue('warning', 'phase3-story-length', continentId, label, `当前为${length}字，甲方要求保持在120-180字。`))
+  }
+}
+
+function checkPhase3NarrativeLanguage(issues, continentId, label, value) {
+  const normalized = normalizeText(value)
+  const forbiddenTerms = ['任务完成', '奖励获得', '区域解锁', '已解锁']
+  const term = forbiddenTerms.find(item => normalized.includes(item))
+  if (term) {
+    issues.push(makePhase3Issue('warning', 'phase3-ui-language', continentId, label, `出现“${term}”等界面语言，应改写为世界状态或剧情余波。`))
   }
 }
 

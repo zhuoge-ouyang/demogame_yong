@@ -5,13 +5,16 @@ import type { LandingsState, LandingContinentId, LandingAct } from '@/types/land
 import type { FieldMeta } from '@/types/content-meta'
 import { createDefaultFieldMeta } from '@/types/content-meta'
 import { defaultLandingsState } from '@/constants/defaults'
+import { ALL_LANDING_CONTINENT_IDS, LANDING_CONTINENT_IDS } from '@/constants/continents'
 import { useAppStore } from './app'
 import { useAuthStore } from './auth'
 import { useEditLogsStore } from './edit-logs'
 import { fetchData, saveData } from '@/services/data-api'
 
-const STORAGE_KEY = 'sjg_landing_v1'
-const DIRTY_KEY = 'sjg_landing_dirty'  // 标记本地有未同步到服务器的数据
+// Phase3 v2 adds storyContent and opponent fields. Keep it isolated from the
+// legacy cache so an old dirty draft cannot overwrite the expanded schema.
+const STORAGE_KEY = 'sjg_landing_v2'
+const DIRTY_KEY = 'sjg_landing_v2_dirty'  // 标记本地有未同步到服务器的数据
 
 export const useLandingStore = defineStore('landing', () => {
   const state = reactive<LandingsState>(defaultLandingsState())
@@ -23,35 +26,41 @@ export const useLandingStore = defineStore('landing', () => {
     let filled = 0
     let total = 0
 
-    const count = (value: string) => {
+    const count = (value: unknown) => {
       total++
-      if (value.trim()) filled++
+      if (typeof value === 'string' && value.trim()) filled++
     }
 
-    count(c.systemDialogue.opening)
-    for (const dialogue of c.systemDialogue.actNodes) count(dialogue)
+    count(c.systemDialogue?.opening)
+    for (const dialogue of c.systemDialogue?.actNodes || []) count(dialogue)
 
-    for (const b of c.bosses) {
+    for (const b of c.bosses || []) {
       count(b.name)
       count(b.identity)
       count(b.motivation)
       count(b.signatureLine)
     }
 
-    for (const n of c.levelNodes) {
+    ;(c.levelNodes || []).forEach((n, index) => {
       count(n.storyPurpose)
+      count(n.storyContent)
       count(n.entryPrompt)
       count(n.completionFeedback)
       count(n.narrativeReward)
-    }
+      if ((index + 1) % 3 !== 0) {
+        count(n.opponent?.name)
+        count(n.opponent?.identity)
+        count(n.opponent?.motivation)
+        count(n.opponent?.signatureLine)
+      }
+    })
 
     return total > 0 ? Math.round((filled / total) * 100) : 0
   }
 
   const overallCompletion = computed(() => {
-    const ids: LandingContinentId[] = ['jin', 'bing', 'huo']
-    const total = ids.reduce((sum, id) => sum + getContinentCompletion(id), 0)
-    return Math.round(total / ids.length)
+    const total = LANDING_CONTINENT_IDS.reduce((sum, id) => sum + getContinentCompletion(id), 0)
+    return Math.round(total / LANDING_CONTINENT_IDS.length)
   })
 
   let _initialized = false
@@ -84,13 +93,8 @@ export const useLandingStore = defineStore('landing', () => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       if (raw) {
-        const data = JSON.parse(raw) as Partial<LandingsState>
-        const defaults = defaultLandingsState()
-        for (const key of Object.keys(defaults) as LandingContinentId[]) {
-          if (data[key]) {
-            Object.assign(state[key], defaults[key], data[key])
-          }
-        }
+        const data = JSON.parse(raw) as LandingsState
+        loadFromJSON(data)
       }
     } catch (e) {
       console.error('读取失败:', e)
@@ -134,13 +138,21 @@ export const useLandingStore = defineStore('landing', () => {
         const sourceNodes = Array.isArray(raw.levelNodes) ? raw.levelNodes : []
         const normalizedNodes = defaults[key].levelNodes.map((fallbackNode, index) => {
           const node = sourceNodes[index] || {}
+          const opponent = node.opponent || {}
           return {
             name: node.name || fallbackNode.name,
             act: (Math.floor(index / 3) + 1) as LandingAct,
             storyPurpose: node.storyPurpose || node.storyBeat || '',
+            storyContent: node.storyContent || node.story || '',
             entryPrompt: node.entryPrompt || '',
             completionFeedback: node.completionFeedback || '',
             narrativeReward: node.narrativeReward || '',
+            opponent: {
+              name: opponent.name || '',
+              identity: opponent.identity || '',
+              motivation: opponent.motivation || '',
+              signatureLine: opponent.signatureLine || ''
+            },
             gameplayHandoff: node.gameplayHandoff || node.keyEncounter || ''
           }
         })
@@ -379,6 +391,7 @@ export const useLandingStore = defineStore('landing', () => {
   function getFieldLabel(continentId: LandingContinentId, fieldPath: string): string {
     const continentNames: Record<LandingContinentId, string> = {
       jin: '金',
+      mu: '森',
       bing: '冰',
       huo: '火'
     }
@@ -408,10 +421,14 @@ export const useLandingStore = defineStore('landing', () => {
         motivation: '动机',
         signatureLine: '标志性台词',
         storyPurpose: '叙事任务',
+        storyContent: '区域故事',
         entryPrompt: '进入前提示',
         completionFeedback: '结束后反馈',
         narrativeReward: '叙事奖励',
         gameplayHandoff: '玩法衔接备注'
+      }
+      if (parts[0] === 'levelNodes' && parts[2] === 'opponent' && parts.length >= 4) {
+        return `${continentNames[continentId]}大陆-关卡节点${index}-区域对手${fieldLabels[parts[3]] || parts[3]}`
       }
       return `${continentNames[continentId]}大陆-${sectionLabels[parts[0]]}${index}-${fieldLabels[parts[2]] || parts[2]}`
     }
@@ -421,19 +438,18 @@ export const useLandingStore = defineStore('landing', () => {
 
   /** 对所有字段做全量快照（在数据加载完成后调用） */
   function snapshotAllFields() {
-    const continentIds: LandingContinentId[] = ['jin', 'bing', 'huo']
-    for (const cid of continentIds) {
+    for (const cid of ALL_LANDING_CONTINENT_IDS) {
       const continentData = state[cid]
       if (!continentData) continue
       
       if (!_fieldSnapshots[cid]) _fieldSnapshots[cid] = {}
-      _fieldSnapshots[cid]['systemDialogue.opening'] = continentData.systemDialogue.opening
-      continentData.systemDialogue.actNodes.forEach((dialogue, index) => {
+      _fieldSnapshots[cid]['systemDialogue.opening'] = continentData.systemDialogue?.opening || ''
+      ;(continentData.systemDialogue?.actNodes || []).forEach((dialogue, index) => {
         _fieldSnapshots[cid][`systemDialogue.actNodes.${index}`] = dialogue
       })
       
       // 快照 bosses 数组
-      continentData.bosses.forEach((boss, index) => {
+      ;(continentData.bosses || []).forEach((boss, index) => {
         for (const [key, val] of Object.entries(boss)) {
           if (typeof val === 'string') {
             if (!_fieldSnapshots[cid]) _fieldSnapshots[cid] = {}
@@ -443,12 +459,15 @@ export const useLandingStore = defineStore('landing', () => {
       })
       
       // 快照 levelNodes 数组
-      continentData.levelNodes.forEach((node, index) => {
+      ;(continentData.levelNodes || []).forEach((node, index) => {
         for (const [key, val] of Object.entries(node)) {
           if (typeof val === 'string') {
             if (!_fieldSnapshots[cid]) _fieldSnapshots[cid] = {}
             _fieldSnapshots[cid][`levelNodes.${index}.${key}`] = val
           }
+        }
+        for (const [key, val] of Object.entries(node.opponent || {})) {
+          _fieldSnapshots[cid][`levelNodes.${index}.opponent.${key}`] = val
         }
       })
     }

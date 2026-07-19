@@ -41,7 +41,7 @@ const PROMPTS = [
   },
   {
     key: 'phase3',
-    title: '前三大陆落地剧情 · 金 / 冰 / 火',
+    title: '前三大陆落地剧情 · 森 / 冰 / 火',
     prompt:
       'A panoramic serene fantasy oil painting depicting the peaceful convergence of three natural realms — on the left a vast golden wheat-field plateau with glowing sunlit grass and a distant cathedral of polished marble and gilded domes, in the middle a frozen tundra with soft snowdrifts and jagged crystalline blue-white ice towers glistening beneath an aurora, on the right a majestic volcanic highland with glowing orange rivers of molten rock flowing safely around stone cliffs, smoldering embers drifting gently, all joined by a soft luminous rainbow arc of magical energy across the sky, distant elegant castle spires on far horizons, ash petals and snowflakes drifting together in the air, sky split between auroral teal, holy gold dawn, and warm ember orange, volumetric god-rays piercing soft clouds, Baroque painterly chiaroscuro lighting, tranquil heroic cinematic composition, oil impasto painterly texture, no people, no characters, no figures, no weapons, no blood, no text, ultrawide 16:9 composition, masterful matte painting style',
   },

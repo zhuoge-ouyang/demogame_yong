@@ -50,7 +50,7 @@ const sidebarItems = computed(() =>
       <EpicBanner
         kicker="CHAPTER III · LANDING EPIC"
         title="前三大陆落地文案"
-        subtitle="金、冰、火依序推进 · 三幕九区 · 区域短句与Boss叙事"
+        subtitle="森、冰、火依序推进 · 三幕九区 · 区域故事、对手与Boss叙事"
         image="/images/banners/phase3.png"
         seal-char="III"
         accent="blood"

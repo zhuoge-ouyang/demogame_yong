@@ -240,7 +240,7 @@ function handleAIAccept(content: string, skippedFields?: string[]) {
         <NButton size="tiny" quaternary @click="unfinalizeAll">全部解锁</NButton>
       </NSpace>
     </div>
-    <p class="section-desc">梳理方舟堡/玩家意识在前三个元素大陆（金、冰、火）的目标、关键事件与通关变化。</p>
+    <p class="section-desc">梳理方舟堡/玩家意识在前三个元素大陆（森、冰、火）的目标、关键事件与通关变化。</p>
 
     <div class="field-group">
       <div style="display:flex;align-items:center;gap:6px;">

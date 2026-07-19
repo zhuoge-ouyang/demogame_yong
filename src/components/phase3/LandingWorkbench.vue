@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { NButton, NInput, NProgress, NTag, NTooltip, useMessage } from 'naive-ui'
 import { CONTINENT_MAP } from '@/constants/continents'
@@ -14,6 +14,7 @@ const route = useRoute()
 const message = useMessage()
 const landingStore = useLandingStore()
 const syncingSections = ref<Set<string>>(new Set())
+const activeAct = ref<LandingAct>(1)
 
 const cId = computed(() => (props.continentId || route.params.continentId) as LandingContinentId)
 const meta = computed(() => CONTINENT_MAP[cId.value])
@@ -31,6 +32,17 @@ const acts = computed(() => ([1, 2, 3] as LandingAct[]).map(act => ({
   nodes: data.value.levelNodes.slice((act - 1) * 3, act * 3),
   boss: data.value.bosses[act - 1]
 })))
+const activeActGroup = computed(() => acts.value[activeAct.value - 1])
+
+watch(cId, () => { activeAct.value = 1 })
+
+function regionImageUrl(index: number): string {
+  return `/images/phase3/${cId.value}/region-${String(index + 1).padStart(2, '0')}.png`
+}
+
+function bossConceptUrl(act: LandingAct): string {
+  return `/images/phase3/${cId.value}/boss-${String(act).padStart(2, '0')}.png`
+}
 
 function isFinalized(fieldPath: string): boolean {
   return landingStore.isFieldFinalized(cId.value, fieldPath)
@@ -53,6 +65,14 @@ function copyStatus(value: string) {
   return { label: `超出 ${length - 40} 字`, type: 'error' as const }
 }
 
+function storyStatus(value: string) {
+  const length = Array.from(value.trim()).length
+  if (length === 0) return { label: '未填写', type: 'default' as const }
+  if (length < 120) return { label: `还差 ${120 - length} 字`, type: 'warning' as const }
+  if (length <= 180) return { label: '篇幅合格', type: 'success' as const }
+  return { label: `超出 ${length - 180} 字`, type: 'error' as const }
+}
+
 function getActCompletion(act: LandingAct): number {
   const actIndex = act - 1
   const boss = data.value.bosses[actIndex]
@@ -63,7 +83,16 @@ function getActCompletion(act: LandingAct): number {
     boss.identity,
     boss.motivation,
     boss.signatureLine,
-    ...nodes.flatMap(node => [node.storyPurpose, node.entryPrompt, node.completionFeedback, node.narrativeReward])
+    ...nodes.flatMap((node, localIndex) => [
+      node.storyPurpose,
+      node.storyContent,
+      node.entryPrompt,
+      node.completionFeedback,
+      node.narrativeReward,
+      ...(localIndex < 2
+        ? [node.opponent.name, node.opponent.identity, node.opponent.motivation, node.opponent.signatureLine]
+        : [])
+    ])
   ]
   return Math.round((values.filter(value => value.trim()).length / values.length) * 100)
 }
@@ -122,9 +151,14 @@ function handleAcceptBosses(content: string) {
 const regionFieldLabels: Record<string, string[]> = {
   name: ['名称', '区域名称', '名字'],
   storyPurpose: ['叙事任务', '故事目标', '叙事目标'],
+  storyContent: ['区域故事', '故事正文', '区域故事正文'],
   entryPrompt: ['进入前提示', '进入提示'],
   completionFeedback: ['结束后反馈', '结束反馈'],
-  narrativeReward: ['叙事线索', '叙事奖励', '剧情线索']
+  narrativeReward: ['叙事线索', '叙事奖励', '剧情线索'],
+  opponentName: ['区域对手名字', '对手名字', '区域对手名称'],
+  opponentIdentity: ['区域对手身份', '对手身份'],
+  opponentMotivation: ['区域对手动机', '对手动机'],
+  opponentSignatureLine: ['区域对手台词', '对手台词', '区域对手一句话台词']
 }
 
 function handleAcceptRegions(content: string) {
@@ -138,10 +172,22 @@ function handleAcceptRegions(content: string) {
   entries.forEach(([, block], index) => {
     const parsed = parseKeyValueBlock(block, regionFieldLabels)
     const node = data.value.levelNodes[index]
-    ;(['name', 'storyPurpose', 'entryPrompt', 'completionFeedback', 'narrativeReward'] as const).forEach(field => {
+    ;(['name', 'storyPurpose', 'storyContent', 'entryPrompt', 'completionFeedback', 'narrativeReward'] as const).forEach(field => {
       const fieldPath = `levelNodes.${index}.${field}`
       if (applyAIField(fieldPath, parsed[field], value => { node[field] = value })) applied++
     })
+    if ((index + 1) % 3 !== 0) {
+      const opponentFields = {
+        name: parsed.opponentName,
+        identity: parsed.opponentIdentity,
+        motivation: parsed.opponentMotivation,
+        signatureLine: parsed.opponentSignatureLine
+      }
+      ;(Object.keys(opponentFields) as Array<keyof typeof opponentFields>).forEach(field => {
+        const fieldPath = `levelNodes.${index}.opponent.${field}`
+        if (applyAIField(fieldPath, opponentFields[field], value => { node.opponent[field] = value })) applied++
+      })
+    }
   })
   message.success(`已写入 ${applied} 个区域字段，定稿字段保持不变`)
 }
@@ -174,14 +220,26 @@ function formatBosses(): string {
 }
 
 function formatLevelNodes(): string {
-  return data.value.levelNodes.map((node, index) => [
-    `【区域${index + 1}】`,
-    `名称：${node.name}`,
-    `叙事任务：${node.storyPurpose}`,
-    `进入前提示：${node.entryPrompt}`,
-    `结束后反馈：${node.completionFeedback}`,
-    `叙事线索：${node.narrativeReward}`
-  ].join('\n')).join('\n\n')
+  return data.value.levelNodes.map((node, index) => {
+    const lines = [
+      `【区域${index + 1}】`,
+      `名称：${node.name}`,
+      `叙事任务：${node.storyPurpose}`,
+      `区域故事：${node.storyContent}`,
+      `进入前提示：${node.entryPrompt}`,
+      `结束后反馈：${node.completionFeedback}`,
+      `叙事线索：${node.narrativeReward}`
+    ]
+    if ((index + 1) % 3 !== 0) {
+      lines.push(
+        `区域对手名字：${node.opponent.name}`,
+        `区域对手身份：${node.opponent.identity}`,
+        `区域对手动机：${node.opponent.motivation}`,
+        `区域对手台词：${node.opponent.signatureLine}`
+      )
+    }
+    return lines.join('\n')
+  }).join('\n\n')
 }
 
 async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelNodes') {
@@ -214,7 +272,7 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
       <div class="heading-copy">
         <div class="heading-kicker">CHAPTER III / {{ meta.element }} ELEMENT</div>
         <h2>{{ meta.name }}落地文案</h2>
-        <p>三幕九区沿同一条因果链推进，区域短句、Boss立场与系统对白在同一工作面定稿。</p>
+        <p>三幕九区沿同一条因果链推进，区域故事、对手立场与西幻短句在同一工作面定稿。</p>
       </div>
       <div class="completion-block">
         <div class="completion-value">{{ landingStore.getContinentCompletion(cId) }}%</div>
@@ -235,7 +293,8 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
       <div class="scope-metrics">
         <span>3 幕</span>
         <span>9 区域</span>
-        <span>3 Boss</span>
+        <span>9 敌对节点</span>
+        <span>3 正式 Boss</span>
         <span>40 字内短句</span>
       </div>
     </div>
@@ -318,7 +377,27 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
         </div>
       </div>
 
-      <div v-for="actGroup in acts" :key="actGroup.act" class="act-section">
+      <nav class="act-tabs" role="tablist" :aria-label="`${meta.name}三幕区域`">
+        <button
+          v-for="actGroup in acts"
+          :key="actGroup.act"
+          type="button"
+          class="act-tab"
+          :class="{ active: activeAct === actGroup.act }"
+          role="tab"
+          :aria-selected="activeAct === actGroup.act"
+          @click="activeAct = actGroup.act"
+        >
+          <span class="act-tab-index">0{{ actGroup.act }}</span>
+          <span class="act-tab-copy">
+            <strong>{{ actGroup.title }}</strong>
+            <small>区域 {{ (actGroup.act - 1) * 3 + 1 }}—{{ actGroup.act * 3 }}</small>
+          </span>
+          <span class="act-tab-progress">{{ getActCompletion(actGroup.act) }}%</span>
+        </button>
+      </nav>
+
+      <div v-for="actGroup in [activeActGroup]" :key="`${cId}-${actGroup.act}`" class="act-section">
         <div class="act-heading">
           <div class="act-number">0{{ actGroup.act }}</div>
           <div class="act-title">
@@ -345,6 +424,18 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
             class="region-record"
             :class="{ 'boss-region': localIndex === 2 }"
           >
+            <figure class="region-visual">
+              <img
+                :src="regionImageUrl((actGroup.act - 1) * 3 + localIndex)"
+                :alt="`${meta.name}区域${(actGroup.act - 1) * 3 + localIndex + 1}：${node.name}`"
+                loading="lazy"
+              >
+              <figcaption>
+                <span>REGION {{ String((actGroup.act - 1) * 3 + localIndex + 1).padStart(2, '0') }}</span>
+                <strong>{{ node.name }}</strong>
+              </figcaption>
+            </figure>
+
             <div class="region-identity">
               <span class="region-order">区域 {{ (actGroup.act - 1) * 3 + localIndex + 1 }}</span>
               <NInput
@@ -357,14 +448,30 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
               <NButton
                 size="tiny"
                 quaternary
-                :type="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`) ? 'warning' : 'default'"
-                @click="toggleFinalize(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`)"
+                :type="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyContent`) ? 'warning' : 'default'"
+                @click="toggleFinalize(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyContent`)"
               >
-                {{ isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyPurpose`) ? '已定稿' : '定稿' }}
+                {{ isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyContent`) ? '已定稿' : '定稿' }}
               </NButton>
             </div>
 
             <div class="region-edit-grid">
+              <div class="field-block story-content-field">
+                <div class="copy-field-heading">
+                  <label>区域故事正文</label>
+                  <NTag size="small" :type="storyStatus(node.storyContent).type">{{ storyStatus(node.storyContent).label }}</NTag>
+                </div>
+                <NInput
+                  v-model:value="node.storyContent"
+                  type="textarea"
+                  placeholder="用120-180字写清进入原因、关键事件、区域对手、改变与下一步钩子"
+                  :autosize="{ minRows: 5, maxRows: 10 }"
+                  :maxlength="600"
+                  show-count
+                  :disabled="isFinalized(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyContent`)"
+                  @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.storyContent`)"
+                />
+              </div>
               <div class="field-block narrative-field">
                 <label>叙事任务</label>
                 <NInput
@@ -424,12 +531,81 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
               </div>
             </div>
 
+            <div v-if="localIndex !== 2" class="opponent-strip">
+              <div class="boss-heading">
+                <span class="opponent-marker">区域对手 / 区域 {{ (actGroup.act - 1) * 3 + localIndex + 1 }}</span>
+                <strong>{{ node.opponent.name || '待设计区域对手' }}</strong>
+              </div>
+              <div class="boss-grid">
+                <div class="field-block boss-name-field">
+                  <label>对手名称</label>
+                  <NInput
+                    v-model:value="node.opponent.name"
+                    size="large"
+                    placeholder="区域对手名称"
+                    :maxlength="30"
+                    @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.opponent.name`)"
+                  />
+                </div>
+                <div class="field-block">
+                  <label>身份</label>
+                  <NInput
+                    v-model:value="node.opponent.identity"
+                    type="textarea"
+                    placeholder="身份、阵营及与本区事件的关系"
+                    :autosize="{ minRows: 3, maxRows: 8 }"
+                    :maxlength="800"
+                    show-count
+                    @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.opponent.identity`)"
+                  />
+                </div>
+                <div class="field-block">
+                  <label>动机</label>
+                  <NInput
+                    v-model:value="node.opponent.motivation"
+                    type="textarea"
+                    placeholder="它真正想守护、夺取或掩盖什么"
+                    :autosize="{ minRows: 3, maxRows: 8 }"
+                    :maxlength="800"
+                    show-count
+                    @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.opponent.motivation`)"
+                  />
+                </div>
+                <div class="field-block boss-line-field">
+                  <div class="copy-field-heading">
+                    <label>一句话台词 / 意志回响</label>
+                    <NTag size="small" :type="copyStatus(node.opponent.signatureLine).type">
+                      {{ copyStatus(node.opponent.signatureLine).label }}
+                    </NTag>
+                  </div>
+                  <NInput
+                    v-model:value="node.opponent.signatureLine"
+                    type="textarea"
+                    placeholder="体现区域对手立场与动机的一句话"
+                    :autosize="{ minRows: 2, maxRows: 4 }"
+                    :maxlength="40"
+                    show-count
+                    @update:value="onFieldInput(`levelNodes.${(actGroup.act - 1) * 3 + localIndex}.opponent.signatureLine`)"
+                  />
+                </div>
+              </div>
+            </div>
+
             <div v-if="localIndex === 2" class="boss-strip">
               <div class="boss-heading">
                 <span class="boss-marker">BOSS / 区域 {{ actGroup.boss.areaIndex }}</span>
                 <strong>{{ actGroup.boss.name || `第${actGroup.act}幕 Boss` }}</strong>
               </div>
-              <div class="boss-grid">
+              <div class="boss-content">
+                <figure class="boss-art">
+                  <img
+                    :src="bossConceptUrl(actGroup.act)"
+                    :alt="`${actGroup.boss.name}角色原画`"
+                    loading="lazy"
+                  >
+                  <figcaption>ACT 0{{ actGroup.act }} · BOSS CONCEPT</figcaption>
+                </figure>
+                <div class="boss-grid">
                 <div class="field-block boss-name-field">
                   <label>Boss 名称</label>
                   <NInput
@@ -482,6 +658,7 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
                     @update:value="onFieldInput(`bosses.${actGroup.act - 1}.signatureLine`)"
                   />
                 </div>
+              </div>
               </div>
             </div>
           </article>
@@ -540,6 +717,7 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
 .heading-kicker,
 .section-index,
 .boss-marker,
+.opponent-marker,
 .region-order,
 .scope-title {
   font-size: 11px;
@@ -689,7 +867,84 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
 
 .act-section {
   padding: 24px 0 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.act-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 20px;
+  padding: 1px;
+  border: 1px solid rgba(236, 204, 142, 0.14);
+  background: rgba(236, 204, 142, 0.08);
+}
+
+.act-tab {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  min-height: 72px;
+  padding: 12px 16px;
+  overflow: hidden;
+  border: 0;
+  color: rgba(229, 220, 201, 0.52);
+  background: #0d0f0f;
+  text-align: left;
+  cursor: pointer;
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.act-tab::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--continent-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.act-tab:hover,
+.act-tab.active {
+  color: #efe1bf;
+  background: color-mix(in srgb, var(--continent-accent) 9%, #0d0f0f);
+}
+
+.act-tab.active::after {
+  transform: scaleX(1);
+}
+
+.act-tab-index {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--continent-accent);
+}
+
+.act-tab-copy strong,
+.act-tab-copy small {
+  display: block;
+}
+
+.act-tab-copy strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.act-tab-copy small,
+.act-tab-progress {
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(225, 218, 203, 0.42);
+}
+
+.act-tab-progress {
+  margin: 0;
 }
 
 .act-heading {
@@ -736,7 +991,8 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
 }
 
 .region-record {
-  padding: 16px;
+  padding: 0 16px 16px;
+  overflow: hidden;
 }
 
 .region-record.boss-region {
@@ -748,6 +1004,60 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   grid-template-columns: 76px minmax(200px, 360px) 1fr;
   justify-content: start;
   margin-bottom: 14px;
+}
+
+.region-visual {
+  position: relative;
+  height: clamp(220px, 28vw, 390px);
+  margin: 0 -16px 18px;
+  overflow: hidden;
+  background: #090b0b;
+  border-bottom: 1px solid rgba(236, 204, 142, 0.14);
+}
+
+.region-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 46%, rgba(5, 7, 7, 0.88) 100%);
+  pointer-events: none;
+}
+
+.region-visual img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.region-record:hover .region-visual img {
+  transform: scale(1.015);
+}
+
+.region-visual figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  bottom: 16px;
+  left: 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.region-visual figcaption span {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--continent-accent);
+}
+
+.region-visual figcaption strong {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  color: #f1e4c5;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
 }
 
 .region-identity .n-button {
@@ -765,14 +1075,27 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   min-width: 0;
 }
 
+.story-content-field {
+  grid-column: 1 / -1;
+}
+
 .copy-block {
   padding-left: 12px;
   border-left: 1px solid rgba(236, 204, 142, 0.09);
 }
 
+.opponent-strip,
 .boss-strip {
   margin: 16px -16px -16px;
   padding: 16px;
+}
+
+.opponent-strip {
+  border-top: 1px solid rgba(143, 166, 151, 0.18);
+  background: #0f1312;
+}
+
+.boss-strip {
   border-top: 1px solid color-mix(in srgb, var(--continent-accent) 35%, transparent);
   background: #121210;
 }
@@ -794,6 +1117,49 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px;
   align-items: start;
+}
+
+.boss-content {
+  display: grid;
+  grid-template-columns: minmax(210px, 280px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.boss-art {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--continent-accent) 34%, rgba(236, 204, 142, 0.14));
+  background: #090a09;
+}
+
+.boss-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 42px rgba(0, 0, 0, 0.54);
+  pointer-events: none;
+}
+
+.boss-art img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.boss-art figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  bottom: 9px;
+  left: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(241, 228, 197, 0.72);
+  text-align: center;
 }
 
 .boss-line-field {
@@ -820,6 +1186,10 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
 
   .boss-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .boss-content {
+    grid-template-columns: 220px minmax(0, 1fr);
   }
 
   .boss-name-field {
@@ -858,8 +1228,21 @@ async function syncLandingSection(section: 'systemDialogue' | 'bosses' | 'levelN
   .dialogue-grid,
   .region-edit-grid,
   .boss-grid,
+  .boss-content,
   .ai-workflow-grid {
     grid-template-columns: 1fr;
+  }
+
+  .act-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .act-tab {
+    min-height: 58px;
+  }
+
+  .boss-art {
+    width: min(100%, 320px);
   }
 
   .copy-field-wide,

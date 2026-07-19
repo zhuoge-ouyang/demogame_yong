@@ -13,6 +13,9 @@
     "content:audit": "node scripts/content-audit.mjs",
     "migrate:phase3": "node scripts/migrate-phase3-schema.mjs",
     "populate:phase3": "node scripts/populate-phase3-content.mjs",
+    "review:phase3": "node scripts/review-phase3-literary.mjs",
+    "sync:phase3-refs": "node scripts/sync-phase3-refs.mjs",
+    "manifest:phase3-images": "node scripts/build-phase3-image-manifest.mjs",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },

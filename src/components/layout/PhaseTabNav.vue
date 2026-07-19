@@ -45,7 +45,7 @@ const tabs = computed(() => [
     id: 3,
     label: '阶段三',
     desc: '前三大陆落地',
-    route: '/phase3/jin',
+    route: '/phase3/mu',
     completion: landingStore.overallCompletion,
     active: route.path.startsWith('/phase3')
   },

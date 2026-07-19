@@ -41,6 +41,7 @@ export interface ImageAIConfig {
 export interface AIConfig {
   provider: AIProvider
   apiKey: string
+  apiKeys?: Partial<Record<AIProvider, string>>
   model: string
   baseUrl: string
   temperature: number

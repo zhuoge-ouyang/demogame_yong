@@ -147,9 +147,11 @@ test('auditPhase3Landing ignores untouched phase3 scaffolding', () => {
     name: `区域${index + 1}`,
     act: Math.floor(index / 3) + 1,
     storyPurpose: '',
+    storyContent: '',
     entryPrompt: '',
     completionFeedback: '',
     narrativeReward: '',
+    opponent: { name: '', identity: '', motivation: '', signatureLine: '' },
     gameplayHandoff: ''
   }))
   const landing = {
@@ -175,10 +177,18 @@ test('active phase3 content is complete in standard and avatar data', () => {
     const landing = JSON.parse(fs.readFileSync(new URL(`../data/${fileName}`, import.meta.url), 'utf8'))
     const report = auditPhase3Landing(landing)
 
-    assert.equal(report.startedCount, 3, `${fileName} should contain all three phase3 continents`)
+    assert.equal(report.startedCount, 4, `${fileName} should preserve Jin and contain the three official phase3 continents`)
     assert.equal(report.errorCount, 0, `${fileName} should have no phase3 structural errors`)
     assert.equal(report.warningCount, 0, `${fileName} should have no incomplete or invalid short copy`)
   }
+})
+
+test('phase3 primary navigation uses Forest, Frost, and Fire while preserving Jin data', () => {
+  const constants = fs.readFileSync(new URL('../src/constants/continents.ts', import.meta.url), 'utf8')
+  const landing = JSON.parse(fs.readFileSync(new URL('../data/landing.json', import.meta.url), 'utf8'))
+
+  assert.match(constants, /LANDING_CONTINENT_IDS[^=]*= \['mu', 'bing', 'huo'\]/)
+  assert.deepEqual(Object.keys(landing), ['jin', 'mu', 'bing', 'huo'])
 })
 
 test('phase3 workbench does not display gameplay handoff fields', () => {
@@ -188,14 +198,39 @@ test('phase3 workbench does not display gameplay handoff fields', () => {
   assert.doesNotMatch(template, /gameplayHandoff|玩法衔接|玩法链接/)
 })
 
-test('auditPhase3Landing enforces three-act boss positions and short-copy length', () => {
+test('phase3 workbench uses act tabs and project-bound region and boss art', () => {
+  const workbench = fs.readFileSync(new URL('../src/components/phase3/LandingWorkbench.vue', import.meta.url), 'utf8')
+
+  assert.match(workbench, /role="tablist"/)
+  assert.match(workbench, /activeActGroup/)
+  assert.match(workbench, /\/images\/phase3\/\$\{cId\.value\}\/region-/)
+  assert.match(workbench, /\/images\/phase3\/\$\{cId\.value\}\/boss-/)
+})
+
+test('phase3 store isolates and normalizes legacy browser caches', () => {
+  const store = fs.readFileSync(new URL('../src/stores/landing.ts', import.meta.url), 'utf8')
+
+  assert.match(store, /const STORAGE_KEY = 'sjg_landing_v2'/)
+  assert.match(store, /const DIRTY_KEY = 'sjg_landing_v2_dirty'/)
+  assert.match(store, /const data = JSON\.parse\(raw\) as LandingsState\s+loadFromJSON\(data\)/)
+  assert.match(store, /typeof value === 'string' && value\.trim\(\)/)
+  assert.match(store, /Object\.entries\(node\.opponent \|\| \{\}\)/)
+})
+
+test('auditPhase3Landing enforces three-act boss positions, story length, opponents, and short-copy language', () => {
   const landing = JSON.parse(fs.readFileSync(new URL('../data/landing.json', import.meta.url), 'utf8'))
   landing.jin.systemDialogue.opening = '太短'
   landing.jin.bosses[0].areaIndex = 4
+  landing.jin.levelNodes[0].storyContent = '过短的故事'
+  landing.jin.levelNodes[0].opponent.name = ''
+  landing.jin.levelNodes[0].completionFeedback = '任务完成，奖励获得，区域已经解锁。'
 
   const report = auditPhase3Landing({ jin: landing.jin })
 
   assert.equal(report.startedCount, 1)
   assert.ok(report.issues.some(issue => issue.ruleId === 'phase3-boss-position'))
   assert.ok(report.issues.some(issue => issue.ruleId === 'phase3-short-copy-length'))
+  assert.ok(report.issues.some(issue => issue.ruleId === 'phase3-story-length'))
+  assert.ok(report.issues.some(issue => issue.ruleId === 'phase3-opponent-field-required'))
+  assert.ok(report.issues.some(issue => issue.ruleId === 'phase3-ui-language'))
 })

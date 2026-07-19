@@ -656,16 +656,53 @@ function collectPhase3ModuleContext(continentId: LandingContinentId, moduleKey: 
   } else if (moduleKey === 'region-copy') {
     label = `${CONTINENT_MAP[continentId]?.name || continentId} · 九区域文案`
     content = data.levelNodes
-      .filter(node => [node.storyPurpose, node.entryPrompt, node.completionFeedback, node.narrativeReward].some(value => value.trim()))
-      .map((node, index) => [
-        `【区域${index + 1}】`,
-        `名称：${node.name || ''}`,
-        `叙事任务：${node.storyPurpose || ''}`,
-        `进入前提示：${node.entryPrompt || ''}`,
-        `结束后反馈：${node.completionFeedback || ''}`,
-        `叙事线索：${node.narrativeReward || ''}`
-      ].join('\n'))
+      .filter(node => [
+        node.storyPurpose,
+        node.storyContent,
+        node.entryPrompt,
+        node.completionFeedback,
+        node.narrativeReward,
+        node.opponent.name,
+        node.opponent.identity,
+        node.opponent.motivation,
+        node.opponent.signatureLine
+      ].some(value => value.trim()))
+      .map((node, index) => {
+        const lines = [
+          `【区域${index + 1}】`,
+          `名称：${node.name || ''}`,
+          `叙事任务：${node.storyPurpose || ''}`,
+          `区域故事：${node.storyContent || ''}`,
+          `进入前提示：${node.entryPrompt || ''}`,
+          `结束后反馈：${node.completionFeedback || ''}`,
+          `叙事线索：${node.narrativeReward || ''}`
+        ]
+        if ((index + 1) % 3 !== 0) {
+          lines.push(
+            `区域对手名字：${node.opponent.name || ''}`,
+            `区域对手身份：${node.opponent.identity || ''}`,
+            `区域对手动机：${node.opponent.motivation || ''}`,
+            `区域对手台词：${node.opponent.signatureLine || ''}`
+          )
+        }
+        return lines.join('\n')
+      })
       .join('\n\n')
+    fieldPaths = data.levelNodes.flatMap((_, index) => [
+      `levelNodes.${index}.storyPurpose`,
+      `levelNodes.${index}.storyContent`,
+      `levelNodes.${index}.entryPrompt`,
+      `levelNodes.${index}.completionFeedback`,
+      `levelNodes.${index}.narrativeReward`,
+      ...((index + 1) % 3 !== 0
+        ? [
+            `levelNodes.${index}.opponent.name`,
+            `levelNodes.${index}.opponent.identity`,
+            `levelNodes.${index}.opponent.motivation`,
+            `levelNodes.${index}.opponent.signatureLine`
+          ]
+        : [])
+    ])
   }
 
   if (!content.trim()) return null

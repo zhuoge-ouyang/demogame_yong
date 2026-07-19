@@ -5,8 +5,7 @@ import { useWorldStore } from '@/stores/world'
 import { useContinentsStore } from '@/stores/continents'
 import { useLandingStore } from '@/stores/landing'
 import { useHistoryStore } from '@/stores/history'
-import { CONTINENTS, CONTINENT_MAP } from '@/constants/continents'
-import type { LandingContinentId } from '@/types/landing'
+import { CONTINENTS, CONTINENT_MAP, ALL_LANDING_CONTINENT_IDS } from '@/constants/continents'
 import {
   validateImportData,
   generateChecksum,
@@ -180,11 +179,10 @@ function buildTxtContent(): string {
   }
 
   add(SEP)
-  add('▓▓ 第三阶段：前三大陆落地文案')
+  add('▓▓ 第三阶段：四大陆落地文案')
   add(SEP)
   add()
-  const landingIds: LandingContinentId[] = ['jin', 'bing', 'huo']
-  for (const id of landingIds) {
+  for (const id of ALL_LANDING_CONTINENT_IDS) {
     const d = landing[id]
     const meta = CONTINENT_MAP[id]
     add(`${meta.icon} ${meta.name} · 落地文案`)
@@ -206,16 +204,23 @@ function buildTxtContent(): string {
       })
       add()
     }
-    const hasLevels = d.levelNodes.some(n => n.storyPurpose || n.entryPrompt || n.completionFeedback || n.narrativeReward)
+    const hasLevels = d.levelNodes.some(n => n.storyPurpose || n.storyContent || n.entryPrompt || n.completionFeedback || n.narrativeReward || n.opponent.name)
     if (hasLevels) {
       add('◆ 区域文案（3幕9区域）')
       d.levelNodes.forEach((node, i) => {
-        if (!node.storyPurpose && !node.entryPrompt && !node.completionFeedback && !node.narrativeReward) return
+        if (!node.storyPurpose && !node.storyContent && !node.entryPrompt && !node.completionFeedback && !node.narrativeReward && !node.opponent.name) return
         add(`  ■ 第${node.act}幕 · ${i + 1}. ${node.name || `区域${i + 1}`}`)
         addField('叙事任务', node.storyPurpose, '    ')
+        addField('区域故事', node.storyContent, '    ')
         addField('进入前提示', node.entryPrompt, '    ')
         addField('结束后反馈', node.completionFeedback, '    ')
         addField('叙事线索', node.narrativeReward, '    ')
+        if ((i + 1) % 3 !== 0) {
+          addField('区域对手', node.opponent.name, '    ')
+          addField('对手身份', node.opponent.identity, '    ')
+          addField('对手动机', node.opponent.motivation, '    ')
+          if (node.opponent.signatureLine) add(`    对手台词：「${node.opponent.signatureLine}」`)
+        }
       })
       add()
     }

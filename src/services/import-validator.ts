@@ -36,7 +36,7 @@ export interface ImportSummary {
 // ─── 常量 ────────────────────────────────────────────────
 
 const CONTINENT_IDS = ['jin', 'mu', 'bing', 'huo', 'tu', 'feng', 'lei', 'guang', 'an'] as const
-const LANDING_IDS = ['jin', 'bing', 'huo'] as const
+const LANDING_IDS = ['jin', 'mu', 'bing', 'huo'] as const
 const CONTINENT_NAME_MAP: Record<string, string> = {
   jin: '金耀大陆', mu: '翠森大陆', bing: '霜寒大陆', huo: '炎狱大陆',
   tu: '磐岩大陆', feng: '风语大陆', lei: '雷霆大陆', guang: '圣光大陆', an: '暗影大陆'
@@ -357,8 +357,16 @@ function validateLanding(
         if (isObject(n)) {
           const no = n as Record<string, unknown>
           const tmpW: ValidationWarning[] = []
-          for (const field of ['storyPurpose', 'entryPrompt', 'completionFeedback', 'narrativeReward']) {
+          for (const field of ['storyPurpose', 'storyContent', 'entryPrompt', 'completionFeedback', 'narrativeReward']) {
             if (checkStringField(no, field, `landing.${lid}.levelNodes[${i}]`, errors, tmpW)) hasSomeContent = true
+          }
+          if (isObject(no.opponent)) {
+            const opponent = no.opponent as Record<string, unknown>
+            for (const field of ['name', 'identity', 'motivation', 'signatureLine']) {
+              if (checkStringField(opponent, field, `landing.${lid}.levelNodes[${i}].opponent`, errors, tmpW)) hasSomeContent = true
+            }
+          } else if (no.opponent !== undefined) {
+            errors.push({ path: `landing.${lid}.levelNodes[${i}].opponent`, message: '期望 object 类型', type: 'type_error' })
           }
         }
       }
