@@ -197,6 +197,9 @@ function collectPhase2Data(continentsState: ContinentsState): string {
     parts.push(`主线剧情：${continent.aspects.mainPlot || '（未填写）'}`)
     parts.push(`核心冲突：${continent.aspects.coreConflict || '（未填写）'}`)
     parts.push(`玩家目标：${continent.aspects.playerGoal || '（未填写）'}`)
+    if (continent.aspects.storyGameplayConcept) {
+      parts.push(`结合剧情的玩法构想：${continent.aspects.storyGameplayConcept}`)
+    }
     parts.push(`体验定位：${continent.aspects.experiencePositioning || '（未填写）'}`)
     parts.push(`游戏内表达：${continent.aspects.inGameExpression || '（未填写）'}`)
     parts.push(`主题表达：${continent.aspects.themeExpression || '（未填写）'}`)

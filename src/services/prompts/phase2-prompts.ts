@@ -8,6 +8,7 @@ const FIELD_LENGTH_HINTS: Record<keyof ContinentAspects, string> = {
   mainPlot: '520-720字（约600字）',
   coreConflict: '200-300字',
   playerGoal: '200-320字',
+  storyGameplayConcept: '320-500字',
   experiencePositioning: '200-320字',
   inGameExpression: '320-500字',
   themeExpression: '160-260字',
@@ -15,6 +16,12 @@ const FIELD_LENGTH_HINTS: Record<keyof ContinentAspects, string> = {
 }
 
 function getPhase2OutputFormat(aspectKey: keyof ContinentAspects): string {
+  if (aspectKey === 'storyGameplayConcept') {
+    return `请只输出「${ASPECT_LABELS[aspectKey]}」正文，建议${FIELD_LENGTH_HINTS[aspectKey]}。
+内容必须直接服务现有塔防挂机核心，写清地图规则、玩家在战前或波次间的低频决策、敌方反制，以及区域1-3、区域4-6、区域7-9的递进。
+只设计一条核心玩法规则和必要变体；优先复用摆塔、塔位强化、敌人路线、波次和地图目标，不写具体数值、奖励、商业化包装，也不要新增独立养成系统。`
+  }
+
   return `请只输出「${ASPECT_LABELS[aspectKey]}」正文，建议${FIELD_LENGTH_HINTS[aspectKey]}。
 内容要简单、有意义、符合既有世界观；必须让甲方快速看懂核心剧情、核心冲突、玩家在故事中的目标和剧情推进变化。
 严格保持剧情与玩法/数值设计分离，不要写数值、系统、奖励、具体关卡规则或商业化包装；不要使用宏大CG、大段CG或3D时间线。`
@@ -41,7 +48,15 @@ const PHASE2_MAIN_PLOT_ALIGNMENT: Partial<Record<ContinentId, string>> = {
 
 3. 众人前往最后一个冰下遗迹时，意外遇上霜脊巨兽。众人合力击退巨兽，成功修复冰之魂令。寒潮退去，村镇开始复苏。
 
-请为霜寒大陆（冰元素大陆）设计主线剧情框架。`
+请为霜寒大陆（冰元素大陆）设计主线剧情框架。`,
+  feng: `【用户提示】
+硬性设定：风语大陆本来就是稳定悬浮于云海之上的完整大陆，不存在持续下坠或等待玩家阻止坠落的问题。当前危机是风之封魂令被污染后，大陆外围生成无数龙卷风，形成封锁内外交通的风墙。
+剧情前期，英雄团必须骑乘风语大陆本地飞行兽，依靠特殊风铃信标辨认唯一安全航路；方向或操控错误会被龙卷风送回上一处安全信标。泽菲尔·逐风以受损风翼和辨风经验担任领航者。剧情后期修复封魂令与信标网络后，异常龙卷风墙消散为正常风道，玩家可以自由飞行出入大陆。
+风墙、信标与飞行进入必须进入三幕主线，且与堕落风咏者篡改航向、封锁大陆真相的行动直接相关。不要写成浮岛不断坠落，也不要把飞行兽扩展成独立宠物养成系统。`,
+  lei: `【用户提示】
+硬性设定：雷霆大陆的核心不是抽象蓄电，而是覆盖城镇、祭台与防御塔位的古代雷纹回路。雷之封魂令受污染后，公共回路断裂并被反向操控，雷霆从共同分担的守护力量变成把过载与牺牲压给少数人的惩罚工具。
+托尔加·雷铸曾在回路崩溃时被迫充当“活体保险丝”，但最终成长不是继续独自承受雷电，而是帮助方舟堡重连回路，让防御塔、城镇节点与族人共同分担压力。堕落雷祭司会派出断路者破坏或污染回路节点，并企图让逆流冲击方舟堡根核；终幕要把伪造的审判频率反送回审判柱，修复雷之封魂令并终止以死亡证明荣耀的成年礼。
+主线必须让雷纹回路服务于塔防场景、敌人路线和防御塔协同，不要只写蓄电、放电或托尔加个人抗雷。`
 }
 
 function getPhase2Alignment(continentId: ContinentId, aspectKey: keyof ContinentAspects): string | undefined {
@@ -83,6 +98,17 @@ function makeContinentPrompt(aspectKey: keyof ContinentAspects): Record<string, 
 3. 章节结束时的剧情成果
 
 不要写功能解锁、数值成长、玩法循环或奖励。`,
+
+      storyGameplayConcept: `请结合${c.name}已经确定的主线剧情、核心冲突和玩家目标，设计一项可以落地到塔防挂机核心循环中的玩法构想。
+
+包含：
+1. 大陆环境规则如何作用于防御塔、敌人路线、战斗波次或地图目标
+2. 玩家在战前或波次之间进行什么低频选择
+3. 敌方势力如何利用同一规则反制玩家
+4. 区域1-3负责教学、区域4-6制造变化、区域7-9让玩家反用规则完成剧情高潮
+5. 危机解除后，地图状态如何体现大陆恢复
+
+只设计一条核心规则和必要变体，复用已有摆塔、塔位强化、敌人路线、波次与挂机流程。风语大陆必须包含飞行兽循信标穿越风墙的章节入口，并让信标继续承担塔防地图目标；雷霆大陆必须围绕连接塔位的雷纹回路、断路者破坏节点与防御塔联动展开。不要新增独立宠物养成、资源养成或与塔防割裂的小游戏。`,
 
       experiencePositioning: `请为${c.name}（${c.element}元素大陆）设计体验定位。
 

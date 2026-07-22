@@ -4,7 +4,7 @@ import { getPhase2Prompt } from './phase2-prompts'
 import { getPhase3Prompt } from './phase3-prompts'
 import { getOpeningBattlePrompt } from './opening-battle-prompts'
 import type { PromptTemplate, PromptBuildOptions, PromptBuildResult } from '@/types/ai'
-import { ASPECT_KEYS, ASPECT_LABELS, type ContinentId, type ContinentAspects } from '@/types/continent'
+import { ASPECT_LABELS, getContinentAspectKeys, type ContinentId, type ContinentAspects } from '@/types/continent'
 import type { LandingContinentId } from '@/types/landing'
 import { CONTINENT_MAP } from '@/constants/continents'
 import { useWorldStore } from '@/stores/world'
@@ -594,9 +594,10 @@ function collectPhase2PriorContext(continentId: ContinentId, template: PromptTem
   if (!continent?.aspects) return null
 
   const currentAspect = getPhase2AspectFromTemplate(template)
-  const currentIndex = currentAspect ? ASPECT_KEYS.indexOf(currentAspect) : -1
-  const priorKeys = currentIndex > 0 ? ASPECT_KEYS.slice(0, currentIndex) : []
-  const keysToRead = priorKeys.length > 0 ? priorKeys : ASPECT_KEYS.filter(key => continent.aspects[key]?.trim())
+  const aspectKeys = getContinentAspectKeys(continentId)
+  const currentIndex = currentAspect ? aspectKeys.indexOf(currentAspect) : -1
+  const priorKeys = currentIndex > 0 ? aspectKeys.slice(0, currentIndex) : []
+  const keysToRead = priorKeys.length > 0 ? priorKeys : aspectKeys.filter(key => continent.aspects[key]?.trim())
 
   const content = keysToRead
     .filter(key => continent.aspects[key]?.trim())
@@ -614,7 +615,7 @@ function collectPhase2AllContext(continentId: ContinentId): { label: string; con
   const continent = continentsStore.state[continentId]
   if (!continent?.aspects) return null
 
-  const filledKeys = ASPECT_KEYS.filter(key => continent.aspects[key]?.trim())
+  const filledKeys = getContinentAspectKeys(continentId).filter(key => continent.aspects[key]?.trim())
   const content = filledKeys
     .map(key => `【${ASPECT_LABELS[key]}】\n${continent.aspects[key].trim()}`)
     .join('\n\n')

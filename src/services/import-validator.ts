@@ -277,7 +277,9 @@ function validateContinents(
     if (!aspects) continue
 
     let hasSomeContent = false
-    for (const f of ['mainPlot', 'coreConflict', 'playerGoal', 'experiencePositioning', 'inGameExpression', 'themeExpression', 'playerProgressionChanges'] as const) {
+    const aspectFields = ['mainPlot', 'coreConflict', 'playerGoal', 'experiencePositioning', 'inGameExpression', 'themeExpression', 'playerProgressionChanges']
+    if (cid === 'feng' || cid === 'lei') aspectFields.push('storyGameplayConcept')
+    for (const f of aspectFields) {
       const tmpW: ValidationWarning[] = []
       if (checkStringField(aspects, f, `continents.${cid}.aspects`, errors, tmpW)) {
         hasSomeContent = true

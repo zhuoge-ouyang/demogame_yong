@@ -16,10 +16,13 @@ export const PHASE2_ASPECTS = [
   'playerProgressionChanges'
 ]
 
+const PHASE2_STORY_GAMEPLAY_CONTINENTS = new Set(['feng', 'lei'])
+
 export const PHASE2_ASPECT_LABELS = {
   mainPlot: '主线剧情',
   coreConflict: '核心冲突',
   playerGoal: '玩家目标',
+  storyGameplayConcept: '结合剧情的玩法构想',
   experiencePositioning: '体验定位',
   inGameExpression: '剧情呈现方式',
   themeExpression: '主题表达',
@@ -33,6 +36,7 @@ const FIELD_LENGTH_TARGETS = {
   mainPlot: { min: 520, max: 720 },
   coreConflict: { min: 200, max: 300 },
   playerGoal: { min: 200, max: 320 },
+  storyGameplayConcept: { min: 320, max: 500 },
   experiencePositioning: { min: 200, max: 320 },
   inGameExpression: { min: 320, max: 500 },
   themeExpression: { min: 160, max: 260 },
@@ -78,8 +82,11 @@ export function auditPhase2Continents(state) {
 
   for (const [continentId, continent] of continentEntries) {
     const aspectValues = {}
+    const aspectKeys = PHASE2_STORY_GAMEPLAY_CONTINENTS.has(continentId)
+      ? [...PHASE2_ASPECTS, 'storyGameplayConcept']
+      : PHASE2_ASPECTS
 
-    for (const aspectKey of PHASE2_ASPECTS) {
+    for (const aspectKey of aspectKeys) {
       const value = normalizeText(continent?.aspects?.[aspectKey])
       aspectValues[aspectKey] = value
       if (!value) {
@@ -110,7 +117,7 @@ export function auditPhase2Continents(state) {
     }
 
     if (Object.values(aspectValues).some(Boolean)) {
-      const packageText = PHASE2_ASPECTS.map(aspectKey => aspectValues[aspectKey] || '').join('')
+      const packageText = aspectKeys.map(aspectKey => aspectValues[aspectKey] || '').join('')
       if (packageText.length < MIN_PACKAGE_CHARS) {
         issues.push(makeIssue({
           severity: 'warning',
@@ -153,7 +160,9 @@ export function auditPhase2Continents(state) {
 
   return {
     continentCount: continentEntries.length,
-    aspectCount: continentEntries.length * PHASE2_ASPECTS.length,
+    aspectCount: continentEntries.reduce((total, [continentId]) => (
+      total + PHASE2_ASPECTS.length + (PHASE2_STORY_GAMEPLAY_CONTINENTS.has(continentId) ? 1 : 0)
+    ), 0),
     errorCount: issues.filter(issue => issue.severity === 'error').length,
     warningCount: issues.filter(issue => issue.severity === 'warning').length,
     issues

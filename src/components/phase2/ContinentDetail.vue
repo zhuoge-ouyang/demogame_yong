@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { NButton, NDivider, NTooltip, NSpace, useMessage } from 'naive-ui'
 import { useContinentsStore } from '@/stores/continents'
 import { CONTINENT_MAP } from '@/constants/continents'
-import { ASPECT_KEYS, ASPECT_LABELS } from '@/types/continent'
+import { ASPECT_LABELS, getContinentAspectKeys } from '@/types/continent'
 import type { ContinentId, ContinentAspects } from '@/types/continent'
 import AIPanel from '@/components/shared/AIPanel.vue'
 import type { ConflictField } from '@/components/shared/AIPanel.vue'
@@ -28,7 +28,7 @@ const hiddenAspectKeys = new Set<keyof ContinentAspects>([
   'playerProgressionChanges'
 ])
 const visibleAspectKeys = computed(() =>
-  ASPECT_KEYS.filter(aspectKey => !hiddenAspectKeys.has(aspectKey))
+  getContinentAspectKeys(cId.value).filter(aspectKey => !hiddenAspectKeys.has(aspectKey))
 )
 
 function getAIModuleId(aspectKey: keyof ContinentAspects): string {
@@ -37,10 +37,11 @@ function getAIModuleId(aspectKey: keyof ContinentAspects): string {
 
 function getContextLabels(aspectKey: keyof ContinentAspects): string[] {
   const labels = ['阶段一摘要']
-  const idx = ASPECT_KEYS.indexOf(aspectKey)
+  const aspectKeys = getContinentAspectKeys(cId.value)
+  const idx = aspectKeys.indexOf(aspectKey)
   for (let i = 0; i < idx; i++) {
-    if (continent.value?.aspects[ASPECT_KEYS[i]]?.trim()) {
-      labels.push(ASPECT_LABELS[ASPECT_KEYS[i]])
+    if (continent.value?.aspects[aspectKeys[i]]?.trim()) {
+      labels.push(ASPECT_LABELS[aspectKeys[i]])
     }
   }
   return labels

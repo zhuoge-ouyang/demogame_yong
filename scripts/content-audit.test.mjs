@@ -134,6 +134,33 @@ test('active phase2 continents use expanded plot and three-step area pacing', ()
   }
 })
 
+test('wind and thunder expose story-linked gameplay concepts without changing other continent tabs', () => {
+  const continents = JSON.parse(fs.readFileSync(new URL('../data/continents.json', import.meta.url), 'utf8'))
+  const avatarContinents = JSON.parse(fs.readFileSync(new URL('../data/continents-avatar.json', import.meta.url), 'utf8'))
+  const continentTypes = fs.readFileSync(new URL('../src/types/continent.ts', import.meta.url), 'utf8')
+  const detailView = fs.readFileSync(new URL('../src/components/phase2/ContinentDetail.vue', import.meta.url), 'utf8')
+  const continentStore = fs.readFileSync(new URL('../src/stores/continents.ts', import.meta.url), 'utf8')
+  const references = fs.readFileSync(new URL('../src/services/prompts/references/phase2-continent-refs.ts', import.meta.url), 'utf8')
+
+  assert.match(continentTypes, /STORY_GAMEPLAY_CONTINENT_IDS[^=]*= \['feng', 'lei'\]/)
+  assert.match(detailView, /getContinentAspectKeys\(cId\.value\)/)
+  assert.match(continentStore, /hasCompleteStoryGameplayConcepts/)
+
+  for (const continentId of ['feng', 'lei']) {
+    const concept = continents[continentId].aspects.storyGameplayConcept
+    assert.ok([...concept.replace(/\s/g, '')].length >= 320, `${continentId} gameplay concept should be reviewable`)
+    assert.equal(concept, avatarContinents[continentId].aspects.storyGameplayConcept, `${continentId} gameplay concept should stay synchronized`)
+    assert.match(references, new RegExp(`${continentId}_storyGameplayConcept:`))
+  }
+
+  assert.match(continents.feng.aspects.mainPlot, /稳定悬浮/)
+  assert.match(continents.feng.aspects.storyGameplayConcept, /云翼兽/)
+  assert.match(continents.feng.aspects.storyGameplayConcept, /信标/)
+  assert.match(continents.lei.aspects.storyGameplayConcept, /雷纹回路/)
+  assert.match(continents.lei.aspects.storyGameplayConcept, /防御塔/)
+  assert.match(continents.lei.aspects.storyGameplayConcept, /断路者/)
+})
+
 test('auditPhase3Landing ignores untouched phase3 scaffolding', () => {
   const emptyBosses = [1, 2, 3].map(act => ({
     name: '',

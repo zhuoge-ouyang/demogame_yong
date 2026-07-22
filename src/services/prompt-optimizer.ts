@@ -4,10 +4,10 @@ import { phase1Prompts } from './prompts/phase1-prompts'
 import { getPhase2Prompt } from './prompts/phase2-prompts'
 import { getPhase3Prompt } from './prompts/phase3-prompts'
 import type { Phase3Module } from './prompts/phase3-prompts'
-import type { ContinentId, ContinentAspects } from '@/types/continent'
+import type { ContinentId } from '@/types/continent'
 import type { LandingContinentId } from '@/types/landing'
 import { CONTINENTS, LANDING_CONTINENT_IDS } from '@/constants/continents'
-import { ASPECT_LABELS } from '@/types/continent'
+import { getContinentAspectKeys } from '@/types/continent'
 
 /**
  * 获取指定Phase当前使用的提示词
@@ -27,8 +27,8 @@ export function getCurrentPhasePrompts(phase: 1 | 2 | 3): Record<string, string>
     }
   } else if (phase === 2) {
     // Phase 2: continent-{id}-{aspect} (各大陆各维度)
-    const aspectKeys = Object.keys(ASPECT_LABELS) as Array<keyof ContinentAspects>
     for (const continent of CONTINENTS) {
+      const aspectKeys = getContinentAspectKeys(continent.id as ContinentId)
       for (const aspectKey of aspectKeys) {
         const templateId = `phase2-${continent.id}-${aspectKey}`
         const template = getPhase2Prompt(continent.id as ContinentId, aspectKey)

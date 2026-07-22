@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { reactive, computed, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import type { ContinentsState, ContinentId, ContinentAspects } from '@/types/continent'
-import { ASPECT_KEYS, ASPECT_LABELS } from '@/types/continent'
+import { ASPECT_LABELS, STORY_GAMEPLAY_CONTINENT_IDS, getContinentAspectKeys } from '@/types/continent'
 import type { FieldMeta } from '@/types/content-meta'
 import { createDefaultFieldMeta } from '@/types/content-meta'
 import { defaultContinentsState } from '@/constants/defaults'
@@ -18,7 +18,7 @@ function compactTextLength(value: unknown): number {
   return typeof value === 'string' ? [...value.replace(/\s/g, '')].length : 0
 }
 
-const PHASE2_FIELD_MIN_LENGTHS: Record<keyof ContinentAspects, number> = {
+const PHASE2_FIELD_MIN_LENGTHS: Partial<Record<keyof ContinentAspects, number>> = {
   mainPlot: 500,
   coreConflict: 140,
   playerGoal: 180,
@@ -78,12 +78,23 @@ function hasThinPhase2Package(data: ContinentsState | null | undefined): boolean
   })
 }
 
+function hasCompleteStoryGameplayConcepts(data: ContinentsState | null | undefined): boolean {
+  if (!data) return false
+  return STORY_GAMEPLAY_CONTINENT_IDS.every(id => (
+    compactTextLength(data[id]?.aspects?.storyGameplayConcept) >= 320
+  ))
+}
+
 function isExpandedPhase2State(data: ContinentsState | null | undefined): boolean {
-  return countStalePhase2Fields(data) === 0 && !hasThinPhase2Package(data)
+  return countStalePhase2Fields(data) === 0
+    && !hasThinPhase2Package(data)
+    && hasCompleteStoryGameplayConcepts(data)
 }
 
 function isStalePhase2State(data: ContinentsState | null | undefined): boolean {
-  return countStalePhase2Fields(data) >= 9 || hasThinPhase2Package(data)
+  return countStalePhase2Fields(data) >= 9
+    || hasThinPhase2Package(data)
+    || !hasCompleteStoryGameplayConcepts(data)
 }
 
 function latestPhase2EditAt(data: ContinentsState | null | undefined): number {
@@ -125,10 +136,11 @@ export const useContinentsStore = defineStore('continents', () => {
     const aspects = state[id]?.aspects
     if (!aspects) return 0
     let filled = 0
-    for (const key of ASPECT_KEYS) {
+    const aspectKeys = getContinentAspectKeys(id)
+    for (const key of aspectKeys) {
       if (aspects[key].trim()) filled++
     }
-    return Math.round((filled / ASPECT_KEYS.length) * 100)
+    return Math.round((filled / aspectKeys.length) * 100)
   }
 
   const overallCompletion = computed(() => {
@@ -145,6 +157,7 @@ export const useContinentsStore = defineStore('continents', () => {
     if (c.aspects.mainPlot) parts.push(`【主线剧情】${c.aspects.mainPlot}`)
     if (c.aspects.coreConflict) parts.push(`【核心冲突】${c.aspects.coreConflict}`)
     if (c.aspects.playerGoal) parts.push(`【玩家目标】${c.aspects.playerGoal}`)
+    if (c.aspects.storyGameplayConcept) parts.push(`【结合剧情的玩法构想】${c.aspects.storyGameplayConcept}`)
     if (c.aspects.themeExpression) parts.push(`【主题表达】${c.aspects.themeExpression}`)
     return parts.join('\n\n')
   }
@@ -189,7 +202,9 @@ export const useContinentsStore = defineStore('continents', () => {
         const defaults = defaultContinentsState()
         for (const key of Object.keys(defaults) as ContinentId[]) {
           if (data[key]) {
-            Object.assign(state[key], defaults[key], data[key])
+            const src = data[key]!
+            Object.assign(state[key], defaults[key], src)
+            Object.assign(state[key].aspects, defaults[key].aspects, src.aspects || {})
           }
         }
       }
@@ -490,7 +505,7 @@ export const useContinentsStore = defineStore('continents', () => {
     for (const cid of continentIds) {
       const continentData = state[cid]
       if (!continentData?.aspects) continue
-      for (const key of ASPECT_KEYS) {
+      for (const key of getContinentAspectKeys(cid)) {
         const val = continentData.aspects[key]
         if (typeof val === 'string') {
           if (!_fieldSnapshots[cid]) _fieldSnapshots[cid] = {}

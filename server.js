@@ -327,6 +327,11 @@ const PHASE2_FIELD_MIN_LENGTHS = {
   playerProgressionChanges: 260
 }
 
+const PHASE2_STORY_GAMEPLAY_MIN_LENGTHS = {
+  feng: 320,
+  lei: 320,
+}
+
 const PHASE2_CHAPTER_ALIGNMENT_MARKERS = [
   ['jin', 'mainPlot', '方舟堡在艾蕾尼娅指引下随奥里克返回金耀大陆'],
   ['jin', 'playerGoal', '回乡侦查与救援'],
@@ -375,12 +380,23 @@ function hasThinPhase2Package(data) {
   })
 }
 
+function hasCompleteStoryGameplayConcepts(data) {
+  if (!data || typeof data !== 'object') return false
+  return Object.entries(PHASE2_STORY_GAMEPLAY_MIN_LENGTHS).every(([continentId, minLength]) => (
+    compactTextLength(data[continentId]?.aspects?.storyGameplayConcept) >= minLength
+  ))
+}
+
 function isExpandedPhase2Continents(data) {
-  return countStalePhase2Fields(data) === 0 && !hasThinPhase2Package(data)
+  return countStalePhase2Fields(data) === 0
+    && !hasThinPhase2Package(data)
+    && hasCompleteStoryGameplayConcepts(data)
 }
 
 function isStalePhase2Continents(data) {
-  return countStalePhase2Fields(data) >= 9 || hasThinPhase2Package(data)
+  return countStalePhase2Fields(data) >= 9
+    || hasThinPhase2Package(data)
+    || !hasCompleteStoryGameplayConcepts(data)
 }
 
 function latestPhase2EditAt(data) {
@@ -983,6 +999,7 @@ const VALID_REALMS = ['upper', 'mortal', 'abyss']
 const VALID_FIELDS = ['past', 'present', 'future']
 const PHASE2_CONTINENT_IDS = ['jin', 'mu', 'bing', 'huo', 'tu', 'feng', 'lei', 'guang', 'an']
 const PHASE2_SYNC_FIELDS = ['mainPlot', 'coreConflict', 'playerGoal']
+const PHASE2_SPECIAL_SYNC_FIELDS = ['feng_storyGameplayConcept', 'lei_storyGameplayConcept']
 const PHASE3_CONTINENT_IDS = ['jin', 'mu', 'bing', 'huo']
 const PHASE3_SYNC_SECTIONS = ['systemDialogue', 'bosses', 'levelNodes']
 
@@ -1072,7 +1089,10 @@ const MODULE_CONFIGS = {
   phase2Continents: {
     fileName: 'phase2-continent-refs.ts',
     varName: 'PHASE2_CONTINENT_REFERENCES',
-    validFields: PHASE2_CONTINENT_IDS.flatMap(id => PHASE2_SYNC_FIELDS.map(field => `${id}_${field}`)),
+    validFields: [
+      ...PHASE2_CONTINENT_IDS.flatMap(id => PHASE2_SYNC_FIELDS.map(field => `${id}_${field}`)),
+      ...PHASE2_SPECIAL_SYNC_FIELDS,
+    ],
     header: `/**
  * 阶段二九大陆参考文档
  * 来源: data/continents.json 中已审阅的大陆叙事文稿

@@ -9,6 +9,7 @@ function emptyAspects(): ContinentAspects {
     mainPlot: '',
     coreConflict: '',
     playerGoal: '',
+    storyGameplayConcept: '',
     experiencePositioning: '',
     inGameExpression: '',
     themeExpression: '',
